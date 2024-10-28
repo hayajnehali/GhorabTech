@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductManageComponent } from './product-manage/product-manage.component';
-import { ProductCardComponent } from '../../shared-module/component/product-card/product-card.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductManageComponent } from './product-manage/product-manage.component'; 
+import { ProductListComponent } from './product-list/product-list.component'; 
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
-  {
-  path:'',
+{
+  path:"",
+  component:AdminDashboardComponent
+}, 
+{
+  path:'manageProduct',
   component:ProductManageComponent
 },
 {
   path:'products',
-  component:ProductCardComponent
-},
-{
-  path:'productList',
   component:ProductListComponent
 }
 ];

@@ -4,9 +4,9 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared-module/shared.module';
-import { AdminModule } from './admin/admin-module/admin.module';
+import { AdminModule } from './admin/admin-module/admin.module';  
 import { RouterModule } from '@angular/router';
-import { routes } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 
 
 
@@ -14,10 +14,11 @@ import { routes } from './app.routes';
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule, 
     SharedModule,
-    AdminModule,
-    RouterModule.forRoot(routes)
-  ],exports:[BrowserModule],bootstrap:[AppComponent], providers: [provideAnimationsAsync()]
+    RouterModule,
+    AppRoutingModule,   
+    AdminModule, 
+    ],exports:[BrowserModule],bootstrap:[AppComponent], providers: [provideAnimationsAsync()]
 })
 export class AppModule { }

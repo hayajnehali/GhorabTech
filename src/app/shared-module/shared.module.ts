@@ -7,7 +7,8 @@ import {MatInputModule} from '@angular/material/input';
 
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProductCardComponent } from './component/product-card/product-card.component';
+import { ProductCardComponent } from './component/product-card/product-card.component'; 
+import { AdminNavBarComponent } from '../admin/admin-module/admin-nav-bar/admin-nav-bar.component';
 @NgModule({
   declarations: [
     ProductCardComponent
@@ -24,7 +25,7 @@ import { ProductCardComponent } from './component/product-card/product-card.comp
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    ProductCardComponent
+    ProductCardComponent,
   ],providers:[
     // FormsModule,
     // MatFormFieldModule,
