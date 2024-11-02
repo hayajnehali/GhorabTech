@@ -1,0 +1,19 @@
+<div class="container containerP">  
+    <h2>Create Category</h2>
+    <form (ngSubmit)="onSubmit()" #productForm="ngForm"> 
+        <div class="form-group">
+            <label for="nameEn">Name (English)</label>
+            <input type="text" class="form-control" id="nameEn" 
+                   name="nameEn" [(ngModel)]="productCategory.categoryEn">
+        </div>
+        <div class="form-group">
+            <label for="nameAr">Name (Arabic)</label>
+            <input type="text" class="form-control" id="nameAr" 
+                   name="nameAr" [(ngModel)]="productCategory.categoryAr">
+        </div>
+        <div class="form-group d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="goBack()">Back</button> 
+            <button type="submit" class="btn btn-primary mx-2">Submit</button>
+        </div>
+    </form>
+</div>

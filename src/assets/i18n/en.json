@@ -1,0 +1,10 @@
+{
+  "general": {
+    "name": "Name",
+    "nameAr": "Name (Arabic)",
+    "nameEn": "Name (English)",
+    "dashboard": "Dashboard",
+    "ar": "AR",
+    "en": "EN"
+  }
+}

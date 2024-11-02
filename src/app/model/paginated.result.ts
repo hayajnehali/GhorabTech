@@ -1,5 +1,5 @@
 export class PaginatedResult<T>{
-    count!: number;  // Assuming every model will have an id
+    totalNumberOf: number=0;  // Assuming every model will have an id
     data!: T;
 
     constructor(init?: Partial<PaginatedResult<T>>) {

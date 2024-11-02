@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../shared-module/services/product.service';
-import { Product, ProductFilter } from '../../../model/product';
-import { PaginatedResult } from '../../../model/paginated.result';
+import { ProductService } from '../../../../shared-module/services/product.service';
+import { Product, ProductFilter } from '../../../../model/product';
+import { PaginatedResult } from '../../../../model/paginated.result';
 import { Router } from '@angular/router';
 
 @Component({
@@ -42,6 +42,6 @@ export class ProductListComponent implements OnInit {
   }
   goToAddProduct(){
 
-    this.router.navigate(['admin/']);
+    this.router.navigate(['admin/manageProduct']);
   }
 }
