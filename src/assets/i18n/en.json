@@ -5,6 +5,28 @@
     "nameEn": "Name (English)",
     "dashboard": "Dashboard",
     "ar": "AR",
-    "en": "EN"
-  }
+    "en": "EN",
+    "lang": "lang",
+    "product": "Product",
+    "category": "Category",
+    "categoryName": "Category Name",
+    "actions": "Actions",
+    "view": "View",
+    "edit": "Edit",
+    "delete":"Delete"
+  },
+  "uploadedImages":"Uploaded Images :",
+  "nameAr": "Name (Arabic)",
+  "nameEn": "Name (English)"  , 
+  "count":"Count",
+  "price":"Price",
+  "image":"Image",
+  "descriptionEn":"Description (English)",
+  "descriptionAr":"Description (Arabic)",
+  "selectProductCategory":"Select Product Category",
+  "createProduct":"Create Product",
+  "updateProduct":"Update Product",
+  "addProduct":"Add Product",
+  "add":"Add",
+  "productCategory":"Product Category"
 }

@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -21,7 +22,8 @@ export class AdminLayOutComponent {
 
   isCollapsed = true;
   constructor(private observer: BreakpointObserver,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,7 +47,18 @@ export class AdminLayOutComponent {
     }
   }
 
-  switchLanguage(language: string) {
-    this.translate.use(language);
+  switchLanguage(language: string) { 
+      this.translate.use(language);
+      localStorage.setItem('language', language); 
+      this.router.navigate([this.router.url]).then(() => {
+        window.location.reload();
+      }); 
+  }
+
+  goProductS(){
+    this.router.navigate(['admin/products']);
+  }
+  gocategory(){
+    this.router.navigate(['admin/categorys']);
   }
 }

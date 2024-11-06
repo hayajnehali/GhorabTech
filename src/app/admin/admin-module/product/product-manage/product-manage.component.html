@@ -1,14 +1,16 @@
-<div class="container containerP">
-  <h2>Create Product</h2>
-  <form (ngSubmit)="onSubmit()" #productForm="ngForm"> 
+<div class="container containerP" >
+  <h2 *ngIf="isAdd">{{ "createProduct" | translate }}</h2>
+  <h2 *ngIf="!isAdd">{{ "updateProduct" | translate }}</h2> 
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
     <div class="row">
       <div class="col-6">
         <div class="form-group">
-          <label for="nameEn">Name (English)</label>
+          <label for="nameEn">{{ "nameEn" | translate }}</label>
           <input
-            type="text"
+            type="text" maxlength="100" minlength="5"
             class="form-control"
             id="nameEn"
+            required
             name="nameEn"
             [(ngModel)]="product.nameEn"
           />
@@ -16,19 +18,20 @@
       </div>
       <div class="col-6">
         <div class="form-group">
-          <label for="nameAr">Name (Arabic)</label>
+          <label for="nameAr">{{ "nameAr" | translate }}</label>
           <input
-            type="text"
+            type="text" maxlength="100"
             class="form-control"
             id="nameAr"
+            required
             name="nameAr"
             [(ngModel)]="product.nameAr"
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-4">
         <div class="form-group">
-          <label for="price">Price</label>
+          <label for="price">{{ "price" | translate }}</label>
           <input
             type="number"
             class="form-control"
@@ -37,54 +40,68 @@
             [(ngModel)]="product.price"
             required
             step="0.01"
+            required
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-4">
         <div class="form-group">
-          <label for="count">Count</label>
+          <label for="count">{{ "count" | translate }}</label>
           <input
             type="number"
             class="form-control"
             id="count"
+            required
             name="count"
             [(ngModel)]="product.count"
             required
           />
         </div>
       </div>
-    </div>
-
-    <div class="form-group">
-        <mat-form-field>
-            <mat-select  placeholder="Select Category">
-              <mat-option *ngFor="let category of categoryList" [value]="category.productCategoryId">
+      <div class="col-4">
+        <label for="productCategoryId">{{ "selectProductCategory" | translate }}</label>
+        <div class="form-group"> 
+          <mat-form-field>
+            <mat-select placeholder="{{'selectProductCategory' | translate }}" [(value)]="product.productCategoryId">
+              <mat-option
+                *ngFor="let category of categoryList"
+                [value]="category.productCategoryId"
+              >
                 {{ category.category }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        class="form-control"
-        id="description"
-        name="description"
-        [(ngModel)]="product.descriptionEn"
-      ></textarea>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="description">{{ "descriptionEn" | translate }}</label>
+          <textarea
+            class="form-control"
+            id="description" [rows]="3"
+            name="description" maxlength="500"
+            [(ngModel)]="product.descriptionEn"
+          ></textarea>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="description">{{ "descriptionAr" | translate }}</label>
+          <textarea
+            class="form-control"
+            id="descriptionAr" maxlength="500"
+            name="descriptionAr" [rows]="3"
+            [(ngModel)]="product.descriptionAr"
+          ></textarea>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        class="form-control"
-        id="description"
-        name="description"
-        [(ngModel)]="product.descriptionAr"
-      ></textarea>
-    </div>
+
     <div class="form-group">
       <label for="imageUrl">Image URL</label>
-      <!-- <input type="file" class="form-control" id="imageUrl"   name="imageUrl" [(ngModel)]="product.imageUrl"> -->
       <input
         type="file"
         id="images"
@@ -93,14 +110,16 @@
         multiple
         class="form-control"
       />
-      <div *ngIf="uploadedFileNames.length > 0">
-        <h3>Uploaded Images:</h3>
-        <div *ngFor="let fileName of uploadedFileNames">
+      <!-- Thumbnail Gallery -->
+      <div class="row w-100 mt-3 thumbnail-gallery">
+        <div
+          *ngFor="let image of product.images; let i = index"
+          class="col-2 p-1"
+        >
           <img
-            [src]="getImageUrl(fileName)"
-            alt="Image"
-            width="150"
-            style="margin: 10px"
+            [src]="'assets/projectImg/' + image.guidName"
+            class="img-thumbnail"
+            alt="Thumbnail Image"
           />
         </div>
       </div>

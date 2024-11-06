@@ -7,6 +7,7 @@ import {
   ProductCategoryFilter,
 } from '../../../../model/product-category';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../../shared-module/services/notification.service';
 
 @Component({
   selector: 'app-category-list',
@@ -14,36 +15,31 @@ import { Router } from '@angular/router';
   styleUrl: './category-list.component.scss',
 })
 export class CategoryListComponent implements OnInit {
-  displayedColumns: string[] = ['Id', 'categoryName'];
-  dataSource = new MatTableDataSource<ProductCategory>();  
+
+  displayedColumns: string[] = ['Id', 'categoryName', 'action'];
+  dataSource = new MatTableDataSource<ProductCategory>();
   @ViewChild(MatPaginator) paginator!: MatPaginator; // Declare paginator without initialization
-  productCategoryFilter: ProductCategoryFilter=new ProductCategoryFilter();
-  totalNumberOf: number=0;
+  productCategoryFilter: ProductCategoryFilter = new ProductCategoryFilter();
+  totalNumberOf: number = 0;
 
   constructor(
     private productCategoryService: ProductCategoryService,
-    private router: Router
-  ) {
- 
-  }
+    private router: Router,
+    private notificationService:NotificationService
+  ) {}
   ngOnInit(): void {
     this.getCategory();
   }
-  ngAfterViewInit() {
-    this.paginator.pageSize=5
-    
+  ngAfterViewInit() { 
     this.dataSource.paginator = this.paginator; // Set the paginator after the view initializes
-
-
   }
 
   getCategory() {
-   
     this.productCategoryService
-      .getAll( this.productCategoryFilter)
+      .getAll(this.productCategoryFilter)
       .subscribe((req) => {
-        this.dataSource.data = req.data;  
-        this.totalNumberOf=req.totalNumberOf
+        this.dataSource.data = req.data;
+        this.totalNumberOf = req.totalNumberOf;
       });
   }
   goToAdd() {
@@ -54,9 +50,20 @@ export class CategoryListComponent implements OnInit {
   }
 
   pageChanged(event: PageEvent) {
-    this.productCategoryFilter.pageIndex = event.pageIndex+1; 
-    this.productCategoryFilter.pageSize = event.pageSize;  
-    this.getCategory();  
-   
+    this.productCategoryFilter.pageIndex = event.pageIndex + 1;
+    this.productCategoryFilter.pageSize = event.pageSize;
+    this.getCategory();
   }
+
+  goDelete(arg0: any) {
+    this.productCategoryService.delete(arg0).subscribe((req) => {
+      if(req!=null && req.data){
+        this.notificationService.showSuccess()
+        this.getCategory();
+      } 
+    });
+  }
+  goEdit(arg0: any) {
+    this.router.navigate(['admin/categoryManage/'+arg0]);
+    }
 }

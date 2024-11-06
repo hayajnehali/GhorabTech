@@ -39,26 +39,33 @@ this.baseUrl=this.baseUrl+baseUrll;
 
 
   getById(id: number): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${id}`).pipe(
+    return this.http.get<T>(`${this.baseUrl}/getById/${id}`).pipe(
       catchError(this.handleError<T>(`getById id=${id}`))
     );
   }
 
   create(item: T): Observable<T> {
-    return this.http.post<T>(this.baseUrl+"/create", item).pipe(
-      catchError(this.handleError<T>('create'))
-    );
+    return this.http.post<T>(this.baseUrl+"/create", item)
   }
+  // create(item: T): Observable<T> {
+  //   return this.http.post<T>(this.baseUrl+"/create", item).pipe(
+  //     catchError(this.handleError<T>('create'))
+  //   );
+  // }
 
-  update(id: number, item: T): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}/${id}`, item).pipe(
-      catchError(this.handleError<T>('update'))
-    );
+  update(item: T): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}/update`, item)
   }
+  // update(item: T): Observable<T> {
+  //   return this.http.put<T>(`${this.baseUrl}/update`, item).pipe(
+  //     catchError(this.handleError<T>('update'))
+  //     this.notificationService.showError(error);
+  //   );
+  // }
 
-  delete(id: number): Observable<T> {
-    return this.http.delete<T>(`${this.baseUrl}/${id}`).pipe(
-      catchError(this.handleError<T>('delete'))
+  delete(id: number): Observable<PaginatedResult<T>> {
+    return this.http.delete<PaginatedResult<T>>(`${this.baseUrl}/delete/${id}`).pipe(
+      catchError(this.handleError<PaginatedResult<T>>('delete'))
     );
   }
 

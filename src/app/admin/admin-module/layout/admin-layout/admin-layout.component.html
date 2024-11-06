@@ -46,7 +46,7 @@
                                     <a href="#">FAQs</a>
                                 </div>
                                 <div class="header__top__hover">
-                                    <span>Usd <i class="arrow_carrot-down"></i></span>
+                                    <span>{{ 'general.lang' | translate }} <i class="arrow_carrot-down"></i></span>
                                     <ul>
                                         <li (click)="switchLanguage('en')">{{ 'general.en' | translate }}</li>
                                         <li (click)="switchLanguage('ar')">{{ 'general.ar' | translate }}</li> 
@@ -115,6 +115,18 @@
             <span class="entry">
                <mat-icon>house</mat-icon>
                <span *ngIf="!isCollapsed">{{ 'general.dashboard' | translate }}</span>
+            </span>
+         </a>
+         <a mat-list-item>
+            <span class="entry" (click)="goProductS()">
+                <mat-icon>drag_indicator</mat-icon> 
+               <span *ngIf="!isCollapsed">{{ 'general.product' | translate }}</span>
+            </span>
+         </a>
+         <a mat-list-item>
+            <span class="entry" (click)="gocategory()">
+                <mat-icon> merge_type</mat-icon>
+               <span *ngIf="!isCollapsed">{{ 'general.category' | translate }}</span>
             </span>
          </a>
       </mat-nav-list>

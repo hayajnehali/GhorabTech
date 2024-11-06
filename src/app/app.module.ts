@@ -9,9 +9,10 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LanguageInterceptor } from '../Auth/interceptor/language-interceptor.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminModule,
     BrowserAnimationsModule, // Required animations module
     ToastrModule.forRoot({
-      timeOut: 3000, // Duration of the toast
+      timeOut: 6000, // Duration of the toast
       positionClass: 'toast-bottom-center', // Position of the toast
       preventDuplicates: true, // Prevent duplicate messages
     }),
@@ -43,6 +44,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   exports: [BrowserModule],
   bootstrap: [AppComponent],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(),    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LanguageInterceptor,
+    multi: true
+  }],
 })
 export class AppModule {}

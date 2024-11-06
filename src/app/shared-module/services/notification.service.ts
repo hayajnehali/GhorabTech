@@ -1,19 +1,31 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService {
-
-  constructor(private toastr:ToastrService) { }
+  constructor(private toastr: ToastrService) {}
 
   showSuccess() {
     this.toastr.success('This is a success message!', 'Success');
   }
 
-  showError() {
-    this.toastr.error('This is an error message!', 'Error');
+  showError(error: HttpErrorResponse) { 
+      if (error.status === 400 && error.error) {
+        // Display validation errors if they exist
+        const validationErrors = error.error.errors || error.error; // Adjust based on your API's structure
+        if (typeof validationErrors === 'string') {
+          this.toastr.error(validationErrors, 'Validation Error');
+        } else {
+          Object.values(validationErrors).forEach((msg: any) => {
+            this.toastr.error(msg, 'Validation Error');
+          });
+        }
+      } else {
+        this.toastr.error('An unexpected error occurred', 'Error');
+      }
   }
 
   showInfo() {

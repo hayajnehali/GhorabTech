@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import { AdminFooterComponent } from './layout/admin-footer/admin-footer.component'; 
 import { CategoryListComponent } from './product-category/category-list/category-list.component'; 
 import { CategoryManageComponent } from './product-category/category-manage/category-manage.component';
+import { ProductViewComponent } from './product/product-view/product-view.component';
+import { TruncatePipe } from '../../shared-module/pipe/truncate.pipe';
 // import { RouterModule } from '@angular/router';
 
 
@@ -24,7 +26,9 @@ import { CategoryManageComponent } from './product-category/category-manage/cate
     AdminLayOutComponent,
     AdminFooterComponent, 
     CategoryListComponent, 
-    CategoryManageComponent
+    CategoryManageComponent, 
+    ProductViewComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,28 @@
       "nameEn":"الاسم باللغة الانجليزية",
       "dashboard":"الصفحه الارئيسيه",
       "ar":"العربية",
-      "en":"الانجليزية"
-    }
+      "en":"الانجليزية",
+      "lang":"اللغة",
+      "product":"منتجات",
+      "category":"الصنف",
+      "categoryName":"اسم الفئة",
+      "actions":"الاجراءات",
+      "view":"عرض",
+      "edit":"تعديل",
+      "delete":"حذف"
+    },
+      "uploadedImages":"تحميل صوره",
+      "nameAr":"الاسم باللغة العربية",
+      "nameEn":"الاسم باللغة الانجليزية",
+      "count":"الكمية",
+      "price":"السعر",
+      "image":"الصور",
+      "descriptionEn":"الوصف باللغة الانجليزية",
+      "descriptionAr":"الوصف باللغة العربية",
+      "selectProductCategory":"اختر تصنيف المنتج",
+      "createProduct":"انشاء منتج",
+      "updateProduct":"تعديل المنتج",
+      "addProduct":"اضافة المنتج",
+      "add":"اضافة",
+      "productCategory":"تصنيف المنتج"
   }
