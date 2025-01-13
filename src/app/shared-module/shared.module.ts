@@ -20,10 +20,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list'; 
 import {MatSelectModule} from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
-    ProductCardComponent
+    ProductCardComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSidenavModule,
     MatListModule,
     MatSelectModule,
-    TranslateModule
+    TranslateModule,
+    FooterComponent
   ],providers:[
     // FormsModule,
     // MatFormFieldModule,

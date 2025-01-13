@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AdminModule } from './admin/admin-module/admin.module';
 import { AdminLayOutComponent } from './admin/admin-module/layout/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './admin/admin-module/admin-dashboard/admin-dashboard.component';
+import { GuestLayOutComponent } from './guest-user/layout/guest-layout/guest-layout.component';
 
 // export const routes: Routes = [
 //     {
@@ -12,15 +13,25 @@ import { AdminDashboardComponent } from './admin/admin-module/admin-dashboard/ad
 // ];
 
 const routes: Routes = [ 
+  {
+    path: '',
+    component: GuestLayOutComponent, 
+    children: [
+      { path: '',loadChildren: () => import('./guest-user/guest-user.module').then(m => m.GuestUserModule) 
+      }, 
+      { path: 'settings', component: GuestLayOutComponent }  
+    ]
+  },
     {
       path: 'admin',
       component: AdminLayOutComponent,           // Admin layout
       children: [
         { path: '',loadChildren: () => import('./admin/admin-module/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
         }, // Default admin dashboard
-        { path: 'settings', component: AdminLayOutComponent } // Admin settings
+        // { path: 'settings', component: AdminLayOutComponent } // Admin settings
       ]
     },
+
     { path: '', redirectTo: 'user', pathMatch: 'full' },
     { path: '**', redirectTo: 'user' } // Wildcard route redirects to user
   ];

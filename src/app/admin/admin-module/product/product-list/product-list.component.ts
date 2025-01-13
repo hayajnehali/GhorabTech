@@ -5,6 +5,7 @@ import { PaginatedResult } from '../../../../model/paginated.result';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../../shared-module/services/notification.service';
 import { PageEvent } from '@angular/material/paginator';
+import { environment } from '../../../../shared-module/environment/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   imagesArray?: string[] = [];
   totalNumberOf: number = 0;
-
+  environment=environment;
   constructor(
     private router: Router,
     private productService: ProductService,

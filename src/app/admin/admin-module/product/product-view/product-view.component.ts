@@ -3,6 +3,7 @@ import { Product } from '../../../../model/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../../shared-module/services/product.service';
 import { NotificationService } from '../../../../shared-module/services/notification.service';
+import { environment } from '../../../../shared-module/environment/environment';
 
 @Component({
   selector: 'app-product-view',
@@ -11,6 +12,7 @@ import { NotificationService } from '../../../../shared-module/services/notifica
 })
 export class ProductViewComponent implements OnInit {
   product: Product = new Product();
+  environment=environment
   constructor(
     private router: Router,
     private productService: ProductService,

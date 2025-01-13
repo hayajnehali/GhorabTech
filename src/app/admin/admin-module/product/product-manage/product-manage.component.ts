@@ -9,6 +9,7 @@ import {
 } from '../../../../model/product-category';
 import { NotificationService } from '../../../../shared-module/services/notification.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../shared-module/environment/environment';
 
 @Component({
   selector: 'app-product-manage',
@@ -21,7 +22,7 @@ export class ProductManageComponent implements OnInit {
   uploadedFileNames: string[] = [];
   categoryList: ProductCategory[] = [];
   isAdd: boolean = true;
-
+  environment=environment;
   constructor(
     private productService: ProductService,
     private fileUploadService: FileUploadService,
@@ -50,6 +51,7 @@ this.notificationService.showError(error)
   }
  
   onFilesSelected(event: any) {
+    this.product.images=[]
     const files = event.target.files;
     this.selectedFiles = Array.from(files); 
   

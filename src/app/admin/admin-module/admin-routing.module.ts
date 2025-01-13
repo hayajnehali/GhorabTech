@@ -11,7 +11,7 @@ import { AdminLayOutComponent } from './layout/admin-layout/admin-layout.compone
 const routes: Routes = [
 {
   path:"", 
-  component:AdminLayOutComponent
+  component:ProductListComponent
 }, 
 {
   path:'productManage',
