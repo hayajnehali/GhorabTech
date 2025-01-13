@@ -56,9 +56,15 @@ export class GuestLayOutComponent {
   }
 
   goProductS(){
-    this.router.navigate(['admin/products']);
+    this.router.navigate(['guest/product']);
   }
   gocategory(){
     this.router.navigate(['admin/categorys']);
+  }
+
+  isActive: boolean = false;
+
+  toggleActive(): void {
+    this.isActive = !this.isActive;
   }
 }

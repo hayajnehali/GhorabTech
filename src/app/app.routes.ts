@@ -14,12 +14,12 @@ import { GuestLayOutComponent } from './guest-user/layout/guest-layout/guest-lay
 
 const routes: Routes = [ 
   {
-    path: '',
+    path: 'guest',
     component: GuestLayOutComponent, 
     children: [
       { path: '',loadChildren: () => import('./guest-user/guest-user.module').then(m => m.GuestUserModule) 
       }, 
-      { path: 'settings', component: GuestLayOutComponent }  
+  //    { path: 'settings', component: GuestLayOutComponent }  
     ]
   },
     {
@@ -28,12 +28,12 @@ const routes: Routes = [
       children: [
         { path: '',loadChildren: () => import('./admin/admin-module/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
         }, // Default admin dashboard
-        // { path: 'settings', component: AdminLayOutComponent } // Admin settings
+        { path: 'settings', component: AdminLayOutComponent } // Admin settings
       ]
     },
 
-    { path: '', redirectTo: 'user', pathMatch: 'full' },
-    { path: '**', redirectTo: 'user' } // Wildcard route redirects to user
+    { path: '', redirectTo: 'guest', pathMatch: 'full' },
+    { path: '**', redirectTo: 'guest' } // Wildcard route redirects to user
   ];
   
   @NgModule({

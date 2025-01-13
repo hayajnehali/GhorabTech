@@ -22,7 +22,7 @@ export class Product extends ModelBase {
 
 
 export class ProductFilter extends FilterBase {
-    
+    productCategoryId?: number;
 }
 export class Images {
     imageID? :number 

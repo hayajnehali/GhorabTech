@@ -17,7 +17,8 @@ import { ProductListComponent } from './Product/product-list/product-list.compon
     MainComponent, 
     NavBarComponent,
     SliderHomeComponent, 
-    GuestLayOutComponent, ProductListComponent
+    GuestLayOutComponent, 
+    ProductListComponent
     
   ],
   imports: [

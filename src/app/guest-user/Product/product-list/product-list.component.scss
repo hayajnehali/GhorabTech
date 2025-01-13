@@ -242,8 +242,11 @@ label {
   box-shadow: 2px 2px 15px #fd9a6ce5;
   transform: scale(1.02);
 }
-.card .product-name {
-  font-weight: 600;
+.product-name {
+  //font-size: 0.8rem;
+  height: 30px;
+  font-weight: 800;
+  overflow: hidden;
 }
 .card-body {
   padding-bottom: 0;
@@ -254,7 +257,7 @@ label {
 .card-img img {
   padding-top: 10px;
   width: inherit;
-  height: 180px;
+  height: 310px;
   object-fit: contain;
   display: block;
 }
@@ -427,6 +430,9 @@ input[type="range"]::-webkit-slider-thumb {
   }
   .product-name {
     font-size: 0.8rem;
+    height: 30px;
+    font-weight: 800;
+    overflow: hidden;
   }
 }
 @media (max-width: 991.5px) {

@@ -21,11 +21,13 @@ import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './component/footer/footer.component';
-
+import { AboutComponent } from './component/about/about.component';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     ProductCardComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { FooterComponent } from './component/footer/footer.component';
     MatSidenavModule,
     MatListModule,
     MatSelectModule,
-    TranslateModule
+    TranslateModule,
+    MatRadioModule
 
   ],exports:[  
     FormsModule,
@@ -59,7 +62,9 @@ import { FooterComponent } from './component/footer/footer.component';
     MatListModule,
     MatSelectModule,
     TranslateModule,
-    FooterComponent
+    FooterComponent,
+    AboutComponent,
+    MatRadioModule
   ],providers:[
     // FormsModule,
     // MatFormFieldModule,
