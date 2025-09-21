@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileUploadService {
-  protected baseUrl:string="https://localhost:44360/api/FileUpload"
+  protected baseUrl:string="https://rasoul.runasp.net/api/FileUpload"
 
   constructor(private http: HttpClient) {}
 
