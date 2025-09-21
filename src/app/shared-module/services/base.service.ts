@@ -8,7 +8,7 @@ import { PaginatedResult } from '../../model/paginated.result';
   providedIn: 'root',
 })
 export class GenericService<T,F extends object> {
-  protected baseUrl:string="http://ghorab.runasp.net/api/"
+  protected baseUrl:string="https://rasoul.runasp.net/api/"
   //protected baseUrl:string="https://localhost:44360/api/"
   
   constructor(protected http: HttpClient,@Inject(BASE_URL) baseUrll:string) {
