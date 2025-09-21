@@ -31,7 +31,7 @@
               [class.active]="i === 0"
             >
               <img
-                [src]="environment.apiBaseUrl + image.guidName"
+                [src]="environment.assetsUrl + image.guidName"
                 class="fixed-size-image"
                 alt="Product Image"
               />
@@ -67,7 +67,7 @@
             (click)="goToSlide(i)"
           >
             <img
-              [src]="environment.apiBaseUrl + image.guidName"
+              [src]="environment.assetsUrl + image.guidName"
               class="img-thumbnail"
               alt="Thumbnail Image"
             />

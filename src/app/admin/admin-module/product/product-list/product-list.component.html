@@ -13,7 +13,7 @@
           <div class="product__item card border-light shadow rounded-lg animate__animated animate__zoomIn position-relative">
             <!-- Product Image -->
             <div class="product__item__pic">
-              <img [src]="environment.apiBaseUrl + item.images[0].guidName" class="card-img-top rounded-top" alt="{{ item.name }}">
+              <img [src]="environment.assetsUrl + item.images[0].guidName" class="card-img-top rounded-top" alt="{{ item.name }}">
               <span class="badge bg-primary position-absolute top-0 end-0 m-2 p-2">New</span>
             </div>
   
@@ -81,7 +81,7 @@
             <div class="row product__filter">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" *ngFor="let item of products">
                     <div class="product__item">
-                         <div class="product__item__pic set-bg" [style.background-image]="'url('+environment.apiBaseUrl +  item.images[0].guidName + ')'">
+                         <div class="product__item__pic set-bg" [style.background-image]="'url('+environment.assetsUrl +  item.images[0].guidName + ')'">
 
                             <span class="label">New</span>
                             <ul class="product__hover">
