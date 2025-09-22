@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { ProductCategoryService } from '../../../../shared-module/services/product-category.service';
-import {
-  ProductCategory,
-  ProductCategoryFilter,
-} from '../../../../model/product-category';
-import { Router } from '@angular/router';
-import { NotificationService } from '../../../../shared-module/services/notification.service';
+import { MatTableDataSource } from '@angular/material/table'; 
+import { Router } from '@angular/router'; 
+import { ProductCategory, ProductCategoryFilter } from '../../../model/product-category';
+import { ProductCategoryService } from '../../../shared-module/services/product-category.service';
+import { NotificationService } from '../../../shared-module/services/notification.service';
 
 @Component({
   selector: 'app-category-list',

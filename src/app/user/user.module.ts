@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { GuestUserRoutingModule } from './guest-user-routing.module'; 
+import { CommonModule } from '@angular/common'; 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainComponent } from './main/main.component';
 import { SliderHomeComponent } from './slider-home/slider-home.component';      
 import { ProductService } from '../shared-module/services/product.service';
 import { GenericService } from '../shared-module/services/base.service';
 import { SharedModule } from '../shared-module/shared.module';
-import { GuestLayOutComponent } from './layout/guest-layout/guest-layout.component';
+import { UserLayOutComponent } from './layout/user-layout/user-layout.component';
 import { ProductListComponent } from './Product/product-list/product-list.component'; 
+import { UserRoutingModule } from './user-routing.module';
 
 
 @NgModule({
@@ -17,14 +16,14 @@ import { ProductListComponent } from './Product/product-list/product-list.compon
     MainComponent, 
     NavBarComponent,
     SliderHomeComponent, 
-    GuestLayOutComponent, 
+    UserLayOutComponent, 
     ProductListComponent
     
   ],
   imports: [
     CommonModule,
-    GuestUserRoutingModule,
+    UserRoutingModule,
     SharedModule
   ] , providers:[GenericService,ProductService ]
 })
-export class GuestUserModule { }
+export class UserModule { }

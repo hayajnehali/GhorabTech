@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductCategory } from '../../../../model/product-category';
-import { ProductCategoryService } from '../../../../shared-module/services/product-category.service';
+import { Component, OnInit } from '@angular/core'; 
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../../../shared-module/services/notification.service';
+import { ActivatedRoute, Router } from '@angular/router'; 
+import { ProductCategory } from '../../../model/product-category';
+import { ProductCategoryService } from '../../../shared-module/services/product-category.service';
+import { NotificationService } from '../../../shared-module/services/notification.service';
 
 @Component({
   selector: 'app-category-manage',

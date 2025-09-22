@@ -1,39 +1,30 @@
 import { RouterModule, Routes } from '@angular/router'; 
-import { NgModule } from '@angular/core'; 
-import { AdminModule } from './admin/admin-module/admin.module';
-import { AdminLayOutComponent } from './admin/admin-module/layout/admin-layout/admin-layout.component';
-import { AdminDashboardComponent } from './admin/admin-module/admin-dashboard/admin-dashboard.component';
-import { GuestLayOutComponent } from './guest-user/layout/guest-layout/guest-layout.component';
+import { NgModule } from '@angular/core';   
+import { AdminLayOutComponent } from './admin/layout/admin-layout/admin-layout.component';
+import { UserLayOutComponent } from './user/layout/user-layout/user-layout.component';
 
-// export const routes: Routes = [
-//     {
-//         path:"admin",
-//         loadChildren: () => AdminModule 
-//     }
-// ];
-
+ 
 const routes: Routes = [ 
   {
-    path: 'guest',
-    component: GuestLayOutComponent, 
+    path: 'user',
+    component: UserLayOutComponent, 
     children: [
-      { path: '',loadChildren: () => import('./guest-user/guest-user.module').then(m => m.GuestUserModule) 
-      }, 
-  //    { path: 'settings', component: GuestLayOutComponent }  
+      { path: '',loadChildren: () => import('./user/user.module').then(m => m.UserModule) 
+      },  
     ]
   },
     {
       path: 'admin',
       component: AdminLayOutComponent,           // Admin layout
       children: [
-        { path: '',loadChildren: () => import('./admin/admin-module/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
+        { path: '',loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
         }, // Default admin dashboard
         { path: 'settings', component: AdminLayOutComponent } // Admin settings
       ]
     },
 
-    { path: '', redirectTo: 'guest', pathMatch: 'full' },
-    { path: '**', redirectTo: 'guest' } // Wildcard route redirects to user
+    { path: '', redirectTo: 'user', pathMatch: 'full' },
+    { path: '**', redirectTo: 'user' } // Wildcard route redirects to user
   ];
   
   @NgModule({

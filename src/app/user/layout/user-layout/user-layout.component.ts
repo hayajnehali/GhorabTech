@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-guest-layout',
-  templateUrl: './guest-layout.component.html',
-  styleUrl: './guest-layout.component.scss', 
+  selector: 'app-user-layout',
+  templateUrl: './user-layout.component.html',
+  styleUrl: './user-layout.component.scss', 
 })
-export class GuestLayOutComponent {
+export class UserLayOutComponent {
   title = 'material-responsive-sidenav';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -56,7 +56,7 @@ export class GuestLayOutComponent {
   }
 
   goProductS(){
-    this.router.navigate(['guest/product']);
+    this.router.navigate(['user/product']);
   }
   gocategory(){
     this.router.navigate(['admin/categorys']);
@@ -67,4 +67,5 @@ export class GuestLayOutComponent {
   toggleActive(): void {
     this.isActive = !this.isActive;
   }
+  
 }

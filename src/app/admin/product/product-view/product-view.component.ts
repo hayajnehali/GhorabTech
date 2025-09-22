@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../../model/product';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../../../shared-module/services/product.service';
-import { NotificationService } from '../../../../shared-module/services/notification.service';
-import { environment } from '../../../../shared-module/environment/environment';
-
+import { Component, OnInit } from '@angular/core'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
+import { Product } from '../../../model/product';
+import { ProductService } from '../../../shared-module/services/product.service';
+import { NotificationService } from '../../../shared-module/services/notification.service';
+import { environment } from '../../../shared-module/environment/environment';
 @Component({
   selector: 'app-product-view',
   templateUrl: './product-view.component.html',

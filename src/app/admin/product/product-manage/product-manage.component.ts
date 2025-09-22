@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../../shared-module/services/product.service';
-import { Product } from '../../../../model/product';
-import { FileUploadService } from '../../../../shared-module/services/file-upload.service';
-import { ProductCategoryService } from '../../../../shared-module/services/product-category.service';
-import {
-  ProductCategory,
-  ProductCategoryFilter,
-} from '../../../../model/product-category';
-import { NotificationService } from '../../../../shared-module/services/notification.service';
-import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../../../shared-module/environment/environment';
+import { Component, OnInit } from '@angular/core'; 
+import { ActivatedRoute } from '@angular/router'; 
+import { Product } from '../../../model/product';
+import { ProductCategory, ProductCategoryFilter } from '../../../model/product-category';
+import { environment } from '../../../shared-module/environment/environment';
+import { ProductService } from '../../../shared-module/services/product.service';
+import { ProductCategoryService } from '../../../shared-module/services/product-category.service';
+import { FileUploadService } from '../../../shared-module/services/file-upload.service';
+import { NotificationService } from '../../../shared-module/services/notification.service';
 
 @Component({
   selector: 'app-product-manage',
