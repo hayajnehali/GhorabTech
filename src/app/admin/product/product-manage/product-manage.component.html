@@ -1,13 +1,20 @@
-<div class="container containerP" >
-  <h2 *ngIf="isAdd">{{ "createProduct" | translate }}</h2>
-  <h2 *ngIf="!isAdd">{{ "updateProduct" | translate }}</h2> 
+<div class="container containerP">
+  <h2>
+    @if(isAdd){
+    {{ "createProduct" | translate }}
+    }@else {
+    {{ "updateProduct" | translate }}
+    }
+  </h2>
   <form (ngSubmit)="onSubmit()" #productForm="ngForm">
     <div class="row">
       <div class="col-6">
         <div class="form-group">
           <label for="nameEn">{{ "nameEn" | translate }}</label>
           <input
-            type="text" maxlength="100" minlength="5"
+            type="text"
+            maxlength="100"
+            minlength="5"
             class="form-control"
             id="nameEn"
             required
@@ -20,7 +27,8 @@
         <div class="form-group">
           <label for="nameAr">{{ "nameAr" | translate }}</label>
           <input
-            type="text" maxlength="100"
+            type="text"
+            maxlength="100"
             class="form-control"
             id="nameAr"
             required
@@ -59,10 +67,15 @@
         </div>
       </div>
       <div class="col-4">
-        <label for="productCategoryId">{{ "selectProductCategory" | translate }}</label>
-        <div class="form-group"> 
+        <label for="productCategoryId">{{
+          "selectProductCategory" | translate
+        }}</label>
+        <div class="form-group">
           <mat-form-field>
-            <mat-select placeholder="{{'selectProductCategory' | translate }}" [(value)]="product.productCategoryId">
+            <mat-select
+              placeholder="{{ 'selectProductCategory' | translate }}"
+              [(value)]="product.productCategoryId"
+            >
               <mat-option
                 *ngFor="let category of categoryList"
                 [value]="category.productCategoryId"
@@ -81,8 +94,10 @@
           <label for="description">{{ "descriptionEn" | translate }}</label>
           <textarea
             class="form-control"
-            id="description" [rows]="3"
-            name="description" maxlength="500"
+            id="description"
+            [rows]="3"
+            name="description"
+            maxlength="500"
             [(ngModel)]="product.descriptionEn"
           ></textarea>
         </div>
@@ -92,15 +107,17 @@
           <label for="description">{{ "descriptionAr" | translate }}</label>
           <textarea
             class="form-control"
-            id="descriptionAr" maxlength="500"
-            name="descriptionAr" [rows]="3"
+            id="descriptionAr"
+            maxlength="500"
+            name="descriptionAr"
+            [rows]="3"
             [(ngModel)]="product.descriptionAr"
           ></textarea>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="imageUrl">Image URL</label>
       <input
         type="file"
@@ -109,21 +126,18 @@
         accept="image/*"
         multiple
         class="form-control"
-      />
-      <!-- Thumbnail Gallery -->
+      /> 
       <div class="row w-100 mt-3 thumbnail-gallery">
         <div
           *ngFor="let image of product.images; let i = index"
           class="col-2 p-1"
         >
-          <img
-            [src]="environment.assetsUrl + image.guidName"
-            class="img-thumbnail"
-            alt="Thumbnail Image"
-          />
+        <app-image  [src]="image.guidName"></app-image>
         </div>
       </div>
-    </div>
+    </div> -->
+    <app-multi-image-upload [(images)]="product.images"></app-multi-image-upload>
+
     <div class="form-group d-flex justify-content-end">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>

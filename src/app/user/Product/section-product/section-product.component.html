@@ -1,0 +1,65 @@
+<section class="py-5 product-section">
+  <h3 class="section-title section-title-center">
+  <b aria-hidden="true"></b>
+  <span class="section-title-main">{{'perfume.perfume'| translate}}</span>
+  <b aria-hidden="true"></b>
+</h3>
+
+
+  <div id="productCarousel" class="carousel slide" data-bs-ride="carousel"  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row g-4" *ngIf="items.length>0">
+            <div class="col-md-6 col-lg-3" *ngFor="let product of items">
+              <div class="card product-card border-0">
+                <div class="image-wrapper">
+                  <app-image *ngIf="product.images[0].guidName"
+                    src="{{product.images[0].guidName}}"
+                    class="card-img-top main-img" 
+                    alt="product.name"
+                  ></app-image>
+                  <app-image *ngIf="product.images[1].guidName"  class="hover-img"
+                    src="{{product.images[1].guidName}}"
+                    class="card-img-top hover-img"
+                    alt="product.name"
+                  ></app-image>
+                </div>
+                <div class="card-body text-center">
+                  <p class="">{{ product.name }}</p>
+                  <p class="card-text">
+                    <strong class="d-block mt-1">JOD {{ product.price }}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <!-- الأسهم -->
+    <!-- <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#productCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#productCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button> -->
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-pink px-4 py-2">
+      <i class="fa fa-shopping-cart me-2"></i> {{'general.show-more'|translate}}
+    </button>
+  </div>
+</section>

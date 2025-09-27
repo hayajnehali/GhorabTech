@@ -1,0 +1,59 @@
+@use 'variable'  as vars;
+
+.inquiries-section {
+  background-color: #fff;
+  color:vars.$primary-color;
+
+  .section-title {
+    color: vars.$primary-color;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "FontAwesome";
+    font-weight: lighter;
+    font-size: xx-large;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: darken(vars.$primary-color, 10%);
+  }
+
+  i {
+    color: vars.$primary-color;
+    transition: transform 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      transform: scale(1.2);
+      color: lighten(vars.$primary-color, 10%);
+    }
+  }
+
+  h5 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem; 
+    color: vars.$primary-color;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "FontAwesome";
+    font-weight: lighter;
+    font-size: medium;
+  }
+
+  .follow-us a {
+    color: vars.$primary-color;
+    border: 1px solid vars.$primary-color;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: vars.$primary-color;
+      color: #fff;
+    }
+  }
+}

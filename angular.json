@@ -33,15 +33,16 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss",
-
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/sass/style.scss"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-              
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/sass"]
+            }
           },
           "configurations": {
             "production": {
@@ -57,11 +58,11 @@
                   "maximumError": "5MB"
                 }
               ],
-                  "optimization": {
+              "optimization": {
                 "scripts": true,
-                 "styles": true,
-                 "fonts": false
-             },
+                "styles": true,
+                "fonts": false
+              },
               "outputHashing": "all"
             },
             "development": {
@@ -102,13 +103,16 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/sass/style.scss"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/sass"]
+            }
           }
         }
       }

@@ -1,0 +1,41 @@
+<section class="reviews-section py-5 text-center">
+  <div class="container">
+    <!-- العنوان -->
+    <h3 class="section-title mb-3">
+      {{ 'reviews-section.title' | translate }}
+    </h3>
+    <p class="section-subtitle mb-5">
+      {{ 'reviews-section.subtitle' | translate }}
+    </p>
+
+    <!-- تقييمات -->
+    <div class="review-box mb-4 p-3 d-flex align-items-center shadow-sm rounded">
+      <img src="../../../../assets/img/icon/facebook.svg" alt="Facebook" class="me-3" width="40" />
+      <div class="text-center w-100">
+        <h5 class="fw-bold mb-1">{{ 'reviews-section.fb.title' | translate }}</h5>
+        <div class="stars mb-1">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <small>{{ 'reviews-section.fb.text' | translate }}</small>
+      </div>
+    </div>
+
+    <div class="review-box mb-4 p-3 d-flex align-items-center shadow-sm rounded">
+      <img src="../../../../assets/img/icon/download.svg" alt="Google" class="me-3" width="40" />
+      <div class="text-center w-100">
+        <h5 class="fw-bold mb-1">{{ 'reviews-section.google.title' | translate }}</h5>
+        <div class="stars mb-1">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <small>{{ 'reviews-section.google.text' | translate }}</small>
+      </div>
+    </div>
+
+    <!-- توصيل مجاني -->
+    <div class="delivery-info mt-5">
+      <h5 class="fw-bold">{{ 'reviews-section.delivery.title' | translate }}</h5>
+      <p>{{ 'reviews-section.delivery.text' | translate }}</p>
+      <small class="text-muted">{{ 'reviews-section.delivery.note' | translate }}</small>
+    </div>
+  </div>
+</section>

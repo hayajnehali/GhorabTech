@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { PageEvent } from '@angular/material/paginator'; 
 import { Product, ProductFilter } from '../../../model/product';
-import { environment } from '../../../shared-module/environment/environment';
-import { ProductService } from '../../../shared-module/services/product.service';
-import { NotificationService } from '../../../shared-module/services/notification.service';
+import { environment } from '../../../shared/environment/environment';
+import { ProductService } from '../../../shared/services/product.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',

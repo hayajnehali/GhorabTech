@@ -1,0 +1,32 @@
+<div class="form-group">
+  <label for="images">Upload Images</label>
+  <input
+    type="file"
+    id="images"
+    (change)="onFilesSelected($event)"
+    accept="image/*"
+    multiple
+    class="form-control"
+  />
+
+  <!-- Thumbnail Gallery -->
+  <div class="row w-100 mt-3 thumbnail-gallery" *ngIf="images.length > 0">
+    <div *ngFor="let image of images; let i = index" class="col-2 p-1">
+      <div class="thumbnail-wrapper">
+        <app-image
+          [src]="image.guidName"
+          class="thumb-img"
+          alt="Uploaded Image"
+        ></app-image>
+
+        <button
+          type="button"
+          class="btn btn-sm btn-danger remove-btn"
+          (click)="removeImage(i)"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

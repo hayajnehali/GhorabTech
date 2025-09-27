@@ -15,6 +15,19 @@ export class ProductCategory extends ModelBase {
         super(); 
     }
 }
+export class ProductCategoryResult extends ModelBase {
+    
+    productCategoryId?: number;
+    categoryAr?: string;
+    categoryEn?: string; 
+    category?: string; 
+    products:Product[]=[];
+      
+    
+    constructor() {
+        super(); 
+    }
+}
 
 
 export class ProductCategoryFilter extends FilterBase{

@@ -7,13 +7,15 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminNavBarComponent } from './layout/admin-nav-bar/admin-nav-bar.component';
 import { AdminLayOutComponent } from './layout/admin-layout/admin-layout.component';
-import { RouterModule } from '@angular/router';
-import { AdminFooterComponent } from './layout/admin-footer/admin-footer.component'; 
+import { RouterModule } from '@angular/router'; 
 import { CategoryListComponent } from './product-category/category-list/category-list.component'; 
 import { CategoryManageComponent } from './product-category/category-manage/category-manage.component';
 import { ProductViewComponent } from './product/product-view/product-view.component'; 
-import { TruncatePipe } from '../shared-module/pipe/truncate.pipe';
-import { SharedModule } from '../shared-module/shared.module';
+import { TruncatePipe } from '../shared/pipe/truncate.pipe';
+import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from "../shared/component/footer/footer.component";
+import { ImageComponent } from "../core/img/image/image.component";
+import { MultiImageUploadComponent } from "../shared/component/multi-image-uplode/multi-image-upload.component";
 // import { RouterModule } from '@angular/router';
 
 
@@ -23,8 +25,7 @@ import { SharedModule } from '../shared-module/shared.module';
     ProductListComponent,
     AdminDashboardComponent,
     AdminNavBarComponent,
-    AdminLayOutComponent,
-    AdminFooterComponent, 
+    AdminLayOutComponent, 
     CategoryListComponent, 
     CategoryManageComponent, 
     ProductViewComponent,
@@ -35,7 +36,10 @@ import { SharedModule } from '../shared-module/shared.module';
     AdminModuleRoutingModule,
     SharedModule,
     RouterModule,
-  ],exports:[
+    FooterComponent,
+    ImageComponent,
+    MultiImageUploadComponent
+],exports:[
     AdminDashboardComponent
   ]
 })

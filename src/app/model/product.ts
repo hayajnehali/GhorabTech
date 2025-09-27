@@ -19,6 +19,24 @@ export class Product extends ModelBase {
         // Additional initialization can go here
     }
 }
+export class ProductResult extends ModelBase {
+    productId: number | undefined;
+    name?: string;
+    nameEn?: string;
+    nameAr?: string;
+    price?: number;
+    count?: number;
+    productCategoryId?: number;
+    description?: string;
+    descriptionEn?: string;
+    descriptionAr?: string; 
+    images:Images[]=[]
+    
+    constructor() {
+        super();
+        // Additional initialization can go here
+    }
+}
 
 
 export class ProductFilter extends FilterBase {

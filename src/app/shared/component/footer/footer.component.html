@@ -1,0 +1,64 @@
+<footer class="site-footer bg-dark-blue text-light py-5">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-md-4">
+        <nav aria-label="Footer navigation">
+          <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0">
+            <li>
+              <a class="footer-link" href="#">{{
+                "footer.terms" | translate
+              }}</a>
+            </li>
+            <li>
+              <a class="footer-link" href="#">{{
+                "footer.faqs" | translate
+              }}</a>
+            </li>
+            <li>
+              <a class="footer-link" href="#">{{
+                "footer.about" | translate
+              }}</a>
+            </li>
+            <!-- <li class="ms-2 text-muted small copyright">{{'footer.copyright' | translate}}</li> -->
+          </ul>
+        </nav>
+        <p class="copyright">{{ "footer.copyright" | translate }}</p>
+      </div>
+      <div class="col-md-4 text-center border">
+        <div class="language-switcher d-inline-flex align-items-center">
+          <a
+            href="#"
+            (click)="switchLanguage('ar')"
+            class="lang-link"
+            data-lang="ar"
+            aria-current="false"
+            >{{ "footer.arabic" | translate }}</a
+          >
+          <span class="mx-2 text-muted">|</span>
+          <a
+            href="#"
+            class="lang-link"
+            data-lang="en"
+            (click)="switchLanguage('en')"
+            aria-current="false"
+            >{{ "footer.english" | translate }}</a
+          >
+        </div>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <div class="d-inline-flex align-items-center gap-3">
+          <div class="payment-icons" aria-hidden="true">
+            <span class="pay-icon apple" title="Apple Pay"></span>
+            <span class="pay-icon visa" title="VISA"></span>
+            <span class="pay-icon paypal" title="PayPal"></span>
+            <span class="pay-icon stripe" title="Stripe"></span>
+            <span
+              class="pay-icon secure-delivery"
+              title="Secure Delivery"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

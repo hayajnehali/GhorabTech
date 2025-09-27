@@ -19,7 +19,7 @@ export class AdminLayOutComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isMobile= true;
-
+  currentLang: string | null=  localStorage.getItem('language');;
   isCollapsed = true;
   constructor(private observer: BreakpointObserver,
     private translate: TranslateService,

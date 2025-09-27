@@ -1,0 +1,72 @@
+@use "variable" as vars;
+
+$footer-bg: #0b2b4a;
+$footer-text: #e9f1f7;
+$muted: #9fb1c6;
+$icon-size: 36px;
+
+.site-footer {
+  background: $footer-bg;
+  color: $footer-text;
+  font-size: smaller;
+  font-family: monospace;
+  .footer-link {
+    color: vars.$secondary-color;
+    text-decoration: none; 
+    &:hover,
+    &:focus {
+      color: lighten($footer-text, 6%);
+      text-decoration: underline;
+    }
+  }
+  .copyright {
+    color: vars.$white-color;
+    margin-left: 0.5rem;
+  }
+  .payment-icons {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    .pay-icon {
+      width: $icon-size;
+      height: $icon-size;
+      display: inline-block;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: brightness(1.05);
+      &.apple {
+        background-image: url("/assets/img/icon/pay.svg");
+      }
+      &.visa {
+        background-image: url("/assets/img/icon/visa.svg");
+      }
+      &.paypal {
+        background-image: url("/assets/img/icon/paypal.svg");
+      }
+      //   &.stripe { background-image: url('/assets/img/icon/pay.svg'); }
+      //   &.secure-delivery { background-image: url('/assets/img/icon/pay.svg'); }
+    }
+  }
+  .language-switcher {
+    .lang-link {
+      color: $footer-text;
+      font-weight: 600;
+      text-decoration: none;
+      &:hover {
+        color: $muted;
+      }
+    }
+  }
+}
+[dir="rtl"] .site-footer,
+.site-footer.rtl {
+  text-align: right;
+  .copyright {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+  .payment-icons {
+    order: -1;
+  }
+}

@@ -1,0 +1,32 @@
+.thumbnail-gallery {
+  .thumbnail-wrapper {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    height: 120px; // 🔹 حجم ثابت للصورة
+
+    .thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // يغطي المساحة بدون تمدد
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover .thumb-img {
+      transform: scale(1.05);
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 0 6px;
+      line-height: 1;
+      font-size: 12px;
+      border-radius: 50%;
+    }
+  }
+}

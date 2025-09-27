@@ -3,8 +3,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table'; 
 import { Router } from '@angular/router'; 
 import { ProductCategory, ProductCategoryFilter } from '../../../model/product-category';
-import { ProductCategoryService } from '../../../shared-module/services/product-category.service';
-import { NotificationService } from '../../../shared-module/services/notification.service';
+import { ProductCategoryService } from '../../../shared/services/product-category.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-category-list',

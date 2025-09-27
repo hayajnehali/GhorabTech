@@ -1,4 +1,18 @@
 {
+  "uploadedImages": "Uploaded Images :",
+  "nameAr": "Name (Arabic)",
+  "nameEn": "Name (English)",
+  "count": "Count",
+  "price": "Price",
+  "image": "Image",
+  "descriptionEn": "Description (English)",
+  "descriptionAr": "Description (Arabic)",
+  "selectProductCategory": "Select Product Category",
+  "createProduct": "Create Product",
+  "updateProduct": "Update Product",
+  "addProduct": "Add Product",
+  "add": "Add",
+  "productCategory": "Product Category",
   "general": {
     "name": "Name",
     "nameAr": "Name (Arabic)",
@@ -13,20 +27,61 @@
     "actions": "Actions",
     "view": "View",
     "edit": "Edit",
-    "delete":"Delete"
+    "delete": "Delete",
+    "login": "Login",
+    "card": "Card",
+    "contactus": "Contact Us",
+    "about": "About",
+    "product-type": "Product Type",
+    "show-more": "Show More"
   },
-  "uploadedImages":"Uploaded Images :",
-  "nameAr": "Name (Arabic)",
-  "nameEn": "Name (English)"  , 
-  "count":"Count",
-  "price":"Price",
-  "image":"Image",
-  "descriptionEn":"Description (English)",
-  "descriptionAr":"Description (Arabic)",
-  "selectProductCategory":"Select Product Category",
-  "createProduct":"Create Product",
-  "updateProduct":"Update Product",
-  "addProduct":"Add Product",
-  "add":"Add",
-  "productCategory":"Product Category"
+  "perfume": {
+    "perfume": "The most luxurious perfumes"
+  },
+  "inquiries-section": {
+    "title": "Your Inquiries, Our Priority",
+    "subtitle": "Whether you’re tracking an order, seeking a unique gift, or have general questions, Rusul team is here to assist.",
+    "phone": {
+      "title": "PHONE",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "whatsapp": {
+      "title": "WHATSAPP",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "email": {
+      "title": "EMAIL",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "gift": {
+      "title": "Did you know? With Rusul, you get to see your gift first!",
+      "text": "We’ll share a preview photo of your beautifully prepared gift, making sure it’s perfect before it reaches their hands."
+    },
+    "follow-us": "FOLLOW US"
+  },
+  "reviews-section": {
+    "title": "Flower Delivery Amman Jordan | Gifts Online | Send Flowers To Amman And Jordan",
+    "subtitle": "The top rated service for Flower Delivery in Amman and Jordan",
+    "fb": {
+      "title": "Zajel Flower & Gift Delivery",
+      "text": "4.8 Stars - Based on 680 User Reviews"
+    },
+    "google": {
+      "title": "Zajel Flowers & Gifts",
+      "text": "4.8 Stars - Based on +100 User Reviews"
+    },
+    "delivery": {
+      "title": "FREE AND SAME-DAY*",
+      "text": "FLOWER DELIVERY IN AMMAN, IRBID, ZARQA, ALSALT, MADABA, AJLUN, JERASH & MAFRAQ",
+      "note": "* Orders above 100 JOD"
+    }
+  },
+  "footer": {
+    "terms": "TERMS & CONDITIONS",
+    "faqs": "FAQS",
+    "about": "ABOUT US",
+    "copyright": "Copyright 2025 @Rusul.me",
+    "arabic": "العربية",
+    "english": "English"
+  }
 }

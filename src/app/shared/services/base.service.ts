@@ -5,20 +5,20 @@ import { catchError } from 'rxjs/operators';
 import { InjectionToken } from '@angular/core';
 import { PaginatedResult } from '../../model/paginated.result';
 import { environment } from '../environment/environment';
+export const BASE_URL = new InjectionToken<string>('BaseUrl');
+
 @Injectable({
   providedIn: 'root',
 })
-export class GenericService<T, F extends object> {
+export class ServiceBase<TData,TResult, F extends object> {
   protected baseUrl: string = environment.apiUrl;
 
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
     this.baseUrl = this.baseUrl + baseUrll;
   }
 
-  getAll(filterCriteria: F): Observable<PaginatedResult<T[]>> {
-    let params = new HttpParams();
-
-    // Assuming filterCriteria is an object with key-value pairs
+  getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
+    let params = new HttpParams(); 
     Object.keys(filterCriteria).forEach((key) => {
       const value = filterCriteria[key as keyof F];
 
@@ -28,7 +28,7 @@ export class GenericService<T, F extends object> {
     });
 
     return this.http
-      .get<PaginatedResult<T[]>>(this.baseUrl + '/getAll', { params })
+      .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
       .pipe(
         catchError((err) => {
           console.error('Error occurred:', err);
@@ -37,14 +37,14 @@ export class GenericService<T, F extends object> {
       );
   }
 
-  getById(id: number): Observable<T> {
+  getById(id: number): Observable<TResult> {
     return this.http
-      .get<T>(`${this.baseUrl}/getById/${id}`)
-      .pipe(catchError(this.handleError<T>(`getById id=${id}`)));
+      .get<TResult>(`${this.baseUrl}/getById/${id}`)
+      .pipe(catchError(this.handleError<TResult>(`getById id=${id}`)));
   }
 
-  create(item: T): Observable<T> {
-    return this.http.post<T>(this.baseUrl + '/create', item);
+  create(item: TData): Observable<TData> {
+    return this.http.post<TData>(this.baseUrl + '/create', item);
   }
   // create(item: T): Observable<T> {
   //   return this.http.post<T>(this.baseUrl+"/create", item).pipe(
@@ -52,8 +52,8 @@ export class GenericService<T, F extends object> {
   //   );
   // }
 
-  update(item: T): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}/update`, item);
+  update(item: TData): Observable<TData> {
+    return this.http.put<TData>(`${this.baseUrl}/update`, item);
   }
   // update(item: T): Observable<T> {
   //   return this.http.put<T>(`${this.baseUrl}/update`, item).pipe(
@@ -62,10 +62,10 @@ export class GenericService<T, F extends object> {
   //   );
   // }
 
-  delete(id: number): Observable<PaginatedResult<T>> {
+  delete(id: number) {
     return this.http
-      .delete<PaginatedResult<T>>(`${this.baseUrl}/delete/${id}`)
-      .pipe(catchError(this.handleError<PaginatedResult<T>>('delete')));
+      .delete(`${this.baseUrl}/delete/${id}`)
+      .pipe(catchError(this.handleError<any>('delete')));
   }
 
   protected handleError<T>(operation = 'operation', result?: T) {
@@ -76,4 +76,3 @@ export class GenericService<T, F extends object> {
   }
 }
 
-export const BASE_URL = new InjectionToken<string>('BaseUrl');

@@ -1,0 +1,34 @@
+@use "variable" as vars;
+
+.reviews-section { 
+  .section-title {
+    color: vars.$primary-color;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "FontAwesome";
+    font-weight: lighter;
+    font-size: xx-large;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: vars.$primary-color;
+  }
+
+  .review-box {
+    border-bottom: 1px solid vars.$primary-color;
+     color: vars.$secondary-color;
+
+    .stars {
+      color: #ffa500;
+    }
+  }
+
+  .delivery-info {
+    h5 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+          color: vars.$secondary-color;
+    }
+  }
+}
