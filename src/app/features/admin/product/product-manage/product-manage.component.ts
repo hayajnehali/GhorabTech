@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core'; 
 import { ActivatedRoute } from '@angular/router'; 
-import { Product } from '../../../model/product';
-import { ProductCategory, ProductCategoryFilter } from '../../../model/product-category';
-import { environment } from '../../../shared/environment/environment';
-import { ProductService } from '../../../shared/services/product.service';
-import { ProductCategoryService } from '../../../shared/services/product-category.service';
-import { FileUploadService } from '../../../shared/services/file-upload.service';
-import { NotificationService } from '../../../shared/services/notification.service';
+import { Product } from '@models/product';
+import { ProductCategory, ProductCategoryFilter } from '../../../../model/product-category';
+import { environment } from '@shared/environment/environment';
+import { ProductService } from '@shared/services/product.service';
+import { ProductCategoryService } from '@shared/services/product-category.service';
+import { FileUploadService } from '@shared/services/file-upload.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-product-manage',

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { BaseListComponent } from '../../../core/component/base-ilst-component';
-import { Product, ProductFilter, ProductResult } from '../../../model/product';
-import { ProductService } from '../../../shared/services/product.service';
+import { Component } from '@angular/core';  
+import { ProductService } from '@shared/services/product.service';
+import { BaseListComponent } from '@core/base/base-ilst-component';
+import { Product, ProductFilter, ProductResult } from '@models/product';
 
 @Component({
   selector: 'app-section-product',

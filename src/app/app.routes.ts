@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router'; 
 import { NgModule } from '@angular/core';   
-import { AdminLayOutComponent } from './admin/layout/admin-layout/admin-layout.component';
-import { UserLayOutComponent } from './user/layout/user-layout/user-layout.component';
+import { AdminLayOutComponent } from './features/admin/layout/admin-layout/admin-layout.component';
+import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component';
 
  
 const routes: Routes = [ 
@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'user',
     component: UserLayOutComponent, 
     children: [
-      { path: '',loadChildren: () => import('./user/user.module').then(m => m.UserModule) 
+      { path: '',loadChildren: () => import('./features/user/user.module').then(m => m.UserModule) 
       },  
     ]
   },
@@ -17,7 +17,7 @@ const routes: Routes = [
       path: 'admin',
       component: AdminLayOutComponent,           // Admin layout
       children: [
-        { path: '',loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
+        { path: '',loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule) // Load AdminModule lazily
         }, // Default admin dashboard
         { path: 'settings', component: AdminLayOutComponent } // Admin settings
       ]

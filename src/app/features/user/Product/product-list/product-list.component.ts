@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../shared/services/product.service';
-import { Images, Product, ProductFilter } from '../../../model/product';
-import { environment } from '../../../shared/environment/environment';
-import { ProductCategoryService } from '../../../shared/services/product-category.service';
-import { ProductCategory, ProductCategoryFilter } from '../../../model/product-category';
-import { NotificationService } from '../../../shared/services/notification.service';
+import { ProductService } from '@shared/services/product.service';
+import { Images, Product, ProductFilter } from '../../../../model/product';
+import { environment } from '@shared/environment/environment';
+import { ProductCategoryService } from '@shared/services/product-category.service';
+import { ProductCategory, ProductCategoryFilter } from '../../../../model/product-category';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-product-list',

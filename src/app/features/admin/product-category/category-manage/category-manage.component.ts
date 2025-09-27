@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'; 
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router'; 
-import { ProductCategory } from '../../../model/product-category';
-import { ProductCategoryService } from '../../../shared/services/product-category.service';
-import { NotificationService } from '../../../shared/services/notification.service';
+import { ProductCategory } from '@models/product-category';
+import { ProductCategoryService } from '@shared/services/product-category.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-category-manage',

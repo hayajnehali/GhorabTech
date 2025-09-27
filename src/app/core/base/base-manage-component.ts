@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ServiceBase } from "../../shared/services/base.service";
+import { ServiceBase } from "@shared/services/base.service";
 import { BaseComponent } from "./base-component";
 
  
