@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { ImageComponent } from "../../../core/img/image/image.component";
+import { HttpClient } from '@angular/common/http'; 
+import { ImageComponent } from '../image/image.component';
 
 @Component({
   selector: 'app-multi-image-upload',
