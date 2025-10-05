@@ -1,0 +1,50 @@
+   
+   <!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container containerP">
+      <!-- Add Product Button -->
+      <div class="text-end mb-4">
+        <button class="btn btn-primary animate__animated animate__fadeIn" [routerLink]="['manage']">{{'addProduct'|translate}}</button>
+      </div>
+  
+      <!-- Product List -->
+      <div class="row product__filter" *ngIf="hasData">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of dataSource.data">
+          <div class="product__item card border-light shadow rounded-lg animate__animated animate__zoomIn position-relative">
+            <!-- Product Image -->
+            <div class="product__item__pic"> 
+             <app-image class="card-img-top rounded-top"  [src]="item.images[0].guidName"></app-image>
+              <span class="badge bg-primary position-absolute top-0 end-0 m-2 p-2">New</span>
+            </div>
+  
+            <!-- Action Icons (Side-Aligned) -->
+            <div class="action-icons position-absolute top-50 end-0 translate-middle-y d-flex flex-column p-2 bg-light rounded-start shadow">
+              <button class="btn btn-outline-primary mb-2" title="{{'general.view' | translate}}" [routerLink]="['productView',item.id]">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button class="btn btn-outline-warning mb-2" title="{{'general.edit' | translate}}" [routerLink]="['manage',item.id]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="btn btn-outline-danger" title="{{'general.delete' | translate}}" (click)="delete(item.id!)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+  
+            <!-- Product Details -->
+            <div class="product__item__text card-body text-center">
+              <h6 class="card-title fw-bold text-truncate">{{ item.name.local }}</h6>
+              <p class="text-muted small mb-2">{{ item.description?.local }}</p>
+              <h5 class="card-price text-primary">${{ item.price }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center mt-4" *ngIf="hasData"> 
+        <mat-paginator [length]="totalNumberOf" (page)="pageChanged($event)" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </section>
+  <!-- Product Section End -->
+  

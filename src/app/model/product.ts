@@ -1,64 +1,40 @@
-import { ModelBase } from "./base.model";
-import { FilterBase } from "./filter-base";
+import { LocalizedString } from '@core/base/localized-string ';
+import { ModelBase } from './base.model';
+import { FilterBase } from './filter-base';
+import { ProductImage } from './Images';
+import { ProductCategoryResult } from './product-category';
 
 export class Product extends ModelBase {
-    productId: number | undefined;
-    name?: string;
-    nameEn?: string;
-    nameAr?: string;
-    price?: number;
-    count?: number;
-    productCategoryId?: number;
-    description?: string;
-    descriptionEn?: string;
-    descriptionAr?: string; 
-    images:Images[]=[]
-    
-    constructor() {
-        super();
-        // Additional initialization can go here
-    }
+  productId: number | undefined;
+  name: LocalizedString = new LocalizedString();
+  price?: number;
+  count?: number;
+  productCategoryId?: string;
+  description: LocalizedString = new LocalizedString();
+  images: ProductImage[] = [];
+
+  constructor() {
+    super();
+    // Additional initialization can go here
+  }
 }
 export class ProductResult extends ModelBase {
-    productId: number | undefined;
-    name?: string;
-    nameEn?: string;
-    nameAr?: string;
-    price?: number;
-    count?: number;
-    productCategoryId?: number;
-    description?: string;
-    descriptionEn?: string;
-    descriptionAr?: string; 
-    images:Images[]=[]
-    
-    constructor() {
-        super();
-        // Additional initialization can go here
-    }
-}
+  productId: number | undefined;
+  name: LocalizedString = new LocalizedString();
+  price?: number;
+  count?: number;
+  productCategoryId?: number;
+  description?: LocalizedString = new LocalizedString();
+  images: ProductImage[] = [];
+  productCategory: ProductCategoryResult = new ProductCategoryResult();
 
+
+  constructor() {
+    super(); 
+  }
+}
 
 export class ProductFilter extends FilterBase {
-    productCategoryId?: number;
+  productCategoryId?: string|null;
 }
-export class Images {
-    imageID? :number 
-    guidName? :string
-    type?:string
-    isMain? :boolean 
-    productId? :number 
-}
-
-
-
-// product = {
-//     productId: undefined,
-//     name: undefined,
-//     nameEn: undefined,
-//     nameAr: undefined,
-//     price: undefined,
-//     count: undefined,
-//     description: undefined,
-//     imageUrl: undefined
-// };
+ 

@@ -1,7 +1,5 @@
 {
   "uploadedImages": "Uploaded Images :",
-  "nameAr": "Name (Arabic)",
-  "nameEn": "Name (English)",
   "count": "Count",
   "price": "Price",
   "image": "Image",
@@ -12,11 +10,13 @@
   "updateProduct": "Update Product",
   "addProduct": "Add Product",
   "add": "Add",
-  "productCategory": "Product Category",
   "general": {
     "name": "Name",
     "nameAr": "Name (Arabic)",
     "nameEn": "Name (English)",
+    "description": "Description",
+    "descriptionAr": "Description (Arabic)",
+    "descriptionEn": "Description (English)",
     "dashboard": "Dashboard",
     "ar": "AR",
     "en": "EN",
@@ -33,7 +33,12 @@
     "contactus": "Contact Us",
     "about": "About",
     "product-type": "Product Type",
-    "show-more": "Show More"
+    "show-more": "Show More",
+    "upload-images": "Upload Images",
+    "save": "Save",
+    "back": "Back",
+    "filter-by":"Filter By",
+    "home":"Home"
   },
   "perfume": {
     "perfume": "The most luxurious perfumes"
@@ -83,5 +88,17 @@
     "copyright": "Copyright 2025 @Rusul.me",
     "arabic": "العربية",
     "english": "English"
+  },
+  "category": {
+    "category": "Category",
+    "add-category": "Add Category",
+    "edit-category": "Edit Category",
+    "category-list": "Category List"
+  },
+  "productCategory": {
+    "product-category-list": "Product Category List"
+  },
+  "product":{
+    "product-list":"Product List"
   }
 }

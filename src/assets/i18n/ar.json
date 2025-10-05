@@ -12,11 +12,13 @@
   "updateProduct": "تعديل المنتج",
   "addProduct": "اضافة المنتج",
   "add": "اضافة",
-  "productCategory": "تصنيف المنتج",
   "general": {
     "name": "الاسم",
     "nameAr": "الاسم باللغة العربية",
     "nameEn": "الاسم باللغة الانجليزية",
+    "description": "ألوصف",
+    "descriptionAr": "ألوصف باللغة العربية",
+    "descriptionEn": "ألوصف باللغة الانجليزية",
     "dashboard": "الصفحه الارئيسيه",
     "ar": "العربية",
     "en": "الانجليزية",
@@ -33,7 +35,12 @@
     "contactus": "اتصل بنا",
     "about": "حول",
     "product-type": "نوع المنتج",
-    "show-more": "أظهر المزيد"
+    "show-more": "أظهر المزيد",
+    "upload-images": "تحميل الصور",
+    "save": "حفظ",
+    "back": "العوده",
+    "filter-by":"تصفية حسب",
+    "home":"ألصفحة الرئيسية"
   },
   "perfume": {
     "perfume": "افخم العطور"
@@ -83,5 +90,17 @@
     "copyright": "Copyright 2025 @Rusul.me",
     "arabic": "العربية",
     "english": "English"
+  },
+  "category": {
+    "category": "الصنف",
+    "add-category": "أضافة صنف",
+    "edit-category": "تعديل الصنف",
+    "category-list": "قائمة الأصناف"
+  },
+  "productCategory": {
+    "product-category-list": "قائمة أصناف المنتجات"
+  },
+   "product":{
+    "product-list":"قائمة المنتجات"
   }
 }

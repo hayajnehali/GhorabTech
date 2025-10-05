@@ -12,6 +12,7 @@ export class ImageComponent {
   @Input('src') src?: string;
   @Input('class') class?: string;
   @Input() alt: string = '';
+  @Input('name') name: string = 'viewImage';
   @Input() width: number = 100; // نسبة مئوية
   @Input() height: number = 100; // نسبة مئوية
   url = environment.assetsUrl;

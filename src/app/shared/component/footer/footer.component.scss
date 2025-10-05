@@ -10,6 +10,9 @@ $icon-size: 36px;
   color: $footer-text;
   font-size: smaller;
   font-family: monospace;
+  position: relative;
+  width: 100%;
+  bottom: 0;
   .footer-link {
     color: vars.$secondary-color;
     text-decoration: none; 

@@ -1,0 +1,132 @@
+<div class="container my-5 product-view">
+  <div class="row">
+    <!-- Left: Product Images -->
+    <div class="col-md-6 image-gallery">
+      <!-- Main Image Carousel -->
+      <div
+        *ngIf="product.images && product.images.length > 0"
+        id="productImageCarousel"
+        class="carousel slide w-100"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            *ngFor="let image of product.images; let i = index"
+            class="carousel-item"
+            [class.active]="i === 0"
+          >
+            <app-image
+              [src]="image.guidName"
+            
+              class="img-thumbnail"
+              alt="Thumbnail Image"
+            ></app-image>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#productImageCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#productImageCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> 
+      <div class="row w-100 mt-3 thumbnail-gallery">
+        <div
+          *ngFor="let image of product.images; let i = index"
+          class="col-2 p-1"
+        >
+          <app-image
+            [src]="image.guidName"
+            class="img-thumbnail"
+            alt="Thumbnail Image"
+          ></app-image>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Product Info -->
+    <div class="col-md-6 product-info">
+      <h5 class="product-title mb-2">
+        Tall Glass Vase with 1kg La Roche Chocolate, Green Hydrangeas & Lilies
+      </h5>
+      <div class="product-price mb-3">
+        <span class="old-price text-muted text-decoration-line-through me-2"
+          >JOD 80</span
+        >
+        <span class="new-price text-primary fw-bold">JOD 68</span>
+      </div>
+ 
+      <div class="customization">
+        <div class="accordion" id="customizationAccordion">
+          <div
+            class="accordion-item"
+            *ngFor="
+              let section of ['Sweets', 'Cakes', 'Perfumes', 'Balloons'];
+              let i = index
+            "
+          >
+            <h2 class="accordion-header" id="heading{{ i }}">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="me-2 icon-placeholder"></i> {{ section }}
+              </button>
+            </h2>
+            <div
+              class="accordion-collapse collapse"
+              data-bs-parent="#customizationAccordion"
+            >
+              <div class="accordion-body"> 
+                Option content for {{ section }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="summary mt-4">
+        <div class="d-flex justify-content-between">
+          <span>Options Price:</span>
+          <span>JOD 0</span>
+        </div>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total:</span>
+          <span class="text-primary">JOD 68</span>
+        </div>
+      </div> 
+      <div class="mt-4">
+        <button class="btn btn-primary w-100">Order Now</button>
+        <div class="mt-2 text-center">
+          <img src="./assets/img/icon/pay.svg" alt="Visa" height="24" class="me-1" />
+          <img src="./assets/img/icon/paypal.svg" alt="Visa" height="24" class="me-1" />
+          <img src="./assets/img/icon/visa.svg" alt="Visa" height="24" class="me-1" />
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="row mt-5">
+    <div class="col-12">
+      <h6 class="text-uppercase">Product Description</h6>
+      <p class="description-text">
+        A graceful arrangement featuring two lush green hydrangea stems, elegant
+        lilies, and fresh foliage...
+      </p>
+    </div>
+  </div>
+</div>

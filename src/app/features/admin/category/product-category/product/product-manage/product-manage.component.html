@@ -1,0 +1,120 @@
+<div class="container manage">
+  <h2 class="title">
+    @if(isAdd){
+    {{ "createProduct" | translate }}
+    }@else {
+    {{ "updateProduct" | translate }}
+    }
+  </h2>
+  <form (ngSubmit)="save(productForm)" #productForm="ngForm">
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="nameEn">{{ "nameEn" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          minlength="5"
+          class="form-control"
+          id="nameEn"
+          required
+          name="nameEn"
+          [(ngModel)]="entity.name.english"
+        />
+      </div>
+
+      <div class="form-group col-6">
+        <label for="nameAr">{{ "nameAr" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          class="form-control"
+          id="nameAr"
+          required
+          name="nameAr"
+          [(ngModel)]="entity.name.arabic"
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="price">{{ "price" | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          name="price"
+          [(ngModel)]="entity.price"
+          required
+          step="0.01"
+          required
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="count">{{ "count" | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          id="count"
+          required
+          name="count"
+          [(ngModel)]="entity.count"
+          required
+        />
+      </div>
+      <!-- <div class="col-4">
+        <label for="productCategoryId">{{
+          "selectProductCategory" | translate
+        }}</label>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ 'selectProductCategory' | translate }}"
+              [(value)]="entity.productCategoryId"
+            >
+              <mat-option
+                *ngFor="let category of categoryList"
+                [value]="category.id"
+              >
+                {{ category.name.local }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div> -->
+
+      <div class="form-group col-6">
+        <label for="description">{{ "descriptionEn" | translate }}</label>
+        <textarea
+          class="form-control"
+          id="description"
+          [rows]="3"
+          name="description"
+          maxlength="500"
+          [(ngModel)]="entity.description.english"
+        ></textarea>
+      </div>
+      <div class="form-group col-6">
+        <label for="description">{{ "descriptionAr" | translate }}</label>
+        <textarea
+          class="form-control"
+          id="descriptionAr"
+          maxlength="500"
+          name="descriptionAr"
+          [rows]="3"
+          [(ngModel)]="entity.description.arabic"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <app-multi-image-upload
+          [(images)]="entity.images"
+        ></app-multi-image-upload>
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" (click)="goBack()">
+          {{ "general.back" | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary mx-2">
+          {{ "general.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

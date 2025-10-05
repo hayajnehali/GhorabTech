@@ -10,7 +10,7 @@ export const BASE_URL = new InjectionToken<string>('BaseUrl');
 @Injectable({
   providedIn: 'root',
 })
-export class ServiceBase<TData,TResult, F extends object> {
+export class ServiceBase<TData, TResult, F extends object> {
   protected baseUrl: string = environment.apiUrl;
 
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
@@ -18,7 +18,7 @@ export class ServiceBase<TData,TResult, F extends object> {
   }
 
   getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
-    let params = new HttpParams(); 
+    let params = new HttpParams();
     Object.keys(filterCriteria).forEach((key) => {
       const value = filterCriteria[key as keyof F];
 
@@ -36,12 +36,39 @@ export class ServiceBase<TData,TResult, F extends object> {
         })
       );
   }
+  // getDataForViewByParent(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
+  //   let params: HttpParams = this.filterParams(filterCriteria);
+  //   return this.http
+  //     .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
+  //     .pipe(
+  //       catchError((err) => {
+  //         console.error('Error occurred:', err);
+  //         return throwError(err);
+  //       })
+  //     );
+  // }
+  filterParams<F extends object>(filterCriteria: F): HttpParams {
+    let params = new HttpParams();
+    Object.keys(filterCriteria).forEach((key) => {
+      const value = filterCriteria[key as keyof F];
 
-  getById(id: number): Observable<TResult> {
+      if (value !== undefined && value !== null) {
+        params = params.append(key, String(value));
+      }
+    });
+    return params;
+  }
+
+  getById(id: string): Observable<TResult> {
     return this.http
       .get<TResult>(`${this.baseUrl}/getById/${id}`)
       .pipe(catchError(this.handleError<TResult>(`getById id=${id}`)));
   }
+  // getDataForViewByParentID(id: string): Observable<PaginatedResult<TResult>> {
+  //   return this.http
+  //     .get<PaginatedResult<TResult>>(`${this.baseUrl}/getById/${id}`)
+  //     .pipe(catchError(this.handleError<PaginatedResult<TResult>>(`getById id=${id}`)));
+  // }
 
   create(item: TData): Observable<TData> {
     return this.http.post<TData>(this.baseUrl + '/create', item);
@@ -62,7 +89,7 @@ export class ServiceBase<TData,TResult, F extends object> {
   //   );
   // }
 
-  delete(id: number) {
+  delete(id: string) {
     return this.http
       .delete(`${this.baseUrl}/delete/${id}`)
       .pipe(catchError(this.handleError<any>('delete')));
@@ -75,4 +102,3 @@ export class ServiceBase<TData,TResult, F extends object> {
     };
   }
 }
-

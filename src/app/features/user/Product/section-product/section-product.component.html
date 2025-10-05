@@ -10,8 +10,8 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="container">
-          <div class="row g-4" *ngIf="items.length>0">
-            <div class="col-md-6 col-lg-3" *ngFor="let product of items">
+          <div class="row g-4" *ngIf="dataSource.data">
+            <div class="col-md-6 col-lg-3" *ngFor="let product of dataSource.data">
               <div class="card product-card border-0">
                 <div class="image-wrapper">
                   <app-image *ngIf="product.images[0].guidName"

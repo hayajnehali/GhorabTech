@@ -1,21 +1,13 @@
  
+@use 'variable' as v;
 
-mat-toolbar{
-    position:fixed;
-    top:0;
-    z-index: 2;
-}
 .expanded {
     width: 88px;   
 }
-mat-sidenav-container {
- //   height:100%;
-}
-
-// Move the content down so that it won't be hidden by the toolbar
+ 
 mat-sidenav {
   
-    background-color: #ececec;
+    background-color: v.$background-2;
     @media screen and (min-width: 600px) {
       padding-top: 0rem;
     }
@@ -30,6 +22,7 @@ mat-sidenav {
 
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav-content{
+    min-height: 50vh;
     padding-top: 3.5rem;
     @media screen and (min-width: 600px) {
         padding-top: 0rem;

@@ -1,10 +1,11 @@
 <div class="form-group">
-  <label for="images">Upload Images</label>
+  <label for="images">{{'general.upload-images' | translate}}</label>
   <input
     type="file"
     id="images"
     (change)="onFilesSelected($event)"
     accept="image/*"
+    name="image"
     multiple
     class="form-control"
   />
@@ -14,6 +15,7 @@
     <div *ngFor="let image of images; let i = index" class="col-2 p-1">
       <div class="thumbnail-wrapper">
         <app-image
+        
           [src]="image.guidName"
           class="thumb-img"
           alt="Uploaded Image"

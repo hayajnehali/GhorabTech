@@ -12,8 +12,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguageInterceptor } from '../Auth/interceptor/language-interceptor.interceptor';
-import { AdminModule } from './features/admin/admin.module';
-
+import { AdminModule } from './features/admin/admin.module'; 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '@shared/services/product.service';
-import { Images, Product, ProductFilter } from '../../../../model/product';
+import { Product, ProductFilter, ProductResult } from '../../../../model/product';
 import { environment } from '@shared/environment/environment';
 import { ProductCategoryService } from '@shared/services/product-category.service';
 import { ProductCategory, ProductCategoryFilter } from '../../../../model/product-category';
 import { NotificationService } from '@shared/services/notification.service';
+import { ProductImage } from '@models/Images';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ import { NotificationService } from '@shared/services/notification.service';
 export class ProductListComponent implements OnInit{
 
   filter: ProductFilter = new ProductFilter();
-  products:Product[]=[new Product()]; 
+  products:ProductResult[]=[new ProductResult()]; 
   
   totalNumberOf: number=0;
   environment=environment
@@ -27,7 +28,7 @@ export class ProductListComponent implements OnInit{
 constructor(private productService:ProductService,
   private productCategoryService:ProductCategoryService,
 private notificationService:NotificationService){
-this.products[0].images=[new Images]
+this.products[0].images=[new ProductImage]
 }
   ngOnInit(): void {
     this.getProductCategorys()

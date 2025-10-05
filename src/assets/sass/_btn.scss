@@ -1,0 +1,40 @@
+/* Add Product Button */
+.btn-primary {
+  padding: 0.6rem 2rem;
+  color: $white-color;
+  background-color: $primary-color;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: inherit;
+  color: $primary-color;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  padding: 0.6rem 2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: inherit;
+  color: $primary-color;
+}
+
+.btn-secondary:hover {
+  background-color: $primary-color;
+  color: $white-color;
+  transform: translateY(-2px);
+}
+
+.btn-container{
+ display: flex;
+ justify-content: end;
+}
+
+
+.btn-icon { 
+  color: $primary-color; 
+}
+
+.btn-icon:hover { 
+  color: $secondary-color; 
+}

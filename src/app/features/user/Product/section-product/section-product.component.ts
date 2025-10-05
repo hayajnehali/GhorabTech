@@ -11,14 +11,8 @@ import { Product, ProductFilter, ProductResult } from '@models/product';
 export class SectionProductComponent extends BaseListComponent<Product,ProductResult,ProductFilter>{
 
   constructor(private productService:ProductService){
-    super(productService);
+    super(productService,ProductFilter);
   }
 
-   getProductChunks(chunkSize: number): ProductResult[][] {
-    const chunks: ProductResult[][] = [];
-    for (let i = 0; i < this.items.length; i += chunkSize) {
-      chunks.push(this.items.slice(i, i + chunkSize));
-    }
-    return chunks;
-  }
+ 
 }
