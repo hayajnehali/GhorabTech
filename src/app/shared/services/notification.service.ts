@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 export class NotificationService {
   constructor(private toastr: ToastrService) {}
 
-  showSuccess() {
-    this.toastr.success('This is a success message!', 'Success');
+  showSuccess(message:string,title:string) {
+    this.toastr.success(message, title);
   }
 
   showError(error: HttpErrorResponse) { 

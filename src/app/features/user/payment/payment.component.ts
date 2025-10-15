@@ -1,0 +1,76 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { CartService } from '@shared/services/cart.service';
+import { Cart, RecipientInfo } from '@models/cart';
+import { User, UserResult } from '@models/user';
+import { UserService } from '@shared/services/user.service'; 
+import { BaseComponent } from '@core/base/base-component';
+import { NgForm } from '@angular/forms';
+import { LocalStorageService } from '@shared/services/local-storage-service.service';
+import { environment } from '@shared/environment/environment';
+import { PaymentService } from '@shared/services/payment.service';
+
+@Component({
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss'],
+})
+export class PaymentComponent extends BaseComponent implements OnInit {
+  private readonly token_KEY = environment.token_KEY;
+  cart: Cart = new Cart();
+  cartService = inject(CartService);
+  paymentService = inject(PaymentService);
+  private storage = inject(LocalStorageService);
+  userService = inject(UserService);
+  user: User = new User();
+  currentStep: number = 1;
+
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {
+    this.cart = this.cartService.getCart();
+    this.cart.recipientInfo = new RecipientInfo();
+    if (this.storage.get(this.token_KEY)) {
+      this.currentStep = 2;
+    }
+  }
+
+  onSubmitCard(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+   this.cart.userId="edc3720e-d1d5-4d9b-46fc-08de0a8e5131"
+    this.paymentService.checkout(this.cart).subscribe((res: any) => { 
+      window.location.href = res.message;
+    });
+  }
+  save(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+    this.userService.create(this.user).subscribe({
+      next: (res: any) => {
+        this.notificationService.showSuccess(
+          this.translate.instant('general.success-message'),
+          this.translate.instant('general.success')
+        );
+        this.storage.set(this.token_KEY, res.data);
+        this.currentStep = 2;
+      },
+      error: (err) => {
+        this.notificationService.showError(err);
+      },
+    });
+  }
+
+  nextStep() {
+    this.currentStep++;
+  }
+
+  prevStep() {
+    this.currentStep--;
+  }
+}

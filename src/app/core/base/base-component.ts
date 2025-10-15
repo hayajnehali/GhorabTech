@@ -1,5 +1,6 @@
 import { Directive, inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NotificationService } from '@shared/services/notification.service';
 import { Subscription } from 'rxjs';
 
@@ -9,6 +10,8 @@ export abstract class BaseComponent {
   protected router = inject(Router);
   protected notificationService = inject(NotificationService);
   protected activatedRoute = inject(ActivatedRoute);
+  protected translate = inject(TranslateService);
+
 
   // protected subscribe(subscription: any) {
   //   this.subscriptions.push(subscription);

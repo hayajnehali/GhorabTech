@@ -31,7 +31,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -44,7 +44,7 @@ h6 {
   margin: 0;
   color: $primary-color;
   font-weight: 400;
-  font-family:"FontAwesome";
+  font-family: "FontAwesome";
 }
 
 h1 {
@@ -73,13 +73,26 @@ h6 {
 
 p {
   font-size: 15px;
-  font-family: 'Nunito Sans', sans-serif;
-  color: #3d3d3d;
+  font-family: "Nunito Sans", sans-serif;
+  color: $secondary-color;
   font-weight: 400;
   line-height: 25px;
   margin: 0 0 15px 0;
 }
 
+.text-titel {
+  font-family: "serif";
+  color: $primary-color;
+  font-weight: 600;
+  line-height: 25px;
+  text-transform: capitalize;
+}
+.text-description {
+  font-family: "serif";
+  color: $secondary-color;
+  text-transform: capitalize;
+  font-weight: 500; 
+}
 img {
   max-width: 100%;
 }
@@ -108,9 +121,29 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+
 .section-title {
-  margin-bottom: 45px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  font-family: "Cairo", sans-serif;
+
+  b {
+    flex: 1;
+    height: 2px;
+    background-color: $line-color;
+    margin: 0 1rem;
+  }
+
+  .section-title-main {
+    color: $primary-color;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "FontAwesome";
+    font-weight: lighter;
+    font-size: medium;
+  }
 
   span {
     color: $primary-color;

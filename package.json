@@ -24,6 +24,8 @@
     "@angular/router": "^18.2.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "@stripe/stripe-js": "^8.0.0",
+    "@types/stripe-v3": "^3.1.33",
     "bootstrap": "^5.3.3",
     "gh-pages": "^6.3.0",
     "ngx-toastr": "^19.0.0",

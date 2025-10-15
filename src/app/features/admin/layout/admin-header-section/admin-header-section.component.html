@@ -57,7 +57,7 @@
         <div class="lang mt-2 mt-sm-0">
           <span
             (click)="switchLanguage('en')"
-            *ngIf="currentLang === 'ar'"
+            *ngIf="currentLang === 'ar' || currentLang!=='en'"
             class="d-flex align-items-center gap-1"
             style="cursor: pointer"
           >

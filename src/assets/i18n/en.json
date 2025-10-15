@@ -1,7 +1,5 @@
 {
   "uploadedImages": "Uploaded Images :",
-  "count": "Count",
-  "price": "Price",
   "image": "Image",
   "descriptionEn": "Description (English)",
   "descriptionAr": "Description (Arabic)",
@@ -11,6 +9,9 @@
   "addProduct": "Add Product",
   "add": "Add",
   "general": {
+    "search":"Search",
+    "price": "Price",
+    "count": "Count",
     "name": "Name",
     "nameAr": "Name (Arabic)",
     "nameEn": "Name (English)",
@@ -37,8 +38,37 @@
     "upload-images": "Upload Images",
     "save": "Save",
     "back": "Back",
-    "filter-by":"Filter By",
-    "home":"Home"
+    "filter-by": "Filter By",
+    "home": "Home",
+    "JOD": "JOD",
+    "remove": "Remove",
+    "total": "Total",
+    "success-message": "The action was completed successfully",
+    "success": "Success",
+    "subtotal": "Subtotal",
+    "register": "Register",
+    "createUser": "Create New Account",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "recipient-information": "Recipient Information",
+    "phoneNumber": "Phone Number",
+    "addressLine": "Address Line",
+    "city": "City",
+    "stateOrProvince": "State / Province",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "notes": "Notes"
+  },
+  "errors": {
+    "fullNameRequired": "Full name is required",
+    "invalidEmail": "Invalid email address",
+    "phoneRequired": "Phone number is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordMismatch": "Passwords do not match",
+    "cityRequired":"City Required"
   },
   "perfume": {
     "perfume": "The most luxurious perfumes"
@@ -68,11 +98,11 @@
     "title": "Flower Delivery Amman Jordan | Gifts Online | Send Flowers To Amman And Jordan",
     "subtitle": "The top rated service for Flower Delivery in Amman and Jordan",
     "fb": {
-      "title": "Zajel Flower & Gift Delivery",
+      "title": "Rusul Flower & Gift Delivery",
       "text": "4.8 Stars - Based on 680 User Reviews"
     },
     "google": {
-      "title": "Zajel Flowers & Gifts",
+      "title": "Rusul Flowers & Gifts",
       "text": "4.8 Stars - Based on +100 User Reviews"
     },
     "delivery": {
@@ -98,7 +128,20 @@
   "productCategory": {
     "product-category-list": "Product Category List"
   },
-  "product":{
-    "product-list":"Product List"
+  "product": {
+    "product-list": "Product List",
+    "product-description": " Product Description",
+    "options-price": "Options Price",
+    "order-now": "Order Now"
+  },
+  "cart": {
+    "review-your-cart": "Review Your Cart",
+    "checkout": "Checkout",
+    "discover-more-products": "Discover More Products",
+    "add-to-cart": "The product has been added to the shopping cart",
+    "continue-shopping": "Continue Shopping",
+    "viewCart": "View Cart",
+    "delete-cart": "Delete Cart",
+    "failed-to-create-cart":"Failed To Create Cart"
   }
 }

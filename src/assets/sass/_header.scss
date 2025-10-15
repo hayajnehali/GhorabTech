@@ -51,7 +51,7 @@
   }
 
   span {
-    color: $secondary-color; // أو لون الداكن من Bootstrap حسب الثيم
+    color: $secondary-color; 
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -232,7 +232,7 @@
 /* الحاوية */
 .search-wrapper {
   position: relative;
-  width: 300px; /* يمكنك تغييره حسب التصميم */
+  width: 284px; 
   max-width: 100%;
   margin: 0 auto;
 }
@@ -240,7 +240,7 @@
 /* حقل البحث */
 .search-input {
   width: 100%;
-  padding: 10px 40px 10px 15px; /* مساحة لزر البحث */
+  padding: 10px 40px 10px 15px; 
   border: 1px solid #ccc;
   border-radius: 25px;
   font-size: 14px;

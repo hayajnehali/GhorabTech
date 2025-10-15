@@ -4,8 +4,8 @@ export abstract class ModelBase {
   updateStamp: Date | null;
   createdBy: number | null | undefined;
   updatedBy: number | null | undefined;
-  isDeleted: boolean | null;
-  isActive: boolean | null;
+  isDeleted: boolean | null=false;
+  isActive: boolean | null=true;
 
   constructor() {
     this.createStamp = new Date(); // Set to current date

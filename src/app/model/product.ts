@@ -24,7 +24,7 @@ export class ProductResult extends ModelBase {
   price?: number;
   count?: number;
   productCategoryId?: number;
-  description?: LocalizedString = new LocalizedString();
+  description: LocalizedString = new LocalizedString();
   images: ProductImage[] = [];
   productCategory: ProductCategoryResult = new ProductCategoryResult();
 

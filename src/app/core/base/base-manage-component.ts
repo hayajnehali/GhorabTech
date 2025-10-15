@@ -57,7 +57,7 @@ export class BaseManageComponent<
     const sub=  this.service.create(this.entity).subscribe({
         next: () => {},
         complete: () => {
-          this.notificationService.showSuccess();
+          this.notificationService.showSuccess(this.translate.instant('general.success-message'),this.translate.instant('general.success'));
            this.goBack()
         },
         error: (err) => {
@@ -70,7 +70,7 @@ export class BaseManageComponent<
      const sub= this.service.update(this.entity).subscribe({
         next: () => {},
         complete: () => {
-          this.notificationService.showSuccess();
+          this.notificationService.showSuccess(this.translate.instant('general.success-message'),this.translate.instant('general.success'));
           this.goBack()
         },
         error: (err) => {

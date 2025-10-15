@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core'; 
-import {
-  ProductCategory,
-  ProductCategoryFilter,
-  ProductCategoryResult,
-} from '@models/product-category';
-import { ProductCategoryService } from '@shared/services/product-category.service'; 
 import { BaseManageComponent } from '@core/base/base-manage-component'; 
 import { Category, CategoryFilter, CategoryResult } from '@models/category';
 import { CategoryService } from '@shared/services/category.service';

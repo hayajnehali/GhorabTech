@@ -17,7 +17,7 @@ export class UserLayOutComponent {
   currentLang: string | null=  localStorage.getItem('language');;
   isCollapsed = true;
 
-
+openSide:boolean=false
   constructor(
     private observer: BreakpointObserver,
     private translate: TranslateService,

@@ -2,8 +2,6 @@
   "uploadedImages": "تحميل صوره",
   "nameAr": "الاسم باللغة العربية",
   "nameEn": "الاسم باللغة الانجليزية",
-  "count": "الكمية",
-  "price": "السعر",
   "image": "الصور",
   "descriptionEn": "الوصف باللغة الانجليزية",
   "descriptionAr": "الوصف باللغة العربية",
@@ -13,6 +11,9 @@
   "addProduct": "اضافة المنتج",
   "add": "اضافة",
   "general": {
+    "search": "بحث",
+    "price": "السعر",
+    "count": "الكمية",
     "name": "الاسم",
     "nameAr": "الاسم باللغة العربية",
     "nameEn": "الاسم باللغة الانجليزية",
@@ -39,8 +40,37 @@
     "upload-images": "تحميل الصور",
     "save": "حفظ",
     "back": "العوده",
-    "filter-by":"تصفية حسب",
-    "home":"ألصفحة الرئيسية"
+    "filter-by": "تصفية حسب",
+    "home": "ألصفحة الرئيسية",
+    "JOD": "دينار أردني",
+    "remove": "حذف",
+    "total": "المجموع",
+    "success-message": "تم تنفيذ الاجراء بنجاح",
+    "success": "بنجاح",
+    "subtotal": "المجموع الفرعي",
+    "register": "تسجيل",
+    "createUser": "إنشاء حساب جديد",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "recipient-information": "معلومات جهة الاستلام",
+    "phoneNumber": "رقم الهاتف",
+    "addressLine": "العنوان",
+    "city": "المدينة",
+    "stateOrProvince": "المنطقة / الولاية",
+    "postalCode": "الرمز البريدي",
+    "country": "الدولة",
+    "notes": "ملاحظات"
+  },
+  "errors": {
+    "fullNameRequired": "الاسم مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "cityRequired": "المدينة مطلوبة"
   },
   "perfume": {
     "perfume": "افخم العطور"
@@ -100,7 +130,20 @@
   "productCategory": {
     "product-category-list": "قائمة أصناف المنتجات"
   },
-   "product":{
-    "product-list":"قائمة المنتجات"
+  "product": {
+    "product-list": "قائمة المنتجات",
+    "product-description": "وصف المنتج",
+    "options-price": "سعر الخيارات",
+    "order-now": "اطلب الان"
+  },
+  "cart": {
+    "review-your-cart": "مراجعة سلة التسوق الخاصة بك",
+    "checkout": "ادفع",
+    "discover-more-products": "اكتشف المزيد من المنتجات",
+    "add-to-cart": "تمت اضافة المنتج الي سلة المشتريات",
+    "continue-shopping": "اكمل تسوق",
+    "viewCart": "عرض عربة التسوق",
+    "delete-cart": "حذف عربة التسوق",
+    "failed-to-create-cart": "خطاء في انشاء عربة التسوق"
   }
 }

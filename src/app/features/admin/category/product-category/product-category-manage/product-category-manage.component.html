@@ -1,9 +1,9 @@
 <div class="container manage">
   <h3 class="title">
     @if(isAdd){
-    {{ "category.add-category" | translate }}
+    {{ "category.add-product-category" | translate }}
     }@else {
-    {{ "category.edit-category" | translate }}
+    {{ "category.edit-product-category" | translate }}
     }
   </h3>
   <form (ngSubmit)="save(productForm)" #productForm="ngForm">
