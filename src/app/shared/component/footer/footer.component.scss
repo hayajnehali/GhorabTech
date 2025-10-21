@@ -15,7 +15,7 @@ $icon-size: 36px;
   bottom: 0;
   .footer-link {
     color: vars.$secondary-color;
-    text-decoration: none; 
+    text-decoration: none;
     &:hover,
     &:focus {
       color: lighten($footer-text, 6%);
@@ -37,6 +37,9 @@ $icon-size: 36px;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
+      background-color: #faf9fd; 
+      border-radius: 7px;
+      width: 45px;
       filter: brightness(1.05);
       &.apple {
         background-image: url("/assets/img/icon/pay.svg");

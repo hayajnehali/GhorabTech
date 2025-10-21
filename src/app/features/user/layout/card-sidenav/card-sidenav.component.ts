@@ -10,9 +10,11 @@ import { CartService } from '@shared/services/cart.service';
 export class CardSidenavComponent implements OnInit {
   cartService = inject(CartService);
   cart: Cart = new Cart();
+  total: number = 0;
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
+    this.getTotal();
   }
 
   updateQuantity(productId: string, quantity: number) {
@@ -23,5 +25,13 @@ export class CardSidenavComponent implements OnInit {
   clear() {
     this.cartService.clearCart();
     this.cart = this.cartService.getCart();
+  }
+
+  getTotal() {
+    this.total = this.cartService.getTotal();
+  }
+
+  removeItem(arg0: string) {
+    this.cartService.removeItem(arg0);
   }
 }

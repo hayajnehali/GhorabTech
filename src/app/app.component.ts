@@ -1,29 +1,37 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Component, inject } from '@angular/core'; 
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '@shared/environment/environment';
 
 @Component({
-  selector: 'app-root', 
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angularProject';
-  constructor(private translate: TranslateService) {
-    // Check local storage for language preference
-    const storedLanguage = localStorage.getItem('language');
+  language = environment.language_KEY;
+  protected document = inject(DOCUMENT);
+  constructor(
+    private translate: TranslateService
+  ) {
+    const storedLanguage = localStorage.getItem(this.language);
     if (storedLanguage) {
       this.translate.setDefaultLang(storedLanguage);
-      this.translate.use(storedLanguage); // Set the current language
+      this.translate.use(storedLanguage); 
     } else {
-      this.translate.setDefaultLang('ar'); // Fallback to default language
-      this.translate.use('ar'); // Load default language
+      this.translate.setDefaultLang('ar');  
+      this.translate.use('ar');  
     }
+    this.document.documentElement.setAttribute(
+      'dir',
+      storedLanguage === 'en' ? 'ltr' : 'rtl'
+    );
   }
 
   // Method to change language
   changeLanguage(language: string) {
     this.translate.use(language);
-    localStorage.setItem('language', language); // Save preference in local storage
+    localStorage.setItem(this.language, language); // Save preference in local storage
   }
 }

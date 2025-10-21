@@ -8,6 +8,7 @@ import { categoryRoutes } from './category-routing.module';
 import { ProductSectionComponent } from './product-section/product-section.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ReviewsSectionComponent } from "../user-shared-section/reviews-section/reviews-section.component";
+import { PaginationComponent } from "@shared/component/pagination/pagination.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReviewsSectionComponent } from "../user-shared-section/reviews-section/
     RouterModule.forChild(categoryRoutes),
     SharedModule,
     ImageComponent,
-    ReviewsSectionComponent
+    ReviewsSectionComponent,
+    PaginationComponent
 ],exports:[ 
 ]
 })

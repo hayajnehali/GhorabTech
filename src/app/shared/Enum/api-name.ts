@@ -4,5 +4,6 @@ productICategory="productICategory",
 category="category",
 cart="cart",
 user="user",
-payment="payment"
+payment="payment",
+auth="auth"
 }

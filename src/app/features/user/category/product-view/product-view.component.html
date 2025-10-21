@@ -6,10 +6,8 @@
         <span class="section-title-main m-0">{{ product.name.local }}</span>
         <b aria-hidden="true"></b>
       </h3>
-    </div>
-    <!-- Left: Product Images -->
-    <div class="col-md-6 image-gallery">
-      <!-- Main Image Carousel -->
+    </div> 
+    <div class="col-md-6 image-gallery"> 
       <div
         *ngIf="product.images && product.images.length > 0"
         id="productImageCarousel"
@@ -24,13 +22,12 @@
           >
             <app-image
               [src]="image.guidName"
-              class="img-thumbnail"
+                [class]="'img'"
               alt="Thumbnail Image"
             ></app-image>
           </div>
         </div>
-
-        <!-- Carousel Controls -->
+ 
         <button
           class="carousel-control-prev"
           type="button"
@@ -56,15 +53,13 @@
           class="col-2 p-1"
         >
           <app-image
-            [src]="image.guidName"
-            class="img-thumbnail"
+            [src]="image.guidName" 
             alt="Thumbnail Image"
           ></app-image>
         </div>
       </div>
     </div>
-
-    <!-- Right: Product Info -->
+ 
     <div class="col-md-6 product-info">
       <div class="product-price mb-3">
         <span class="old-price text-muted text-decoration-line-through me-2"

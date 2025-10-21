@@ -57,6 +57,18 @@
           [(ngModel)]="entity.description.arabic"
         />
       </div>
+      <div class="form-group col-6">
+        <label for="showInMain">{{
+          "general.showInMain" | translate
+        }}</label>
+        <input
+          type="checkbox"
+     
+          id="showInMain"
+          name="showInMain"
+          [(ngModel)]="entity.showInMain"
+        />
+      </div>
       <div class="btn-container">
         <button class="btn btn-secondary" (click)="goBack()">
           {{ "general.back" | translate }}

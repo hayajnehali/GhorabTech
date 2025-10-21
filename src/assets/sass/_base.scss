@@ -135,6 +135,7 @@ ol {
     background-color: $line-color;
     margin: 0 1rem;
   }
+  
 
   .section-title-main {
     color: $primary-color;
@@ -341,4 +342,8 @@ ol {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #a90000;
 }

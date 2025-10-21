@@ -1,0 +1,59 @@
+<!-- <nav class="pagination-wrapper" *ngIf="totalPages > 0" aria-label="pagination">
+ 
+  <label class="page-size-label">  
+     {{'general.item-per-page'|translate }}
+    <select [value]="pageSize" (change)="changePageSize($any($event.target).value)">
+      <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+    </select>
+  </label>
+ 
+  <button class="page-btn" [disabled]="pageIndex === 0" (click)="changePage(1)">{{'general.first'|translate }}</button>
+  <button class="page-btn" [disabled]="pageIndex === 0" (click)="previousPage()">{{'general.previous'|translate }}</button>
+ 
+  <ng-container *ngFor="let p of pages">
+    <button
+      class="page-btn"
+      [class.active]="p === currentPage"
+      (click)="changePage(p)">
+      {{ p }}
+    </button>
+  </ng-container> 
+  <button class="page-btn" [disabled]="pageIndex === totalPages - 1" (click)="nextPage()">{{'general.next'|translate }}</button>
+  <button class="page-btn" [disabled]="pageIndex === totalPages - 1" (click)="changePage(totalPages)">{{'general.last'|translate }}</button>
+
+</nav> -->
+<nav class="pagination-wrapper" *ngIf="totalPages > 0" aria-label="pagination">
+
+  <label class="page-size-label">  
+    {{'general.item-per-page' | translate}}
+    <select [value]="pageSize" (change)="changePageSize($any($event.target).value)">
+      <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+    </select>
+  </label>
+
+  <button class="page-btn" [disabled]="pageIndex === 0" (click)="changePage(1)">
+    {{'general.first' | translate}}
+  </button>
+
+  <button class="page-btn" [disabled]="pageIndex === 0" (click)="previousPage()">
+    {{'general.previous' | translate}}
+  </button>
+
+  <ng-container *ngFor="let p of pages">
+    <button
+      class="page-btn"
+      [class.active]="p === currentPage"
+      (click)="changePage(p)">
+      {{ p }}
+    </button>
+  </ng-container> 
+
+  <button class="page-btn" [disabled]="pageIndex === totalPages - 1" (click)="nextPage()">
+    {{'general.next' | translate}}
+  </button>
+
+  <button class="page-btn" [disabled]="pageIndex === totalPages - 1" (click)="changePage(totalPages)">
+    {{'general.last' | translate}}
+  </button>
+
+</nav>

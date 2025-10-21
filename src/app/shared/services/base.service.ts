@@ -16,28 +16,41 @@ export class ServiceBase<TData, TResult, F extends object> {
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
     this.baseUrl = this.baseUrl + baseUrll;
   }
+getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
+  const params = this.buildHttpParams(filterCriteria);
 
-  getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
-    let params = new HttpParams();
-    Object.keys(filterCriteria).forEach((key) => {
-      const value = filterCriteria[key as keyof F];
+  return this.http
+    .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
+    .pipe(
+      catchError((err) => {
+        console.error('Error occurred:', err);
+        return throwError(err);
+      })
+    );
+}
+protected buildHttpParams(filterCriteria: any): HttpParams {
+  let params = new HttpParams();
 
-      if (value !== undefined && value !== null) {
-        params = params.append(key, String(value));
-      }
-    });
+  Object.keys(filterCriteria).forEach((key) => {
+    const value = filterCriteria[key];
+    if (value !== undefined && value !== null) {
+      params = params.append(key, String(value));
+    }
+  });
 
-    return this.http
-      .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
-      .pipe(
-        catchError((err) => {
-          console.error('Error occurred:', err);
-          return throwError(err);
-        })
-      );
-  }
-  // getDataForViewByParent(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
-  //   let params: HttpParams = this.filterParams(filterCriteria);
+  return params;
+}
+
+  // getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
+  //   let params = new HttpParams();
+  //   Object.keys(filterCriteria).forEach((key) => {
+  //     const value = filterCriteria[key as keyof F];
+
+  //     if (value !== undefined && value !== null) {
+  //       params = params.append(key, String(value));
+  //     }
+  //   });
+
   //   return this.http
   //     .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
   //     .pipe(
@@ -47,17 +60,8 @@ export class ServiceBase<TData, TResult, F extends object> {
   //       })
   //     );
   // }
-  filterParams<F extends object>(filterCriteria: F): HttpParams {
-    let params = new HttpParams();
-    Object.keys(filterCriteria).forEach((key) => {
-      const value = filterCriteria[key as keyof F];
-
-      if (value !== undefined && value !== null) {
-        params = params.append(key, String(value));
-      }
-    });
-    return params;
-  }
+ 
+ 
 
   getById(id: string): Observable<TResult> {
     return this.http

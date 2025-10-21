@@ -12,12 +12,12 @@ export class CartViewComponent implements OnInit {
   cart: Cart = new Cart();
 
   ngOnInit(): void {
-    this.cart = this.cartService.getCart();
+   // this.cart = this.cartService.getCart();
   }
 
   updateQuantity(productId: string, quantity: number) {
     this.cartService.updateQuantity(productId, quantity);
-    this.cart = this.cartService.getCart();
+    //this.cart = this.cartService.getCart();
   }
 
 

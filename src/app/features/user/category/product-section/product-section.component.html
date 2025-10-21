@@ -7,10 +7,10 @@
             <nav class="navbar navbar-expand-lg mt-2">
               <div class="navbar-collapse">
                 <ul class="navbar-nav" >
-                  <li class="nav-item header__top__hover mx-2" [routerLink]="['../../']">
+                  <li class="nav-item header__top__hover mx-2" [routerLink]="['/']" >
                     <span>{{ "general.home" | translate }}  > </span>
                   </li>
-                  <li class="nav-item header__top__hover mx-2" *ngIf="hasData">
+                  <li class="nav-item header__top__hover mx-2" *ngIf="hasData" [routerLink]="['../../']">
                     <span>{{ dataSource.data[0].productCategory.category.name.local}} ></span>
                   </li>
                   <li class="nav-item header__top__hover mx-2">
@@ -55,13 +55,13 @@
             *ngFor="let product of dataSource.data"
           >
             <div class="card product-card border-0" [routerLink]="[product.id]">
-              <div class="image-wrapper">
+              <div class="category-image-wrapper">
                 <app-image
                   *ngIf="
                     product && product.images && product.images[0]?.guidName
                   "
                   src="{{ product.images[0].guidName }}"
-                  class="card-img-top main-img"
+                  [class]="'card-img-top main-img'"
                   alt="product.name"
                 ></app-image>
                 <app-image
@@ -70,7 +70,7 @@
                   "
                   class="hover-img"
                   src="{{ product.images[1].guidName }}"
-                  class="card-img-top hover-img"
+                  [class]="'card-img-top hover-img'"
                   alt="product.name"
                 ></app-image>
               </div>
@@ -82,13 +82,19 @@
         </div>
       </div>
       <div class="col-12">
-        <mat-paginator *ngIf="hasData" class="mat-paginator"
+        <!-- <mat-paginator *ngIf="hasData" class="mat-paginator"
           [length]="totalNumberOf"
-          (page)="pageChanged($event)"
+          (page)="pageChanged($event)" 
           [pageSizeOptions]="pageSizeOptions"
           showFirstLastButtons
-        ></mat-paginator> 
-      </div>
+        ></mat-paginator>  -->
+
+          <app-pagination   
+           [length]="totalNumberOf"
+          (page)="pageChanged($event)" 
+          [pageSizeOptions]="pageSizeOptions"
+          showFirstLastButtons></app-pagination>
+      </div> 
     </div>
   </div>
 </div> 

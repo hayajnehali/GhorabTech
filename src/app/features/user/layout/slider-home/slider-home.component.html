@@ -13,18 +13,16 @@
           <div class="row">
             <div class="col-xl-5 col-lg-7 col-md-8">
               <div class="hero__text">
-                <h6>Your Perfect Gift</h6>
-                <h2>Exclusive Collection of Watches, Perfumes & Flowers</h2>
-                <p>
-                  Discover carefully selected gifts, from luxurious perfumes and
-                  stylish watches to chocolates, cakes, and flowers, making
-                  every occasion truly special.
-                </p>
+                <h6>{{ "general.slider-subtitle" | translate }}</h6>
+                <h2>{{ "general.slider-title" | translate }}</h2>
+                <p>{{ "general.slider-description" | translate }}</p>
                 <div class="hero__social">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-pinterest"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a
+                    [href]="item.url"
+                    *ngFor="let item of links"
+                    target="_blank"
+                    ><i [class]="item.icon"></i
+                  ></a>
                 </div>
               </div>
             </div>
@@ -41,18 +39,16 @@
           <div class="row">
             <div class="col-xl-5 col-lg-7 col-md-8">
               <div class="hero__text">
-                <h6>Your Perfect Gift</h6>
-                <h2>Exclusive Collection of Watches, Perfumes & Flowers</h2>
-                <p>
-                  Discover carefully selected gifts, from luxurious perfumes and
-                  stylish watches to chocolates, cakes, and flowers, making
-                  every occasion truly special.
-                </p>
+                <h6>{{ "general.slider-subtitle" | translate }}</h6>
+                <h2>{{ "general.slider-title" | translate }}</h2>
+                <p>{{ "general.slider-description" | translate }}</p>
                 <div class="hero__social">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-pinterest"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a
+                    [href]="item.url"
+                    *ngFor="let item of links"
+                    target="_blank"
+                    ><i [class]="item.icon"></i
+                  ></a>
                 </div>
               </div>
             </div>

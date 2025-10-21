@@ -17,9 +17,14 @@
           class="form-control"
           id="nameEn"
           required
+          #nameEn="ngModel"
           name="nameEn"
           [(ngModel)]="entity.name.english"
         />
+        <app-form-error
+          [control]="nameEn"
+          fieldName='{{ "nameEn" | translate }}'
+        ></app-form-error>
       </div>
 
       <div class="form-group col-6">

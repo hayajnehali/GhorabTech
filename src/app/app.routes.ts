@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminLayOutComponent } from './features/admin/layout/admin-layout/admin-layout.component';
 import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component';
+import { LoginComponent } from '@shared/component/login/login.component';
 
 const routes: Routes = [
   {
@@ -26,8 +27,17 @@ const routes: Routes = [
       }, // Default admin dashboard
       { path: 'settings', component: AdminLayOutComponent }, // Admin settings
     ],
+  }, 
+  {
+    path: 'login',
+    component: UserLayOutComponent,
+    children: [
+      {
+        path: '',
+        component:LoginComponent,
+      },
+    ],
   },
-
   { path: '', redirectTo: 'user', pathMatch: 'full' },
   { path: '**', redirectTo: 'user' }, // Wildcard route redirects to user
 ];

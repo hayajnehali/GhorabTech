@@ -1,44 +1,55 @@
 <section class="inquiries-section py-5 text-center">
-  <div class="container"> 
+  <div class="container">
     <h3 class="section-title mb-3">
-      {{ 'inquiries-section.title' | translate }}
+      {{ "inquiries-section.title" | translate }}
     </h3>
     <p class="section-subtitle mb-5">
-      {{ 'inquiries-section.subtitle' | translate }}
+      {{ "inquiries-section.subtitle" | translate }}
     </p>
- 
+
     <div class="row mb-5">
       <div class="col-md-4">
         <i class="fa fa-phone fa-2x mb-3"></i>
-        <h5 class="fw-bold">{{ 'inquiries-section.phone.title' | translate }}</h5>
-        <p>{{ 'inquiries-section.phone.text' | translate }}</p>
+        <h5 class="fw-bold">
+          {{ "inquiries-section.phone.title" | translate }}
+        </h5>
+        <p>{{ "inquiries-section.phone.text" | translate }}</p>
       </div>
       <div class="col-md-4">
         <i class="fa fa-whatsapp fa-2x mb-3"></i>
-        <h5 class="fw-bold">{{ 'inquiries-section.whatsapp.title' | translate }}</h5>
-        <p>{{ 'inquiries-section.whatsapp.text' | translate }}</p>
+        <h5 class="fw-bold">
+          {{ "inquiries-section.whatsapp.title" | translate }}
+        </h5>
+        <p>{{ "inquiries-section.whatsapp.text" | translate }}</p>
       </div>
       <div class="col-md-4">
         <i class="fa fa-envelope fa-2x mb-3"></i>
-        <h5 class="fw-bold">{{ 'inquiries-section.email.title' | translate }}</h5>
-        <p>{{ 'inquiries-section.email.text' | translate }}</p>
+        <h5 class="fw-bold">
+          {{ "inquiries-section.email.title" | translate }}
+        </h5>
+        <p>{{ "inquiries-section.email.text" | translate }}</p>
       </div>
     </div>
 
     <!-- ملاحظة -->
     <div class="mb-5">
       <i class="fa fa-gift fa-3x mb-3"></i>
-      <h5 class="fw-bold">{{ 'inquiries-section.gift.title' | translate }}</h5>
-      <p>{{ 'inquiries-section.gift.text' | translate }}</p>
+      <h5 class="fw-bold">{{ "inquiries-section.gift.title" | translate }}</h5>
+      <p>{{ "inquiries-section.gift.text" | translate }}</p>
     </div>
 
     <!-- تابعنا -->
     <div class="follow-us">
-      <p class="fw-bold mb-3">{{ 'inquiries-section.follow-us' | translate }}</p>
+      <p class="fw-bold mb-3">
+        {{ "inquiries-section.follow-us" | translate }}
+      </p>
       <div class="d-flex justify-content-center gap-3">
-        <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-        <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
-        <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+        <a
+          [href]="item.url"
+          *ngFor="let item of links"
+          target="_blank" 
+          ><i [class]="item.icon"></i
+        ></a> 
       </div>
     </div>
   </div>

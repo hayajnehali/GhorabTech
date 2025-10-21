@@ -28,14 +28,12 @@
             />
           </div>
           <div class="d-flex align-items-center gap-3">
-            <a href="https://facebook.com" target="_blank" class="text-light"
-              ><i class="fa fa-facebook-f"></i
-            ></a>
-            <a href="https://instagram.com" target="_blank" class="text-light"
-              ><i class="fa fa-instagram"></i
-            ></a>
-            <a href="https://twitter.com" target="_blank" class="text-light"
-              ><i class="fa fa-twitter"></i
+            <a
+              [href]="item.url"
+              *ngFor="let item of links"
+              target="_blank"
+              class="text-light"
+              ><i [class]="item.icon"></i
             ></a>
             <a
               href="#"
@@ -60,14 +58,14 @@
               <input
                 type="text"
                 class="form-control rounded-pill"
-                placeholder="{{'general.search'|translate}} ..."
+                placeholder="{{ 'general.search' | translate }} ..."
                 aria-label="Search"
               />
             </div>
-            <div class="lang mt-2 mt-sm-0"> 
+            <div class="lang mt-2 mt-sm-0">
               <span
                 (click)="switchLanguage('en')"
-                *ngIf="currentLang === 'ar' || currentLang!=='en'"
+                *ngIf="currentLang === 'ar' || currentLang !== 'en'"
                 class="d-flex align-items-center gap-1"
                 style="cursor: pointer"
               >
@@ -97,8 +95,23 @@
 
           <!-- Cart -->
           <div class="col-12 col-md-4 text-md-end text-center mt-2">
-            <p class="mb-0">
-              {{ "general.login" | translate }} |
+            <p class="mb-0" style="text-align: end">
+              <a
+                *ngIf="!isAuthenticated"
+                class="text-dark position-relative mx-2"
+                [routerLink]="['/login']"
+              >
+                {{ "general.login" | translate }}
+              </a>
+              <a
+                *ngIf="isAuthenticated"
+                class="text-dark position-relative mx-2"
+                (click)="logout()"
+              >
+                {{ "general.logout" | translate }}
+              </a>
+
+              |
               <a
                 (click)="openSide = !openSide"
                 class="text-dark position-relative mx-2"
@@ -136,30 +149,18 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item header__top__hover mx-2">
-                <span>{{ "general.product-type" | translate }}</span>
+                <span>{{ "category.category" | translate }}</span>
                 <ul class="">
-                  <li>
-                    <a class="dropdown-item">{{ "general.en" | translate }}</a>
+                  <li *ngFor="let item of categoryResult">
+                    <a class="dropdown-item"  [routerLink]="['category',item.id,'product-category']">{{ item.name.local }}</a>
                   </li>
                 </ul>
               </li>
               <li class="nav-item header__top__hover mx-2">
-                <span>{{ "general.about" | translate }}</span>
+                <span>{{ "category.subCategory" | translate }}</span>
                 <ul class="">
-                  <li>
-                    <a class="dropdown-item">{{
-                      "general.about" | translate
-                    }}</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item header__top__hover mx-2">
-                <span>{{ "general.contactus" | translate }}</span>
-                <ul class="">
-                  <li>
-                    <a class="dropdown-item">{{
-                      "general.contactus" | translate
-                    }}</a>
+                  <li *ngFor="let item of productCategories">
+                    <a (click)="goToproduct(item.categoryId,item.id)" class="dropdown-item">{{ item.name.local }}</a>
                   </li>
                 </ul>
               </li>
@@ -171,4 +172,11 @@
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> 
+<a
+  class="btn-whatsapp"
+  (click)="openWhatsApp()"
+  target="_blank"
+>
+  <i class="fa fa-whatsapp"></i> تواصل عبر واتساب
+</a>

@@ -15,6 +15,6 @@ export class CategoryListComponent extends BaseListComponent<
 > {
   constructor(private categoryService: CategoryService) {
     super(categoryService,CategoryFilter);
-    this.displayedColumns = ['id', 'categoryName', 'action'];
+    this.displayedColumns = ['id', 'categoryName','showInMain', 'action'];
   }
 }

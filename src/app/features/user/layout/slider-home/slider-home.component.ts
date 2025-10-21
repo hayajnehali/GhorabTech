@@ -1,24 +1,35 @@
-import { Component } from '@angular/core';
-declare var $: any; 
+import { DOCUMENT } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
+declare var $: any;
 @Component({
-  selector: 'app-slider-home', 
+  selector: 'app-slider-home',
   templateUrl: './slider-home.component.html',
-  styleUrl: './slider-home.component.css'
+  styleUrl: './slider-home.component.scss',
 })
 export class SliderHomeComponent {
+  protected document = inject(DOCUMENT); 
+  links: SocialLink[] = SOCIAL_LINKS;
+
   ngAfterViewInit(): void {
-    $(".hero__slider").owlCarousel({
+    const isRtl = this.document.documentElement.getAttribute('dir') === 'rtl';
+
+    $('.hero__slider').owlCarousel({
       loop: true,
       margin: 0,
       items: 1,
       dots: false,
       nav: true,
-      navText: ["<span class='arrow_left'></span>", "<span class='arrow_right'></span>"],
+      rtl: isRtl,
+      navText: [
+        "<span class='arrow_left'></span>",
+        "<span class='arrow_right'></span>",
+      ],
       animateOut: 'fadeOut',
       animateIn: 'fadeIn',
       smartSpeed: 1200,
       autoHeight: false,
-      autoplay: false
+      autoplay: false,
     });
   }
 }

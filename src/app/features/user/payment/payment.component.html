@@ -13,125 +13,12 @@
 
   <!-- Content Area -->
   <div class="wizard-content" *ngIf="currentStep === 1">
-    <div class="">
-      <form #registerForm="ngForm" (ngSubmit)="save(registerForm)" novalidate>
-        <h2 class="mb-4 text-center">{{ "general.createUser" | translate }}</h2>
-
-        <!-- الاسم الكامل -->
-        <div class="mb-3">
-          <label class="form-label">{{ "general.fullName" | translate }}</label>
-          <input
-            type="text"
-            class="form-control"
-            name="fullName"
-            [(ngModel)]="user.fullName"
-            required
-          />
-          <div
-            *ngIf="registerForm.submitted && !user.fullName"
-            class="text-danger"
-          >
-            {{ "errors.fullNameRequired" | translate }}
-          </div>
-        </div>
-
-        <!-- البريد الإلكتروني -->
-        <div class="mb-3">
-          <label class="form-label">{{ "general.email" | translate }}</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="user.email"
-            required
-            email
-          />
-          <div
-            *ngIf="
-              registerForm.submitted && registerForm.controls['email']?.invalid
-            "
-            class="text-danger"
-          >
-            {{ "errors.invalidEmail" | translate }}
-          </div>
-        </div>
-
-        <!-- رقم الهاتف -->
-        <div class="mb-3">
-          <label class="form-label">{{ "general.phone" | translate }}</label>
-          <input
-            type="tel"
-            class="form-control"
-            name="phone"
-            [(ngModel)]="user.phoneNumber"
-            required
-          />
-          <div
-            *ngIf="registerForm.submitted && !user.phoneNumber"
-            class="text-danger"
-          >
-            {{ "errors.phoneRequired" | translate }}
-          </div>
-        </div>
-
-        <!-- كلمة المرور -->
-        <div class="mb-3">
-          <label class="form-label">{{ "general.password" | translate }}</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="user.password"
-            required
-            minlength="6"
-          />
-          <div
-            *ngIf="
-              registerForm.submitted &&
-              registerForm.controls['password'].invalid
-            "
-            class="text-danger"
-          >
-            {{ "errors.passwordMinLength" | translate }}
-          </div>
-        </div>
-
-        <!-- تأكيد كلمة المرور -->
-        <div class="mb-3">
-          <label class="form-label">{{
-            "general.confirmPassword" | translate
-          }}</label>
-          <input
-            type="password"
-            class="form-control"
-            name="confirmPassword"
-            [(ngModel)]="user.confirmPassword"
-            required
-          />
-          <div
-            *ngIf="
-              registerForm.submitted && user.confirmPassword !== user.password
-            "
-            class="text-danger"
-          >
-            {{ "errors.passwordMismatch" | translate }}
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          [disabled]="registerForm.invalid"
-        >
-          {{ "general.register" | translate }}
-        </button>
-      </form>
-    </div>
+    <app-registration (notify)="onNotify($event)"></app-registration>
   </div>
 
   <div class="wizard-content" *ngIf="currentStep === 2">
     <form #recipientForm="ngForm" (ngSubmit)="onSubmitCard(recipientForm)">
-    <!-- Full Name -->
+      <!-- Full Name -->
       <div class="mb-3">
         <label>{{ "general.fullName" | translate }}</label>
         <input
@@ -142,7 +29,10 @@
           #fullName="ngModel"
           required
         />
-        <div *ngIf="recipientForm.submitted && fullName.invalid" class="text-danger">
+        <div
+          *ngIf="recipientForm.submitted && fullName.invalid"
+          class="text-danger"
+        >
           {{ "errors.fullNameRequired" | translate }}
         </div>
       </div>
@@ -157,11 +47,13 @@
           [(ngModel)]="cart.recipientInfo.phoneNumber"
           #phoneNumber="ngModel"
           required
-        
         />
 
-          <!-- pattern="^\\+?[0-9]{7,15}$" -->
-        <div *ngIf="recipientForm.submitted && phoneNumber.invalid" class="text-danger">
+        <!-- pattern="^\\+?[0-9]{7,15}$" -->
+        <div
+          *ngIf="recipientForm.submitted && phoneNumber.invalid"
+          class="text-danger"
+        >
           {{ phoneNumber.errors?.['required']
             ? ("errors.phoneRequired" | translate)
             : ("errors.invalidPhoneNumber" | translate) }}
@@ -179,7 +71,10 @@
           #city="ngModel"
           required
         />
-        <div *ngIf="recipientForm.submitted && city.invalid" class="text-danger">
+        <div
+          *ngIf="recipientForm.submitted && city.invalid"
+          class="text-danger"
+        >
           {{ "errors.cityRequired" | translate }}
         </div>
       </div>
@@ -195,13 +90,10 @@
       </div>
 
       <div class="btn-container d-flex justify-content-between mt-4">
-        <button
-          type="submit"
-          class="btn btn-primary w-100" 
-        >
+        <button type="submit" class="btn btn-primary w-100">
           {{ "cart.checkout" | translate }}
         </button>
       </div>
     </form>
-  </div> 
+  </div>
 </div>

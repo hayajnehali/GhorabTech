@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '@shared/services/cart.service';
 import { Cart, RecipientInfo } from '@models/cart';
 import { User, UserResult } from '@models/user';
-import { UserService } from '@shared/services/user.service'; 
+import { UserService } from '@shared/services/user.service';
 import { BaseComponent } from '@core/base/base-component';
 import { NgForm } from '@angular/forms';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
@@ -20,8 +20,7 @@ export class PaymentComponent extends BaseComponent implements OnInit {
   cartService = inject(CartService);
   paymentService = inject(PaymentService);
   private storage = inject(LocalStorageService);
-  userService = inject(UserService);
-  user: User = new User();
+
   currentStep: number = 1;
 
   constructor() {
@@ -41,28 +40,9 @@ export class PaymentComponent extends BaseComponent implements OnInit {
       form.control.markAllAsTouched();
       return;
     }
-   this.cart.userId="edc3720e-d1d5-4d9b-46fc-08de0a8e5131"
-    this.paymentService.checkout(this.cart).subscribe((res: any) => { 
-      window.location.href = res.message;
-    });
-  }
-  save(form: NgForm) {
-    if (form.invalid) {
-      form.control.markAllAsTouched();
-      return;
-    }
-    this.userService.create(this.user).subscribe({
-      next: (res: any) => {
-        this.notificationService.showSuccess(
-          this.translate.instant('general.success-message'),
-          this.translate.instant('general.success')
-        );
-        this.storage.set(this.token_KEY, res.data);
-        this.currentStep = 2;
-      },
-      error: (err) => {
-        this.notificationService.showError(err);
-      },
+    this.cart.userId = 'edc3720e-d1d5-4d9b-46fc-08de0a8e5131';
+    this.paymentService.checkout(this.cart).subscribe((res: any) => {
+      window.location.href = res.data;
     });
   }
 
@@ -72,5 +52,10 @@ export class PaymentComponent extends BaseComponent implements OnInit {
 
   prevStep() {
     this.currentStep--;
+  }
+  onNotify($event: boolean) {
+    if ($event) {
+      this.currentStep = 2;
+    }
   }
 }

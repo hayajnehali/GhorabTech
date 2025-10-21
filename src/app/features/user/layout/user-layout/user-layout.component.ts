@@ -1,28 +1,33 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-
+import { OperationResultGeneric } from '@core/base/operation-result';
+import { phoneNumber } from '@core/model/social.config';
+import { CategoryFilter, CategoryResult } from '@models/category';
+import {
+  ProductCategory,
+  ProductCategoryResult,
+} from '@models/product-category';
+import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
+import { CategoryService } from '@shared/services/category.service';
 @Component({
   selector: 'app-user-layout',
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.scss',
 })
-export class UserLayOutComponent {
+export class UserLayOutComponent extends BaseLayOutComponent {
   title = 'material-responsive-sidenav';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isMobile = true;
-  currentLang: string | null=  localStorage.getItem('language');;
   isCollapsed = true;
-
-openSide:boolean=false
-  constructor(
-    private observer: BreakpointObserver,
-    private translate: TranslateService,
-    private router: Router
-  ) {}
+  isActive: boolean = false;
+  openSide: boolean = false;
+  categoryService = inject(CategoryService);
+  categoryResult: CategoryResult[] | undefined = [];
+  productCategories: ProductCategoryResult[] | undefined = [];
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
@@ -32,6 +37,19 @@ openSide:boolean=false
         this.isMobile = false;
       }
     });
+    this.isAuthenticated = this.authService.isAuthenticated();
+    this.getProductCategoryWithProduct();
+  }
+  getProductCategoryWithProduct() {
+    this.categoryService
+      .getProductCategoryWithProduct(new CategoryFilter())
+      .subscribe({
+        next: (res: OperationResultGeneric<CategoryResult[]>) => {
+          this.categoryResult = res.data;
+          this.productCategories =
+            res.data?.flatMap((item) => item.productCategories) ?? undefined;
+        },
+      });
   }
 
   toggleMenu() {
@@ -44,9 +62,9 @@ openSide:boolean=false
     }
   }
 
-  switchLanguage(language: string) { 
+  switchLanguage(language: string) {
     this.translate.use(language);
-    localStorage.setItem('language', language);
+    localStorage.setItem(this.language, language);
     this.router.navigate([this.router.url]).then(() => {
       window.location.reload();
     });
@@ -58,10 +76,18 @@ openSide:boolean=false
   gocategory() {
     this.router.navigate(['admin/categorys']);
   }
-
-  isActive: boolean = false;
-
+  goToproduct(arg0: string | undefined, arg1: string | undefined) {
+      this.router.navigate([`category/${arg0}/product-category/${arg1}/product`],{ relativeTo: this.activatedRoute });
+  }
   toggleActive(): void {
     this.isActive = !this.isActive;
   }
+  logout() {
+    this.authService.logout();
+  }
+  openWhatsApp(): void { 
+  const message = encodeURIComponent('مرحبًا، أود الاستفسار عن منتج');
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+}
+
 }

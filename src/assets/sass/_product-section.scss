@@ -45,7 +45,7 @@
       transform: translateY(-6px) scale($hover-scale);
     }
 
-    .image-wrapper {
+    .product-image-wrapper {
       position: relative;
       overflow: hidden;
       border-radius: 8px;
@@ -56,7 +56,8 @@
       .hover-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; // 🔹 يضبط الصورة لتغطي المساحة بدون تمدد
+        object-fit: cover;  
+        
         transition: opacity 0.5s ease, transform 0.5s ease;
         display: block;
       }

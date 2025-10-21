@@ -62,7 +62,28 @@
     "stateOrProvince": "المنطقة / الولاية",
     "postalCode": "الرمز البريدي",
     "country": "الدولة",
-    "notes": "ملاحظات"
+    "notes": "ملاحظات",
+    "user-name": "أسم المستخدم",
+    "donot-have-account": "ليس لديك حساب؟",
+    "usernameError":"اسم المستخدم مطلوب وصحيح.",
+    "passwordError":"كلمة المرور مطلوبة.",
+    "logout":"تسجيل خروج",
+    "showInMain":"أظهار في الصفحة الرئيسية",
+    "slider-subtitle": "هدية مثالية لك",
+    "slider-title": "تشكيلة حصرية من الساعات والعطور والزهور والإكسسوارات",
+    "slider-description":"اكتشف هدايا مختارة بعناية، من العطور الفاخرة والساعات الأنيقة إلى الشوكولاتة، الكيك، والزهور، لتجعل كل مناسبة مميزة حقًا.",    
+    "item-per-page":"العناصر في الصفحة",
+    "first": "ألاول",
+    "previous": "السابق",
+    "next": "ألتالي",
+    "last": "ألاخيرر"
+  },
+    "validation": {
+    "required": "هذا الحقل مطلوب",
+    "minlength": "هذا الحقل قصير جداً (الحد الأدنى هو {{requiredLength}} أحرف)",
+    "maxlength": "هذا الحقل طويل جداً (الحد الأقصى هو {{requiredLength}} أحرف)",
+    "email": "يرجى إدخال بريد إلكتروني صحيح",
+    "pattern": "الصيغة غير صحيحة"
   },
   "errors": {
     "fullNameRequired": "الاسم مطلوب",
@@ -122,10 +143,13 @@
     "english": "English"
   },
   "category": {
-    "category": "الصنف",
+    "category": "الأقسام",
     "add-category": "أضافة صنف",
     "edit-category": "تعديل الصنف",
-    "category-list": "قائمة الأصناف"
+    "category-list": "قائمة الأصناف",
+    "add-product-category":"أضافة صنف منتج",
+    "edit-product-category":"تعديل صنف منتج",
+    "subCategory":"الأنواع"
   },
   "productCategory": {
     "product-category-list": "قائمة أصناف المنتجات"

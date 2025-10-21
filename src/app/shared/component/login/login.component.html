@@ -1,0 +1,75 @@
+<div
+  class="login-wrapper d-flex align-items-center justify-content-center min-vh-100"
+>
+  <div class="login-box shadow p-4 bg-white rounded">
+    <h2 class="mb-4 text-center">{{ "general.login" | translate }}</h2>
+    <form #login="ngForm" (ngSubmit)="onSubmit(login)">
+      <div class="mb-3">
+        <label for="email" class="form-label">{{
+          "general.user-name" | translate
+        }}</label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          class="form-control"
+          placeholder="{{ 'general.user-name' | translate }}"
+          required
+          #userName="ngModel"
+          [(ngModel)]="auth.userName"
+        />
+        <div *ngIf="userName.invalid && userName.touched" class="text-danger small">
+          {{ "general.usernameError" | translate }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">{{
+          "general.password" | translate
+        }}</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="••••••"
+          [(ngModel)]="auth.password"
+          required
+          #password="ngModel"
+        />
+        <div
+          *ngIf="password.invalid && password.touched"
+          class="text-danger small"
+        >
+          {{ "general.passwordError" | translate }}
+        </div>
+      </div>
+
+      <div class="d-grid gap-2"> 
+        <div *ngIf="loginError" class="alert alert-danger py-2 small">
+          {{ loginError }}
+        </div> 
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          [disabled]="loading"
+        >
+          <span *ngIf="!loading"> {{ "general.login" | translate }}</span>
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
+      </div>
+
+      <div class="mt-3 text-center">
+        <small
+          >{{ "general.donot-have-account" | translate }}
+          <a href="#">{{ "general.register" | translate }}</a></small
+        >
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="control?.errors && control?.touched" class="error">
+
+  <div *ngIf="control.errors?.['required']">
+    {{ 'validation.required' | translate }}
+  </div>
+
+  <div *ngIf="control.errors?.['minlength']">
+    {{ 'validation.minlength' | translate:{ requiredLength: control.errors?.['minlength'].requiredLength } }}
+  </div>
+
+  <div *ngIf="control.errors?.['maxlength']">
+    {{ 'validation.maxlength' | translate:{ requiredLength: control.errors?.['maxlength'].requiredLength } }}
+  </div>
+
+  <div *ngIf="control.errors?.['email']">
+    {{ 'validation.email' | translate }}
+  </div>
+
+  <div *ngIf="control.errors?.['pattern']">
+    {{ 'validation.pattern' | translate }}
+  </div>
+
+</div>

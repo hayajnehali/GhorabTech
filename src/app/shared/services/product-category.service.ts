@@ -16,7 +16,7 @@ export class ProductCategoryService extends ServiceBase<ProductCategory,ProductC
   }
  
    getProductCategoryWithProduct(filterCriteria: ProductCategoryFilter):Observable<ProductCategoryView>   {
-    let params: HttpParams = this.filterParams(filterCriteria);
+    let params: HttpParams = this.buildHttpParams(filterCriteria);
     return this.http
       .get<ProductCategoryView>(this.baseUrl + '/get-products', { params })
       // .pipe(

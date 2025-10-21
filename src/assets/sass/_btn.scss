@@ -25,16 +25,19 @@
   transform: translateY(-2px);
 }
 
-.btn-container{
- display: flex;
- justify-content: end;
+.btn-container {
+  display: flex;
+  justify-content: end;
 }
 
-
-.btn-icon { 
-  color: $primary-color; 
+.btn-icon {
+  color: $primary-color;
 }
 
-.btn-icon:hover { 
-  color: $secondary-color; 
+.btn-icon:hover {
+  color: $secondary-color;
+}
+
+a {
+  cursor: pointer;
 }

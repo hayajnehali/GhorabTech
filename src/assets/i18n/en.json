@@ -9,7 +9,7 @@
   "addProduct": "Add Product",
   "add": "Add",
   "general": {
-    "search":"Search",
+    "search": "Search",
     "price": "Price",
     "count": "Count",
     "name": "Name",
@@ -60,7 +60,28 @@
     "stateOrProvince": "State / Province",
     "postalCode": "Postal Code",
     "country": "Country",
-    "notes": "Notes"
+    "notes": "Notes",
+    "user-name": "User Name",
+    "donot-have-account": "Don't have an account?",
+    "usernameError": "Username is required and valid.",
+    "passwordError": "Password is required.",
+    "logout": "Logout",
+    "showInMain": "Show In Main",
+    "slider-subtitle": "Your Perfect Gift",
+    "slider-title": "Exclusive Collection of Watches, Perfumes, Flowers & Accessories",
+    "slider-description": "Discover carefully selected gifts, from luxurious perfumes and stylish watches to chocolates, cakes, and flowers, making every occasion truly special.",
+    "item-per-page": "Item per page",
+    "first": "First",
+    "previous": "Previous",
+    "next": "Next",
+    "last": "Last"
+  },
+    "validation": {
+    "required": "This field is required",
+    "minlength": "This field is too short (minimum is {{requiredLength}} characters)",
+    "maxlength": "This field is too long (maximum is {{requiredLength}} characters)",
+    "email": "Please enter a valid email address",
+    "pattern": "Invalid format"
   },
   "errors": {
     "fullNameRequired": "Full name is required",
@@ -68,7 +89,7 @@
     "phoneRequired": "Phone number is required",
     "passwordMinLength": "Password must be at least 6 characters",
     "passwordMismatch": "Passwords do not match",
-    "cityRequired":"City Required"
+    "cityRequired": "City Required"
   },
   "perfume": {
     "perfume": "The most luxurious perfumes"
@@ -120,10 +141,13 @@
     "english": "English"
   },
   "category": {
-    "category": "Category",
+    "category": "Main Categories",
     "add-category": "Add Category",
     "edit-category": "Edit Category",
-    "category-list": "Category List"
+    "category-list": "Category List",
+    "add-product-category": "Add Product Category",
+    "edit-product-category": "Edit Product Category",
+    "subCategory": "Types"
   },
   "productCategory": {
     "product-category-list": "Product Category List"
@@ -142,6 +166,6 @@
     "continue-shopping": "Continue Shopping",
     "viewCart": "View Cart",
     "delete-cart": "Delete Cart",
-    "failed-to-create-cart":"Failed To Create Cart"
+    "failed-to-create-cart": "Failed To Create Cart"
   }
 }

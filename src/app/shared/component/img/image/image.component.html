@@ -1,11 +1,12 @@
 @if(src){
 <img
-  src="{{ url }}{{ src }}"
+  [src]="url + src"
   [alt]="alt"
+  [ngClass]="class"
   [style.width.%]="width"
   [style.height.%]="height"
-
-  name="{{name}}"
+  name="{{ name }}"
+  loading="lazy"
 />
 }@else{
 <p>{{ "general.image-not-found" | translate }}</p>

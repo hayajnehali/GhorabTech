@@ -22,8 +22,7 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     const cart = this.storage.get<Cart>(this.CART_KEY);
     if (cart) {
       return cart;
-    }
-    // إذا ما في سلة مخزنة، أنشئ واحدة جديدة
+    } 
     const newCart: Cart = new Cart();
     newCart.id= this.generateCartId();
     this.storage.set(this.CART_KEY, newCart);

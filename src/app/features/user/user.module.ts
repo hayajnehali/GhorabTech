@@ -18,6 +18,7 @@ import { CategorySectionComponent } from "./user-shared-section/category-section
 import { CardSidenavComponent } from './layout/card-sidenav/card-sidenav.component'; 
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RegistrationComponent } from "@shared/component/registration/registration.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PaymentComponent } from './payment/payment.component';
     FooterComponent,
     CategoryModule,
     CategorySectionComponent,
+    RegistrationComponent
 ],
   providers: [ServiceBase, ProductService],
 })

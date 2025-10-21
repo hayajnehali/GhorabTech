@@ -16,6 +16,7 @@ export class ProductCategory extends ModelBase {
 export class ProductCategoryResult extends ModelBase {
   productCategoryId?: string;
   name: LocalizedString = new LocalizedString();
+  categoryId?: string;
   products: ProductResult[] = [];
   category: CategoryResult=new CategoryResult();
   images: CategoryImage[] = [];
