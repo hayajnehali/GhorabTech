@@ -1,7 +1,7 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { DOCUMENT } from '@angular/common';
-import { Component, inject } from '@angular/core';
+
+import { Component, inject, DOCUMENT } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 import { TranslateService } from '@ngx-translate/core';

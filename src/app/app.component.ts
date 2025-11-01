@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, inject } from '@angular/core'; 
+
+import { Component, inject, DOCUMENT } from '@angular/core'; 
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '@shared/environment/environment';
 
