@@ -6,8 +6,8 @@
         <span class="section-title-main m-0">{{ product.name.local }}</span>
         <b aria-hidden="true"></b>
       </h3>
-    </div> 
-    <div class="col-md-6 image-gallery"> 
+    </div>
+    <div class="col-md-6 image-gallery">
       <div
         *ngIf="product.images && product.images.length > 0"
         id="productImageCarousel"
@@ -22,12 +22,12 @@
           >
             <app-image
               [src]="image.guidName"
-                [class]="'img'"
+              [class]="'img'"
               alt="Thumbnail Image"
             ></app-image>
           </div>
         </div>
- 
+
         <button
           class="carousel-control-prev"
           type="button"
@@ -47,72 +47,103 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <div class="row w-100 mt-3 thumbnail-gallery">
+      <div class="row w-100 thumbnail-gallery">
         <div
           *ngFor="let image of product.images; let i = index"
           class="col-2 p-1"
         >
-          <app-image
-            [src]="image.guidName" 
-            alt="Thumbnail Image"
-          ></app-image>
+          <app-image [src]="image.guidName" alt="Thumbnail Image"></app-image>
         </div>
       </div>
     </div>
- 
+
     <div class="col-md-6 product-info">
-      <div class="product-price mb-3">
-        <span class="old-price text-muted text-decoration-line-through me-2"
-          >{{"general.JOD" |translate}} {{product.price}}</span
-        >
-        <span class="text-titel fw-bold">{{"general.JOD" |translate}} {{product.price}}</span>
-      </div>
-
       <div class="customization">
-        <div class="accordion" id="customizationAccordion">
-          <div 
-            *ngFor="
-              let section of ['Sweets', 'Cakes', 'Perfumes', 'Balloons'];
-              let i = index
-            "
-          >
-            <div class="customization-item d-flex justify-content-between align-items-center">
-              <span class="text-titel py-4 px-2">{{ section }}</span>
-
-              <div class="d-flex align-items-center gap-2">
-                <img
-                  src="./assets/img/icon/paypal.svg"
-                  alt="Sweets Icon"
-                  class="option-icon"
-                />
-                <button class="btn btn-link p-0 plus-btn">
-                  <i class="bi bi-plus fs-5 text-primary"></i>
-                </button>
-              </div>
-         
-            </div> 
-                 <hr class="m-0">
-            <div
-              class="accordion-collapse collapse"
-              data-bs-parent="#customizationAccordion"
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <h2 class="text-titel py-1 px-2">{{ product.name.local }}</h2>
+        </div>
+        <div class="customization-item">
+          @if (product.priceBeforeDiscount!=null&&
+          product.priceBeforeDiscount>0) {
+          <span class="text-muted text-decoration-line-through py-1 px-2">
+            {{ product.priceBeforeDiscount }} {{ "general.JOD" | translate }} /
+          </span>
+          }
+          <span class="text-danger fw-bold py-1 px-2">
+            {{ product.price }} {{ "general.JOD" | translate }}
+          </span>
+        </div>
+        <div class="star-rating pb-2">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <span class="text-description py-1 px-2">{{
+            product.description.local
+          }}</span>
+        </div>
+        <!-- @for (item of keyAttributes; track $index) {
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <span class="text-description py-1 px-2">
+            {{ item.name.local }}:
+            <span
+              *ngFor="let val of item.keyAttributeValues; let isLast = last"
             >
-              <div class="accordion-body">Option content for {{ section }}</div>
+              {{ val.value.local }}{{ isLast ? "" : ", " }}
+            </span>
+          </span>
+        </div>
+        } -->
+        @for (item of keyAttributes; track $index) {
+        <div class="customization-item py-2 text-description">
+          <label class="fw-bold d-block mb-2">{{ item.name.local }}</label>
+
+          <div class="d-flex flex-wrap gap-3">
+            <div
+              *ngFor="let val of item.keyAttributeValues"
+              class="form-check-label d-flex align-items-center gap-2"
+            >
+              <input
+                type="radio"
+                name="{{ item.name.local }}"
+                [value]="val" 
+                (change)="onAttributeSelected(item, val)" 
+              />
+             <span class=""> {{ val.value.local }}</span>
             </div>
           </div>
         </div>
+        }
       </div>
-      <div class="summary mt-4">
-        <div class="d-flex justify-content-between">
-          <span >{{"product.options-price" |translate}}:</span>
-          <span class="text-titel">{{"general.JOD" |translate}} 0</span>
+      <div class="summary">
+        <div class="d-flex justify-content-between fw-bold mb-2">
+          <span>{{ "general.quantity" | translate }}:</span>
+          <span class="text-titel quantity">
+            <a class="mx-2" (click)="increment()">+</a>
+            <span class="mx-5">{{ this.item.quantity }}</span>
+            <a class="mx-2" (click)="decrement()">-</a>
+          </span>
         </div>
-        <div class="d-flex justify-content-between fw-bold">
-          <span>{{"general.total" |translate}}:</span>
-          <span class="text-titel"> {{"general.JOD" |translate}} 68</span>
+        <div class="d-flex justify-content-between fw-bold mb-4">
+          <span>{{ "general.total" | translate }}:</span>
+          <span class="text-titel">
+            {{ "general.JOD" | translate }}
+            {{ this.item.quantity * (product.price ?? 0) }}</span
+          >
         </div>
-      </div>
-      <div class="mt-4">
-        <button class="btn btn-primary w-100" (click)="addToCart()">{{"product.order-now" |translate}}</button>
+
+        <button class="btn btn-primary w-100" (click)="addToCart()">
+          {{ "product.order-now" | translate }}
+        </button>
         <div class="mt-2 text-center">
           <img
             src="./assets/img/icon/pay.svg"
@@ -134,19 +165,20 @@
           />
         </div>
       </div>
-      <div class="">
-        <h3 class="section-title section-title-center m-0">
-          <b aria-hidden="true"></b>
-          <span class="section-title-main m-0">{{
-            "product.product-description" | translate
-          }}</span>
-          <b aria-hidden="true"></b>
-        </h3>
-        <p class="text-description">{{ product.description.local }}</p>
-      </div>
     </div>
   </div>
 </div>
 
-<hr class="mx-5">
+<hr class="mx-5" />
 <app-reviews-section></app-reviews-section>
+
+<ng-template #attributeOptionsTemplate let-attr>
+  <div *ngFor="let attr of keyAttributes">
+    <label>{{ attr.name.local }}</label>
+    <div *ngFor="let opt of attr.keyAttributeValues">
+      <button (click)="selectOption(attr, opt)">
+        {{ opt.value.local }}
+      </button>
+    </div>
+  </div>
+</ng-template>

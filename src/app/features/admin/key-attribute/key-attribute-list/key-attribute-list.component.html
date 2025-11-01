@@ -1,0 +1,39 @@
+<div class="container"> 
+  <h3>{{'keyAttribute.key-attribute-list'|translate}}</h3>
+  <div class="btn-container">
+    <button class="btn btn-primary"  [routerLink]="['/admin/keyAttribute/manage']">{{'add'|translate}}</button>
+</div>
+  <div *ngIf="hasData">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container> 
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>{{ 'general.name' | translate }} </th>
+        <td mat-cell *matCellDef="let element"> {{element.name?.local}} </td>
+      </ng-container> 
+      <!-- Show In Main Column -->
+      <!-- <ng-container matColumnDef="showInMain">
+        <th mat-header-cell *matHeaderCellDef>{{ 'general.showInMain' | translate }} </th>
+        <td mat-cell *matCellDef="let element"> <input type="checkbox" [ngModel]="element.showInMain" name="showInMain" id="showInMain" disabled=""> </td>
+      </ng-container>  -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>{{ 'general.actions' | translate }} </th>
+        <td mat-cell *matCellDef="let element">  
+        <ul class="list-unstyled d-flex">
+          <li class="d-flex btn btn-icon" [title]="'keyAttributeValue.key-attribute-value-list' | translate " [routerLink]="[element.id,'product-category']"><mat-icon>list</mat-icon></li>
+          <li class="d-flex btn btn-icon" [routerLink]="['manage',element.id]"><mat-icon>edit</mat-icon></li>
+          <li class="d-flex btn  btn-icon" (click)="delete(element.id)"><mat-icon>delete</mat-icon></li>
+        </ul>
+        </td>
+      </ng-container> 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [length]="totalNumberOf" (page)="pageChanged($event)" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+  </div>
+ </div>

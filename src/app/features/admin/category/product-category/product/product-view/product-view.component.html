@@ -1,79 +1,112 @@
-<div class="container my-4 containerP">
-    <div class="row">
-      <!-- Right Column: Product Details -->
-      <div class="col-md-6">
-        <div class="card-body">
-          <h3 class="card-title">{{ product.name.local }}</h3>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Price: {{ product.price | currency }}
-          </h6>
-          <p class="card-text"><strong>Count:</strong> {{ product.count }}</p>
-          <p class="card-text">
-            <strong>Description:</strong>
-            <span>{{ product.description }}</span>
-          </p>
-        </div>
-      </div>
-  
-      <!-- Left Column: Image Carousel with Thumbnails Below -->
-      <div class="col-md-6 d-flex flex-column align-items-center">
-        <!-- Main Image Carousel -->
-        <div
-          *ngIf="product.images && product.images.length > 0"
-          id="productImageCarousel"
-          class="carousel slide w-100"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div
-              *ngFor="let image of product.images; let i = index"
-              class="carousel-item"
-              [class.active]="i === 0"
-            >
-              <img
-                [src]="environment.assetsUrl + image.guidName"
-                class="fixed-size-image"
-                alt="Product Image"
-              />
-            </div>
-          </div>
-  
-          <!-- Carousel Controls -->
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#productImageCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#productImageCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-  
-        <!-- Thumbnail Gallery -->
-        <div class="row w-100 mt-3 thumbnail-gallery">
+<div class="container my-5 product-view">
+  <div class="row">
+    <div class="mb-3">
+      <h3 class="section-title section-title-center m-0">
+        <b aria-hidden="true"></b>
+        <span class="section-title-main m-0">{{ product.name.local }}</span>
+        <b aria-hidden="true"></b>
+      </h3>
+    </div>
+    <div class="col-md-6 image-gallery">
+      <div
+        *ngIf="product.images && product.images.length > 0"
+        id="productImageCarousel"
+        class="carousel slide w-100"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
           <div
             *ngFor="let image of product.images; let i = index"
-            class="col-2 p-1"
-            (click)="goToSlide(i)"
+            class="carousel-item"
+            [class.active]="i === 0"
           >
-            <img
-              [src]="environment.assetsUrl + image.guidName"
-              class="img-thumbnail"
+            <app-image
+              [src]="image.guidName"
+              [class]="'img'"
               alt="Thumbnail Image"
-            />
+            ></app-image>
           </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#productImageCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#productImageCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="row w-100 thumbnail-gallery">
+        <div
+          *ngFor="let image of product.images; let i = index"
+          class="col-2 p-1"
+        >
+          <app-image [src]="image.guidName" alt="Thumbnail Image"></app-image>
         </div>
       </div>
     </div>
+
+    <div class="col-md-6 product-info">
+      <div class="customization">
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <h2 class="text-titel py-1 px-2">{{ product.name.local }}</h2>
+        </div>
+        <div
+          class="customization-item"
+        >
+        @if (product.priceBeforeDiscount!=null&& product.priceBeforeDiscount>0) {
+          <span class="text-muted text-decoration-line-through py-1 px-2">
+            {{ product.priceBeforeDiscount }} {{ "general.JOD" | translate }} /
+          </span>
+        }
+          <span class="text-danger fw-bold py-1 px-2">
+            {{ product.price }} {{ "general.JOD" | translate }}
+          </span>
+        </div>
+        <!-- <div class="star-rating pb-2">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div> -->
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <span class="text-description py-1 px-2">{{
+            product.description.local
+          }}</span>
+        </div>
+        @for (item of keyAttributes; track $index) {
+        <div
+          class="customization-item d-flex justify-content-between align-items-center"
+        >
+          <span class="text-description py-1 px-2">
+            {{ item.name.local }}:
+            <span
+              *ngFor="let val of item.keyAttributeValues; let isLast = last"
+            >
+              {{ val.value.local }}{{ isLast ? "" : ", " }}
+            </span>
+          </span>
+        </div>
+        }
+      </div>
+    </div>
   </div>
-  
+</div>
+
+<hr class="mx-5" />

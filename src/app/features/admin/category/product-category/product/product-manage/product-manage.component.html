@@ -13,7 +13,7 @@
         <input
           type="text"
           maxlength="100"
-          minlength="5"
+          minlength="3"
           class="form-control"
           id="nameEn"
           required
@@ -23,7 +23,7 @@
         />
         <app-form-error
           [control]="nameEn"
-          fieldName='{{ "nameEn" | translate }}'
+          fieldName="{{ 'nameEn' | translate }}"
         ></app-form-error>
       </div>
 
@@ -36,10 +36,30 @@
           id="nameAr"
           required
           name="nameAr"
+          #nameAr="ngModel"
           [(ngModel)]="entity.name.arabic"
         />
+        <app-form-error
+          [control]="nameAr"
+          fieldName="{{ 'nameAr' | translate }}"
+        ></app-form-error>
       </div>
-      <div class="form-group col-4">
+      <div class="form-group col-3">
+        <label for="priceBeforeDiscount">{{
+          "general.price-before-discount" | translate
+        }}</label>
+        <input
+          type="number"
+          class="form-control"
+          id="priceBeforeDiscount"
+          name="priceBeforeDiscount"
+          [(ngModel)]="entity.priceBeforeDiscount"
+          step="1"
+          #priceBeforeDiscount="ngModel"
+        />
+        <app-form-error [control]="priceBeforeDiscount"></app-form-error>
+      </div>
+      <div class="form-group col-3">
         <label for="price">{{ "price" | translate }}</label>
         <input
           type="number"
@@ -48,11 +68,21 @@
           name="price"
           [(ngModel)]="entity.price"
           required
-          step="0.01"
+          step="1"
           required
+          #price="ngModel"
         />
+        <app-form-error [control]="price"></app-form-error>
+
+        @if(entity&&entity.price&&entity.priceBeforeDiscount && entity.price >=
+        entity.priceBeforeDiscount){
+        <div class="error">
+          {{ "validation.price-must-be-less-than-before-discount" | translate }}
+        </div>
+        }
       </div>
-      <div class="form-group col-4">
+
+      <div class="form-group col-3">
         <label for="count">{{ "count" | translate }}</label>
         <input
           type="number"
@@ -62,39 +92,47 @@
           name="count"
           [(ngModel)]="entity.count"
           required
+          #count="ngModel"
         />
+        <app-form-error [control]="count"></app-form-error>
       </div>
-      <!-- <div class="col-4">
-        <label for="productCategoryId">{{
-          "selectProductCategory" | translate
-        }}</label>
-        <div class="form-group">
-          <mat-form-field>
-            <mat-select
-              placeholder="{{ 'selectProductCategory' | translate }}"
-              [(value)]="entity.productCategoryId"
+      <div class="form-group col-3">
+        <!-- <mat-form-field appearance="fill" class="full-width"> -->
+        <mat-label>
+          {{ "keyAttribute.key-attribute-list" | translate }}</mat-label
+        >
+        <mat-select
+          [(value)]="keyAttributeValueId"
+          multiple
+          class="form-control"
+        >
+          <mat-optgroup
+            *ngFor="let category of keyAttributeList"
+            [label]="category.name.local ?? ''"
+          >
+            <mat-option
+              *ngFor="let sub of category.keyAttributeValues"
+              [value]="sub.id"
             >
-              <mat-option
-                *ngFor="let category of categoryList"
-                [value]="category.id"
-              >
-                {{ category.name.local }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div> -->
+              {{ sub.value.local ?? "" }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+        <!-- </mat-form-field> -->
+      </div>
 
       <div class="form-group col-6">
         <label for="description">{{ "descriptionEn" | translate }}</label>
         <textarea
           class="form-control"
-          id="description"
+          id="descriptionEn"
           [rows]="3"
-          name="description"
+          name="descriptionEn"
           maxlength="500"
           [(ngModel)]="entity.description.english"
+          #descriptionEn="ngModel"
         ></textarea>
+        <app-form-error [control]="descriptionEn"></app-form-error>
       </div>
       <div class="form-group col-6">
         <label for="description">{{ "descriptionAr" | translate }}</label>
@@ -105,7 +143,9 @@
           name="descriptionAr"
           [rows]="3"
           [(ngModel)]="entity.description.arabic"
+          #descriptionAr="ngModel"
         ></textarea>
+        <app-form-error [control]="descriptionAr"></app-form-error>
       </div>
       <div class="form-group">
         <app-multi-image-upload

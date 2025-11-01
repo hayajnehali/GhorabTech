@@ -1,0 +1,194 @@
+<div class="container manage">
+  <h3 class="title">
+    @if(isAdd){
+    {{ "keyAttribute.add-key-attribute" | translate }}
+    }@else {
+    {{ "keyAttribute.edit-key-attribute" | translate }}
+    }
+  </h3>
+  <form (ngSubmit)="save(productForm)" #productForm="ngForm">
+    <div class="row">
+      <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <label for="nameEn">{{ "general.nameEn" | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameEn"
+          required
+          name="nameEn"
+          #nameEn="ngModel"
+          minlength="3"
+          maxlength="200"
+          [(ngModel)]="entity.name.english"
+        />
+        <app-form-error
+          [control]="nameEn"
+          fieldName="{{ 'nameEn' | translate }}"
+        ></app-form-error>
+      </div>
+      <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <label for="nameAr">{{ "general.nameAr" | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameAr"
+          required
+          name="nameAr"
+          #nameAr="ngModel"
+          minlength="3"
+          maxlength="200"
+          [(ngModel)]="entity.name.arabic"
+        />
+        <app-form-error
+          [control]="nameAr"
+          fieldName="{{ 'nameEn' | translate }}"
+        ></app-form-error>
+      </div>
+      <!-- <div class="col-12 px-4 mb-3">
+        <div class="row value-table">
+          <h5 class="mt-4">
+            {{ "keyAttributeValue.key-attribute-value-list" | translate }}
+          </h5>
+
+          <table mat-table [dataSource]="dataSource" class="value-table">
+            <ng-container matColumnDef="nameEn">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "general.nameEn" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <input
+                  matInput
+                  placeholder="{{ 'general.nameEn' | translate }}"
+                  [(ngModel)]="element.value.english"
+                  name="valueNameEn{{ i }}"
+                  required
+                  #valueNameEn="ngModel"
+                  minlength="3"
+                  maxlength="200"
+                  class="form-control"
+                />
+                <app-form-error
+                  [control]="valueNameEn"
+                  fieldName="{{ 'general.nameEn' | translate }}"
+                ></app-form-error>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nameAr">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "general.nameAr" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <input
+                  class="form-control"
+                  matInput
+                  placeholder="{{ 'general.nameAr' | translate }}"
+                  [(ngModel)]="element.value.arabic"
+                  name="valueNameAr{{ i }}"
+                  required
+                  #valueNameAr="ngModel"
+                  minlength="3"
+                  maxlength="200"
+                />
+                <app-form-error
+                  [control]="valueNameAr"
+                  fieldName="{{ 'general.nameEn' | translate }}"
+                ></app-form-error>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>
+                <p class="btn btn-secondary p-0">
+                  <mat-icon (click)="addValue()">add</mat-icon>
+                </p>
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <button mat-icon-button color="warn" (click)="removeValue(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div> -->
+      <div class="col-12 px-4 mb-3">
+        <h5 class="mt-4">
+          {{ "keyAttributeValue.key-attribute-value-list" | translate }}
+        </h5>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary btn-sm"
+              (click)="addValue()"
+            >
+              <!-- <mat-icon>add</mat-icon> -->
+              {{ "keyAttributeValue.add-key-attribute-value" | translate }}
+            </button>
+          </div>
+        <div class="values-container mt-2">
+          <div
+            class="value-item"
+            *ngFor="let value of entity.keyAttributeValues; let i = index"
+          >
+            <div class="row value-table">
+              <div class="col-12 col-md-5 my-2">
+                  <input
+                    matInput
+                    [(ngModel)]="value.value.english"
+                    name="valueNameEn{{ i }}"
+                    required
+                    minlength="1"
+                    class="form-control"
+                    maxlength="200"
+                    #valueNameEn="ngModel"
+                    placeholder='{{ "general.nameEn" | translate }}'
+                  />
+                <app-form-error
+                  [control]="valueNameEn"
+                  fieldName="{{ 'general.nameEn' | translate }}"
+                ></app-form-error>
+              </div>
+
+              <div class="col-12 col-md-5 my-2">
+                  <input
+                    matInput
+                    [(ngModel)]="value.value.arabic"
+                    name="valueNameAr{{ i }}"
+                    required
+                    minlength="1"
+                    maxlength="200"
+                    class="form-control"
+                    #valueNameAr="ngModel"
+                    placeholder='{{ "general.nameAr" | translate }}'
+                  />
+                <app-form-error
+                  [control]="valueNameAr"
+                  fieldName="{{ 'general.nameAr' | translate }}"
+                ></app-form-error>
+              </div>
+
+              <div class="col-12 col-md-2 my-2 d-flex align-items-center justify-content-end">
+                <div class="w-100 d-flex justify-content-center btn-delete-key" (click)="removeValue(i)">
+                  <mat-icon>delete</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn btn-secondary" (click)="goBack()">
+          {{ "general.back" | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary mx-2">
+          {{ "general.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

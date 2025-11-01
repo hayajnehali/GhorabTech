@@ -17,7 +17,9 @@ export class ProductListComponent extends BaseListComponent<
 > {
   constructor( private productService: ProductService) {
     super(productService,ProductFilter);
+    this.displayedColumns = ['id', 'name', 'price','priceBeforeDiscount','count', 'action'];
      this.filter.productCategoryId =  this.activatedRoute.snapshot.paramMap.get('productCategoryid') ?? null;
+     
   }
  
  

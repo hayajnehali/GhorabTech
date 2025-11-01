@@ -5,8 +5,8 @@
   </div>
  
   <div class="cart-item d-flex mb-3" *ngFor="let item of cart.cartItems">
-    <app-image [src]="item.product.images[0].guidName" class="item-img me-3" alt="Elegant Bloom"></app-image> 
-    <div class="item-details flex-grow-1">
+    <app-image [src]="item.product.images[0].guidName" class="item-img" alt="Elegant Bloom"></app-image> 
+    <div class="item-details flex-grow-1 px-2">
       <h6>{{item.product.name.local}}</h6>
       <p class="price-usd">{{"general.JOD" |translate }}  {{item.product.price}}</p>
       

@@ -11,7 +11,7 @@
             display: block;
             margin: 0 auto;
             .img{
-                object-fit: contain;
+                object-fit: cover;
             }
           }
         }
@@ -47,6 +47,9 @@
 
   .product-info {
     // border-left: 1px solid $para-color;
+    display: flex ;
+    flex-direction: column;
+    justify-content: space-between;
     .product-price {
       font-size: 1.1rem;
 
@@ -126,4 +129,22 @@
       }
     }
   }
+
+
+.carousel-item {  
+  padding: 0;
+  .card {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
 }

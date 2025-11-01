@@ -8,6 +8,9 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { Observable } from 'rxjs';
+import { OperationResultGeneric } from '@core/base/operation-result';
+import { OrderExitStatus } from '@shared/Enum/cart-enum';
+import { KeyAttributeValue } from '@models/key-attribute-value';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +25,9 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     const cart = this.storage.get<Cart>(this.CART_KEY);
     if (cart) {
       return cart;
-    } 
+    }
     const newCart: Cart = new Cart();
-    newCart.id= this.generateCartId();
+    newCart.id = this.generateCartId();
     this.storage.set(this.CART_KEY, newCart);
     return newCart;
   }
@@ -35,13 +38,19 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   }
 
   addItem(item: CartItem): void {
-    const cart = this.getCart();
-    const found = cart.cartItems.find((i) => i.id === item.product.id);
+    let cart = this.getCart(); 
+    let found = cart.cartItems.find(i => i.product.id === item.product.id &&
+    this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
+);
+
     if (found) {
       found.quantity += item.quantity;
     } else {
+      if (!cart.cartItems) {
+        cart.cartItems = [];
+      }
       cart.cartItems.push(item);
-    }
+    } 
     this.saveCart(cart);
   }
 
@@ -78,5 +87,23 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     return crypto.randomUUID();
   }
 
- 
+  changeOrderExitStatusOfCart(
+    cartId: string,
+    orderExitStatus: OrderExitStatus
+  ): Observable<OperationResultGeneric<CartResult>> {
+    return this.http.put<OperationResultGeneric<CartResult>>(
+      `${this.baseUrl}/change-order-exit-status-cart/${cartId}?orderExitStatus=${orderExitStatus}`,
+      {}
+    );
+  }
+
+  private hasSameKeyAttributes(a: KeyAttributeValue[], b: KeyAttributeValue[]): boolean {
+    if (a.length !== b.length) return false;
+
+    const aIds = a.map(k => k.id).sort();
+    const bIds = b.map(k => k.id).sort();
+
+    return aIds.every((id, index) => id === bIds[index]);
+}
+
 }

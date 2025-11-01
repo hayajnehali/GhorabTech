@@ -11,7 +11,7 @@ export class LocalStorageService {
       const json = JSON.stringify(value);
       localStorage.setItem(key, json);
     } catch (e) {
-      console.error(`Error saving to localStorage key=${key}`, e);
+   //   console.error(`Error saving to localStorage key=${key}`, e);
     }
   }
 
@@ -21,7 +21,7 @@ export class LocalStorageService {
       if (!json) return null;
       return JSON.parse(json) as T;
     } catch (e) {
-      console.error(`Error reading localStorage key=${key}`, e);
+  //    console.error(`Error reading localStorage key=${key}`, e);
       return null;
     }
   }

@@ -9,6 +9,8 @@
   "addProduct": "Add Product",
   "add": "Add",
   "general": {
+    "details":" Details",
+    "image": "Image",
     "search": "Search",
     "price": "Price",
     "count": "Count",
@@ -74,14 +76,24 @@
     "first": "First",
     "previous": "Previous",
     "next": "Next",
-    "last": "Last"
+    "last": "Last",
+    "price-before-discount": "Price Before Discount",
+    "create-date": "Create Date",
+    "reset": "Reset",
+    "quantity": "Quantity"
   },
-    "validation": {
+  "validation": {
     "required": "This field is required",
     "minlength": "This field is too short (minimum is {{requiredLength}} characters)",
     "maxlength": "This field is too long (maximum is {{requiredLength}} characters)",
     "email": "Please enter a valid email address",
-    "pattern": "Invalid format"
+    "pattern": "Invalid format",
+    "price-must-be-less-than-before-discount": "Current Price must be less than before discount",
+    "informational-message": "This is an informational message!",
+    "error": "Error",
+    "info": "Info",
+    "warning-message": "This is a warning message!",
+    "warning": "Warning"
   },
   "errors": {
     "fullNameRequired": "Full name is required",
@@ -156,7 +168,10 @@
     "product-list": "Product List",
     "product-description": " Product Description",
     "options-price": "Options Price",
-    "order-now": "Order Now"
+    "order-now": "Order Now",
+    "product-details": "Product Details",
+    "view-product": "View Product",
+    "product-name": "Product Name"
   },
   "cart": {
     "review-your-cart": "Review Your Cart",
@@ -166,6 +181,34 @@
     "continue-shopping": "Continue Shopping",
     "viewCart": "View Cart",
     "delete-cart": "Delete Cart",
-    "failed-to-create-cart": "Failed To Create Cart"
+    "failed-to-create-cart": "Failed To Create Cart",
+    "cart-list": "Cart List",
+    "order-exit-status": "Order Exit Status",
+    "payment-status": "Payment Status",
+    "cart-item-list": "Cart Item List"
+  },
+  "keyAttribute": {
+    "key-attribute": "Key Attribute",
+    "add-key-attribute": "Add Key Attribute",
+    "edit-key-attribute": "Edit Key Attribute",
+    "key-attribute-list": "Key Attribute List"
+  },
+  "keyAttributeValue": {
+    "key-attribute-value": "Key Attribute Value",
+    "add-key-attribute-value": "Add Key Attribute Value",
+    "edit-key-attribute-value": "Edit Key Attribute Value",
+    "key-attribute-value-list": "Key Attribute Value List"
+  },
+  "orderExitStatus": {
+    "Pending": "Pending",
+    "Processing": "Processing",
+    "Shipped": "Shipped",
+    "InTransit": "InTransit",
+    "Delivered": "Delivered",
+    "Rejected": "Rejected",
+    "Cancelled": "Cancelled",
+    "Returned": "Returned",
+    "DeliveryFailed": "Delivery Failed",
+    "ReadyForPickup": "Ready For Pickup"
   }
 }

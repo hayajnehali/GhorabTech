@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { InjectionToken } from '@angular/core';
 import { PaginatedResult } from '../../model/paginated.result';
 import { environment } from '../environment/environment';
+import { OperationResult, OperationResultGeneric } from '@core/base/operation-result';
 export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
 @Injectable({
@@ -16,11 +17,11 @@ export class ServiceBase<TData, TResult, F extends object> {
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
     this.baseUrl = this.baseUrl + baseUrll;
   }
-getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
+getAll(filterCriteria: F): Observable<OperationResultGeneric<TResult[]>> {
   const params = this.buildHttpParams(filterCriteria);
 
   return this.http
-    .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
+    .get<OperationResultGeneric<TResult[]>>(this.baseUrl + '/getAll', { params })
     .pipe(
       catchError((err) => {
         console.error('Error occurred:', err);
@@ -63,16 +64,12 @@ protected buildHttpParams(filterCriteria: any): HttpParams {
  
  
 
-  getById(id: string): Observable<TResult> {
+  getById(id: string): Observable<OperationResultGeneric<TResult>> {
     return this.http
-      .get<TResult>(`${this.baseUrl}/getById/${id}`)
-      .pipe(catchError(this.handleError<TResult>(`getById id=${id}`)));
+      .get<OperationResultGeneric<TResult>>(`${this.baseUrl}/getById/${id}`)
+      .pipe(catchError(this.handleError<OperationResultGeneric<TResult>>(`getById id=${id}`)));
   }
-  // getDataForViewByParentID(id: string): Observable<PaginatedResult<TResult>> {
-  //   return this.http
-  //     .get<PaginatedResult<TResult>>(`${this.baseUrl}/getById/${id}`)
-  //     .pipe(catchError(this.handleError<PaginatedResult<TResult>>(`getById id=${id}`)));
-  // }
+ 
 
   create(item: TData): Observable<TData> {
     return this.http.post<TData>(this.baseUrl + '/create', item);
@@ -85,13 +82,7 @@ protected buildHttpParams(filterCriteria: any): HttpParams {
 
   update(item: TData): Observable<TData> {
     return this.http.put<TData>(`${this.baseUrl}/update`, item);
-  }
-  // update(item: T): Observable<T> {
-  //   return this.http.put<T>(`${this.baseUrl}/update`, item).pipe(
-  //     catchError(this.handleError<T>('update'))
-  //     this.notificationService.showError(error);
-  //   );
-  // }
+  } 
 
   delete(id: string) {
     return this.http

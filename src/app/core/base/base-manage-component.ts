@@ -37,8 +37,8 @@ export class BaseManageComponent<
    const sub= this.service.getById(arg0).subscribe({
       next: (req) => {
         let data = Object.assign(new this.type(), req);
-        this.entity = data;
-        this.onLoadedData(data);
+        this.entity = data.data;
+        this.onLoadedData(this.entity);
       },
     });
      this.subscribe(sub);

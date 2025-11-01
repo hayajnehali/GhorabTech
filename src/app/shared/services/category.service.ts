@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { apiName } from '../Enum/api-name';
 import { Observable } from 'rxjs';
-import { ServiceBase } from './base.service';
-
+import { ServiceBase } from './base.service'; 
 import { Category, CategoryFilter, CategoryResult } from '@models/category';
 import { OperationResultGeneric } from '@core/base/operation-result';
 

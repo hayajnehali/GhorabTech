@@ -16,7 +16,7 @@ export abstract class BaseListComponent<
   filter: Filter = {} as Filter;
   loading = false;
   totalNumberOf: number = 0;
-  pageSizeOptions: number[] = [5, 10, 20,40,80,100];
+  pageSizeOptions: number[] = [5, 10, 20, 40, 80, 100];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -37,7 +37,7 @@ export abstract class BaseListComponent<
     this.loading = false;
     const sub = this.service.getAll(this.filter).subscribe({
       next: (data) => {
-        this.dataSource.data = data.data;
+        if (data.data) this.dataSource.data = data.data;
         this.totalNumberOf = data.totalNumberOf;
         this.loading = true;
       },
@@ -48,8 +48,8 @@ export abstract class BaseListComponent<
   }
 
   delete(id: string) {
-  const sub=  this.service.delete(id).subscribe(() => this.loadData());
-   this.subscribe(sub);
+    const sub = this.service.delete(id).subscribe(() => this.loadData());
+    this.subscribe(sub);
   }
   pageChanged(event: PageEvent) {
     this.filter.pageIndex = event.pageIndex + 1;
@@ -61,5 +61,13 @@ export abstract class BaseListComponent<
   }
   goBack() {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
+
+  search() {
+    this.loadData();
+  }
+  reset() {
+    this.filter = new this.filterT();
+    this.loadData();
   }
 }

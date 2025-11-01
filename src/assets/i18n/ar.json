@@ -11,6 +11,8 @@
   "addProduct": "اضافة المنتج",
   "add": "اضافة",
   "general": {
+    "details": " التفاصيل",
+    "image": "الصور",
     "search": "بحث",
     "price": "السعر",
     "count": "الكمية",
@@ -65,25 +67,35 @@
     "notes": "ملاحظات",
     "user-name": "أسم المستخدم",
     "donot-have-account": "ليس لديك حساب؟",
-    "usernameError":"اسم المستخدم مطلوب وصحيح.",
-    "passwordError":"كلمة المرور مطلوبة.",
-    "logout":"تسجيل خروج",
-    "showInMain":"أظهار في الصفحة الرئيسية",
+    "usernameError": "اسم المستخدم مطلوب وصحيح.",
+    "passwordError": "كلمة المرور مطلوبة.",
+    "logout": "تسجيل خروج",
+    "showInMain": "أظهار في الصفحة الرئيسية",
     "slider-subtitle": "هدية مثالية لك",
     "slider-title": "تشكيلة حصرية من الساعات والعطور والزهور والإكسسوارات",
-    "slider-description":"اكتشف هدايا مختارة بعناية، من العطور الفاخرة والساعات الأنيقة إلى الشوكولاتة، الكيك، والزهور، لتجعل كل مناسبة مميزة حقًا.",    
-    "item-per-page":"العناصر في الصفحة",
+    "slider-description": "اكتشف هدايا مختارة بعناية، من العطور الفاخرة والساعات الأنيقة إلى الشوكولاتة، الكيك، والزهور، لتجعل كل مناسبة مميزة حقًا.",
+    "item-per-page": "العناصر في الصفحة",
     "first": "ألاول",
     "previous": "السابق",
     "next": "ألتالي",
-    "last": "ألاخيرر"
+    "last": "ألاخيرر",
+    "price-before-discount": "السعر قبل الخصم",
+    "create-date": "تاريخ الإنشاء",
+    "reset": "إعادة ضبط",
+    "quantity": "ألكمية"
   },
-    "validation": {
+  "validation": {
     "required": "هذا الحقل مطلوب",
     "minlength": "هذا الحقل قصير جداً (الحد الأدنى هو {{requiredLength}} أحرف)",
     "maxlength": "هذا الحقل طويل جداً (الحد الأقصى هو {{requiredLength}} أحرف)",
     "email": "يرجى إدخال بريد إلكتروني صحيح",
-    "pattern": "الصيغة غير صحيحة"
+    "pattern": "الصيغة غير صحيحة",
+    "price-must-be-less-than-before-discount": "يجب أن يكون السعر الحالي أقل من السعر قبل الخصم",
+    "informational-message": "هذه رسالة إعلامية!",
+    "error": "خطأ",
+    "info": "معلومات",
+    "warning-message": "هذه رسالة تحذير!",
+    "warning": "تحذير"
   },
   "errors": {
     "fullNameRequired": "الاسم مطلوب",
@@ -147,9 +159,9 @@
     "add-category": "أضافة صنف",
     "edit-category": "تعديل الصنف",
     "category-list": "قائمة الأصناف",
-    "add-product-category":"أضافة صنف منتج",
-    "edit-product-category":"تعديل صنف منتج",
-    "subCategory":"الأنواع"
+    "add-product-category": "أضافة صنف منتج",
+    "edit-product-category": "تعديل صنف منتج",
+    "subCategory": "الأنواع"
   },
   "productCategory": {
     "product-category-list": "قائمة أصناف المنتجات"
@@ -158,7 +170,10 @@
     "product-list": "قائمة المنتجات",
     "product-description": "وصف المنتج",
     "options-price": "سعر الخيارات",
-    "order-now": "اطلب الان"
+    "order-now": "اطلب الان",
+    "product-details": "تفاصيل المنتج",
+    "view-product": "عرض المنتج",
+    "product-name": "اسم المنتج"
   },
   "cart": {
     "review-your-cart": "مراجعة سلة التسوق الخاصة بك",
@@ -168,6 +183,34 @@
     "continue-shopping": "اكمل تسوق",
     "viewCart": "عرض عربة التسوق",
     "delete-cart": "حذف عربة التسوق",
-    "failed-to-create-cart": "خطاء في انشاء عربة التسوق"
+    "failed-to-create-cart": "خطاء في انشاء عربة التسوق",
+    "cart-list": "قائمة عربة التسوق",
+    "order-exit-status": "حالة خروج الطلب",
+    "payment-status": "حالة الدفع",
+    "cart-item-list": "قائمة عناصر عربة التسوق"
+  },
+  "keyAttribute": {
+    "key-attribute": "السمة الرئيسية",
+    "add-key-attribute": "أضافة السمة رئيسية",
+    "edit-key-attribute": "تعديل السمة الرئيسية",
+    "key-attribute-list": "قائمة السمات الرئيسية"
+  },
+  "keyAttributeValue": {
+    "key-attribute-value": "قيمة السمة الرئيسية",
+    "add-key-attribute-value": "أضافة قيمة السمة الرئيسية",
+    "edit-key-attribute-value": "تعديل قيمة السمة الرئيسية",
+    "key-attribute-value-list": "قائمة قيم السمات الرئيسية"
+  },
+  "orderExitStatus": {
+    "Pending": "قيد المراجعة",
+    "Processing": "قيد التجهيز",
+    "Shipped": "تم الشحن",
+    "InTransit": "في الطريق",
+    "Delivered": "تم التسليم",
+    "Rejected": "مرفوض",
+    "Cancelled": "ملغى",
+    "Returned": "مرتجع",
+    "DeliveryFailed": "فشل التسليم",
+    "ReadyForPickup": "جاهز للاستلام"
   }
 }
