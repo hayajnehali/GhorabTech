@@ -11,9 +11,10 @@ import { KeyAttributeValue } from '@models/key-attribute-value';
 import { KeyAttributeService } from '@shared/services/key-attribute.service';
 
 @Component({
-  selector: 'app-key-attribute-manage',
-  templateUrl: './key-attribute-manage.component.html',
-  styleUrl: './key-attribute-manage.component.scss',
+    selector: 'app-key-attribute-manage',
+    templateUrl: './key-attribute-manage.component.html',
+    styleUrl: './key-attribute-manage.component.scss',
+    standalone: false
 })
 export class KeyAttributeManageComponent extends BaseManageComponent<
   KeyAttribute,

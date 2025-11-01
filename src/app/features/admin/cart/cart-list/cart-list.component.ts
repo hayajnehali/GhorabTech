@@ -5,9 +5,10 @@ import { CartStatus, OrderExitStatus } from '@shared/Enum/cart-enum';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
-  selector: 'app-cart-list',
-  templateUrl: './cart-list.component.html',
-  styleUrl: './cart-list.component.scss',
+    selector: 'app-cart-list',
+    templateUrl: './cart-list.component.html',
+    styleUrl: './cart-list.component.scss',
+    standalone: false
 })
 export class CartListComponent extends BaseListComponent<
   Cart,

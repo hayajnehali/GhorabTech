@@ -3,9 +3,10 @@ import { Cart } from '@models/cart';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
-  selector: 'app-cart-view',
-  templateUrl: './cart-view.component.html',
-  styleUrl: './cart-view.component.scss',
+    selector: 'app-cart-view',
+    templateUrl: './cart-view.component.html',
+    styleUrl: './cart-view.component.scss',
+    standalone: false
 })
 export class CartViewComponent implements OnInit {
   cartService = inject(CartService);

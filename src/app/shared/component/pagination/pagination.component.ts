@@ -9,11 +9,10 @@ export interface PageEvent {
 }
 
 @Component({
-  standalone: true,
-  selector: 'app-pagination',
-  imports: [CommonModule,TranslateModule],
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
+    selector: 'app-pagination',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './pagination.component.html',
+    styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent {
   @Input() length = 0;

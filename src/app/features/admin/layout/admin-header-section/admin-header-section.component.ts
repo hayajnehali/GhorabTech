@@ -6,11 +6,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '@shared/environment/environment';
 
 @Component({
-  selector: 'app-admin-header-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './admin-header-section.component.html',
-  styleUrl: './admin-header-section.component.scss',
+    selector: 'app-admin-header-section',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './admin-header-section.component.html',
+    styleUrl: './admin-header-section.component.scss'
 })
 export class AdminHeaderSectionComponent {
     language=environment.language_KEY

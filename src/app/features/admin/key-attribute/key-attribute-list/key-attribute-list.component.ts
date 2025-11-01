@@ -4,9 +4,10 @@ import { KeyAttribute, KeyAttributeFilter, KeyAttributeResult } from '@models/ke
 import { KeyAttributeService } from '@shared/services/key-attribute.service';
 
 @Component({
-  selector: 'app-key-attribute-list',
-  templateUrl: './key-attribute-list.component.html',
-  styleUrl: './key-attribute-list.component.scss'
+    selector: 'app-key-attribute-list',
+    templateUrl: './key-attribute-list.component.html',
+    styleUrl: './key-attribute-list.component.scss',
+    standalone: false
 })
 export class KeyAttributeListComponent extends BaseListComponent<
   KeyAttribute,

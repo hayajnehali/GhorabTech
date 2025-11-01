@@ -7,9 +7,10 @@ import { KeyAttributeFilter, KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValue } from '@models/key-attribute-value';
 
 @Component({
-  selector: 'app-product-manage',
-  templateUrl: './product-manage.component.html',
-  styleUrl: './product-manage.component.scss',
+    selector: 'app-product-manage',
+    templateUrl: './product-manage.component.html',
+    styleUrl: './product-manage.component.scss',
+    standalone: false
 })
 export class ProductManageComponent extends BaseManageComponent<
   Product,

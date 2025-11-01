@@ -6,9 +6,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { routesAdmin } from '../../admin-routing.module';
 
 @Component({
-  selector: 'app-admin-layout',
-  templateUrl: './admin-layout.component.html',
-  styleUrl: './admin-layout.component.scss',
+    selector: 'app-admin-layout',
+    templateUrl: './admin-layout.component.html',
+    styleUrl: './admin-layout.component.scss',
+    standalone: false
 })
 export class AdminLayOutComponent {
   title = 'material-responsive-sidenav';

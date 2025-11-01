@@ -10,9 +10,10 @@ import { environment } from '@shared/environment/environment';
 import { PaymentService } from '@shared/services/payment.service';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss'],
+    selector: 'app-payment',
+    templateUrl: './payment.component.html',
+    styleUrls: ['./payment.component.scss'],
+    standalone: false
 })
 export class PaymentComponent extends BaseComponent implements OnInit {
   private readonly token_KEY = environment.token_KEY;

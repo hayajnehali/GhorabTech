@@ -5,11 +5,10 @@ import { environment } from '@shared/environment/environment';
 import { ImageComponent } from "../img/image/image.component";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
-  standalone: true,
-  imports: [TranslateModule, ImageComponent],
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss',
+    imports: [TranslateModule, ImageComponent]
 })
 export class FooterComponent {
   language=environment.language_KEY

@@ -7,9 +7,10 @@ import {
 import { ProductCategoryService } from '@shared/services/product-category.service'; 
 import { BaseManageComponent } from '@core/base/base-manage-component'; 
 @Component({
-  selector: 'app-product-category-manage',
-  templateUrl: './product-category-manage.component.html',
-  styleUrl: './product-category-manage.component.scss',
+    selector: 'app-product-category-manage',
+    templateUrl: './product-category-manage.component.html',
+    styleUrl: './product-category-manage.component.scss',
+    standalone: false
 })
 export class ProductCategoryManageComponent extends BaseManageComponent<
   ProductCategory,

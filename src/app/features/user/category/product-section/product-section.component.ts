@@ -4,9 +4,10 @@ import { Product, ProductFilter, ProductResult } from '@models/product';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
-  selector: 'app-product-section',
-  templateUrl: './product-section.component.html',
-  styleUrl: './product-section.component.scss',
+    selector: 'app-product-section',
+    templateUrl: './product-section.component.html',
+    styleUrl: './product-section.component.scss',
+    standalone: false
 })
 export class ProductSectionComponent extends BaseListComponent<
   Product,

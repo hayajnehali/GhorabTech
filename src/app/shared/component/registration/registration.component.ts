@@ -17,11 +17,10 @@ import { UserService } from '@shared/services/user.service';
 import { SharedModule } from '@shared/shared.module';
 
 @Component({
-  selector: 'app-registration',
-  standalone: true,
-  imports: [CommonModule, SharedModule],
-  templateUrl: './registration.component.html',
-  styleUrl: './registration.component.scss',
+    selector: 'app-registration',
+    imports: [CommonModule, SharedModule],
+    templateUrl: './registration.component.html',
+    styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent extends BaseComponent implements OnInit {
   private storage = inject(LocalStorageService);

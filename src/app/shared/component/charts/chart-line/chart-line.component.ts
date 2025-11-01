@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
  
 @Component({
-  selector: 'app-chart-line',
-  standalone: true,
-  imports: [],
-  templateUrl: './chart-line.component.html',
-  styleUrl: './chart-line.component.scss'
+    selector: 'app-chart-line',
+    imports: [],
+    templateUrl: './chart-line.component.html',
+    styleUrl: './chart-line.component.scss'
 })
 export class ChartLineComponent {
   

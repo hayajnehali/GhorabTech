@@ -6,9 +6,10 @@ import { environment } from '@shared/environment/environment';
 import { ProductService } from '@shared/services/product.service'; 
 import { BaseListComponent } from '@core/base/base-ilst-component';
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss',
+    standalone: false
 })
 export class ProductListComponent extends BaseListComponent<
   Product,

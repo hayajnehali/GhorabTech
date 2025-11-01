@@ -11,9 +11,10 @@ import { find } from 'rxjs';
 import { getEnumList } from '@shared/Enum/enum-list';
 
 @Component({
-  selector: 'app-cart-item-list',
-  templateUrl: './cart-item-list.component.html',
-  styleUrl: './cart-item-list.component.scss',
+    selector: 'app-cart-item-list',
+    templateUrl: './cart-item-list.component.html',
+    styleUrl: './cart-item-list.component.scss',
+    standalone: false
 })
 export class CartItemListComponent extends BaseListComponent<
   CartItem,

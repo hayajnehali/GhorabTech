@@ -7,17 +7,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-multi-image-upload',
-  standalone: true,
-  imports: [TranslateModule,CommonModule, ImageComponent],
-  templateUrl: './multi-image-upload.component.html',
+    selector: 'app-multi-image-upload',
+    imports: [TranslateModule, CommonModule, ImageComponent],
+    templateUrl: './multi-image-upload.component.html',
     providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MultiImageUploadComponent),
-      multi: true,
-    }
-  ]
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MultiImageUploadComponent),
+            multi: true,
+        }
+    ]
 })
 export class MultiImageUploadComponent implements ControlValueAccessor {
   @Input() images: any[] = []; // صور موجودة مسبقاً

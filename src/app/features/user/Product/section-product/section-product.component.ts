@@ -4,9 +4,10 @@ import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Product, ProductFilter, ProductResult } from '@models/product';
 
 @Component({
-  selector: 'app-section-product',
-  templateUrl: './section-product.component.html',
-  styleUrl: './section-product.component.scss'
+    selector: 'app-section-product',
+    templateUrl: './section-product.component.html',
+    styleUrl: './section-product.component.scss',
+    standalone: false
 })
 export class SectionProductComponent extends BaseListComponent<Product,ProductResult,ProductFilter>{
 

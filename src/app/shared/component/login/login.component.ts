@@ -7,11 +7,10 @@ import { Auth } from '@models/auth';
 import { SharedModule } from '@shared/shared.module';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, SharedModule, FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+    selector: 'app-login',
+    imports: [CommonModule, SharedModule, FormsModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
   private authService = inject(AuthService);

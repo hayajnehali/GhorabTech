@@ -8,9 +8,10 @@ import {
 import { ProductCategoryService } from '@shared/services/product-category.service';
 
 @Component({
-  selector: 'app-product-category-section',
-  templateUrl: './product-category-section.component.html',
-  styleUrl: './product-category-section.component.scss',
+    selector: 'app-product-category-section',
+    templateUrl: './product-category-section.component.html',
+    styleUrl: './product-category-section.component.scss',
+    standalone: false
 })
 export class ProductCategorySectionComponent extends BaseListComponent<
   ProductCategory,

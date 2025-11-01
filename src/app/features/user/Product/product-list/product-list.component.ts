@@ -15,9 +15,10 @@ import { NotificationService } from '@shared/services/notification.service';
 import { ProductImage } from '@models/Images';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss',
+    standalone: false
 })
 export class ProductListComponent implements OnInit {
   filter: ProductFilter = new ProductFilter();

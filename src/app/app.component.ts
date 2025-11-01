@@ -4,9 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from '@shared/environment/environment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    standalone: false
 })
 export class AppComponent {
   title = 'angularProject';

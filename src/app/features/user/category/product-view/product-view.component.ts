@@ -11,9 +11,10 @@ import { NotificationService } from '@shared/services/notification.service';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
-  selector: 'app-product-view',
-  templateUrl: './product-view.component.html',
-  styleUrl: './product-view.component.scss',
+    selector: 'app-product-view',
+    templateUrl: './product-view.component.html',
+    styleUrl: './product-view.component.scss',
+    standalone: false
 })
 export class ProductViewComponent implements OnInit {
   product: ProductResult = new ProductResult();

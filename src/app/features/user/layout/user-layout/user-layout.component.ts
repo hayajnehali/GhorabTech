@@ -10,9 +10,10 @@ import {
 import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
 import { CategoryService } from '@shared/services/category.service';
 @Component({
-  selector: 'app-user-layout',
-  templateUrl: './user-layout.component.html',
-  styleUrl: './user-layout.component.scss',
+    selector: 'app-user-layout',
+    templateUrl: './user-layout.component.html',
+    styleUrl: './user-layout.component.scss',
+    standalone: false
 })
 export class UserLayOutComponent extends BaseLayOutComponent {
   title = 'material-responsive-sidenav';

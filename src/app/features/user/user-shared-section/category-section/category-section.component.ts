@@ -7,11 +7,10 @@ import { ImageComponent } from '@shared/component/img/image/image.component';
 import { CommonModule } from '@angular/common';
 import { AdminModuleRoutingModule } from "app/features/admin/admin-routing.module";
 @Component({
-  selector: 'app-category-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, ImageComponent, AdminModuleRoutingModule],
-  templateUrl: './category-section.component.html',
-  styleUrl: './category-section.component.scss',
+    selector: 'app-category-section',
+    imports: [CommonModule, TranslateModule, ImageComponent, AdminModuleRoutingModule],
+    templateUrl: './category-section.component.html',
+    styleUrl: './category-section.component.scss'
 })
 export class CategorySectionComponent extends BaseListComponent<
   Category,

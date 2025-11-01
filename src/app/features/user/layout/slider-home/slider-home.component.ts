@@ -3,9 +3,10 @@ import { Component, inject } from '@angular/core';
 import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 declare var $: any;
 @Component({
-  selector: 'app-slider-home',
-  templateUrl: './slider-home.component.html',
-  styleUrl: './slider-home.component.scss',
+    selector: 'app-slider-home',
+    templateUrl: './slider-home.component.html',
+    styleUrl: './slider-home.component.scss',
+    standalone: false
 })
 export class SliderHomeComponent {
   protected document = inject(DOCUMENT); 

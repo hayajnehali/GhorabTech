@@ -4,9 +4,10 @@ import { Category, CategoryFilter, CategoryResult } from '@models/category';
 import { CategoryService } from '@shared/services/category.service';
 
 @Component({
-  selector: 'app-category-manage',
-  templateUrl: './category-manage.component.html',
-  styleUrl: './category-manage.component.scss',
+    selector: 'app-category-manage',
+    templateUrl: './category-manage.component.html',
+    styleUrl: './category-manage.component.scss',
+    standalone: false
 })
 export class CategoryManageComponent extends BaseManageComponent<
   Category,

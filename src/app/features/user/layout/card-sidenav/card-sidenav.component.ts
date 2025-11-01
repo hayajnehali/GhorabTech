@@ -3,9 +3,10 @@ import { Cart } from '@models/cart';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
-  selector: 'app-card-sidenav',
-  templateUrl: './card-sidenav.component.html',
-  styleUrl: './card-sidenav.component.scss',
+    selector: 'app-card-sidenav',
+    templateUrl: './card-sidenav.component.html',
+    styleUrl: './card-sidenav.component.scss',
+    standalone: false
 })
 export class CardSidenavComponent implements OnInit {
   cartService = inject(CartService);
