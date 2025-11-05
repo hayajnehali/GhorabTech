@@ -13,9 +13,9 @@
       <a class="remove-link" (click)="removeItem(item.product.id!)">{{"general.remove" |translate }}</a>
     </div>
     <div class="qty-box d-flex flex-column align-items-center ms-2 border">
-      <button class="btn   btn-sm" (click)="updateQuantity(item.product.id!,item.quantity+1)">+</button>
+      <button class="btn   btn-sm" (click)="increaseQuantity(item)">+</button>
       <span class="my-1">{{item.quantity}}</span>
-      <button class="btn   btn-sm" (click)="updateQuantity(item.product.id!,item.quantity-1)">−</button>
+      <button class="btn   btn-sm" (click)="decreaseQuantity(item)">−</button>
     </div>
   </div>
   

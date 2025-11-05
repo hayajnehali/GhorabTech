@@ -1,9 +1,10 @@
 /*---------------------
   Blog Sidebar
 -----------------------*/
-.blog__sidebar {
+@use 'variable' as *;
+// .blog__sidebar {
 
-}
+// }
 
 .blog__sidebar__item {
     text-align: center;

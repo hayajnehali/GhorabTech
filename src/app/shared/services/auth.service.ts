@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
@@ -7,6 +7,7 @@ import { apiName } from '@shared/Enum/api-name';
 import { environment } from '@shared/environment/environment';
 import { LocalStorageService } from './local-storage-service.service';
 import { Router } from '@angular/router';
+import { Roles } from '@shared/Enum/role-enum';
 
 export interface JwtPayload {
   sub: string;
@@ -29,16 +30,39 @@ export class AuthService {
   private readonly baseUrl = environment.apiUrl + apiName.auth;
   private readonly tokenKey = environment.token_KEY;
 
+  // ===== Signals =====
   user = signal<JwtPayload | null>(null);
+  isAuthenticatedSignal = computed(() => !!this.user());
+  isAdmin = computed(() => this.user()?.role === Roles.admin);
+  isUser = computed(() => this.user()?.role === Roles.user);
 
+  // ===== API Calls =====
   login(data: Auth): Observable<{ data: string }> {
     return this.http.post<{ data: string }>(`${this.baseUrl}/signIn`, data);
   }
 
+  // ===== Token Management =====
   saveToken(token: string): void {
     this.storage.set(this.tokenKey, token);
     const decoded = jwtDecode<JwtPayload>(token);
     this.user.set(decoded);
+  }
+
+  getToken(): string | null {
+    return this.storage.get(this.tokenKey);
+  }
+
+  getRole(): string | null {
+    return this.user()?.role ?? null;
+  }
+
+  isTokenExpired(token: string): boolean {
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      return decoded.exp * 1000 < Date.now();
+    } catch {
+      return true;
+    }
   }
 
   init(): void {
@@ -58,31 +82,35 @@ export class AuthService {
     }
   }
 
-  logout(): void {
-    this.storage.remove(this.tokenKey);
-    this.user.set(null);
-    this.router.navigate(['/']).then(() => {
-    window.location.reload();
-  });
-  }
-
-  getToken(): string | null {
-    let token: string | null = this.storage.get(this.tokenKey);
-    return token;
-  }
-
-  getRole(): string | null {
-    return this.user()?.role ?? null;
-  }
-
+  // ===== Auth Logic =====
   isAuthenticated(): boolean {
-    if (this.getToken() !== null && this.user() === null) {
+    const token = this.getToken();
+    if (!token || this.isTokenExpired(token)) {
+      this.clearToken();
+      return false;
+    }
+    if (token && this.user() === null) {
       this.init();
     }
-    return !!this.getToken() && this.user() !== null;
+    return !!token && this.user() !== null;
   }
 
-  hasRole(role: string): boolean {
-    return this.getRole() === role;
+  hasRole(...roles: string[]): boolean {
+    const userRole = this.getRole();
+    return !!userRole && roles.includes(userRole);
+  }
+
+  // ===== Logout =====
+  logout(): void {
+    this.clearToken();
+    this.router.navigate(['/user']);
+    // this.router.navigate(['/']).then(() => {
+    //   window.location.reload();
+    // });
+  }
+
+  private clearToken() {
+    this.storage.remove(this.tokenKey);
+    this.user.set(null);
   }
 }

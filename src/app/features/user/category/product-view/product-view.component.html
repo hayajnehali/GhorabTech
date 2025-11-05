@@ -108,18 +108,17 @@
           <label class="fw-bold d-block mb-2">{{ item.name.local }}</label>
 
           <div class="d-flex flex-wrap gap-3">
-            <div
-              *ngFor="let val of item.keyAttributeValues"
-              class="form-check-label d-flex align-items-center gap-2"
-            >
+            @for (val of item.keyAttributeValues; track $index) {
+            <div class="form-check-label d-flex align-items-center gap-2"> 
               <input
                 type="radio"
-                name="{{ item.name.local }}"
-                [value]="val" 
-                (change)="onAttributeSelected(item, val)" 
+                name="{{ val.id??'' + $index }}"
+                [value]="val"  
+                (change)="onAttributeSelected(item, val)"
               />
-             <span class=""> {{ val.value.local }}</span>
+              <span class=""> {{ val.value.local }}</span>
             </div>
+            }
           </div>
         </div>
         }

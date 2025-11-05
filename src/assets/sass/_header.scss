@@ -1,6 +1,13 @@
 /*---------------------
   Header
 -----------------------*/
+@use "variable" as *;
+@use "mixins" as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
 .header {
   background: $white-color;
 }
@@ -51,8 +58,8 @@
   }
 
   span {
-    color: $secondary-color; 
-  font-size: x-small;
+    color: $secondary-color;
+    font-size: x-small;
     text-transform: capitalize;
     letter-spacing: 1px;
     cursor: pointer;
@@ -68,7 +75,7 @@
     z-index: 1000;
     min-width: 150px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    @include transition(all, 0.3s);
+    @include m.transition(all, 0.3s);
 
     li {
       list-style: none;
@@ -87,7 +94,6 @@
     }
   }
 }
-
 
 .header__logo {
   padding: 30px 0;
@@ -145,7 +151,7 @@
         z-index: 9;
         opacity: 0;
         visibility: hidden;
-        @include transition(all, 0.3s);
+        @include m.transition(all, 0.3s);
 
         li {
           display: block;
@@ -181,7 +187,7 @@
           height: 2px;
           background: $primary-color;
           content: "";
-          @include transition(all, 0.5s);
+          @include m.transition(all, 0.5s);
           transform: scale(0);
         }
       }
@@ -189,39 +195,29 @@
   }
 }
 
-.header__nav__option {
-  text-align: right;
-  padding: 30px 0;
-
-  a {
-    display: inline-block;
-    margin-right: 26px;
-    position: relative;
-
-    span {
-      color: #0d0d0d;
-      font-size: 11px;
-      position: absolute;
-      left: 5px;
-      top: 8px;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
+.navbarr {
+  .tog {
+    border: 1px solid $primary-color;
+    background-color: $white-color;
+    border-radius: 2px;
+    color: $primary-color;
   }
-
-  .price {
-    font-size: 15px;
-    color: $heading-color;
-    font-weight: 700;
-    display: inline-block;
-    margin-left: -20px;
-    position: relative;
-    top: 3px;
+  .nav_bar__option {
+    text-align: right;
+    padding: 0.3rem 0;
+    font-size: small;
+  }
+ 
+}
+.sub-list {
+  background-color: $white-color !important;
+  .nav-item{
+    padding: 0.3rem 0.3rem;
+  }
+  .nav-item:hover{
+    background-color: #e8e5e54a;
   }
 }
-
 .offcanvas-menu-wrapper {
   display: none;
 }
@@ -232,15 +228,17 @@
 /* الحاوية */
 .search-wrapper {
   position: relative;
-  width: 284px; 
+  width: 50px;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0px 5px;
+  display: flex;
+  align-items: center;
 }
 
 /* حقل البحث */
 .search-input {
   width: 100%;
-  padding: 10px 40px 10px 15px; 
+  padding: 10px 40px 10px 15px;
   border: 1px solid #ccc;
   border-radius: 25px;
   font-size: 14px;

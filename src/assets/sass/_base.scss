@@ -28,6 +28,8 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+@use 'variable' as *;
+
 html,
 body {
   height: 100%;
@@ -44,7 +46,7 @@ h6 {
   margin: 0;
   color: $primary-color;
   font-weight: 400;
-  font-family: "FontAwesome";
+  font-family: sans-serif;
 }
 
 h1 {
@@ -352,6 +354,9 @@ input.ng-invalid.ng-touched {
   color: #a90000;
   font-size: x-small;
 }
+.menu-icon{
+  color: $primary-color;
+} 
 
 
 

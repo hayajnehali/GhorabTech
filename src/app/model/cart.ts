@@ -10,7 +10,7 @@ export class Cart extends ModelBase {
   cartItems: CartItem[] = [];
   currency: string = 'usd';
   orderExitStatus?: OrderExitStatus;
-  recipientInfo: RecipientInfo = new RecipientInfo();
+  recipientInfo: RecipientInfo = new RecipientInfo(); 
 }
 export class CartResult extends ModelBase {
   userName?: string;

@@ -4,6 +4,7 @@ import { DashboardModuleRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartLineComponent } from "@shared/component/charts/chart-line/chart-line.component";
+import { SelectYearComponent } from "@shared/component/select-year/select-year.component";
 
 
 
@@ -15,7 +16,8 @@ import { ChartLineComponent } from "@shared/component/charts/chart-line/chart-li
     CommonModule,
     SharedModule,
     DashboardModuleRoutingModule,
-    ChartLineComponent
+    ChartLineComponent,
+    SelectYearComponent
 ]
 })
 export class DashboardModule { }

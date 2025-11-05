@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Cart } from '@models/cart';
+import { CartItem } from '@models/cart-item';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
-    selector: 'app-card-sidenav',
-    templateUrl: './card-sidenav.component.html',
-    styleUrl: './card-sidenav.component.scss',
-    standalone: false
+  selector: 'app-card-sidenav',
+  templateUrl: './card-sidenav.component.html',
+  styleUrl: './card-sidenav.component.scss',
+  standalone: false,
 })
 export class CardSidenavComponent implements OnInit {
   cartService = inject(CartService);
@@ -14,23 +15,29 @@ export class CardSidenavComponent implements OnInit {
   total: number = 0;
 
   ngOnInit(): void {
-    this.cart = this.cartService.getCart();
-    this.getTotal();
+    this.cartService.initCart();
+    this.cartService.cartTotal$.subscribe((count) => {
+      this.total = count;
+    });
+    this.cartService.cart$.subscribe((cart) => {
+      this.cart = cart;
+    }); 
   }
+ 
 
-  updateQuantity(productId: string, quantity: number) {
-    this.cartService.updateQuantity(productId, quantity);
+  decreaseQuantity(item: CartItem): void {
+     this.cartService.decreaseQuantity(item);
     this.cart = this.cartService.getCart();
   }
+  increaseQuantity(item: CartItem ): void {
+    this.cartService.increaseQuantity(item);
+    this.cart = this.cartService.getCart();
+  } 
 
   clear() {
     this.cartService.clearCart();
     this.cart = this.cartService.getCart();
-  }
-
-  getTotal() {
-    this.total = this.cartService.getTotal();
-  }
+  } 
 
   removeItem(arg0: string) {
     this.cartService.removeItem(arg0);

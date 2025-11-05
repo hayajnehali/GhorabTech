@@ -9,5 +9,6 @@ export class KeyAttributeValue extends ModelBase {
 export class KeyAttributeValueResult extends ModelBase {
   value: LocalizedString = new LocalizedString();
   keyAttribute: KeyAttributeResult = new KeyAttributeResult();
+  iselected: boolean = false;
 }
 export class KeyAttributeValueFilter extends FilterBase {}

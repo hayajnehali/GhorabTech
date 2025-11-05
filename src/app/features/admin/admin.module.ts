@@ -10,6 +10,8 @@ import { FooterComponent } from "@shared/component/footer/footer.component";
 import { ImageComponent } from '@shared/component/img/image/image.component';
 import { MultiImageUploadComponent } from '@shared/component/img/multi-image-uplode/multi-image-upload.component';
 import { AdminHeaderSectionComponent } from "./layout/admin-header-section/admin-header-section.component";
+import { LoginLogoutButtonComponent } from "@shared/component/login-logout-button/login-logout-button.component";
+import { LanguageButtonComponent } from "@shared/component/language-button/language-button.component";
  
 @NgModule({
   declarations: [ 
@@ -25,7 +27,9 @@ import { AdminHeaderSectionComponent } from "./layout/admin-header-section/admin
     FooterComponent,
     ImageComponent,
     MultiImageUploadComponent,
-    AdminHeaderSectionComponent
+    AdminHeaderSectionComponent,
+    LoginLogoutButtonComponent,
+    LanguageButtonComponent
 ],exports:[
     AdminDashboardComponent
   ]

@@ -1,5 +1,5 @@
 <div
-  class="login-wrapper d-flex align-items-center justify-content-center min-vh-100"
+  class="login-wrapper d-flex align-items-center justify-content-center my-5"
 >
   <div class="login-box shadow p-4 bg-white rounded">
     <h2 class="mb-4 text-center">{{ "general.login" | translate }}</h2>
@@ -67,7 +67,7 @@
       <div class="mt-3 text-center">
         <small
           >{{ "general.donot-have-account" | translate }}
-          <a href="#">{{ "general.register" | translate }}</a></small
+          <a [routerLink]="['/user','register']">{{ "general.register" | translate }}</a></small
         >
       </div>
     </form>

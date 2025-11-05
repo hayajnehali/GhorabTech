@@ -3,13 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 export const routesAdmin: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    data: { 
+      showInSidebar: false, 
+    },
+
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     data: {
       label: 'dashboard.dashboard',
-      icon: 'merge_type',
-      showInSidebar: true,
+      icon: 'analytics',
+      showInSidebar: true, 
     },
+
   },
   {
     path: 'category',

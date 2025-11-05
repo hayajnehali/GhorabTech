@@ -1,23 +1,63 @@
 <app-admin-header-section></app-admin-header-section>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg mt-2 d-flex justify-content-end mx-2" *ngIf="isMobile">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#mainMenu"
+    aria-controls="mainMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-center" id="mainMenu">
+    <ul class="navbar-nav">
+      @for (r of routesList; track $index) {
+      <li class="nav-item header__top__hover my-2">
+        <span class="entry d-flex align-items-center" [routerLink]="[r.path]">
+          <mat-icon class="menu-icon">{{r.data?.['icon']}}</mat-icon>
+          <span>{{ (r.data?.['label'] ?? "") | translate }}</span>
+        </span>
+      </li>
+      }
+      <li class="nav-item header__top__hover my-2">
+        <app-login-logout-button></app-login-logout-button>
+      </li>
+      <li class="nav-item header__top__hover my-2">
+        <app-language-button></app-language-button>
+      </li>
+    </ul>
+  </div>
+</nav>
 <mat-sidenav-container autosize>
-  <mat-sidenav  [ngClass]="!isCollapsed ? '' : 'expanded'"  [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
+  <mat-sidenav
+    [ngClass]="!isCollapsed ? '' : 'expanded'"
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="isMobile ? 'false' : 'true'"
+  >
     <mat-nav-list>
       <a mat-list-item (click)="toggleMenu()">
         <span class="entry">
           <mat-icon>menu</mat-icon>
         </span>
       </a>
- 
-      <a mat-list-item *ngFor="let r of routesList">
+      @for (r of routesList; track $index) { @if
+      (r.data?.['showInSidebar']??false) {
+      <a mat-list-item>
         <span class="entry" [routerLink]="[r.path]">
-          <mat-icon>{{r.data?.['icon']}}</mat-icon>
-          <span *ngIf="!isCollapsed">{{ (r.data?.['label'] ?? "") | translate }}</span>
-        </span>
-      </a>
-
+          <mat-icon class="menu-icon">{{r.data?.['icon']}}</mat-icon>
+          <span
+            *ngIf="!isCollapsed"
+            >{{ (r.data?.['label'] ?? "") | translate }}</span
+          >
+        </span> </a
+      >} }
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content  style="min-height: 60vh">
     <div class="container">
       <router-outlet></router-outlet>
     </div>

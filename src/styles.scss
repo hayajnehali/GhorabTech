@@ -6,3 +6,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btnEnd{
     text-align: end; 
 } 
+
+
+/* الاتجاه العربي */
+[dir="rtl"] .sub-list {
+  right: 0 !important;
+  left: auto !important;
+  text-align: right;
+}
+
+/* الاتجاه الإنجليزي */
+[dir="ltr"] .sub-list {
+  left: 0 !important;
+  right: auto !important;
+  text-align: left;
+}

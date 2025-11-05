@@ -14,6 +14,7 @@ export class NotificationService {
     this.toastr.success(message, title);
   }
 
+ 
   showError(error: HttpErrorResponse) { 
       if (error.status === 400 && error.error) {
         // Display validation errors if they exist
@@ -34,7 +35,7 @@ export class NotificationService {
     this.toastr.info(this.translate.instant("validation.informational-message") ,this.translate.instant("validation.info"));
   }
 
-  showWarning() {
-    this.toastr.warning(this.translate.instant("validation.warning-message") ,this.translate.instant("validation.Warning"));
+  showWarning(message:string=this.translate.instant("validation.warning-message"),title:string=this.translate.instant("validation.Warning") ) {
+    this.toastr.warning(message ,title);
   }
 }

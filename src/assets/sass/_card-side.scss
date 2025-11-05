@@ -1,3 +1,9 @@
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
 .cart-container {
   font-family: "Arial", sans-serif;
   width: 360px;

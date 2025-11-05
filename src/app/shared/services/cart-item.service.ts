@@ -4,6 +4,8 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { Observable } from 'rxjs';
+import { OperationResultGeneric } from '@core/base/operation-result';
+import { ChartResult } from '@models/chart-result';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +15,8 @@ export class CartItemService extends ServiceBase<CartItem, CartItemResult, CartI
     super(http, apiName.cartItem);
   }
  
- 
+ getSalesVolume(filterCriteria: CartItemFilter): Observable<OperationResultGeneric<ChartResult[]>> {
+   const params = this.buildHttpParams(filterCriteria); 
+   return this.http.get<OperationResultGeneric<ChartResult[]>>(this.baseUrl + '/sales-volume', { params });
+ }
 }

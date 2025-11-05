@@ -2,18 +2,21 @@
   <!-- Header and Sort -->
   <div class="d-flex justify-content-between align-items-center mb-3">
     <!-- Breadcrumb -->
-    <div class="row">
+    <div class="row w-100">
       <div class="col-12 my-4">
         <div class="row">
           <div class="col-md-10 col-sm-12">
             <nav class="navbar navbar-expand-lg mt-2">
               <div class="navbar-collapse">
-                <ul class="navbar-nav" >
-                  <li class="nav-item header__top__hover mx-2" (click)="goToHome()">
+                <ul class="">
+                  <li
+                    class="nav-item header__top__hover mx-2"
+                    (click)="goToHome()"
+                  >
                     <span>{{ "general.home" | translate }} > </span>
                   </li>
                   <li class="nav-item header__top__hover mx-2" *ngIf="hasData">
-                    <span>{{ dataSource.data[0].category.name.local}}</span>
+                    <span>{{ dataSource.data[0].category.name.local }}</span>
                   </li>
                   <!-- <li class="nav-item header__top__hover mx-2">
                     <span>{{ "general.contactus" | translate }}</span>
@@ -46,7 +49,7 @@
       <div class="col-md-9 col-sm-12">
         <!-- Description -->
         <p class="text-muted" *ngIf="hasData">
-          {{ dataSource.data[0].category.description?.local}}
+          {{ dataSource.data[0].category.description?.local }}
         </p>
 
         <!-- Products Grid -->
@@ -57,26 +60,28 @@
           <div
             class="col-md-6 col-lg-4"
             *ngFor="let productCategory of dataSource.data"
-            
-          > 
-            <div class="card product-card border-0" [routerLink]="[productCategory.id,'product']">
+          >
+            <div
+              class="card product-card border-0"
+              [routerLink]="[productCategory.id, 'product']"
+            >
               <div class="category-image-wrapper">
-                <app-image
-                  *ngIf="
-                    productCategory && productCategory.images && productCategory.images[0]?.guidName
+                <ng-container
+                  *ngFor="
+                    let item of productCategory.images | slice : 0 : 2;
+                    let i = index
                   "
-                  src="{{ productCategory.images[0].guidName }}"
-                  class="card-img-top main-img"
-                  alt="product.name"
-                ></app-image>
-                <app-image
-                  *ngIf="
-                    productCategory && productCategory.images && productCategory.images[1]?.guidName
-                  " 
-                  src="{{ productCategory.images[1].guidName }}"
-                  class="card-img-top hover-img"
-                  alt="product.name"
-                ></app-image>
+                >
+                  <app-image
+                    [src]="item.guidName"
+                    [ngClass]="
+                      i == 0
+                        ? 'card-img-top main-img'
+                        : 'card-img-top hover-img'
+                    "
+                    [alt]="productCategory.name.local ?? ''"
+                  ></app-image>
+                </ng-container>
               </div>
               <div class="card-body text-center">
                 <p class="">{{ productCategory.name.local }}</p>
@@ -86,7 +91,9 @@
         </div>
       </div>
       <div class="col-12">
-        <mat-paginator *ngIf="hasData" class="mat-paginator"
+        <mat-paginator
+          *ngIf="hasData"
+          class="mat-paginator"
           [length]="totalNumberOf"
           (page)="pageChanged($event)"
           [pageSizeOptions]="[5, 10, 20]"

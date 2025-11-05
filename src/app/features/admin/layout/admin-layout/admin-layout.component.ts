@@ -45,6 +45,7 @@ export class AdminLayOutComponent {
       this.sidenav.open(); // On desktop/tablet, the menu can never be fully closed
       this.isCollapsed = !this.isCollapsed;
     }
+      this.menuOpen = !this.menuOpen;
   }
 
   goProductS() {
@@ -53,4 +54,7 @@ export class AdminLayOutComponent {
   gocategory() {
     this.router.navigate(['admin/product-categorys']);
   }
+  menuOpen = false;
+
+ 
 }

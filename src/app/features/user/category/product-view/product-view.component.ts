@@ -11,10 +11,10 @@ import { NotificationService } from '@shared/services/notification.service';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
-    selector: 'app-product-view',
-    templateUrl: './product-view.component.html',
-    styleUrl: './product-view.component.scss',
-    standalone: false
+  selector: 'app-product-view',
+  templateUrl: './product-view.component.html',
+  styleUrl: './product-view.component.scss',
+  standalone: false,
 })
 export class ProductViewComponent implements OnInit {
   product: ProductResult = new ProductResult();
@@ -45,8 +45,14 @@ export class ProductViewComponent implements OnInit {
   }
 
   addToCart() {
-    //  const item: CartItem = new CartItem();
-    //  (this.item.product = this.product), (this.item.quantity = 1);
+    if (!this.item.keyAttributeValues || this.item.keyAttributeValues.length < this.keyAttributes.length) {
+      this.notificationService.showWarning(
+        this.translate.instant('general.select-all-attributes'),
+        this.translate.instant('general.error') 
+      );
+      return;
+    }
+
     this.item.product.id = this.product.id;
     this.item.product.name = this.product.name;
     this.item.product.price = this.product.price;
@@ -77,6 +83,11 @@ export class ProductViewComponent implements OnInit {
           .find((x) => x.id == element.keyAttribute.id)
           ?.keyAttributeValues?.push(element);
       });
+      // this.keyAttributes.forEach((attr) => {
+      //   attr.keyAttributeValues[0].iselected = true;
+      //   this.onAttributeSelected(attr, attr.keyAttributeValues[0]);
+      // });
+      console.log(this.item.keyAttributeValues);
     }
   }
 
@@ -86,33 +97,24 @@ export class ProductViewComponent implements OnInit {
 
   increment() {
     this.item.quantity++;
-    // let cart = this.cartService.getCart();
-    // let item = cart.cartItems.find((i) => i.id == this.item.product.id);
-    // if (item) {
-    //   item.quantity++;
-    // }
   }
 
   decrement() {
     if (this.item.quantity > 1) {
       this.item.quantity--;
     }
-    // let cart = this.cartService.getCart();
-    // let item = cart.cartItems.find((i) => i.id == this.item.product.id);
-    // if (item){
-    //   item.quantity--;
-    // }
   }
 
   onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
+    val.iselected = true;
     // نبحث إذا كان نفس النوع مضاف مسبقًا (مثلاً: لون أو قياس)
-    const existing = this.item.keyAttributeValues.find(
-      (x) => x.keyAttribute.name.local === attr.name.local
+    let existing = this.item.keyAttributeValues.find(
+      (x) => x.keyAttribute.id === attr.id
+      // (x) => x.keyAttribute.name.local === attr.name.local
     );
-
     if (existing) {
       // نبدل القيمة القديمة بالجديدة
-      existing.value = val.value;
+      existing = val;
     } else {
       // نضيف قيمة جديدة
       let newVal = new KeyAttributeValueResult();
@@ -120,7 +122,5 @@ export class ProductViewComponent implements OnInit {
       newVal.value = val.value;
       this.item.keyAttributeValues.push(newVal);
     }
-
-    console.log('Attributes in CartItem:', this.item);
   }
 }

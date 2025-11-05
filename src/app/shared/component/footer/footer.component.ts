@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { environment } from '@shared/environment/environment';
-import { ImageComponent } from "../img/image/image.component";
+import { environment } from '@shared/environment/environment'; 
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss',
-    imports: [TranslateModule, ImageComponent]
+    imports: [TranslateModule]
 })
 export class FooterComponent {
   language=environment.language_KEY

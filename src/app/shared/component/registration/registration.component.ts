@@ -14,7 +14,7 @@ import { environment } from '@shared/environment/environment';
 import { AuthService } from '@shared/services/auth.service';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
-import { SharedModule } from '@shared/shared.module';
+import { SharedModule } from '@shared/shared.module'; 
 
 @Component({
     selector: 'app-registration',

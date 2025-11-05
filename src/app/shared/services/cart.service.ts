@@ -1,5 +1,4 @@
-// cart.service.ts
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { environment } from '@shared/environment/environment';
 import { LocalStorageService } from './local-storage-service.service';
 import { Cart, CartFilter, CartResult } from '@models/cart';
@@ -7,7 +6,7 @@ import { CartItem } from '@models/cart-item';
 import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { OperationResultGeneric } from '@core/base/operation-result';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
 import { KeyAttributeValue } from '@models/key-attribute-value';
@@ -17,31 +16,44 @@ import { KeyAttributeValue } from '@models/key-attribute-value';
 })
 export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   private readonly CART_KEY = environment.CART_KEY;
+  private cartTotal = new BehaviorSubject<number>(0);
+  cartTotal$ = this.cartTotal.asObservable();
+
+  private cartSubject = new BehaviorSubject<Cart>(new Cart());
+  cart$ = this.cartSubject.asObservable();
+
   constructor(private storage: LocalStorageService, http: HttpClient) {
     super(http, apiName.cart);
+  }
+  initCart(): void {
+    this.getTotal();
   }
 
   getCart(): Cart {
     const cart = this.storage.get<Cart>(this.CART_KEY);
     if (cart) {
+      this.saveCart(cart);
       return cart;
     }
     const newCart: Cart = new Cart();
     newCart.id = this.generateCartId();
-    this.storage.set(this.CART_KEY, newCart);
+    this.saveCart(newCart);
     return newCart;
   }
 
   saveCart(cart: Cart): void {
     cart.updateStamp = new Date();
     this.storage.set(this.CART_KEY, cart);
+    let total = this.calculationTotal(cart);
   }
 
   addItem(item: CartItem): void {
-    let cart = this.getCart(); 
-    let found = cart.cartItems.find(i => i.product.id === item.product.id &&
-    this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
-);
+    let cart = this.getCart();
+    let found = cart.cartItems.find(
+      (i) =>
+        i.product.id === item.product.id &&
+        this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
+    );
 
     if (found) {
       found.quantity += item.quantity;
@@ -50,20 +62,37 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
         cart.cartItems = [];
       }
       cart.cartItems.push(item);
-    } 
+    }
     this.saveCart(cart);
   }
 
-  updateQuantity(productId: string, quantity: number): void {
+  decreaseQuantity(item: CartItem): void {
+    this.updateQuantity(item, -1);
+  }
+  increaseQuantity(item: CartItem): void {
+    this.updateQuantity(item, +1);
+  }
+  private updateQuantity(item: CartItem, op: number): void {
     const cart = this.getCart();
-    const found = cart.cartItems.find((i) => i.product.id === productId);
+    let found = cart.cartItems.find(
+      (i) =>
+        i.product.id === item.product.id &&
+        this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
+    );
     if (found) {
-      found.quantity = quantity;
-      if (found.quantity <= 0) {
-        cart.cartItems = cart.cartItems.filter((i) => i.id !== productId);
+      found.quantity = found.quantity + op;
+      if (found.quantity == 0) {
+        cart.cartItems = cart.cartItems.filter(
+          (i) =>
+            i.id !== item.product.id &&
+            !this.hasSameKeyAttributes(
+              i.keyAttributeValues,
+              item.keyAttributeValues
+            )
+        );
       }
+      this.saveCart(cart);
     }
-    this.saveCart(cart);
   }
 
   removeItem(productId: string): void {
@@ -73,14 +102,23 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   }
 
   clearCart(): void {
+    this.cartSubject.next(new Cart());
     this.storage.remove(this.CART_KEY);
   }
 
-  getTotal(): number {
+  private getTotal(): number {
     const cart = this.getCart();
-    return cart.cartItems.reduce((sum, i) => {
+    let total = this.calculationTotal(cart);
+    return total;
+  }
+
+  private calculationTotal(cart: Cart): number {
+    let total = cart.cartItems.reduce((sum, i) => {
       return sum + (i.product.price ?? 0) * i.quantity;
     }, 0);
+    this.cartTotal.next(total);
+    this.cartSubject.next(cart); 
+    return total;
   }
 
   private generateCartId(): string {
@@ -97,13 +135,15 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     );
   }
 
-  private hasSameKeyAttributes(a: KeyAttributeValue[], b: KeyAttributeValue[]): boolean {
+  private hasSameKeyAttributes(
+    a: KeyAttributeValue[],
+    b: KeyAttributeValue[]
+  ): boolean {
     if (a.length !== b.length) return false;
 
-    const aIds = a.map(k => k.id).sort();
-    const bIds = b.map(k => k.id).sort();
+    const aIds = a.map((k) => k.id).sort();
+    const bIds = b.map((k) => k.id).sort();
 
     return aIds.every((id, index) => id === bIds[index]);
-}
-
+  }
 }

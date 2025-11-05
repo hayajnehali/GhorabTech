@@ -1,0 +1,6 @@
+  <div class="form-control my-2">
+  <label for="year"> {{"general.select-year" |translate}} : </label>
+  <select id="year" [(ngModel)]="selectedYear" (change)="selectYear()" class="mx-1">
+    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+  </select>
+</div>

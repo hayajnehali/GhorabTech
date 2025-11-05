@@ -1,3 +1,9 @@
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
 .category-section {
   .section-title {
     display: flex;
@@ -30,7 +36,7 @@
     transition: all 0.3s ease;
     font-size: small;
     &:hover {
-      background-color: darken($primary-color, 10%);
+    //  background-color: color.adjust($primary-color, 10%);
       transform: scale($hover-scale);
     }
   }
@@ -48,7 +54,7 @@
       z-index: 1;
       background-color: $primary-color;
       border-radius: 50%;
-      padding: 0.4rem 0.3rem;
+      padding: 0.5rem 0.3rem;
       color: white;
       opacity: 0.5;
     }

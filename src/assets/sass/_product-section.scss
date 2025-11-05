@@ -1,3 +1,5 @@
+@use 'variable' as V;
+
 .product-section {
   // لون الخطوط
 
@@ -11,12 +13,12 @@
     b {
       flex: 1;
       height: 2px;
-      background-color: $line-color;
+      background-color: V.$line-color;
       margin: 0 1rem;
     }
 
     .section-title-main {
-      color: $primary-color;
+      color: V.$primary-color;
       text-align: center;
       white-space: nowrap;
       font-family: "FontAwesome";
@@ -26,14 +28,14 @@
   }
 
   .btn-pink {
-    background-color: $primary-color;
+    background-color: V.$primary-color;
     color: #fff;
     border-radius: 30px;
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: darken($primary-color, 10%);
-      transform: scale($hover-scale);
+      background-color: adjust(V.$primary-color, 10%);
+      transform: scale(V.$hover-scale);
     }
   }
 
@@ -41,7 +43,7 @@
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 
     &:hover {
-      transform: translateY(-6px) scale($hover-scale);
+      transform: translateY(-6px) scale(V.$hover-scale);
     }
 
     .product-image-wrapper {
@@ -71,12 +73,12 @@
       &:hover {
         .main-img {
           opacity: 0;
-          transform: scale($hover-scale);
+          transform: scale(V.$hover-scale);
         }
 
         .hover-img {
           opacity: 1;
-          transform: scale($hover-scale);
+          transform: scale(V.$hover-scale);
         }
       }
     }

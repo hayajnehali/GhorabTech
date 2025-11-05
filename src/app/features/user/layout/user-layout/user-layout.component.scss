@@ -6,13 +6,13 @@
   background-color: #25d366; // لون واتساب الأخضر
   color: white;
   font-weight: 600;
-  font-size: 1rem;
+  //font-size: 1rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease,
-    transform 0.2s ease;
+  transform 0.2s ease;
   position: fixed;
   bottom: 3%;
   z-index: 11;
@@ -49,7 +49,7 @@
 
 @media (max-width: 480px) {
   .btn-whatsapp {
-    font-size: 0.9rem;
+ //   font-size: 0.9rem;
     padding: 0.5rem 1rem;
 
     i.fa-whatsapp {

@@ -1,0 +1,9 @@
+<div class="d-inline-flex">
+  @if(currentLang === 'ar' || currentLang !== 'en'){ 
+  <span> <mat-icon class="menu-icon">language</mat-icon> </span>
+  <a (click)="switchLanguage('en')">English</a>
+  } @if( currentLang === 'en'){ 
+  <span> <mat-icon class="menu-icon">language</mat-icon></span>
+  <a (click)="switchLanguage('ar')">عربي</a>
+  }
+</div>

@@ -19,6 +19,10 @@ import { CardSidenavComponent } from './layout/card-sidenav/card-sidenav.compone
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { PaymentComponent } from './payment/payment.component';
 import { RegistrationComponent } from "@shared/component/registration/registration.component";
+import { TopBarComponent } from "@shared/component/top-header/top-bar.component";
+import { LoginLogoutButtonComponent } from "@shared/component/login-logout-button/login-logout-button.component";
+import { LanguageButtonComponent } from "@shared/component/language-button/language-button.component";
+import { NavbarComponent } from "@shared/component/navbar/navbar.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { RegistrationComponent } from "@shared/component/registration/registrati
     FooterComponent,
     CategoryModule,
     CategorySectionComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    TopBarComponent,
+    LoginLogoutButtonComponent,
+    LanguageButtonComponent,
+    NavbarComponent
 ],
   providers: [ServiceBase, ProductService],
 })

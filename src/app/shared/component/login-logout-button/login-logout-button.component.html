@@ -1,0 +1,17 @@
+<div class="d-inline-flex">
+  <span> <mat-icon class="menu-icon">account_circle</mat-icon></span>
+  @if(authService.isAuthenticatedSignal()){
+  <span>
+    <a class="text-dark position-relative mx-2" (click)="logout()">
+      {{ "general.logout" | translate }}
+    </a>
+  </span>
+  }@else {
+  <span>
+    <a class="text-dark position-relative mx-2" [routerLink]="['/user','login']">
+      {{ "general.login" | translate }}
+    </a>
+  </span>
+  }
+  <!-- <span class="mx-3">|</span> -->
+</div>

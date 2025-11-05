@@ -25,7 +25,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cartItem of cart.cartItems">
+        @for (cartItem of cart.cartItems; track $index) {
+        <tr>
           <td class="product__cart__item">
             <div class="product__cart__item__pic">
               <app-image
@@ -45,21 +46,9 @@
           <td class="quantity__item">
             <div class="quantity">
               <div class="pro-qty-2">
-                <span
-                  class="qtybtn"
-                  (click)="
-                    updateQuantity(cartItem.product.id!, cartItem.quantity - 1)
-                  "
-                  >-</span
-                >
-                <input type="text" [value]="cartItem.quantity" readonly />
-                <span
-                  class="qtybtn"
-                  (click)="
-                    updateQuantity(cartItem.product.id!, cartItem.quantity + 1)
-                  "
-                  >+</span
-                >
+                <a class="qtybtn" (click)="decreaseQuantity(cartItem)">-</a>
+                {{ cartItem.quantity }}
+                <a class="qtybtn" (click)="increaseQuantity(cartItem)">+</a>
               </div>
             </div>
           </td>
@@ -69,13 +58,14 @@
             {{ cartItem.total }}
           </td>
         </tr>
+        }
       </tbody>
     </table>
   </div>
 
   <!-- Continue Shopping -->
   <div class="mb-4">
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" [routerLink]="['/user']">
       &larr; {{ "cart.continue-shopping" | translate }}
     </button>
   </div>
@@ -84,16 +74,17 @@
   <div class="text-end">
     <p>
       {{ "general.total" | translate }}:
-      <strong
-        >{{ "general.JOD" | translate }} {{ cartService.getTotal() }}</strong
-      >
+      <strong>{{ "general.JOD" | translate }} : {{ total }}</strong>
     </p>
   </div>
 
   <!-- Checkout -->
   <div class="text-center">
-    <button class="btn btn-primary px-5 py-2 w-100" [routerLink]="['/user/pay']">
+    <button
+      class="btn btn-primary px-5 py-2 w-100"
+      [routerLink]="['/user/pay']"
+    >
       {{ "cart.checkout" | translate }}
-    </button> 
+    </button>
   </div>
 </div>

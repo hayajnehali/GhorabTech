@@ -9,6 +9,13 @@
   "addProduct": "Add Product",
   "add": "Add",
   "general": {
+    "no-data": "No Data Available",
+    "year": "Year",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "select-year": "Select Year",
+    "select-month": "Select Month",
     "details":" Details",
     "image": "Image",
     "search": "Search",
@@ -80,7 +87,16 @@
     "price-before-discount": "Price Before Discount",
     "create-date": "Create Date",
     "reset": "Reset",
-    "quantity": "Quantity"
+    "quantity": "Quantity",
+    "number-sales": "Number of Sales",
+    "sales-by-year": "Sales by Year",
+    "sales-by-month": "Sales by Month",
+    "delivery-service":"Delivery to most areas of the Hashemite Kingdom of Jordan",
+    "whatsAppNumber":"Contact via WhatsApp",
+    "select-all-attributes":"Please select all product attributes before adding to cart",
+    "error":"Error",
+    "info":"Info",
+    "login-error":"Login failed. Please check email and password."
   },
   "validation": {
     "required": "This field is required",
@@ -210,5 +226,19 @@
     "Returned": "Returned",
     "DeliveryFailed": "Delivery Failed",
     "ReadyForPickup": "Ready For Pickup"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "total-sales": "Total Sales",
+    "total-orders": "Total Orders",
+    "total-products": "Total Products",
+    "total-categories": "Total Categories",
+    "sales-over-time": "Sales Over Time",
+    "recent-orders": "Recent Orders",
+    "order-id": "Order ID",
+    "customer-name": "Customer Name",
+    "order-date": "Order Date",
+    "status": "Status",
+    "amount": "Amount"
   }
 }

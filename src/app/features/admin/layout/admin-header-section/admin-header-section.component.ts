@@ -4,24 +4,20 @@ import { Router } from '@angular/router';
 import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '@shared/environment/environment';
+import { TopBarComponent } from "@shared/component/top-header/top-bar.component"; 
+import { LoginLogoutButtonComponent } from "@shared/component/login-logout-button/login-logout-button.component";
+import { LanguageButtonComponent } from "@shared/component/language-button/language-button.component";
 
 @Component({
     selector: 'app-admin-header-section',
-    imports: [CommonModule, TranslateModule],
+    imports: [CommonModule, TranslateModule, TopBarComponent, LoginLogoutButtonComponent, LanguageButtonComponent],
     templateUrl: './admin-header-section.component.html',
     styleUrl: './admin-header-section.component.scss'
 })
 export class AdminHeaderSectionComponent {
-    language=environment.language_KEY
-  currentLang: string | null = localStorage.getItem(this.language);
+
   links: SocialLink[]  = SOCIAL_LINKS;
   constructor(private translate: TranslateService, private router: Router) {}
 
-  switchLanguage(language: string) {
-    this.translate.use(language);
-    localStorage.setItem(this.language, language);
-    this.router.navigate([this.router.url]).then(() => {
-      window.location.reload();
-    });
-  }
+
 }
