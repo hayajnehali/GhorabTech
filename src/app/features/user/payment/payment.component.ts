@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { environment } from '@shared/environment/environment';
 import { PaymentService } from '@shared/services/payment.service';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
     selector: 'app-payment',
@@ -19,6 +20,7 @@ export class PaymentComponent extends BaseComponent implements OnInit {
   private readonly token_KEY = environment.token_KEY;
   cart: Cart = new Cart();
   cartService = inject(CartService);
+  authService = inject(AuthService);
   paymentService = inject(PaymentService);
   private storage = inject(LocalStorageService);
 
@@ -41,7 +43,7 @@ export class PaymentComponent extends BaseComponent implements OnInit {
       form.control.markAllAsTouched();
       return;
     }
-    this.cart.userId = 'edc3720e-d1d5-4d9b-46fc-08de0a8e5131';
+    this.cart.userId =this.authService.user()?.certserialnumber
     this.paymentService.checkout(this.cart).subscribe((res: any) => {
       window.location.href = res.data;
     });

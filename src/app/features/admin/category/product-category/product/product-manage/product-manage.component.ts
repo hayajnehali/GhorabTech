@@ -7,10 +7,10 @@ import { KeyAttributeFilter, KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValue } from '@models/key-attribute-value';
 
 @Component({
-    selector: 'app-product-manage',
-    templateUrl: './product-manage.component.html',
-    styleUrl: './product-manage.component.scss',
-    standalone: false
+  selector: 'app-product-manage',
+  templateUrl: './product-manage.component.html',
+  styleUrl: './product-manage.component.scss',
+  standalone: false,
 })
 export class ProductManageComponent extends BaseManageComponent<
   Product,
@@ -51,14 +51,13 @@ export class ProductManageComponent extends BaseManageComponent<
       });
   }
   override processData() {
-    this.keyAttributeValueId?.forEach(id => { 
-      let keyAttributeValues:KeyAttributeValue=new KeyAttributeValue();
-      keyAttributeValues.id=id;
-      if(!this.entity.keyAttributeValues)
-      this.entity.keyAttributeValues=[];
-    if(!this.entity.keyAttributeValues.find(k=>k.id==id))
-      this.entity.keyAttributeValues.push( keyAttributeValues);
-    
+    this.keyAttributeValueId?.forEach((id) => {
+      let keyAttributeValues: KeyAttributeValue = new KeyAttributeValue();
+      keyAttributeValues.id = id;
+      if (!this.entity.keyAttributeValues) this.entity.keyAttributeValues = [];
+      if (!this.entity.keyAttributeValues.find((k) => k.id == id))
+        this.entity.keyAttributeValues.push(keyAttributeValues);
     });
   }
+ 
 }

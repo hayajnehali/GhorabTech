@@ -1,33 +1,64 @@
-<div class="btn-container">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    (click)="setGroupByAndLoad(groupByChartResult.years)"
-  >
-    {{ "general.year" | translate }}
-  </button>
-  <button
-    type="button"
-    class="btn btn-secondary mx-2"
-    (click)="setGroupByAndLoad(groupByChartResult.month)"
-  >
-    {{ "general.month" | translate }}
-  </button>
+<div class="row">
+  <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+    <div class="d-flex my-1 list">
+      <div class="mx-1"><mat-icon class="menu-icon">groups</mat-icon></div>
+      <div>
+        <div class="text-titel-cart-dashbord">{{ "general.users" | translate }}</div>
+        <div>10</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+    <div class="d-flex my-1 list">
+      <div class="mx-1"><mat-icon class="menu-icon">add_shopping_cart</mat-icon></div>
+      <div>
+        <div class="text-titel-cart-dashbord">{{ "general.products-sold" | translate }}</div>
+        <div>10</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+    <div class="d-flex my-1 list">
+      <div class="mx-1"><mat-icon class="menu-icon">add_shopping_cart</mat-icon></div>
+      <div>
+        <div class="text-titel-cart-dashbord">{{ "general.products-sold" | translate }}</div>
+        <div>10</div>
+      </div>
+    </div>
+  </div>
 </div>
-@if(filter.groupBy === groupByChartResult.years && data.length > 0){
-<app-chart-line
-  [data]="data"
-  [labelType]="groupByChartResult[groupByChartResult.years.valueOf()]"
-></app-chart-line>
-} @else if(filter.groupBy === groupByChartResult.month ){
-<app-select-year (yearChange)="updateChart($event)"></app-select-year>
-@if(data.length > 0){
-<app-chart-line
-  [data]="data"
-  [labelType]="groupByChartResult[groupByChartResult.month.valueOf()]"
-></app-chart-line>
-}@else {
-<P class=""> {{ "general.no-data" | translate }}</P>
 
-}
- }
+<div class="list">
+  <div class="btn-container">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="setGroupByAndLoad(groupByChartResult.years)"
+    >
+      {{ "general.year" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary mx-2"
+      (click)="setGroupByAndLoad(groupByChartResult.month)"
+    >
+      {{ "general.month" | translate }}
+    </button>
+  </div>
+  @if(filter.groupBy === groupByChartResult.years && data.length > 0){
+  <app-chart-line
+    [data]="data"
+    [labelType]="groupByChartResult[groupByChartResult.years.valueOf()]"
+  ></app-chart-line>
+  } @else if(filter.groupBy === groupByChartResult.month ){
+  <app-select-year (yearChange)="updateChart($event)"></app-select-year>
+  @if(data.length > 0){
+  <app-chart-line
+    [data]="data"
+    [labelType]="groupByChartResult[groupByChartResult.month.valueOf()]"
+  ></app-chart-line>
+  }@else {
+  <P class=""> {{ "general.no-data" | translate }}</P>
+
+  } }
+</div>

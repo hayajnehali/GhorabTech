@@ -1,10 +1,10 @@
 <div class="container list"> 
-  <h3>{{'keyAttribute.key-attribute-list'|translate}}</h3>
+  <h3 class="text-titel">{{'keyAttribute.key-attribute-list'|translate}}</h3>
   <div class="btn-container">
     <button class="btn btn-primary"  [routerLink]="['/admin/keyAttribute/manage']">{{'add'|translate}}</button>
 </div>
-  <div *ngIf="hasData">
-    <table mat-table [dataSource]="dataSource">
+  <div *ngIf="hasData" class="table-responsive">
+    <table mat-table [dataSource]="dataSource" class="table">
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> No. </th>

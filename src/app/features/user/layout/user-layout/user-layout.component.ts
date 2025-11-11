@@ -14,7 +14,7 @@ import { CategoryService } from '@shared/services/category.service';
 @Component({
   selector: 'app-user-layout',
   templateUrl: './user-layout.component.html',
-  styleUrl: './user-layout.component.scss', 
+  styleUrl: './user-layout.component.scss',
   standalone: false,
 })
 export class UserLayOutComponent extends BaseLayOutComponent {
@@ -31,16 +31,17 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   productCategories: ProductCategoryResult[] | undefined = [];
   cartCount = 0;
   cartTotal = 0;
+  nameOfProduct: string='';
   constructor() {
     super();
   }
 
   ngOnInit() {
     this.cartService.cart$.subscribe((cart) => {
-      this.cartCount = cart.cartItems.length; 
+      this.cartCount = cart.cartItems.length;
     });
     this.cartService.cartTotal$.subscribe((total) => {
-      this.cartTotal = total; 
+      this.cartTotal = total;
     });
     this.observer.observe(['(max-width: 766px)']).subscribe((screenSize) => {
       if (screenSize.matches) {
@@ -74,7 +75,6 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     }
   }
 
- 
   goProductS() {
     this.router.navigate(['user/product']);
   }

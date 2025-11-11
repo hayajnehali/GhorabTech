@@ -1,21 +1,47 @@
-<div class="container">  
-  <div class="d-flex justify-content-between align-items-center mb-3"> 
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
     <div class="row w-100">
       <div class="col-12 my-4">
         <div class="row">
           <div class="col-md-10 col-sm-12">
             <nav class="navbar navbar-expand-lg mt-2">
               <div class="navbar-collapse">
-                <ul class="navbar-nav" >
-                  <li class="nav-item header__top__hover mx-2" [routerLink]="['/']" >
-                    <span>{{ "general.home" | translate }}  > </span>
+                <ul class="navbar-nav">
+                  <li
+                    class="nav-item header__top__hover mx-2"
+                    [routerLink]="['/']"
+                  >
+                    <span>{{ "general.home" | translate }} > </span>
                   </li>
-                  <li class="nav-item header__top__hover mx-2" *ngIf="hasData" [routerLink]="['../../']">
-                    <span>{{ dataSource.data[0].productCategory.category.name.local}} ></span>
+                  @if(filter.name==null ||filter.name!=""){
+                  <li
+                    class="nav-item header__top__hover mx-2"
+                    *ngIf="hasData"
+                    [routerLink]="['../../']"
+                  >
+                    <span
+                      >{{
+                        dataSource.data[0].productCategory.category.name.local
+                      }}
+                      ></span
+                    >
                   </li>
                   <li class="nav-item header__top__hover mx-2">
-                     <span *ngIf="dataSource.data[0]&&dataSource.data[0].productCategory">{{ dataSource.data[0].productCategory.name.local}}</span>
+                    <span
+                      *ngIf="
+                        dataSource.data[0] && dataSource.data[0].productCategory
+                      "
+                      >{{ dataSource.data[0].productCategory.name.local }}</span
+                    >
                   </li>
+                  }@else {
+                  <li class="nav-item header__top__hover mx-2">
+                    <span
+                      >{{ "general.result-for" | translate }}
+                      {{ filter.name }} ></span
+                    >
+                  </li>
+                  }
                 </ul>
               </div>
             </nav>
@@ -41,11 +67,11 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-0"></div>
-      <div class="col-md-9 col-sm-12"> 
+      <div class="col-md-9 col-sm-12">
         <!-- <p class="text-muted" *ngIf="hasData">
           {{ dataSource.data[0].category.description?.local}}
         </p> -->
- 
+
         <div
           class="row g-4 category-section"
           *ngIf="dataSource.data.length > 0"
@@ -56,7 +82,7 @@
           >
             <div class="card product-card border-0" [routerLink]="[product.id]">
               <div class="discountRated" *ngIf="product.discountRated">
-                {{product.discountRated}}
+                {{ product.discountRated }}
               </div>
               <div class="category-image-wrapper">
                 <app-image
@@ -79,7 +105,9 @@
               </div>
               <div class="card-body text-center">
                 <div class="">{{ product.name.local }}</div>
-                <div class="price">{{"general.JOD" | translate}} {{ product.price }}</div>
+                <div class="price">
+                  {{ "general.JOD" | translate }} {{ product.price }}
+                </div>
               </div>
             </div>
           </div>
@@ -93,12 +121,13 @@
           showFirstLastButtons
         ></mat-paginator>  -->
 
-          <app-pagination   
-           [length]="totalNumberOf"
-          (page)="pageChanged($event)" 
+        <app-pagination
+          [length]="totalNumberOf"
+          (page)="pageChanged($event)"
           [pageSizeOptions]="pageSizeOptions"
-          showFirstLastButtons></app-pagination>
-      </div> 
+          showFirstLastButtons
+        ></app-pagination>
+      </div>
     </div>
   </div>
-</div> 
+</div>

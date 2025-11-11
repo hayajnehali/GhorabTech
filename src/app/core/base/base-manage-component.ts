@@ -33,15 +33,15 @@ export class BaseManageComponent<
   }
   onInitData() {}
 
-  getById(arg0: string) { 
-   const sub= this.service.getById(arg0).subscribe({
+  getById(arg0: string) {
+    const sub = this.service.getById(arg0).subscribe({
       next: (req) => {
         let data = Object.assign(new this.type(), req);
         this.entity = data.data;
         this.onLoadedData(this.entity);
       },
     });
-     this.subscribe(sub);
+    this.subscribe(sub);
   }
 
   onLoadedData(req: any) {}
@@ -53,37 +53,46 @@ export class BaseManageComponent<
     }
     this.processData();
     if (this.isAdd) {
-    
-    const sub=  this.service.create(this.entity).subscribe({
+      const sub = this.service.create(this.entity).subscribe({
         next: () => {},
         complete: () => {
-          this.notificationService.showSuccess(this.translate.instant('general.success-message'),this.translate.instant('general.success'));
-           this.goBack()
+          this.notificationService.showSuccess(
+            this.translate.instant('general.success-message'),
+            this.translate.instant('general.success')
+          );
+          this.goBack();
         },
         error: (err) => {
           this.notificationService.showError(err);
         },
       });
-       this.subscribe(sub);
+      this.subscribe(sub);
     } else {
-       
-     const sub= this.service.update(this.entity).subscribe({
+      const sub = this.service.update(this.entity).subscribe({
         next: () => {},
         complete: () => {
-          this.notificationService.showSuccess(this.translate.instant('general.success-message'),this.translate.instant('general.success'));
-          this.goBack()
+          this.notificationService.showSuccess(
+            this.translate.instant('general.success-message'),
+            this.translate.instant('general.success')
+          );
+          this.goBack();
         },
         error: (err) => {
           this.notificationService.showError(err);
         },
       });
-       this.subscribe(sub);
+      this.subscribe(sub);
     }
   }
   processData() {}
+
   goBack() {
-    if (this.isAdd)
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-    else this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+    const prev = this.routeTrackerService.getPreviousUrl();
+    if (prev) {
+      this.router.navigateByUrl(prev);
+    } else {
+      // لو ما في صفحة سابقة، روح للصفحة الرئيسية مثلاً
+      this.router.navigateByUrl('/');
+    }
   }
 }

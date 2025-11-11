@@ -5,7 +5,10 @@ import { catchError } from 'rxjs/operators';
 import { InjectionToken } from '@angular/core';
 import { PaginatedResult } from '../../model/paginated.result';
 import { environment } from '../environment/environment';
-import { OperationResult, OperationResultGeneric } from '@core/base/operation-result';
+import {
+  OperationResult,
+  OperationResultGeneric,
+} from '@core/base/operation-result';
 export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
 @Injectable({
@@ -17,72 +20,50 @@ export class ServiceBase<TData, TResult, F extends object> {
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
     this.baseUrl = this.baseUrl + baseUrll;
   }
-getAll(filterCriteria: F): Observable<OperationResultGeneric<TResult[]>> {
-  const params = this.buildHttpParams(filterCriteria);
+  getAll(filterCriteria: F): Observable<OperationResultGeneric<TResult[]>> {
+    const params = this.buildHttpParams(filterCriteria);
 
-  return this.http
-    .get<OperationResultGeneric<TResult[]>>(this.baseUrl + '/getAll', { params })
-    .pipe(
-      catchError((err) => {
-        console.error('Error occurred:', err);
-        return throwError(err);
+    return this.http
+      .get<OperationResultGeneric<TResult[]>>(this.baseUrl + '/getAll', {
+        params,
       })
-    );
-}
-protected buildHttpParams(filterCriteria: any): HttpParams {
-  let params = new HttpParams();
+      .pipe(
+        catchError((err) => {
+          console.error('Error occurred:', err);
+          return throwError(err);
+        })
+      );
+  }
+  protected buildHttpParams(filterCriteria: any): HttpParams {
+    let params = new HttpParams();
 
-  Object.keys(filterCriteria).forEach((key) => {
-    const value = filterCriteria[key];
-    if (value !== undefined && value !== null) {
-      params = params.append(key, String(value));
-    }
-  });
+    Object.keys(filterCriteria).forEach((key) => {
+      const value = filterCriteria[key];
+      if (value !== undefined && value !== null) {
+        params = params.append(key, String(value));
+      }
+    });
 
-  return params;
-}
-
-  // getAll(filterCriteria: F): Observable<PaginatedResult<TResult[]>> {
-  //   let params = new HttpParams();
-  //   Object.keys(filterCriteria).forEach((key) => {
-  //     const value = filterCriteria[key as keyof F];
-
-  //     if (value !== undefined && value !== null) {
-  //       params = params.append(key, String(value));
-  //     }
-  //   });
-
-  //   return this.http
-  //     .get<PaginatedResult<TResult[]>>(this.baseUrl + '/getAll', { params })
-  //     .pipe(
-  //       catchError((err) => {
-  //         console.error('Error occurred:', err);
-  //         return throwError(err);
-  //       })
-  //     );
-  // }
- 
- 
+    return params;
+  }
 
   getById(id: string): Observable<OperationResultGeneric<TResult>> {
     return this.http
       .get<OperationResultGeneric<TResult>>(`${this.baseUrl}/getById/${id}`)
-      .pipe(catchError(this.handleError<OperationResultGeneric<TResult>>(`getById id=${id}`)));
+      .pipe(
+        catchError(
+          this.handleError<OperationResultGeneric<TResult>>(`getById id=${id}`)
+        )
+      );
   }
- 
 
   create(item: TData): Observable<TData> {
     return this.http.post<TData>(this.baseUrl + '/create', item);
   }
-  // create(item: T): Observable<T> {
-  //   return this.http.post<T>(this.baseUrl+"/create", item).pipe(
-  //     catchError(this.handleError<T>('create'))
-  //   );
-  // }
 
   update(item: TData): Observable<TData> {
     return this.http.put<TData>(`${this.baseUrl}/update`, item);
-  } 
+  }
 
   delete(id: string) {
     return this.http
@@ -92,7 +73,7 @@ protected buildHttpParams(filterCriteria: any): HttpParams {
 
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
+      //console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }

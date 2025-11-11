@@ -2,8 +2,8 @@
   <mat-sidenav mode="over" [opened]="openSide">
     <div class="d-flex justify-content-end m-3">
       <button mat-icon-button (click)="openSide = !openSide">
-        <mat-icon>arrow_back</mat-icon></button
-      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     </div>
     <app-card-sidenav></app-card-sidenav>
   </mat-sidenav>
@@ -21,14 +21,18 @@
           <div
             class="col-12 col-md-4 mb-2 mb-md-0 d-flex flex-wrap justify-content-between"
           >
-            <div class="search-wrapper flex-grow-1 me-2">
-              <input
-                type="text"
-                class="form-control rounded-pill"
-                placeholder="{{ 'general.search' | translate }} ..."
-                aria-label="Search"
-              />
+            <div class="search-wrapper flex-grow-1 me-2"> 
+                <input
+                  type="text"
+                  class="form-control rounded-pill"
+                  placeholder="{{ 'general.search' | translate }} ..."
+                  aria-label="Search"
+                  [(ngModel)]="nameOfProduct"
+                /> 
+                <button type="button" [routerLink]="['/user','product',nameOfProduct]"><i class="fa fa-search"></i></button>
+              
             </div>
+
             <div class="lang mt-2 mt-sm-0 lab">
               <app-language-button></app-language-button>
             </div>
@@ -45,9 +49,7 @@
           </div>
 
           <!-- Cart -->
-          <div
-            class="col-12 col-md-4 text-md-end text-center mt-2 lab"
-          >
+          <div class="col-12 col-md-4 text-md-end text-center mt-2 lab">
             <p class="mb-0 d-inline-flex" style="text-align: end">
               <app-login-logout-button></app-login-logout-button>
               <a

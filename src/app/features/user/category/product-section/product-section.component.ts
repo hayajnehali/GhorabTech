@@ -19,8 +19,8 @@ export class ProductSectionComponent extends BaseListComponent<
   }
   override ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.filter.productCategoryId =
-        this.activatedRoute.snapshot.paramMap.get('productCategoryId') ?? null;
+      this.filter.productCategoryId =  this.activatedRoute.snapshot.paramMap.get('productCategoryId') ?? null;
+      this.filter.name =  this.activatedRoute.snapshot.paramMap.get('nameOfProduct') ;
       this.loadData();
     });
   }

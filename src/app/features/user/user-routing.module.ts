@@ -1,35 +1,51 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { ProductListComponent } from './Product/product-list/product-list.component';
-import { ProductCategorySectionComponent } from './category/product-category-section/product-category-section.component';
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ProductSectionComponent } from './category/product-section/product-section.component';
+import { LoginComponent } from '@shared/component/login/login.component';
+import { RegistrationComponent } from '@shared/component/registration/registration.component';
 
-const routes: Routes = [
+const userRoutes: Routes = [
   {
     path: '',
     component: MainComponent,
   },
   {
-    path: 'product',
-    component: ProductListComponent,
+    path: 'product/:nameOfProduct',
+    component: ProductSectionComponent,
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
+  },
+  // {
+  //   path: 'product',
+  //   component: ProductListComponent,
+  // },
   {
     path: 'category',
     loadChildren: () =>
       import('./category/category.module').then((m) => m.CategoryModule),
   },
   {
-    path:'cart',
-    component:CartViewComponent
-  },{
-    path:"pay",
-    component:PaymentComponent
-  }
+    path: 'cart',
+    component: CartViewComponent,
+  },
+  {
+    path: 'pay',
+    component: PaymentComponent,
+  },
+  // أي مسار غير معروف داخل user
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(userRoutes)],
   exports: [RouterModule],
 })
 export class UserRoutingModule {}

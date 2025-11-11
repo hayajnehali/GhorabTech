@@ -14,7 +14,8 @@ export interface JwtPayload {
   exp: number;
   role: string;
   userName: string;
-  Email: string;
+  email: string;
+  certserialnumber: string;
   mobilePhone: string;
   permission: string;
   [key: string]: any;

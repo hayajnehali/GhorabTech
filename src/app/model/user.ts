@@ -11,6 +11,7 @@ export class User {
   confirmPassword!: string;
   phoneNumber?: string;
   phoneNumberConfirmed?: string;
+  //code:string|undefined
 }
 export class UserResult {
   userId?: string;

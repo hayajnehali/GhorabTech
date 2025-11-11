@@ -14,8 +14,7 @@ import {
   provideHttpClient,
 } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AdminModule } from './features/admin/admin.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
 import { Interceptor } from 'Auth/interceptor/auth.interceptor';
 import { AuthService } from '@shared/services/auth.service';
 export function HttpLoaderFactory(http: HttpClient) {
@@ -32,8 +31,7 @@ export function initAuth(authService: AuthService) {
     BrowserModule,
     SharedModule,
     RouterModule,
-    AppRoutingModule,
-    AdminModule,
+    AppRoutingModule, 
     BrowserAnimationsModule, // Required animations module
     ToastrModule.forRoot({
       timeOut: 6000, // Duration of the toast

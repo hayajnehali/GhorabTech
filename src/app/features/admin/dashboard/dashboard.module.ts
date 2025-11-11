@@ -5,12 +5,14 @@ import { SharedModule } from '@shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartLineComponent } from "@shared/component/charts/chart-line/chart-line.component";
 import { SelectYearComponent } from "@shared/component/select-year/select-year.component";
+import { SliderComponent } from './slider/slider.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,

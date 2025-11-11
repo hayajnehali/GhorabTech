@@ -14,13 +14,14 @@ import { environment } from '@shared/environment/environment';
 import { AuthService } from '@shared/services/auth.service';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
-import { SharedModule } from '@shared/shared.module'; 
+import { SharedModule } from '@shared/shared.module';
+import { FormErrorComponent } from "../form-error/form-error.component"; 
 
 @Component({
-    selector: 'app-registration',
-    imports: [CommonModule, SharedModule],
-    templateUrl: './registration.component.html',
-    styleUrl: './registration.component.scss'
+  selector: 'app-registration',
+  imports: [CommonModule, SharedModule, FormErrorComponent],
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent extends BaseComponent implements OnInit {
   private storage = inject(LocalStorageService);
@@ -29,13 +30,20 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
   user: User = new User();
   private readonly token_KEY = environment.token_KEY;
   @Output() notify = new EventEmitter<boolean>();
-
+  //emailVerification: any;
+  //inVerificationCodeStep = false;
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/']);
     }
   }
 
+  // checkVerification(form: NgForm) {
+  //   if (form.invalid) {
+  //     form.control.markAllAsTouched();
+  //     return;
+  //   }
+  // }
   save(form: NgForm) {
     if (form.invalid) {
       form.control.markAllAsTouched();
@@ -56,4 +64,13 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
       },
     });
   }
+  // checkCode(){
+  //   this.userService.checkCode(this.user).subscribe({
+  //     next:()=>{
+
+  //     },complete:()=>{
+        
+  //     }
+  //   })
+  // }
 }

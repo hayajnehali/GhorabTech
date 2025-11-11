@@ -7,15 +7,35 @@ export const authChildGuard: CanActivateChildFn = (route, state) => {
   const authService = inject(AuthService);
   const token = localStorage.getItem('token'); // مثال للتحقق من تسجيل الدخول
 
-  if (token) {
-    // if (authService.isAdmin()) {
-    //   router.navigate(['/admin']); // يعيد توجيه المسؤول إلى لوحة التحكم
-    // }else if (authService.isUser()) {
-    //   router.navigate(['/user']); // يعيد توجيه المستخدم العادي إلى الصفحة الرئيسية
-    // }
-    return true; // يسمح بالدخول إلى كل المسارات الفرعية
-  } else {
-    router.navigate(['/user/login']); // يعيد توجيه المستخدم إذا غير مسموح له
+ 
+
+
+  const adminRoutes = state.url.startsWith('/admin'); // صفحات الإدارة
+  const userProtectedRoutes = ['/user/profile', '/user/settings']; // صفحات المستخدم المحمية
+
+  // إذا المستخدم يحاول دخول صفحة الإدارة بدون تسجيل دخول
+  if (adminRoutes && !token) {
+    router.navigate(['/user/login']);
     return false;
   }
+
+  // إذا المستخدم عادي يحاول دخول صفحة محمية بدون تسجيل دخول
+  if (userProtectedRoutes.includes(state.url) && !token) {
+    router.navigate(['/user/login']);
+    return false;
+  }
+
+  // منع الإدمن من دخول صفحات المستخدم العادي العامة أو المحمية
+  if (token && authService.isAdmin() && state.url.startsWith('/user')) {
+    router.navigate(['/admin/dashboard']);
+    return false;
+  }
+
+  // السماح بالدخول في باقي الحالات (الصفحات العامة لأي شخص)
+  return true;
 };
+
+
+
+
+ 

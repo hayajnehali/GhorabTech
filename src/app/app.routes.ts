@@ -10,20 +10,21 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserLayOutComponent,
+    canActivateChild: [authChildGuard],
     children: [
       {
         path: '',
         loadChildren: () =>
           import('./features/user/user.module').then((m) => m.UserModule),
       },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: RegistrationComponent,
-      },
+      // {
+      //   path: 'login',
+      //   component: LoginComponent,
+      // },
+      // {
+      //   path: 'register',
+      //   component: RegistrationComponent,
+      // },
     ],
   },
   {

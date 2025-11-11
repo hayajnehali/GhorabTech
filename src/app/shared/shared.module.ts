@@ -31,7 +31,7 @@ import { HttpLoaderFactory } from 'app/app.module';
   declarations: [ProductCardComponent, AboutComponent],
   imports: [
     CommonModule,
-    SharedModuleRoutingModule,
+   // SharedModuleRoutingModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

@@ -6,10 +6,11 @@ import { AuthService } from '@shared/services/auth.service';
 import { Auth } from '@models/auth';
 import { SharedModule } from '@shared/shared.module';
 import { BaseComponent } from '@core/base/base-component';
+import { FormErrorComponent } from "../form-error/form-error.component";
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, SharedModule, FormsModule, RouterLink],
+  imports: [CommonModule, SharedModule, FormsModule, RouterLink, FormErrorComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

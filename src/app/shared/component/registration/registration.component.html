@@ -1,24 +1,16 @@
-@if(router.url === '/user/register') {
 <div class="row m-5">
-  <div class="col-md-6 col-12">
-    <div
-      class="d-flex flex-column align-items-center justify-content-center h-100"
-    >
-      <img src="./assets/img/R.png" alt="" />
-    </div>
-  </div>
   <div class="col-12 col-md-6">
     <div
       Class="login-wrapper d-flex align-items-center justify-content-center my-5"
     >
       <div class="">
+        <!-- @if(!inVerificationCodeStep){ -->
         <form #registerForm="ngForm" (ngSubmit)="save(registerForm)" novalidate>
           <h2 class="mb-4 text-titel">
             {{ "general.createUser" | translate }}
           </h2>
           <div class="row">
             <div class="col-12 col-md-6">
-              <!-- الاسم الكامل -->
               <div class="mb-3">
                 <label class="form-label">{{
                   "general.fullName" | translate
@@ -27,19 +19,14 @@
                   type="text"
                   class="form-control"
                   name="fullName"
+                  #fullname="ngModel"
                   [(ngModel)]="user.fullName"
                   required
                 />
-                <div
-                  *ngIf="registerForm.submitted && !user.fullName"
-                  class="text-danger"
-                >
-                  {{ "errors.fullNameRequired" | translate }}
-                </div>
+                <app-form-error [control]="fullname"></app-form-error>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <!-- البريد الإلكتروني -->
               <div class="mb-3">
                 <label class="form-label">{{
                   "general.email" | translate
@@ -51,20 +38,12 @@
                   [(ngModel)]="user.email"
                   required
                   email
+                  #email="ngModel"
                 />
-                <div
-                  *ngIf="
-                    registerForm.submitted &&
-                    registerForm.controls['email']?.invalid
-                  "
-                  class="text-danger"
-                >
-                  {{ "errors.invalidEmail" | translate }}
-                </div>
+                <app-form-error [control]="email"></app-form-error>
               </div>
             </div>
             <div class="col-md-12 col-12">
-              <!-- رقم الهاتف -->
               <div class="mb-3">
                 <label class="form-label">{{
                   "general.phone" | translate
@@ -75,17 +54,12 @@
                   name="phone"
                   [(ngModel)]="user.phoneNumber"
                   required
+                  #phone="ngModel"
                 />
-                <div
-                  *ngIf="registerForm.submitted && !user.phoneNumber"
-                  class="text-danger"
-                >
-                  {{ "errors.phoneRequired" | translate }}
-                </div>
+                <app-form-error [control]="phone"></app-form-error>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <!-- كلمة المرور -->
               <div class="mb-3">
                 <label class="form-label">{{
                   "general.password" | translate
@@ -97,20 +71,12 @@
                   [(ngModel)]="user.password"
                   required
                   minlength="6"
+                  #password="ngModel"
                 />
-                <div
-                  *ngIf="
-                    registerForm.submitted &&
-                    registerForm.controls['password'].invalid
-                  "
-                  class="text-danger"
-                >
-                  {{ "errors.passwordMinLength" | translate }}
-                </div>
+                <app-form-error [control]="password"></app-form-error>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <!-- تأكيد كلمة المرور -->
               <div class="mb-3">
                 <label class="form-label">{{
                   "general.confirmPassword" | translate
@@ -121,7 +87,10 @@
                   name="confirmPassword"
                   [(ngModel)]="user.confirmPassword"
                   required
+                  #confirmpassword="ngModel"
                 />
+
+                <app-form-error [control]="confirmpassword"></app-form-error>
                 <div
                   *ngIf="
                     registerForm.submitted &&
@@ -139,132 +108,48 @@
             {{ "general.register" | translate }}
           </button>
         </form>
+        <!-- }@else{
+        <form
+          #verification="ngForm"
+          (ngSubmit)="checkVerification(verification)"
+          novalidate
+        >
+          <p class="form-label">
+            {{ "general.email-verification" | translate }}
+          </p>
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">{{
+                  "general.code" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="code"
+                  [(ngModel)]="user.code"
+                  required
+                  [maxLength]="6"
+                  minlength="6"
+                  #code="ngModel"
+                />
+                <app-form-error [control]="code"></app-form-error>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              {{ "general.check" | translate }}
+            </button>
+          </div>
+        </form>
+        } -->
       </div>
     </div>
   </div>
-</div>
-
-} @else {
-
-<!-- =========================== -->
-<div
-  [ngClass]="{
-    'login-wrapper d-flex align-items-center justify-content-center my-5':
-      router.url === '/user/register'
-  }"
->
-  <div
-    [ngClass]="{
-      'registr-box shadow p-4 bg-white rounded': router.url === '/user/register'
-    }"
-  >
-    <form #registerForm="ngForm" (ngSubmit)="save(registerForm)" novalidate>
-      <h2 class="mb-4 text-center">{{ "general.createUser" | translate }}</h2>
-
-      <!-- الاسم الكامل -->
-      <div class="mb-3">
-        <label class="form-label">{{ "general.fullName" | translate }}</label>
-        <input
-          type="text"
-          class="form-control"
-          name="fullName"
-          [(ngModel)]="user.fullName"
-          required
-        />
-        <div
-          *ngIf="registerForm.submitted && !user.fullName"
-          class="text-danger"
-        >
-          {{ "errors.fullNameRequired" | translate }}
-        </div>
-      </div>
-
-      <!-- البريد الإلكتروني -->
-      <div class="mb-3">
-        <label class="form-label">{{ "general.email" | translate }}</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          [(ngModel)]="user.email"
-          required
-          email
-        />
-        <div
-          *ngIf="
-            registerForm.submitted && registerForm.controls['email']?.invalid
-          "
-          class="text-danger"
-        >
-          {{ "errors.invalidEmail" | translate }}
-        </div>
-      </div>
-
-      <!-- رقم الهاتف -->
-      <div class="mb-3">
-        <label class="form-label">{{ "general.phone" | translate }}</label>
-        <input
-          type="tel"
-          class="form-control"
-          name="phone"
-          [(ngModel)]="user.phoneNumber"
-          required
-        />
-        <div
-          *ngIf="registerForm.submitted && !user.phoneNumber"
-          class="text-danger"
-        >
-          {{ "errors.phoneRequired" | translate }}
-        </div>
-      </div>
-
-      <!-- كلمة المرور -->
-      <div class="mb-3">
-        <label class="form-label">{{ "general.password" | translate }}</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          [(ngModel)]="user.password"
-          required
-          minlength="6"
-        />
-        <div
-          *ngIf="
-            registerForm.submitted && registerForm.controls['password'].invalid
-          "
-          class="text-danger"
-        >
-          {{ "errors.passwordMinLength" | translate }}
-        </div>
-      </div>
-
-      <!-- تأكيد كلمة المرور -->
-      <div class="mb-3">
-        <label class="form-label">{{
-          "general.confirmPassword" | translate
-        }}</label>
-        <input
-          type="password"
-          class="form-control"
-          name="confirmPassword"
-          [(ngModel)]="user.confirmPassword"
-          required
-        />
-        <div
-          *ngIf="
-            registerForm.submitted && user.confirmPassword !== user.password
-          "
-          class="text-danger"
-        >
-          {{ "errors.passwordMismatch" | translate }}
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary w-100">
-        {{ "general.register" | translate }}
-      </button>
-    </form>
+  <div class="col-md-6 col-12">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center h-100"
+    >
+      <img src="./assets/img/R.png" alt="" />
+    </div>
   </div>
 </div>
-}

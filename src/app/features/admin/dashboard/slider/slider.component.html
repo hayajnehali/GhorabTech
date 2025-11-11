@@ -1,0 +1,39 @@
+<!-- <div class="admin-container">
+  <h2>📸 إدارة السلايدر</h2>
+ 
+  <div class="add-form">
+    <h3>إضافة شريحة جديدة</h3>
+    <input [(ngModel)]="newSlider.title" placeholder="العنوان" />
+    <input [(ngModel)]="newSlider.subtitle" placeholder="العنوان الفرعي" />
+    <textarea [(ngModel)]="newSlider.description" placeholder="الوصف"></textarea>
+    <input [(ngModel)]="newSlider.imageUrl" placeholder="رابط الصورة" />
+    <button (click)="addSlider()">➕ إضافة</button>
+  </div>
+
+  <hr />
+ 
+  <div class="slider-list">
+    <h3>الشرائح الحالية</h3>
+
+    <div *ngFor="let slide of sliders" class="slide-item">
+      <img [src]="slide.imageUrl" width="150" />
+      <div class="slide-info">
+        <h4>{{ slide.title }}</h4>
+        <p>{{ slide.subtitle }}</p>
+        <p>{{ slide.description }}</p>
+
+        <button (click)="startEdit(slide)">✏️ تعديل</button>
+        <button (click)="deleteSlider(slide.id)">🗑️ حذف</button>
+      </div>
+    </div>
+  </div> 
+  <div class="edit-form" *ngIf="editingSlide">
+    <h3>تعديل الشريحة</h3>
+    <input [(ngModel)]="editingSlide.title" placeholder="العنوان" />
+    <input [(ngModel)]="editingSlide.subtitle" placeholder="العنوان الفرعي" />
+    <textarea [(ngModel)]="editingSlide.description" placeholder="الوصف"></textarea>
+    <input [(ngModel)]="editingSlide.imageUrl" placeholder="رابط الصورة" />
+    <button (click)="saveEdit()">💾 حفظ</button>
+    <button (click)="cancelEdit()">❌ إلغاء</button>
+  </div>
+</div> -->

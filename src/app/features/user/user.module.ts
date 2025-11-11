@@ -4,8 +4,7 @@ import { MainComponent } from './main/main.component';
 import { SliderHomeComponent } from './layout/slider-home/slider-home.component';
 import { ProductService } from '@shared/services/product.service';
 import { SharedModule } from '@shared/shared.module';
-import { UserLayOutComponent } from './layout/user-layout/user-layout.component';
-import { ProductListComponent } from './Product/product-list/product-list.component';
+import { UserLayOutComponent } from './layout/user-layout/user-layout.component'; 
 import { UserRoutingModule } from './user-routing.module';
 import { SectionProductComponent } from './Product/section-product/section-product.component';
 import { ServiceBase } from '@shared/services/base.service';
@@ -28,8 +27,7 @@ import { NavbarComponent } from "@shared/component/navbar/navbar.component";
   declarations: [
     MainComponent, 
     SliderHomeComponent,
-    UserLayOutComponent,
-    ProductListComponent,
+    UserLayOutComponent, 
     SectionProductComponent,
     CardSidenavComponent,
     CartViewComponent,

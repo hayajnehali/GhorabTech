@@ -16,4 +16,7 @@ export class UserService extends ServiceBase<User, UserResult, UserFilter> {
    override create(item: User): Observable<any> {
       return this.http.post<any>(this.baseUrl + '/create', item);
     }
+    checkCode(item: User): Observable<any> {
+      return this.http.post<any>(this.baseUrl + '/confirm-email', item);
+    }
 }

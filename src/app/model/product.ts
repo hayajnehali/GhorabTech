@@ -34,7 +34,7 @@ export class ProductResult extends ModelBase {
   productCategory: ProductCategoryResult = new ProductCategoryResult();
   keyAttributeValues?: KeyAttributeValueResult[] = [];
   priceBeforeDiscount?: number;
-  discountRated? : string;
+  discountRated?: string;
   constructor() {
     super();
   }
@@ -42,4 +42,5 @@ export class ProductResult extends ModelBase {
 
 export class ProductFilter extends FilterBase {
   productCategoryId?: string | null;
+  name: string|null|undefined;
 }

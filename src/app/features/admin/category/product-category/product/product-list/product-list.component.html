@@ -1,54 +1,23 @@
-<!-- <div class="container">
-  <div class=""> 
-      <div class="row g-4 category-section" *ngIf="dataSource.data.length > 0">
-        <div class="col-md-4 col-lg-3" *ngFor="let product of dataSource.data">
-          <div class="card product-card border-0" [routerLink]="[product.id]">
-            <div class="category-image-wrapper">
-              <app-image
-                *ngIf="product && product.images && product.images[0]?.guidName"
-                src="{{ product.images[0].guidName }}"
-                [class]="'card-img-top main-img'"
-                alt="product.name"
-              ></app-image>
-              <app-image
-                *ngIf="product && product.images && product.images[1]?.guidName"
-                class="hover-img"
-                src="{{ product.images[1].guidName }}"
-                [class]="'card-img-top hover-img'"
-                alt="product.name"
-              ></app-image>
-            </div>
-            <div class="card-body text-center">
-              <p class="">{{ product.name.local }}</p>
-            </div>
-          </div>
-        </div>
-      </div> 
-        <app-pagination
-          [length]="totalNumberOf"
-          (page)="pageChanged($event)"
-          [pageSizeOptions]="pageSizeOptions"
-          showFirstLastButtons
-        ></app-pagination> 
-    </div>
-  </div> -->
-
-<div class="container">
-  <h3>{{ "product.product-list" | translate }}</h3>
+<div class="container list">
+  <h3 class="text-titel">{{ "product.product-list" | translate }}</h3>
   <div class="btn-container">
-    <button
+    <button *ngIf="canAdd"
       class="btn btn-primary animate__animated animate__fadeIn"
       [routerLink]="['manage']"
     >
       {{ "addProduct" | translate }}
     </button>
   </div>
-  <div *ngIf="hasData">
-    <table mat-table [dataSource]="dataSource">
+  <div *ngIf="hasData"  class="table-responsive">
+    <table mat-table [dataSource]="dataSource" class="table">
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        <td mat-cell *matCellDef="let element">
+          <div class="image-in-table">
+            <app-image [src]="element.images?.[0].guidName"></app-image>
+          </div>
+        </td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
@@ -57,20 +26,29 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element.name?.local }}</td>
       </ng-container>
- 
+
       <!-- price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>
           {{ "general.price" | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.priceBeforeDiscount">
+            <span class="text-muted text-decoration-line-through py-1 px-2">
+              {{ element.priceBeforeDiscount }}</span
+            >/
+          </span>
+          {{ element.price }} {{ "general.JOD" | translate }}
+        </td>
       </ng-container>
       <!-- priceBeforeDiscount Column -->
       <ng-container matColumnDef="priceBeforeDiscount">
         <th mat-header-cell *matHeaderCellDef>
           {{ "general.price-before-discount" | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.priceBeforeDiscount }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{ element.priceBeforeDiscount }}
+        </td>
       </ng-container>
       <!-- count Column -->
       <ng-container matColumnDef="count">
@@ -79,7 +57,7 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element.count }}</td>
       </ng-container>
- 
+
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>
           {{ "general.actions" | translate }}
@@ -88,19 +66,42 @@
           <ul class="list-unstyled d-flex">
             <li
               class="d-flex btn btn-icon"
-              [title]="'general.view' | translate" 
-               [routerLink]="['productView',element.id]"
+              [title]="'general.view' | translate"
+              [routerLink]="[
+                '/admin',
+                'category',
+                element.productCategory.categoryId,
+                'product-category',
+                element.productCategory.productCategoryId,
+                'product',
+                'productView',
+                element.id
+              ]"
             >
-              <mat-icon>visibility</mat-icon>
+              <mat-icon class="menu-icon">visibility</mat-icon>
             </li>
             <li
               class="d-flex btn btn-icon"
-             title="{{'general.edit' | translate}}" [routerLink]="['manage',element.id]"
+              title="{{ 'general.edit' | translate }}"
+              [routerLink]="[
+                '/admin',
+                'category',
+                element.productCategory.categoryId,
+                'product-category',
+                element?.productCategoryId,
+                'product',
+                'manage',
+                element.id
+              ]"
             >
-              <mat-icon>edit</mat-icon>
+              <mat-icon class="menu-icon">edit</mat-icon>
             </li>
-            <li class="d-flex btn btn-icon" title="{{'general.delete' | translate}}" (click)="delete(element.id!)">
-              <mat-icon>delete</mat-icon>
+            <li
+              class="d-flex btn btn-icon"
+              title="{{ 'general.delete' | translate }}"
+              (click)="delete(element.id!)"
+            >
+              <mat-icon class="menu-icon">delete</mat-icon>
             </li>
           </ul>
         </td>

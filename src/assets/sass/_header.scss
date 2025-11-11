@@ -207,14 +207,13 @@
     padding: 0.3rem 0;
     font-size: small;
   }
- 
 }
 .sub-list {
   background-color: $white-color !important;
-  .nav-item{
+  .nav-item {
     padding: 0.3rem 0.3rem;
   }
-  .nav-item:hover{
+  .nav-item:hover {
     background-color: #e8e5e54a;
   }
 }
@@ -233,6 +232,45 @@
   margin: 0px 5px;
   display: flex;
   align-items: center;
+
+  p {
+    color: #b7b7b7;
+    font-size: 15px;
+    border: none;
+    background: transparent;
+    position: absolute;
+    right: 0%;
+    top: 16%;
+    height: 100%;
+    margin: 0;
+    width: 15%;
+  }
+  button {
+    color: #b7b7b7;
+    font-size: 15px;
+    border: none;
+    background: transparent;
+    position: absolute;
+    right: 0%;
+    top: 4%;
+    height: 100%;
+    margin: 0;
+    width: 15%;
+  }
+}
+
+/* عند الاتجاه العربي (RTL) */
+[dir="rtl"] .search-wrapper {
+  p {
+    left: 0%;
+    right: auto; /* مهم لتعطيل right القديمة */
+    top: 16%;
+  }
+  button {
+    left: 4%;
+    right: auto; /* مهم لتعطيل right القديمة */
+    top: 4%;
+  }
 }
 
 /* حقل البحث */
