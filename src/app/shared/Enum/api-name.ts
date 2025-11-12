@@ -7,5 +7,6 @@ cartItem="cartItem",
 user="user",
 payment="payment",
 auth="auth",
-keyAttribute="keyAttribute"
+keyAttribute="keyAttribute",
+slider="slider"
 }

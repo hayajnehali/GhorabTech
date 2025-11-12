@@ -1,4 +1,8 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -14,7 +18,7 @@ import {
   provideHttpClient,
 } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Interceptor } from 'Auth/interceptor/auth.interceptor';
 import { AuthService } from '@shared/services/auth.service';
 export function HttpLoaderFactory(http: HttpClient) {
@@ -25,13 +29,14 @@ export function initAuth(authService: AuthService) {
 }
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule,
     SharedModule,
     RouterModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     BrowserAnimationsModule, // Required animations module
     ToastrModule.forRoot({
       timeOut: 6000, // Duration of the toast

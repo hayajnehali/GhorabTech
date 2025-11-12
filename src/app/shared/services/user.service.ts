@@ -11,8 +11,7 @@ import { Observable } from 'rxjs';
 export class UserService extends ServiceBase<User, UserResult, UserFilter> { 
   constructor(http: HttpClient) {
     super(http, apiName.user);
-  }
- 
+  } 
    override create(item: User): Observable<any> {
       return this.http.post<any>(this.baseUrl + '/create', item);
     }

@@ -8,7 +8,11 @@ export const routesDashboard: Routes = [
   component: DashboardComponent,
  },
  {
-  path:'slider',
+  path:'slider-manage',
+  component:SliderComponent
+ },
+ {
+  path:'slider-manage/:id',
   component:SliderComponent
  }
 ];

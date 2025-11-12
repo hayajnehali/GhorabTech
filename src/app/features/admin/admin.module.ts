@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminModuleRoutingModule } from './admin-routing.module'; 
+import { AdminModuleRoutingModule } from './admin-routing.module';
 import { AdminLayOutComponent } from './layout/admin-layout/admin-layout.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from '@shared/pipe/truncate.pipe';
@@ -11,8 +11,8 @@ import { MultiImageUploadComponent } from '@shared/component/img/multi-image-upl
 import { AdminHeaderSectionComponent } from './layout/admin-header-section/admin-header-section.component';
 import { LoginLogoutButtonComponent } from '@shared/component/login-logout-button/login-logout-button.component';
 import { LanguageButtonComponent } from '@shared/component/language-button/language-button.component';
-
-@NgModule({
+ 
+@NgModule({ 
   declarations: [AdminLayOutComponent, TruncatePipe],
   imports: [
     CommonModule,

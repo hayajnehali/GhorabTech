@@ -1,39 +1,92 @@
-<!-- <div class="admin-container">
-  <h2>📸 إدارة السلايدر</h2>
- 
-  <div class="add-form">
-    <h3>إضافة شريحة جديدة</h3>
-    <input [(ngModel)]="newSlider.title" placeholder="العنوان" />
-    <input [(ngModel)]="newSlider.subtitle" placeholder="العنوان الفرعي" />
-    <textarea [(ngModel)]="newSlider.description" placeholder="الوصف"></textarea>
-    <input [(ngModel)]="newSlider.imageUrl" placeholder="رابط الصورة" />
-    <button (click)="addSlider()">➕ إضافة</button>
-  </div>
+<div class="container manage">
+  <h3 class="title">
+    @if(isAdd){
+    {{ "slider.add-slider" | translate }}
+    }@else {
+    {{ "slider.edit-slider" | translate }}
+    }
+  </h3>
+  <form (ngSubmit)="save(sliderForm)" #sliderForm="ngForm">
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="titleEn">{{ "general.titleEn" | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titleEn"
+          required
+          name="titleEn"
+          maxlength="40"
+          [(ngModel)]="entity.title.english"
+          #titleEn="ngModel"
+        />
+        <app-form-error [control]="titleEn"></app-form-error>
+      </div>
+      <div class="form-group col-6">
+        <label for="titleAr">{{ "general.titleAr" | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titleAr"
+          required
+          name="titleAr"
+          maxlength="40"
+          [(ngModel)]="entity.title.arabic"
+        />
+      </div>
+      <div class="form-group col-6">
+        <label for="descriptionAr">{{
+          "general.descriptionAr" | translate
+        }}</label>
+        <textarea
+          class="form-control"
+          id="descriptionEn"
+          [rows]="3"
+          name="descriptionAr"
+          maxlength="100"
+          [(ngModel)]="entity.description.arabic"
+          #descriptionAr="ngModel"
+        ></textarea>
+        <app-form-error [control]="descriptionAr"></app-form-error>
+      </div>
+      <div class="form-group col-6">
+        <label for="descriptionEn">{{
+          "general.descriptionEn" | translate
+        }}</label>
+        <textarea
+          class="form-control"
+          id="descriptionEn"
+          [rows]="3"
+          name="descriptionEn"
+          maxlength="100"
+          [(ngModel)]="entity.description.english"
+          #descriptionEn="ngModel"
+        ></textarea>
+        <app-form-error [control]="descriptionEn"></app-form-error>
+      </div>
 
-  <hr />
- 
-  <div class="slider-list">
-    <h3>الشرائح الحالية</h3>
-
-    <div *ngFor="let slide of sliders" class="slide-item">
-      <img [src]="slide.imageUrl" width="150" />
-      <div class="slide-info">
-        <h4>{{ slide.title }}</h4>
-        <p>{{ slide.subtitle }}</p>
-        <p>{{ slide.description }}</p>
-
-        <button (click)="startEdit(slide)">✏️ تعديل</button>
-        <button (click)="deleteSlider(slide.id)">🗑️ حذف</button>
+      <div class="form-group">
+        <app-multi-image-upload
+          name="images"
+          required
+          #images="ngModel"
+          [(ngModel)]="entity.images"
+        ></app-multi-image-upload>
+        <app-form-error [control]="images"></app-form-error>
+        @if(entity.images.length>1){
+        <small class="text-danger">
+          {{ "slider.slider-image" | translate }}
+        </small>
+        }
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" (click)="goBack()">
+          {{ "general.back" | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary mx-2" [disabled]="entity.images.length>1">
+          {{ "general.save" | translate }}
+        </button>
       </div>
     </div>
-  </div> 
-  <div class="edit-form" *ngIf="editingSlide">
-    <h3>تعديل الشريحة</h3>
-    <input [(ngModel)]="editingSlide.title" placeholder="العنوان" />
-    <input [(ngModel)]="editingSlide.subtitle" placeholder="العنوان الفرعي" />
-    <textarea [(ngModel)]="editingSlide.description" placeholder="الوصف"></textarea>
-    <input [(ngModel)]="editingSlide.imageUrl" placeholder="رابط الصورة" />
-    <button (click)="saveEdit()">💾 حفظ</button>
-    <button (click)="cancelEdit()">❌ إلغاء</button>
-  </div>
-</div> -->
+  </form>
+</div>

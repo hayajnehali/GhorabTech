@@ -1,0 +1,53 @@
+<div class="container list listOfSlider">
+  <!-- <h3 class="text-titel">{{ "slidr.slider-list" | translate }}</h3>
+
+  <div class="btn-container">
+    <button
+      class="btn btn-primary"
+      [routerLink]="['/admin/dashboard/slider-manage']"
+    >
+      {{ "add" | translate }}
+    </button>
+  </div> -->
+
+  <swiper-container
+    slides-per-view="1"
+    space-between="20"
+    navigation="true"
+    pagination="true"
+    class="my-swiper"
+    speed="3000"
+    loop="true"
+    autoplay='{
+    "delay": 3000,
+    "disableOnInteraction": false
+  }'
+  >
+    @for (item of dataSource.data; track $index) {
+    <swiper-slide>
+      <div class="position-absolute">
+        <a [routerLink]="['/admin','dashboard','slider-manage',item.id]"><mat-icon class="menu-icon">edit</mat-icon></a>
+        <a (click)="delete(item.id!)"><mat-icon class="menu-icon">delete</mat-icon></a>
+      </div>
+      <div
+        class="hero__items set-bg"
+        [ngStyle]="{
+      'background-image': 'url(' + assetsUrl + item.images[0].guidName + ')'
+        }"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+              <div class="hero__text">
+                <h6>{{item.title.local}}</h6>
+                <h2>{{item.title.local}}</h2>
+                <p>{{item.description.local}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></swiper-slide
+    >
+    }
+  </swiper-container>
+</div>

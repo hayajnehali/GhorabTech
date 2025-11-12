@@ -100,10 +100,12 @@
     "email-verification": "A verification link has been sent to your email. Please check your inbox to activate your account.",
     "check": "Check",
     "code": "Code",
-    "recipient-name":"Recipient's name",
-    "products-sold":"Products Sold",
-    "users":"Users",
-    "result-for":"Result For"
+    "recipient-name": "Recipient's name",
+    "products-sold": "Products Sold",
+    "users": "Users",
+    "result-for": "Result For",
+    "titleAr": "Title (Arabic)",
+    "titleEn": "Title (English)"
   },
   "validation": {
     "required": "This field is required",
@@ -248,7 +250,17 @@
     "status": "Status",
     "amount": "Amount"
   },
+  "upload": {
+    "maxFiles": "Only {{count}} images are allowed",
+    "maxSize": "File {{name}} is larger than {{size}} MB",
+    "invalidType": "File {{name}} is not an allowed image"
+  },
+  "slider": {
+    "add-slider": "Add Slider",
+    "edit-slider": "Edit Slider",
+    "slider-image": "The slideshow should contain only one image."
+  },
   "backend": {
-    "invalid":"Invalid"
+    "invalid": "Invalid"
   }
 }

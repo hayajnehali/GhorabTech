@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCategorySectionComponent } from './product-category-section/product-category-section.component';
 import { SharedModule } from '@shared/shared.module';
@@ -9,8 +9,11 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ReviewsSectionComponent } from "../user-shared-section/reviews-section/reviews-section.component";
 import { PaginationComponent } from "@shared/component/pagination/pagination.component";
-
+import { Swiper } from 'swiper';
+import { register } from 'swiper/element/bundle';
+register();
 @NgModule({
+   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     ProductCategorySectionComponent, 
     ProductSectionComponent, ProductViewComponent, 

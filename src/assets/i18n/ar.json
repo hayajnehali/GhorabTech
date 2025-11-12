@@ -102,10 +102,12 @@
     "email-verification": "تم إرسال رابط تفعيل إلى بريدك الإلكتروني، الرجاء التحقق من البريد لتفعيل حسابك.",
     "check": "تَحَقّق",
     "code": "رمز",
-    "recipient-name":"أسم المستلم",
-    "products-sold":"المنتجات المباعه",
-    "users":"مستخدمين",
-    "result-for":"نتائج ل"
+    "recipient-name": "أسم المستلم",
+    "products-sold": "المنتجات المباعه",
+    "users": "مستخدمين",
+    "result-for": "نتائج ل",
+    "titleAr": "ألعنوان بالعربية",
+    "titleEn": "ألعنوان بالانجليزية"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -250,7 +252,17 @@
     "status": "الحالة",
     "amount": "المبلغ"
   },
+  "upload": {
+    "maxFiles": "مسموح فقط {{count}} صور",
+    "maxSize": "الملف {{name}} أكبر من {{size}} ميغابايت",
+    "invalidType": "الملف {{name}} ليس صورة مسموحة"
+  },
+  "slider": {
+    "add-slider": "إضافة شريط تمرير",
+    "edit-slider": "تعديل شريط التمرير",
+    "slider-image": "يجب أن يحتوي شريط الشرائح على صورة واحدة فقط"
+  },
   "backend": {
-    "Invalid":"غير صالح"
+    "Invalid": "غير صالح"
   }
 }

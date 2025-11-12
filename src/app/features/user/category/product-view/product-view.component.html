@@ -8,53 +8,25 @@
       </h3>
     </div>
     <div class="col-md-6 image-gallery">
-      <div
-        *ngIf="product.images && product.images.length > 0"
-        id="productImageCarousel"
-        class="carousel slide w-100"
-        data-bs-ride="carousel"
+      <swiper-container
+        slides-per-view="1"
+        space-between="20"
+        pagination="true"
+        navigation="true"
+        speed="3000"
+        loop="true"
+        class="product-image-wrapper"
+        autoplay='{
+                  "delay": 3000,
+                  "disableOnInteraction": false
+                }'
       >
-        <div class="carousel-inner">
-          <div
-            *ngFor="let image of product.images; let i = index"
-            class="carousel-item"
-            [class.active]="i === 0"
-          >
-            <app-image
-              [src]="image.guidName"
-              [class]="'img'"
-              alt="Thumbnail Image"
-            ></app-image>
-          </div>
-        </div>
-
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#productImageCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#productImageCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <div class="row w-100 thumbnail-gallery">
-        <div
-          *ngFor="let image of product.images; let i = index"
-          class="col-2 p-1"
-        >
-          <app-image [src]="image.guidName" alt="Thumbnail Image"></app-image>
-        </div>
-      </div>
+        @for (item of product.images; track $index) {
+        <swiper-slide>
+          <app-image [src]="item.guidName" alt="Thumbnail Image"></app-image>
+        </swiper-slide>
+        }
+      </swiper-container>
     </div>
 
     <div class="col-md-6 product-info">
@@ -109,11 +81,11 @@
 
           <div class="d-flex flex-wrap gap-3">
             @for (val of item.keyAttributeValues; track $index) {
-            <div class="form-check-label d-flex align-items-center gap-2"> 
+            <div class="form-check-label d-flex align-items-center gap-2">
               <input
                 type="radio"
-                name="{{ val.id??'' + $index }}"
-                [value]="val"  
+                name="{{ val.id ?? '' + $index }}"
+                [value]="val"
                 (change)="onAttributeSelected(item, val)"
               />
               <span class=""> {{ val.value.local }}</span>

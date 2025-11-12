@@ -9,3 +9,6 @@ export class ProductImage extends Images {
 export class CategoryImage  extends Images{
   CategoryId?: string;
 }
+export class SliderImage  extends Images{
+  sliderId?: string;
+}

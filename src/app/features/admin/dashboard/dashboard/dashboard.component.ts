@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CartItemFilter } from '@models/cart-item';
 import { ChartResult, ChartResultFilter } from '@models/chart-result';
 import { GroupByChartResult } from '@shared/Enum/group-by-chart-result';
-import { CartItemService } from '@shared/services/cart-item.service';
-import { CartService } from '@shared/services/cart.service';
+import { CartItemService } from '@shared/services/cart-item.service'; 
 
 @Component({
   selector: 'app-dashboard',

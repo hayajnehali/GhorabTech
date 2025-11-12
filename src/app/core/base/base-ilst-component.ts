@@ -41,10 +41,14 @@ export abstract class BaseListComponent<
         this.totalNumberOf = data.totalNumberOf;
         this.loading = true;
       },
-      complete: () => {},
+      complete: () => {
+        this.processAfterComplete()
+      },
       error: (err) => {},
     });
     this.subscribe(sub);
+  }
+  processAfterComplete() { 
   }
 
   delete(id: string) {

@@ -1,4 +1,10 @@
-import { Component, inject, DOCUMENT, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  inject,
+  DOCUMENT,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '@shared/environment/environment';
 import { SpinnerService } from '@shared/services/spinner.service';
@@ -7,16 +13,18 @@ import { SpinnerService } from '@shared/services/spinner.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  standalone: false,
+  standalone: false, 
 })
 export class AppComponent {
   title = 'angularProject';
   language = environment.language_KEY;
   protected document = inject(DOCUMENT);
-  //spinnerService = inject(SpinnerService);
+  spinnerService = inject(SpinnerService);
   constructor(
-    private translate: TranslateService
-  ) {
+    private translate: TranslateService,
+   // private cdr: ChangeDetectorRef
+  ) {}
+  ngOnInit() {
     const storedLanguage = localStorage.getItem(this.language);
     if (storedLanguage) {
       this.translate.setDefaultLang(storedLanguage);
@@ -25,11 +33,16 @@ export class AppComponent {
       this.translate.setDefaultLang('ar');
       this.translate.use('ar');
     }
+  }
+  ngAfterViewInit(): void {
+    const storedLanguage = localStorage.getItem(this.language);
     this.document.documentElement.setAttribute(
       'dir',
       storedLanguage === 'en' ? 'ltr' : 'rtl'
     );
-  } 
+    // هذا يمنع NG0100 عند تحميل التطبيق
+   // this.cdr.detectChanges();
+  }
   // Method to change language
   changeLanguage(language: string) {
     this.translate.use(language);

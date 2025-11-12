@@ -44,7 +44,8 @@
           <mat-icon>menu</mat-icon>
         </span>
       </a>
-      @for (r of routesList; track $index) { @if
+      @for (r of routesList; track $index) { 
+        @if
       (r.data?.['showInSidebar']??false) {
       <a mat-list-item>
         <span class="entry" [routerLink]="[r.path]">

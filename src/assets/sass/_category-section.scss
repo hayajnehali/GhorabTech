@@ -94,6 +94,25 @@
         }
       }
     }
+    .product-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2%;
+      width: 100%;
+      height: 300px;
+
+      .main-img,
+      .hover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        display: block;
+      }
+
+   
+     
+    }
     .card-body {
       text-transform: capitalize;
       .price {

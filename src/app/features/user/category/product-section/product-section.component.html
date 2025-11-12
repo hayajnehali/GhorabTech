@@ -68,10 +68,6 @@
       </div>
       <div class="col-md-3 col-sm-0"></div>
       <div class="col-md-9 col-sm-12">
-        <!-- <p class="text-muted" *ngIf="hasData">
-          {{ dataSource.data[0].category.description?.local}}
-        </p> -->
-
         <div
           class="row g-4 category-section"
           *ngIf="dataSource.data.length > 0"
@@ -81,30 +77,35 @@
             *ngFor="let product of dataSource.data"
           >
             <div class="card product-card border-0" [routerLink]="[product.id]">
-              <div class="discountRated" *ngIf="product.discountRated">
-                {{ product.discountRated }}
-              </div>
-              <div class="category-image-wrapper">
-                <app-image
-                  *ngIf="
-                    product && product.images && product.images[0]?.guidName
-                  "
-                  src="{{ product.images[0].guidName }}"
-                  [class]="'card-img-top main-img'"
-                  alt="product.name"
-                ></app-image>
-                <app-image
-                  *ngIf="
-                    product && product.images && product.images[1]?.guidName
-                  "
-                  class="hover-img"
-                  src="{{ product.images[1].guidName }}"
-                  [class]="'card-img-top hover-img'"
-                  alt="product.name"
-                ></app-image>
+              <div class="product-image-wrapper">
+                <swiper-container
+                  slides-per-view="1"
+                  space-between="20"
+                  pagination="true"
+                  class="my-swiper"
+                  speed="3000"
+                  loop="true"
+                  autoplay='{
+                  "delay": 3000,
+                  "disableOnInteraction": false
+                }'
+                >
+                  @for (item of product.images; track $index) {
+                  <swiper-slide>
+                    <div class="discountRated" *ngIf="product.discountRated">
+                      {{ product.discountRated }}
+                    </div>
+                    <app-image
+                      src="{{ item.guidName }}"
+                      [class]="'card-img-top main-img'"
+                      alt="product.name"
+                    ></app-image>
+                  </swiper-slide>
+                  }
+                </swiper-container>
               </div>
               <div class="card-body text-center">
-                <div class="">{{ product.name.local }}</div>
+                <div class=""><p class="text-truncate fs-6 fs-sm-5 fs-md-4 fs-lg-3">{{ product.name.local }}</p></div>
                 <div class="price">
                   {{ "general.JOD" | translate }} {{ product.price }}
                 </div>
@@ -114,13 +115,6 @@
         </div>
       </div>
       <div class="col-12">
-        <!-- <mat-paginator *ngIf="hasData" class="mat-paginator"
-          [length]="totalNumberOf"
-          (page)="pageChanged($event)" 
-          [pageSizeOptions]="pageSizeOptions"
-          showFirstLastButtons
-        ></mat-paginator>  -->
-
         <app-pagination
           [length]="totalNumberOf"
           (page)="pageChanged($event)"

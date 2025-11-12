@@ -1,18 +1,17 @@
-
-import { Component, inject, DOCUMENT } from '@angular/core';
+import { Component, DOCUMENT, inject } from '@angular/core';
 import { BaseListComponent } from '@core/base/base-ilst-component';
-import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 import { Slider, SliderFilter, sliderResult } from '@models/slider';
 import { environment } from '@shared/environment/environment';
 import { SliderService } from '@shared/services/slider.service';
- 
+
 @Component({
-    selector: 'app-slider-home',
-    templateUrl: './slider-home.component.html',
-    styleUrl: './slider-home.component.scss',
-    standalone: false
+  selector: 'app-slider-list',
+  standalone: false,
+  templateUrl: './slider-list.component.html',
+  styleUrl: './slider-list.component.scss',
 })
-export class SliderHomeComponent extends BaseListComponent<
+
+export class SliderListComponent extends BaseListComponent<
   Slider,
   sliderResult,
   SliderFilter
@@ -22,8 +21,11 @@ export class SliderHomeComponent extends BaseListComponent<
   constructor(private sliderService: SliderService) {
     super(sliderService, SliderFilter); 
   }
-  protected document = inject(DOCUMENT); 
-  links: SocialLink[] = SOCIAL_LINKS;
 
+ override processAfterComplete(){
+
+  }
+  override ngAfterViewInit(): void {
  
+  }
 }

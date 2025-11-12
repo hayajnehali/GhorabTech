@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductListComponent } from './category/product-category/product/product-list/product-list.component';
+import { SliderComponent } from './dashboard/slider/slider.component';
+import { SliderListComponent } from './dashboard/slider-list/slider-list.component';
 export const routesAdmin: Routes = [
   {
     path: '',
@@ -16,6 +18,15 @@ export const routesAdmin: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     data: {
       label: 'dashboard.dashboard',
+      icon: 'analytics',
+      showInSidebar: true,
+    },
+  },
+  {
+    path: 'slider-list',
+    component: SliderListComponent,
+    data: {
+      label: 'slider.sliders',
       icon: 'analytics',
       showInSidebar: true,
     },
@@ -60,7 +71,7 @@ export const routesAdmin: Routes = [
       showInSidebar: true,
     },
   },
-    // أي مسار غير معروف داخل user
+  // أي مسار غير معروف داخل user
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

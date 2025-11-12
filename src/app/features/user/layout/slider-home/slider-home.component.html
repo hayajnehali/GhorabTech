@@ -1,60 +1,43 @@
 <!-- Hero Section Begin -->
-<ng-container ngSkipHydration>
-  <section class="hero">
-    <div class="hero__slider owl-carousel">
+  <div class="listOfSlider">
+  <swiper-container
+    slides-per-view="1"
+    space-between="20"
+    navigation="true"
+    pagination="true"
+    class="my-swiper"
+    speed="3000"
+    loop="true"
+    autoplay='{
+    "delay": 3000,
+    "disableOnInteraction": false
+  }'
+  >
+    @for (item of dataSource.data; track $index) {
+    <swiper-slide>
       <div
         class="hero__items set-bg"
         [ngStyle]="{
-          'background-image':
-            'url(assets/img/hero/380a0558-d7d3-4fbf-bc0d-1f987fb6fdb3.png)'
+          'background-image': 'url(' + assetsUrl + item.images[0].guidName + ')'
         }"
       >
         <div class="container">
           <div class="row">
             <div class="col-xl-5 col-lg-7 col-md-8">
               <div class="hero__text">
-                <h6>{{ "general.slider-subtitle" | translate }}</h6>
-                <h2>{{ "general.slider-title" | translate }}</h2>
-                <p>{{ "general.slider-description" | translate }}</p>
-                <div class="hero__social">
-                  <a
-                    [href]="item.url"
-                    *ngFor="let item of links"
-                    target="_blank"
-                    ><i [class]="item.icon"></i
-                  ></a>
-                </div>
+                <h6>{{ item.title.local }}</h6>
+                <h2>{{ item.title.local }}</h2>
+                <p>{{ item.description.local }}</p>
+              </div>
+              <div class="hero__social">
+                <a [href]="item.url" *ngFor="let item of links" target="_blank"
+                  ><i [class]="item.icon"></i
+                ></a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="hero__items set-bg"
-        [ngStyle]="{
-          'background-image': 'url(assets/img/hero/pexels-zvolskiy-1805597.jpg)'
-        }"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-5 col-lg-7 col-md-8">
-              <div class="hero__text">
-                <h6>{{ "general.slider-subtitle" | translate }}</h6>
-                <h2>{{ "general.slider-title" | translate }}</h2>
-                <p>{{ "general.slider-description" | translate }}</p>
-                <div class="hero__social">
-                  <a
-                    [href]="item.url"
-                    *ngFor="let item of links"
-                    target="_blank"
-                    ><i [class]="item.icon"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</ng-container>
+        </div></div
+    ></swiper-slide>
+    }
+  </swiper-container>
+</div> 
