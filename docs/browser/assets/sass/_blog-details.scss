@@ -1,6 +1,13 @@
 /*---------------------
   Blog Hero
 -----------------------*/
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
 .blog-hero {
     background: #f3f2ee;
     padding-top: 125px;
@@ -266,7 +273,7 @@
             font-size: 15px;
             color: #b7b7b7;
             margin-bottom: 30px;
-            @include transition(all, .3s);
+            @include m.transition(all, .3s);
         
             &::placeholder {
               color: #b7b7b7;
@@ -287,7 +294,7 @@
             color: #b7b7b7;
             margin-bottom: 24px;
             resize: none;
-            @include transition(all, .3s);
+            @include m.transition(all, .3s);
         
             &::placeholder {
               color: #b7b7b7;

@@ -1,8 +1,32 @@
 {
+  "uploadedImages": "Uploaded Images :",
+  "image": "Image",
+  "descriptionEn": "Description (English)",
+  "descriptionAr": "Description (Arabic)",
+  "selectProductCategory": "Select Product Category",
+  "createProduct": "Create Product",
+  "updateProduct": "Update Product",
+  "addProduct": "Add Product",
+  "add": "Add",
   "general": {
+    "no-data": "No Data Available",
+    "year": "Year",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "select-year": "Select Year",
+    "select-month": "Select Month",
+    "details": " Details",
+    "image": "Image",
+    "search": "Search",
+    "price": "Price",
+    "count": "Count",
     "name": "Name",
     "nameAr": "Name (Arabic)",
     "nameEn": "Name (English)",
+    "description": "Description",
+    "descriptionAr": "Description (Arabic)",
+    "descriptionEn": "Description (English)",
     "dashboard": "Dashboard",
     "ar": "AR",
     "en": "EN",
@@ -13,20 +37,257 @@
     "actions": "Actions",
     "view": "View",
     "edit": "Edit",
-    "delete":"Delete"
+    "delete": "Delete",
+    "login": "Login",
+    "card": "Card",
+    "contactus": "Contact Us",
+    "about": "About",
+    "product-type": "Product Type",
+    "show-more": "Show More",
+    "upload-images": "Upload Images",
+    "save": "Save",
+    "back": "Back",
+    "filter-by": "Filter By",
+    "home": "Home",
+    "JOD": "JOD",
+    "remove": "Remove",
+    "total": "Total",
+    "success-message": "The action was completed successfully",
+    "success": "Success",
+    "subtotal": "Subtotal",
+    "register": "Register",
+    "createUser": "Create New Account",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "recipient-information": "Recipient Information",
+    "phoneNumber": "Phone Number",
+    "addressLine": "Address Line",
+    "city": "City",
+    "stateOrProvince": "State / Province",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "notes": "Notes",
+    "user-name": "User Name",
+    "donot-have-account": "Don't have an account?",
+    "do-have-account": "Do You have an account?",
+    "usernameError": "Username is required and valid.",
+    "passwordError": "Password is required.",
+    "logout": "Logout",
+    "showInMain": "Show In Main",
+    "slider-subtitle": "Your Perfect Gift",
+    "slider-title": "Exclusive Collection of Watches, Perfumes, Flowers & Accessories",
+    "slider-description": "Discover carefully selected gifts, from luxurious perfumes and stylish watches to chocolates, cakes, and flowers, making every occasion truly special.",
+    "item-per-page": "Item per page",
+    "first": "First",
+    "previous": "Previous",
+    "next": "Next",
+    "last": "Last",
+    "price-before-discount": "Price Before Discount",
+    "create-date": "Create Date",
+    "reset": "Reset",
+    "quantity": "Quantity",
+    "number-sales": "Number of Sales",
+    "sales-by-year": "Sales by Year",
+    "sales-by-month": "Sales by Month",
+    "delivery-service": "Delivery to most areas of the Hashemite Kingdom of Jordan",
+    "whatsAppNumber": "Contact via WhatsApp",
+    "select-all-attributes": "Please select all product attributes before adding to cart",
+    "error": "Error",
+    "info": "Info",
+    "login-error": "Login failed. Please check email and password.",
+    "email-verification": "A verification code has been sent to your email. Please check your inbox to activate your account.",
+    "check": "Check",
+    "code": "Code",
+    "recipient-name": "Recipient's name",
+    "products-sold": "Products Sold",
+    "users": "Users",
+    "result-for": "Result For",
+    "titleAr": "Title (Arabic)",
+    "titleEn": "Title (English)",
+    "out-of-stock": "Out Of Stock",
+    "signup": "Sign Up",
+    "signin": "Sign In"
   },
-  "uploadedImages":"Uploaded Images :",
-  "nameAr": "Name (Arabic)",
-  "nameEn": "Name (English)"  , 
-  "count":"Count",
-  "price":"Price",
-  "image":"Image",
-  "descriptionEn":"Description (English)",
-  "descriptionAr":"Description (Arabic)",
-  "selectProductCategory":"Select Product Category",
-  "createProduct":"Create Product",
-  "updateProduct":"Update Product",
-  "addProduct":"Add Product",
-  "add":"Add",
-  "productCategory":"Product Category"
+  "validation": {
+    "required": "This field is required",
+    "minlength": "This field is too short (minimum is {{requiredLength}} characters)",
+    "maxlength": "This field is too long (maximum is {{requiredLength}} characters)",
+    "email": "Please enter a valid email address",
+    "pattern": "Invalid format",
+    "price-must-be-less-than-before-discount": "Current Price must be less than before discount",
+    "informational-message": "This is an informational message!",
+    "error": "Error",
+    "info": "Info",
+    "warning-message": "This is a warning message!",
+    "warning": "Warning"
+  },
+  "errors": {
+    "fullNameRequired": "Full name is required",
+    "invalidEmail": "Invalid email address",
+    "phoneRequired": "Phone number is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordMismatch": "Passwords do not match",
+    "cityRequired": "City Required"
+  },
+  "perfume": {
+    "perfume": "The most luxurious perfumes"
+  },
+  "inquiries-section": {
+    "title": "Your Inquiries, Our Priority",
+    "subtitle": "Whether you’re tracking an order, seeking a unique gift, or have general questions, Rusul team is here to assist.",
+    "phone": {
+      "title": "PHONE",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "whatsapp": {
+      "title": "WHATSAPP",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "email": {
+      "title": "EMAIL",
+      "text": "For personalized requests or specific needs, share your thoughts, and let the Rusul team craft a tailored solution for you. Your satisfaction is our commitment."
+    },
+    "gift": {
+      "title": "Did you know? With Rusul, you get to see your gift first!",
+      "text": "We’ll share a preview photo of your beautifully prepared gift, making sure it’s perfect before it reaches their hands."
+    },
+    "follow-us": "FOLLOW US"
+  },
+  "reviews-section": {
+    "title": "Flower Delivery Amman Jordan | Gifts Online | Send Flowers To Amman And Jordan",
+    "subtitle": "The top rated service for Flower Delivery in Amman and Jordan",
+    "fb": {
+      "title": "Rusul Flower & Gift Delivery",
+      "text": "4.8 Stars - Based on 680 User Reviews"
+    },
+    "google": {
+      "title": "Rusul Flowers & Gifts",
+      "text": "4.8 Stars - Based on +100 User Reviews"
+    },
+    "delivery": {
+      "title": "FREE AND SAME-DAY*",
+      "text": "FLOWER DELIVERY IN AMMAN, IRBID, ZARQA, ALSALT, MADABA, AJLUN, JERASH & MAFRAQ",
+      "note": "* Orders above 100 JOD"
+    }
+  },
+  "footer": {
+    "terms": "TERMS & CONDITIONS",
+    "faqs": "FAQS",
+    "about": "ABOUT US",
+    "copyright": "Copyright 2025 @Rusul.me",
+    "arabic": "العربية",
+    "english": "English"
+  },
+  "category": {
+    "category": "Main Categories",
+    "add-category": "Add Category",
+    "edit-category": "Edit Category",
+    "category-list": "Category List",
+    "add-product-category": "Add Product Category",
+    "edit-product-category": "Edit Product Category",
+    "subCategory": "Types"
+  },
+  "productCategory": {
+    "product-category-list": "Product Category List"
+  },
+  "product": {
+    "product-list": "Product List",
+    "product-description": " Product Description",
+    "options-price": "Options Price",
+    "order-now": "Order Now",
+    "product-details": "Product Details",
+    "view-product": "View Product",
+    "product-name": "Product Name"
+  },
+  "cart": {
+    "review-your-cart": "Review Your Cart",
+    "checkout": "Checkout",
+    "discover-more-products": "Discover More Products",
+    "add-to-cart": "The product has been added to the shopping cart",
+    "continue-shopping": "Continue Shopping",
+    "viewCart": "View Cart",
+    "delete-cart": "Delete Cart",
+    "failed-to-create-cart": "Failed To Create Cart",
+    "cart-list": "Cart List",
+    "order-exit-status": "Order Exit Status",
+    "payment-status": "Payment Status",
+    "cart-item-list": "Cart Item List",
+    "payment-method": "Payment Method"
+  },
+  "keyAttribute": {
+    "key-attribute": "Key Attribute",
+    "add-key-attribute": "Add Key Attribute",
+    "edit-key-attribute": "Edit Key Attribute",
+    "key-attribute-list": "Key Attribute List"
+  },
+  "keyAttributeValue": {
+    "key-attribute-value": "Key Attribute Value",
+    "add-key-attribute-value": "Add Key Attribute Value",
+    "edit-key-attribute-value": "Edit Key Attribute Value",
+    "key-attribute-value-list": "Key Attribute Value List"
+  },
+  "orderExitStatus": {
+    "Pending": "Pending",
+    "Processing": "Processing",
+    "Shipped": "Shipped",
+    "InTransit": "InTransit",
+    "Delivered": "Delivered",
+    "Rejected": "Rejected",
+    "Cancelled": "Cancelled",
+    "Returned": "Returned",
+    "DeliveryFailed": "Delivery Failed",
+    "ReadyForPickup": "Ready For Pickup"
+  },
+  "cartStatus": {
+    "Draft": "Draft",
+    "Pending": "Pending",
+    "RequiresAction": "RequiresAction",
+    "Processing": "Processing",
+    "Paid": "Paid",
+    "Refunded": "Refunded",
+    "Failed": "Failed",
+    "Canceled": "Canceled"
+  },
+  "paymentMethod": {
+    "Visa": "Visa",
+    "Cliq": "Cliq"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "total-sales": "Total Sales",
+    "total-orders": "Total Orders",
+    "total-products": "Total Products",
+    "total-categories": "Total Categories",
+    "sales-over-time": "Sales Over Time",
+    "recent-orders": "Recent Orders",
+    "order-id": "Order ID",
+    "customer-name": "Customer Name",
+    "order-date": "Order Date",
+    "status": "Status",
+    "amount": "Amount"
+  },
+  "upload": {
+    "maxFiles": "Only {{count}} images are allowed",
+    "maxSize": "File {{name}} is larger than {{size}} MB",
+    "invalidType": "File {{name}} is not an allowed image"
+  },
+  "slider": {
+    "add-slider": "Add Slider",
+    "edit-slider": "Edit Slider",
+    "slider-image": "The slideshow should contain only one image.",
+    "sliders": "User Sliders"
+  },
+  "login": {
+    "subject": "Welcome back to Russel",
+    "message": "Stay close to every special gift… log in and start exploring."
+  },
+  "user": {
+    "user-list": "User List"
+  },
+  "backend": {
+    "invalid": "Invalid"
+  }
 }

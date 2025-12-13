@@ -1,0 +1,73 @@
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+.cart-container {
+  font-family: "Arial", sans-serif;
+  width: 1005;
+
+  .cart-count {
+    font-size: 0.9rem;
+  }
+
+  .cart-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+
+    .item-img {
+      width: 30%;
+      height: inherit;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .item-details {
+      h6 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+
+      .price-usd {
+        font-weight: bold;
+        margin: 0;
+      }
+
+  
+
+      .remove-link {
+        font-size: 0.8rem;
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    .qty-box {
+      button {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+      }
+
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .discount-code-toggle {
+    a {
+      color: #333;
+    }
+  }
+
+  .totals {
+    font-size: 0.95rem;
+
+    span {
+      font-size: 0.95rem;
+    }
+  }
+}

@@ -28,10 +28,12 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+@use "variable" as *;
+
 html,
 body {
   height: 100%;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -42,9 +44,9 @@ h4,
 h5,
 h6 {
   margin: 0;
-  color: #111111;
+  color: $primary-color;
   font-weight: 400;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -73,13 +75,41 @@ h6 {
 
 p {
   font-size: 15px;
-  font-family: 'Nunito Sans', sans-serif;
-  color: #3d3d3d;
+  font-family: "Nunito Sans", sans-serif;
+  color: $secondary-color;
   font-weight: 400;
   line-height: 25px;
   margin: 0 0 15px 0;
 }
 
+.image-in-table {
+  //margin: 1rem 0;
+  img {
+    max-width: 70px;
+    max-height: 85px;
+  }
+}
+.text-titel-cart-dashbord {
+  font-family: "serif";
+  color: $primary-color;
+  font-weight: 600;
+  line-height: 25px;
+  text-transform: capitalize;
+}
+.text-titel {
+  font-family: "serif";
+  color: $primary-color;
+  font-weight: 600;
+ // line-height: 25px;
+  margin: 2rem 0;
+  text-transform: capitalize;
+}
+.text-description {
+  font-family: "serif";
+  color: $secondary-color;
+  text-transform: capitalize;
+  font-weight: 500;
+}
 img {
   max-width: 100%;
 }
@@ -102,14 +132,35 @@ ul,
 ol {
   padding: 0;
   margin: 0;
+  color: $secondary-color;
 }
 
 /*---------------------
   Helper CSS
 -----------------------*/
+
 .section-title {
-  margin-bottom: 45px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  font-family: "Cairo", sans-serif;
+
+  b {
+    flex: 1;
+    height: 2px;
+    background-color: $line-color;
+    margin: 0 1rem;
+  }
+
+  .section-title-main {
+    color: $primary-color;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "FontAwesome";
+    font-weight: lighter;
+    font-size: medium;
+  }
 
   span {
     color: $primary-color;
@@ -307,4 +358,37 @@ ol {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #a90000;
+}
+
+.error {
+  color: #a90000;
+  font-size: x-small;
+}
+.menu-icon {
+  color: $primary-color;
+}
+
+//  $form-bg: #ffffff;
+// $form-border: #e0e0e0;
+$form-radius: 10px;
+// $form-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+// $primary: #0056b3;
+
+.form {
+  // background-color: $form-bg;
+  // padding: 2rem;
+  margin: 1rem 0;
+  padding: 10px 5px;
+  border: 1px solid #c7c6ca5c;
+  border-radius: 10px;
+}
+
+ 
+.cdk-overlay-pane.mat-mdc-dialog-panel{
+  max-width: none !important;        
+  min-width: none !important;        
 }

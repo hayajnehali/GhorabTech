@@ -1,6 +1,13 @@
 /*---------------------
   Map
 -----------------------*/
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
 .map {
   height: 500px;
 

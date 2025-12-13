@@ -1,32 +1,295 @@
 {
-    "general": {
-      "name": "الاسم",
-      "nameAr":"الاسم باللغة العربية",
-      "nameEn":"الاسم باللغة الانجليزية",
-      "dashboard":"الصفحه الارئيسيه",
-      "ar":"العربية",
-      "en":"الانجليزية",
-      "lang":"اللغة",
-      "product":"منتجات",
-      "category":"الصنف",
-      "categoryName":"اسم الفئة",
-      "actions":"الاجراءات",
-      "view":"عرض",
-      "edit":"تعديل",
-      "delete":"حذف"
+  "uploadedImages": "تحميل صوره",
+  "nameAr": "الاسم باللغة العربية",
+  "nameEn": "الاسم باللغة الانجليزية",
+  "image": "الصور",
+  "descriptionEn": "الوصف باللغة الانجليزية",
+  "descriptionAr": "الوصف باللغة العربية",
+  "selectProductCategory": "اختر تصنيف المنتج",
+  "createProduct": "انشاء منتج",
+  "updateProduct": "تعديل المنتج",
+  "addProduct": "اضافة المنتج",
+  "add": "اضافة",
+  "general": {
+    "no-data": "لا توجد بيانات",
+    "year": "السنة",
+    "month": "الشهر",
+    "week": "الأسبوع",
+    "day": "اليوم",
+    "select-year": "اختر السنة",
+    "select-month": "اختر الشهر",
+    "details": " التفاصيل",
+    "image": "الصور",
+    "search": "بحث",
+    "price": "السعر",
+    "count": "الكمية",
+    "name": "الاسم",
+    "nameAr": "الاسم باللغة العربية",
+    "nameEn": "الاسم باللغة الانجليزية",
+    "description": "ألوصف",
+    "descriptionAr": "ألوصف باللغة العربية",
+    "descriptionEn": "ألوصف باللغة الانجليزية",
+    "dashboard": "الصفحه الارئيسيه",
+    "ar": "العربية",
+    "en": "الانجليزية",
+    "lang": "اللغة",
+    "product": "منتجات",
+    "category": "الصنف",
+    "categoryName": "اسم الفئة",
+    "actions": "الاجراءات",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "login": "تسجيل دخول",
+    "card": "السلة",
+    "contactus": "اتصل بنا",
+    "about": "حول",
+    "product-type": "نوع المنتج",
+    "show-more": "أظهر المزيد",
+    "upload-images": "تحميل الصور",
+    "save": "حفظ",
+    "back": "العوده",
+    "filter-by": "تصفية حسب",
+    "home": "ألصفحة الرئيسية",
+    "JOD": "دينار أردني",
+    "remove": "حذف",
+    "total": "المجموع",
+    "success-message": "تم تنفيذ الاجراء بنجاح",
+    "success": "بنجاح",
+    "subtotal": "المجموع الفرعي",
+    "register": "تسجيل",
+    "createUser": "إنشاء حساب جديد",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "recipient-information": "معلومات جهة الاستلام",
+    "phoneNumber": "رقم الهاتف",
+    "addressLine": "العنوان",
+    "city": "المدينة",
+    "stateOrProvince": "المنطقة / الولاية",
+    "postalCode": "الرمز البريدي",
+    "country": "الدولة",
+    "notes": "ملاحظات",
+    "user-name": "أسم المستخدم",
+    "donot-have-account": "ليس لديك حساب؟",
+    "do-have-account": "هل لديك حساب؟",
+    "usernameError": "اسم المستخدم مطلوب وصحيح.",
+    "passwordError": "كلمة المرور مطلوبة.",
+    "logout": "تسجيل خروج",
+    "showInMain": "أظهار في الصفحة الرئيسية",
+    "slider-subtitle": "هدية مثالية لك",
+    "slider-title": "تشكيلة حصرية من الساعات والعطور والزهور والإكسسوارات",
+    "slider-description": "اكتشف هدايا مختارة بعناية، من العطور الفاخرة والساعات الأنيقة إلى الشوكولاتة، الكيك، والزهور، لتجعل كل مناسبة مميزة حقًا.",
+    "item-per-page": "العناصر في الصفحة",
+    "first": "ألاول",
+    "previous": "السابق",
+    "next": "ألتالي",
+    "last": "ألاخيرر",
+    "price-before-discount": "السعر قبل الخصم",
+    "create-date": "تاريخ الإنشاء",
+    "reset": "إعادة ضبط",
+    "quantity": "ألكمية",
+    "number-sales": "عدد المبيعات",
+    "sales-by-year": "المبيعات حسب السنة",
+    "sales-by-month": "المبيعات حسب الشهر",
+    "delivery-service": "التوصيل لمعظم مناطق المملكة الأردنية الهاشمية",
+    "whatsAppNumber": "تواصل عبر واتساب",
+    "select-all-attributes": "يرجى اختيار جميع سمات المنتج قبل الإضافة إلى السلة",
+    "error": "خطأ",
+    "info": "معلومات",
+    "login-error": "فشل تسجيل الدخول. تحقق من البريد وكلمة المرور.",
+    "email-verification": "تم إرسال رابط تفعيل إلى بريدك الإلكتروني، الرجاء التحقق من البريد لتفعيل حسابك.",
+    "check": "تَحَقّق",
+    "code": "رمز",
+    "recipient-name": "أسم المستلم",
+    "products-sold": "المنتجات المباعه",
+    "users": "مستخدمين",
+    "result-for": "نتائج ل",
+    "titleAr": "ألعنوان بالعربية",
+    "titleEn": "ألعنوان بالانجليزية",
+    "out-of-stock": "  خارج المستودع",
+    "signup": "تسجيل حساب",
+    "signin": "تسجيل دخول"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "minlength": "هذا الحقل قصير جداً (الحد الأدنى هو {{requiredLength}} أحرف)",
+    "maxlength": "هذا الحقل طويل جداً (الحد الأقصى هو {{requiredLength}} أحرف)",
+    "email": "يرجى إدخال بريد إلكتروني صحيح",
+    "pattern": "الصيغة غير صحيحة",
+    "price-must-be-less-than-before-discount": "يجب أن يكون السعر الحالي أقل من السعر قبل الخصم",
+    "informational-message": "هذه رسالة إعلامية!",
+    "error": "خطأ",
+    "info": "معلومات",
+    "warning-message": "هذه رسالة تحذير!",
+    "warning": "تحذير"
+  },
+  "errors": {
+    "fullNameRequired": "الاسم مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "cityRequired": "المدينة مطلوبة"
+  },
+  "perfume": {
+    "perfume": "افخم العطور"
+  },
+  "inquiries-section": {
+    "title": "استفساراتكم أولوية لدينا",
+    "subtitle": "سواء كنت تتابع طلبًا، أو تبحث عن هدية مميزة، أو لديك أي استفسارات عامة، فريق رُسُل هنا لمساعدتك.",
+    "phone": {
+      "title": "الهاتف",
+      "text": "للطلبات الخاصة أو الاحتياجات المميزة، شاركنا أفكارك، ودع فريق رُسُل يصمم لك حلاً مناسبًا. رضاكم هو التزامنا."
     },
-      "uploadedImages":"تحميل صوره",
-      "nameAr":"الاسم باللغة العربية",
-      "nameEn":"الاسم باللغة الانجليزية",
-      "count":"الكمية",
-      "price":"السعر",
-      "image":"الصور",
-      "descriptionEn":"الوصف باللغة الانجليزية",
-      "descriptionAr":"الوصف باللغة العربية",
-      "selectProductCategory":"اختر تصنيف المنتج",
-      "createProduct":"انشاء منتج",
-      "updateProduct":"تعديل المنتج",
-      "addProduct":"اضافة المنتج",
-      "add":"اضافة",
-      "productCategory":"تصنيف المنتج"
+    "whatsapp": {
+      "title": "واتساب",
+      "text": "للطلبات الخاصة أو الاحتياجات المميزة، شاركنا أفكارك، ودع فريق رُسُل يصمم لك حلاً مناسبًا. رضاكم هو التزامنا."
+    },
+    "email": {
+      "title": "البريد الإلكتروني",
+      "text": "للطلبات الخاصة أو الاحتياجات المميزة، شاركنا أفكارك، ودع فريق رُسُل يصمم لك حلاً مناسبًا. رضاكم هو التزامنا."
+    },
+    "gift": {
+      "title": "هل تعلم؟ مع رُسُل يمكنك رؤية هديتك أولاً!",
+      "text": "سنشارك معك صورة معاينة لهديتك الجميلة قبل أن تصل إلى أيدي أحبائك، للتأكد من أنها مثالية."
+    },
+    "follow-us": "تابعنا"
+  },
+  "reviews-section": {
+    "title": "توصيل ورد في عمان الأردن | هدايا أونلاين | إرسال ورد إلى عمان والأردن",
+    "subtitle": "أفضل خدمة تقييمًا لتوصيل الورود في عمان والأردن",
+    "fb": {
+      "title": "رُسُل لتوصيل الورود والهدايا",
+      "text": "4.8 نجوم - بناءً على 680 مراجعة"
+    },
+    "google": {
+      "title": "رُسُل للزهور والهدايا",
+      "text": "4.8 نجوم - بناءً على أكثر من 100 مراجعة"
+    },
+    "delivery": {
+      "title": "مجاني ونفس اليوم*",
+      "text": "توصيل ورد في عمان، إربد، الزرقاء، السلط، مادبا، عجلون، جرش والمفرق",
+      "note": "* للطلبات فوق 100 دينار"
+    }
+  },
+  "footer": {
+    "terms": "شروط والأحكام",
+    "faqs": "الأسئلة الشائعة",
+    "about": "عنّا",
+    "copyright": "Copyright 2025 @Rusul.me",
+    "arabic": "العربية",
+    "english": "English"
+  },
+  "category": {
+    "category": "الأقسام",
+    "add-category": "أضافة صنف",
+    "edit-category": "تعديل الصنف",
+    "category-list": "قائمة الأصناف",
+    "add-product-category": "أضافة صنف منتج",
+    "edit-product-category": "تعديل صنف منتج",
+    "subCategory": "الأنواع"
+  },
+  "productCategory": {
+    "product-category-list": "قائمة أصناف المنتجات"
+  },
+  "product": {
+    "product-list": "قائمة المنتجات",
+    "product-description": "وصف المنتج",
+    "options-price": "سعر الخيارات",
+    "order-now": "اطلب الان",
+    "product-details": "تفاصيل المنتج",
+    "view-product": "عرض المنتج",
+    "product-name": "اسم المنتج"
+  },
+  "cart": {
+    "review-your-cart": "مراجعة سلة التسوق الخاصة بك",
+    "checkout": "ادفع",
+    "discover-more-products": "اكتشف المزيد من المنتجات",
+    "add-to-cart": "تمت اضافة المنتج الي سلة المشتريات",
+    "continue-shopping": "اكمل تسوق",
+    "viewCart": "عرض عربة التسوق",
+    "delete-cart": "حذف عربة التسوق",
+    "failed-to-create-cart": "خطاء في انشاء عربة التسوق",
+    "cart-list": "قائمة عربة التسوق",
+    "order-exit-status": "حالة خروج الطلب",
+    "payment-status": "حالة الدفع",
+    "cart-item-list": "قائمة عناصر عربة التسوق",
+    "payment-method": "طرق الدفع"
+  },
+  "keyAttribute": {
+    "key-attribute": "السمة الرئيسية",
+    "add-key-attribute": "أضافة السمة رئيسية",
+    "edit-key-attribute": "تعديل السمة الرئيسية",
+    "key-attribute-list": "قائمة السمات الرئيسية"
+  },
+  "keyAttributeValue": {
+    "key-attribute-value": "قيمة السمة الرئيسية",
+    "add-key-attribute-value": "أضافة قيمة السمة الرئيسية",
+    "edit-key-attribute-value": "تعديل قيمة السمة الرئيسية",
+    "key-attribute-value-list": "قائمة قيم السمات الرئيسية"
+  },
+  "orderExitStatus": {
+    "Pending": "قيد المراجعة",
+    "Processing": "قيد التجهيز",
+    "Shipped": "تم الشحن",
+    "InTransit": "في الطريق",
+    "Delivered": "تم التسليم",
+    "Rejected": "مرفوض",
+    "Cancelled": "ملغى",
+    "Returned": "مرتجع",
+    "DeliveryFailed": "فشل التسليم",
+    "ReadyForPickup": "جاهز للاستلام"
+  },
+  "cartStatus": {
+    "Draft": "مسودة",
+    "Pending": "معلّق",
+    "RequiresAction": "يتطلب إجراء",
+    "Processing": "قيد المعالجة",
+    "Paid": "مدفوع",
+    "Refunded": "مسترد",
+    "Failed": "فشل",
+    "Canceled": "ملغى"
+  },
+  "paymentMethod": {
+    "Visa": "فيزا",
+    "Cliq": "كليك"
+  },
+  "dashboard": {
+    "dashboard": "لوحة التحكم",
+    "total-sales": "إجمالي المبيعات",
+    "total-orders": "إجمالي الطلبات",
+    "total-products": "إجمالي المنتجات",
+    "total-categories": "إجمالي الأصناف",
+    "sales-over-time": "المبيعات مع مرور الوقت",
+    "recent-orders": "الطلبات الأخيرة",
+    "order-id": "معرف الطلب",
+    "customer": "العميل",
+    "date": "التاريخ",
+    "status": "الحالة",
+    "amount": "المبلغ"
+  },
+  "upload": {
+    "maxFiles": "مسموح فقط {{count}} صور",
+    "maxSize": "الملف {{name}} أكبر من {{size}} ميغابايت",
+    "invalidType": "الملف {{name}} ليس صورة مسموحة"
+  },
+  "slider": {
+    "add-slider": "إضافة شريط تمرير",
+    "edit-slider": "تعديل شريط التمرير",
+    "slider-image": "يجب أن يحتوي شريط الشرائح على صورة واحدة فقط",
+    "sliders": "شريط التمرير"
+  },
+  "login": {
+    "subject": "أهلاً بعودتك إلى روسل",
+    "message": "خلّك قريب من كل هدية مميزة… سجل دخولك وابدأ الاختيار."
+  },
+  "user": {
+    "user-list": "المستخدمين"
+  },
+  "backend": {
+    "Invalid": "غير صالح"
   }
+}

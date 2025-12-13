@@ -1,6 +1,13 @@
 /*---------------------
   Banner
 -----------------------*/
+@use 'variable' as *;
+@use 'mixins' as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
 .blog {
   padding-bottom: 55px;
 }
@@ -79,7 +86,7 @@
         height: 2px;
         background: $heading-color;
         content: "";
-        @include transition(all, .3s);
+        @include m.transition(all, .3s);
     }
   }
 }

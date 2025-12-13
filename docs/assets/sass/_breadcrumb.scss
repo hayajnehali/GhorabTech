@@ -1,6 +1,8 @@
 /*---------------------
   Breadcrumb
 -----------------------*/
+@use 'variable' as *; 
+
 .breadcrumb-option {
     background: #f3f2ee;
     padding: 40px 0;
