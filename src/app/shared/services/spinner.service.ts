@@ -1,11 +1,13 @@
 // spinner.service.ts
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpinnerService {
+  isOpen = signal(false);
+
   private _isLoading = new BehaviorSubject<boolean>(false);
 
   // observable يمكن استخدامه مع async pipe
@@ -17,5 +19,17 @@ export class SpinnerService {
 
   hide() {
     this._isLoading.next(false);
+  }
+
+  toggleSideCart() {
+    this.isOpen.update((v) => !v);
+  }
+
+  openSideCart() {
+    this.isOpen.set(true);
+  }
+
+  closeSideCart() {
+    this.isOpen.set(false);
   }
 }

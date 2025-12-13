@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
 import { CartService } from '@shared/services/cart.service';
 import { CategoryService } from '@shared/services/category.service';
+import { SpinnerService } from '@shared/services/spinner.service';
 @Component({
   selector: 'app-user-layout',
   templateUrl: './user-layout.component.html',
@@ -24,14 +25,15 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   isMobile = true;
   isCollapsed = true;
   isActive: boolean = false;
-  openSide: boolean = false;
+  //openSide: boolean = false;
   categoryService = inject(CategoryService);
   cartService = inject(CartService);
   categoryResult: CategoryResult[] | undefined = [];
   productCategories: ProductCategoryResult[] | undefined = [];
   cartCount = 0;
   cartTotal = 0;
-  nameOfProduct: string='';
+  nameOfProduct: string = '';
+  spinnerService = inject(SpinnerService);
   constructor() {
     super();
   }
@@ -68,9 +70,9 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   toggleMenu() {
     if (this.isMobile) {
       this.sidenav.toggle();
-      this.isCollapsed = false; // On mobile, the menu can never be collapsed
+      this.isCollapsed = false;  
     } else {
-      this.sidenav.open(); // On desktop/tablet, the menu can never be fully closed
+      this.sidenav.open(); 
       this.isCollapsed = !this.isCollapsed;
     }
   }

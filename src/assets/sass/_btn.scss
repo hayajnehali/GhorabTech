@@ -79,3 +79,30 @@
 a {
   cursor: pointer;
 }
+
+
+
+
+
+
+.btn-third { 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: inherit;
+  color: $white-color;
+  border: 1px solid $white-color; 
+}
+
+.btn-third:hover { 
+  color: $white-color;
+  transform: translateY(-2px);
+}
+ 
+.btn-third:focus,
+.btn-third:active,
+.btn-third:focus:active {
+  background-color: $primary-color !important;
+  color: $white-color !important;
+  border-color: $primary-color !important;
+  box-shadow: none !important; /* لإزالة الظل الأزرق */
+  transform: translateY(0);
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,8 @@ import { LanguageButtonComponent } from '../language-button/language-button.comp
 import { CategoryResult } from '@models/category';
 import { ProductCategoryResult } from '@models/product-category';
 import { MatMenuModule } from '@angular/material/menu';
+import { SpinnerService } from '@shared/services/spinner.service';
+import { LoginLogoutButtonComponent } from "../login-logout-button/login-logout-button.component";
 
 @Component({
   selector: 'app-navbar',
@@ -18,27 +20,25 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatMenuModule,
     TranslateModule,
-
     LanguageButtonComponent,
-  ],
+    LoginLogoutButtonComponent
+],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
+  @Output() toggleChanged = new EventEmitter<boolean>();
   @Input() categoryResult: CategoryResult[] | undefined = [];
   @Input() productCategories: ProductCategoryResult[] | undefined = [];
   @Input() cartCount: number = 0;
   @Input() cartTotal: number = 0;
-
+  spinnerService = inject(SpinnerService);
   isMobile = false;
   menuOpen = false;
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    // this.breakpointObserver.observe([Breakpoints.Handset])
-    //   .subscribe(result => this.isMobile = result.matches);
-
     this.breakpointObserver
-      .observe(['(max-width: 479px)'])
+      .observe(['(max-width: 766px)'])
       .subscribe((screenSize) => {
         if (screenSize.matches) {
           this.isMobile = true;

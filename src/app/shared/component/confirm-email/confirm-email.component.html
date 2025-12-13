@@ -1,0 +1,42 @@
+<div class="row m-5">
+  <div class="col-12 col-md-6">
+    <div
+      Class="login-wrapper d-flex align-items-center justify-content-center my-5"
+    >
+      <div class=""> 
+        <form
+          #verification="ngForm"
+          (ngSubmit)="checkVerification(verification)"
+          novalidate
+        >
+          <p class="form-label">
+            {{ "general.email-verification" | translate }}
+          </p>
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">{{
+                  "general.code" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="code"
+                  [(ngModel)]="user.code"
+                  required
+                  [maxLength]="6"
+                  minlength="6"
+                  #code="ngModel"
+                />
+                <app-form-error [control]="code"></app-form-error>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              {{ "general.check" | translate }}
+            </button>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div> 
+</div>

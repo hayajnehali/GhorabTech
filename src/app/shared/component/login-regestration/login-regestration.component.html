@@ -1,0 +1,221 @@
+<!-- <div [ngClass]="{ 'sign-up-mode': isSignUpMode }">
+  <div class="containerr">
+    <!-- <div class="back">
+      <a href="../index.html">Back</a>
+    </div> -->
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form class="sign-in-form" #login="ngForm" (ngSubmit)="onSubmit(login)">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input
+              placeholder="{{ 'general.user-name' | translate }}"
+              required
+              name="UserName"
+              required
+              #userName="ngModel"
+              [(ngModel)]="auth.userName"
+            />
+            <app-form-error [control]="userName"></app-form-error>
+          </div>
+          <div class="input-field">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input
+              asp-for="Password"
+              name="password"
+              class="form-control"
+              placeholder="••••••"
+              [(ngModel)]="auth.password"
+              required
+              #password="ngModel"
+            />
+            <app-form-error [control]="password"></app-form-error>
+          </div>
+          <div class="d-grid gap-2">
+            @if(loginError){
+            <div class="alert alert-danger py-2 small">
+              {{ loginError }}
+            </div>
+            }
+            <button
+              class="btn btn-primary mb-1"
+              type="submit"
+              [disabled]="loading"
+            >
+              @if(!loading){
+              <span> {{ "general.login" | translate }}</span>
+              } @if(loading){
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span
+              >}
+            </button>
+          </div>
+          <!-- <p class="social-text">Or Sign in with social platforms</p> -->
+          <div class="social-media">
+            @for (item of links; track $index) {
+            <a [href]="item.url" target="_blank" class="social-icon"
+              ><i [class]="item.icon"></i
+            ></a>
+            }
+          </div>
+        </form>
+
+        <form
+          class="sign-up-form"
+          #registerForm="ngForm"
+          (ngSubmit)="save(registerForm)"
+        >
+          <h2 class="title">{{ "general.createUser" | translate }}</h2>
+          <div class="input-field">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input
+              type="text"
+              class="form-control"
+              name="fullName"
+              #fullname="ngModel"
+              [(ngModel)]="user.fullName"
+              required
+              style="position: absolute; left: 50%; height: 100%"
+            />
+            <app-form-error [control]="fullname"></app-form-error>
+          </div>
+
+          <div class="input-field">
+            <i class="fa fa-music" aria-hidden="true"></i>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="user.email"
+              required
+              email
+              #email="ngModel"
+            />
+            <app-form-error [control]="email"></app-form-error>
+          </div>
+
+          <div class="input-field">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <input
+              type="tel"
+              class="form-control"
+              name="phone"
+              [(ngModel)]="user.phoneNumber"
+              required
+              #phone="ngModel"
+            />
+            <app-form-error [control]="phone"></app-form-error>
+          </div>
+
+          <div class="input-field">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="user.password"
+              required
+              minlength="6"
+              #password="ngModel"
+            />
+            <app-form-error [control]="password"></app-form-error>
+          </div>
+          <div class="input-field">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input
+              type="password"
+              class="form-control"
+              name="confirmPassword"
+              [(ngModel)]="user.confirmPassword"
+              required
+              #confirmpassword="ngModel"
+            />
+            <app-form-error [control]="confirmpassword"></app-form-error>
+            @if(registerForm.submitted && user.confirmPassword !==
+            user.password){
+            <div class="text-danger">
+              {{ "errors.passwordMismatch" | translate }}
+            </div>
+            }
+          </div>
+
+          <button
+            class="btn btn-primary mb-1"
+            type="submit"
+            [disabled]="loading"
+          >
+            @if(!loading){
+            <span> {{ "general.register" | translate }}</span>
+            } @if(loading){
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span
+            >}
+          </button>
+
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            @for (item of links; track $index) {
+            <a [href]="item.url" target="_blank" class="social-icon"
+              ><i [class]="item.icon"></i
+            ></a>
+            }
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel">
+        <div class="left-panel">
+          <div class="content">
+            <h3>{{ "login.subject" | translate }}</h3>
+            <p>
+              {{ "login.message" | translate }}
+            </p>
+            <button
+              class="btn btn-third transparent"
+              id="sign-up-btn"
+              (click)="signUpMode()"
+            >
+              {{ "general.signup" | translate }}
+            </button>
+          </div>
+          <img
+            src="./assets/img/icon/undraw_maker_launch_re_rq81.svg"
+            class="image"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="panel">
+        <div class="right-panel">
+          <div class="content">
+            <h3>{{ "login.subject" | translate }}</h3>
+            <p>
+              {{ "login.message" | translate }}
+            </p>
+            <button
+              class="btn btn-third transparent"
+              id="sign-in-btn"
+              (click)="signInMode()"
+            >
+              {{ "general.signin" | translate }}
+            </button>
+          </div>
+          <img
+            src="./assets/img/icon/undraw_design_process_re_0dhf.svg"
+            class="image"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

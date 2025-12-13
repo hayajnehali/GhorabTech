@@ -53,36 +53,42 @@ export class BaseManageComponent<
     }
     this.processData();
     if (this.isAdd) {
-      const sub = this.service.create(this.entity).subscribe({
-        next: () => {},
-        complete: () => {
-          this.notificationService.showSuccess(
-            this.translate.instant('general.success-message'),
-            this.translate.instant('general.success')
-          );
-          this.goBack();
-        },
-        error: (err) => {
-          this.notificationService.showError(err);
-        },
-      });
-      this.subscribe(sub);
+      this.add();
     } else {
-      const sub = this.service.update(this.entity).subscribe({
-        next: () => {},
-        complete: () => {
-          this.notificationService.showSuccess(
-            this.translate.instant('general.success-message'),
-            this.translate.instant('general.success')
-          );
-          this.goBack();
-        },
-        error: (err) => {
-          this.notificationService.showError(err);
-        },
-      });
-      this.subscribe(sub);
+      this.edit();
     }
+  }
+  edit() {
+    const sub = this.service.update(this.entity).subscribe({
+      next: () => {},
+      complete: () => {
+        this.notificationService.showSuccess(
+          this.translate.instant('general.success-message'),
+          this.translate.instant('general.success')
+        );
+        this.goBack();
+      },
+      error: (err) => {
+        this.notificationService.showError(err);
+      },
+    });
+    this.subscribe(sub);
+  }
+  add() {
+    const sub = this.service.create(this.entity).subscribe({
+      next: () => {},
+      complete: () => {
+        this.notificationService.showSuccess(
+          this.translate.instant('general.success-message'),
+          this.translate.instant('general.success')
+        );
+        this.goBack();
+      },
+      error: (err) => {
+        this.notificationService.showError(err);
+      },
+    });
+    this.subscribe(sub);
   }
   processData() {}
 

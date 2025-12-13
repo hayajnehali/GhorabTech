@@ -2,8 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { InjectionToken } from '@angular/core';
-import { PaginatedResult } from '../../model/paginated.result';
+import { InjectionToken } from '@angular/core'; 
 import { environment } from '../environment/environment';
 import {
   OperationResult,
@@ -57,12 +56,12 @@ export class ServiceBase<TData, TResult, F extends object> {
       );
   }
 
-  create(item: TData): Observable<TData> {
-    return this.http.post<TData>(this.baseUrl + '/create', item);
+  create(item: TData): Observable<OperationResultGeneric<TData>> {
+    return this.http.post<OperationResultGeneric<TData>>(this.baseUrl + '/create', item);
   }
 
-  update(item: TData): Observable<TData> {
-    return this.http.put<TData>(`${this.baseUrl}/update`, item);
+  update(item: TData): Observable<OperationResultGeneric<TData>> {
+    return this.http.put<OperationResultGeneric<TData>>(`${this.baseUrl}/update`, item);
   }
 
   delete(id: string) {

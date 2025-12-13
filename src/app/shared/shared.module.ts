@@ -24,11 +24,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from './component/about/about.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { ToastrModule } from 'ngx-toastr';
-import { HttpLoaderFactory } from 'app/app.module';
+import { MatRadioModule } from '@angular/material/radio'; 
+import { EmailComponent } from './component/email/email.component'; 
 @NgModule({
-  declarations: [ProductCardComponent, AboutComponent],
+  declarations: [ProductCardComponent, AboutComponent, EmailComponent],
   imports: [
     CommonModule,
    // SharedModuleRoutingModule,

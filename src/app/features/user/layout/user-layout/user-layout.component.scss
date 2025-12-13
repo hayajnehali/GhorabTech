@@ -12,7 +12,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease,
-  transform 0.2s ease;
+    transform 0.2s ease;
   position: fixed;
   bottom: 3%;
   z-index: 11;
@@ -49,11 +49,16 @@
 
 @media (max-width: 480px) {
   .btn-whatsapp {
- //   font-size: 0.9rem;
+    //   font-size: 0.9rem;
     padding: 0.5rem 1rem;
 
     i.fa-whatsapp {
       font-size: 1.1rem;
     }
   }
+  
+.mat-drawer {
+  width: 90% !important;
+}
+
 }

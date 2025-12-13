@@ -1,12 +1,18 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminLayOutComponent } from './features/admin/layout/admin-layout/admin-layout.component';
-import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component';
-import { LoginComponent } from '@shared/component/login/login.component';
-import { authChildGuard } from 'Auth/interceptor/auth.guard';
-import { RegistrationComponent } from '@shared/component/registration/registration.component';
+import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component'; 
+import { authChildGuard } from 'Auth/interceptor/auth.guard'; 
 
 const routes: Routes = [
+  // {
+  //   path: 'm',
+  //   component: LoginRegestrationComponent,
+  // },
+  // {
+  //   path: 'e',
+  //   component: EmailComponent,
+  // },
   {
     path: 'user',
     component: UserLayOutComponent,

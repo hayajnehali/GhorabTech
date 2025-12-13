@@ -8,16 +8,17 @@
     <div class="step" [class.active]="currentStep === 2">
       {{ "general.recipient-information" | translate }}
     </div>
-    <!-- <div class="step" [class.active]="currentStep === 3">الخطوة 3</div> -->
+    <!-- <div class="step" [class.active]="currentStep === 3">{{ "general.pay-way" | translate }}</div> -->
   </div>
 
   <!-- Content Area -->
   <div class="wizard-content" *ngIf="currentStep === 1">
     <app-registration (notify)="onNotify($event)"></app-registration>
+    <!-- <app-login-regestration></app-login-regestration> -->
   </div>
 
   <div class="wizard-content" *ngIf="currentStep === 2">
-    <form #recipientForm="ngForm" (ngSubmit)="onSubmitCard(recipientForm)">
+    <form #recipientForm="ngForm" (ngSubmit)="save(recipientForm)">
       <!-- Full Name -->
       <div class="mb-3">
         <label>{{ "general.recipient-name" | translate }}</label>
@@ -25,16 +26,11 @@
           type="text"
           class="form-control"
           name="fullName"
-          [(ngModel)]="cart.recipientInfo.fullName"
+          [(ngModel)]="entity.recipientInfo.fullName"
           #fullName="ngModel"
           required
         />
-        <div
-          *ngIf="recipientForm.submitted && fullName.invalid"
-          class="text-danger"
-        >
-          {{ "errors.fullNameRequired" | translate }}
-        </div>
+        <app-form-error [control]="fullName"></app-form-error>
       </div>
 
       <!-- Phone Number -->
@@ -44,20 +40,23 @@
           type="tel"
           class="form-control"
           name="phoneNumber"
-          [(ngModel)]="cart.recipientInfo.phoneNumber"
+          [(ngModel)]="entity.recipientInfo.phoneNumber"
           #phoneNumber="ngModel"
           required
+          pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$" 
+          minlength="10"
+          maxlength="10"
         />
-
+        <app-form-error [control]="phoneNumber"></app-form-error>
         <!-- pattern="^\\+?[0-9]{7,15}$" -->
-        <div
+        <!-- <div
           *ngIf="recipientForm.submitted && phoneNumber.invalid"
           class="text-danger"
         >
           {{ phoneNumber.errors?.['required']
             ? ("errors.phoneRequired" | translate)
             : ("errors.invalidPhoneNumber" | translate) }}
-        </div>
+        </div> -->
       </div>
 
       <!-- City -->
@@ -67,16 +66,11 @@
           type="text"
           class="form-control"
           name="city"
-          [(ngModel)]="cart.recipientInfo.city"
+          [(ngModel)]="entity.recipientInfo.city"
           #city="ngModel"
           required
         />
-        <div
-          *ngIf="recipientForm.submitted && city.invalid"
-          class="text-danger"
-        >
-          {{ "errors.cityRequired" | translate }}
-        </div>
+        <app-form-error [control]="city"></app-form-error>
       </div>
 
       <!-- Notes -->
@@ -85,10 +79,23 @@
         <textarea
           class="form-control"
           name="notes"
-          [(ngModel)]="cart.recipientInfo.notes"
+          [(ngModel)]="entity.recipientInfo.notes"
         ></textarea>
       </div>
-
+      <div class="mb-3">
+        <mat-radio-group required #pay_way="ngModel" name="payWay" [(ngModel)]="entity.payWay">
+          <mat-radio-button name="payWay" [value]="payway.cliq">
+            <img
+              src="./assets/img/icon/final_cliq_logo-02_1_0.png"
+              class="img-pay-way"
+              alt=""
+          /></mat-radio-button>
+          <mat-radio-button name="payWay" [value]="payway.visa">
+            <img src="./assets/img/icon/R.png" class="img-pay-way" alt=""
+          /></mat-radio-button>
+        </mat-radio-group>
+                <app-form-error [control]="pay_way"></app-form-error>
+      </div>
       <div class="btn-container d-flex justify-content-between mt-4">
         <button type="submit" class="btn btn-primary w-100">
           {{ "cart.checkout" | translate }}
@@ -96,4 +103,7 @@
       </div>
     </form>
   </div>
+  <!-- <div class="wizard-content" *ngIf="currentStep === 3">
+
+  </div> -->
 </div>

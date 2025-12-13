@@ -19,18 +19,18 @@ export class Interceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const language = localStorage.getItem('language') || 'en'; // Default to 'en' if not set
-    const token = this.authService.getToken();
-    // Clone the request to add the new header
+    const language = localStorage.getItem('language') || 'en';  
+    const token = this.authService.getToken(); 
     const clonedRequest = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
-        'Accept-Language': language, // Add language to headers
+        'Accept-Language': language,  
+        'ngrok-skip-browser-warning': 'true'
       },
     });
-    this.spinnerService.show(); // يبدأ التحميل
+    this.spinnerService.show();  
     return next.handle(clonedRequest).pipe(
-      finalize(() => this.spinnerService.hide()) // ينتهي التحميل عند انتهاء الطلب
+      finalize(() => this.spinnerService.hide()) 
     );
   }
 }

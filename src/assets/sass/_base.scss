@@ -100,7 +100,7 @@ p {
   font-family: "serif";
   color: $primary-color;
   font-weight: 600;
-  line-height: 25px;
+ // line-height: 25px;
   margin: 2rem 0;
   text-transform: capitalize;
 }
@@ -381,50 +381,14 @@ $form-radius: 10px;
 .form {
   // background-color: $form-bg;
   // padding: 2rem;
+  margin: 1rem 0;
   padding: 10px 5px;
   border: 1px solid #c7c6ca5c;
   border-radius: 10px;
-  // box-shadow: $form-shadow;
-  // margin: 2rem auto;
-  // display: flex;
-  // flex-direction: column;
+}
 
-  // h2 {
-  //   text-align: center;
-  //   margin-bottom: 1.5rem;
-  //   color: #333;
-  // }
-
-  // // .form-group {
-  // // margin-bottom: 1.2rem;
-  // // }
-
-  // .form-control {
-  //   // width: 100%;
-  //   //padding: 0.6rem 0.8rem;
-  //   border: 1px solid #ccc;
-  //   border-radius: 6px;
-  //   transition: border-color 0.2s ease-in-out;
-
-  //   &:focus {
-  //     border-color: $primary;
-  //     box-shadow: 0 0 0 3px rgba($primary, 0.1);
-  //     outline: none;
-  //   }
-  // }
-
-  // .btn-submit {
-  //   background-color: $primary;
-  //   color: white;
-  //   border: none;
-  //   padding: 0.7rem;
-  //   border-radius: 6px;
-  //   cursor: pointer;
-  //   font-weight: 600;
-  //   transition: all 0.2s ease;
-
-  //   &:hover {
-  //     background-color: darken($primary, 10%);
-  //   }
-  // }
+ 
+.cdk-overlay-pane.mat-mdc-dialog-panel{
+  max-width: none !important;        
+  min-width: none !important;        
 }

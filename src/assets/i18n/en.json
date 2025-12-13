@@ -72,6 +72,7 @@
     "notes": "Notes",
     "user-name": "User Name",
     "donot-have-account": "Don't have an account?",
+    "do-have-account": "Do You have an account?",
     "usernameError": "Username is required and valid.",
     "passwordError": "Password is required.",
     "logout": "Logout",
@@ -97,7 +98,7 @@
     "error": "Error",
     "info": "Info",
     "login-error": "Login failed. Please check email and password.",
-    "email-verification": "A verification link has been sent to your email. Please check your inbox to activate your account.",
+    "email-verification": "A verification code has been sent to your email. Please check your inbox to activate your account.",
     "check": "Check",
     "code": "Code",
     "recipient-name": "Recipient's name",
@@ -105,7 +106,10 @@
     "users": "Users",
     "result-for": "Result For",
     "titleAr": "Title (Arabic)",
-    "titleEn": "Title (English)"
+    "titleEn": "Title (English)",
+    "out-of-stock": "Out Of Stock",
+    "signup": "Sign Up",
+    "signin": "Sign In"
   },
   "validation": {
     "required": "This field is required",
@@ -210,7 +214,8 @@
     "cart-list": "Cart List",
     "order-exit-status": "Order Exit Status",
     "payment-status": "Payment Status",
-    "cart-item-list": "Cart Item List"
+    "cart-item-list": "Cart Item List",
+    "payment-method": "Payment Method"
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",
@@ -236,6 +241,20 @@
     "DeliveryFailed": "Delivery Failed",
     "ReadyForPickup": "Ready For Pickup"
   },
+  "cartStatus": {
+    "Draft": "Draft",
+    "Pending": "Pending",
+    "RequiresAction": "RequiresAction",
+    "Processing": "Processing",
+    "Paid": "Paid",
+    "Refunded": "Refunded",
+    "Failed": "Failed",
+    "Canceled": "Canceled"
+  },
+  "paymentMethod": {
+    "Visa": "Visa",
+    "Cliq": "Cliq"
+  },
   "dashboard": {
     "dashboard": "Dashboard",
     "total-sales": "Total Sales",
@@ -258,7 +277,15 @@
   "slider": {
     "add-slider": "Add Slider",
     "edit-slider": "Edit Slider",
-    "slider-image": "The slideshow should contain only one image."
+    "slider-image": "The slideshow should contain only one image.",
+    "sliders": "User Sliders"
+  },
+  "login": {
+    "subject": "Welcome back to Russel",
+    "message": "Stay close to every special gift… log in and start exploring."
+  },
+  "user": {
+    "user-list": "User List"
   },
   "backend": {
     "invalid": "Invalid"

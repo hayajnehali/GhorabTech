@@ -1,7 +1,8 @@
 <mat-sidenav-container autosize>
-  <mat-sidenav mode="over" [opened]="openSide">
+
+  <mat-sidenav mode="over" [opened]="spinnerService.isOpen()">
     <div class="d-flex justify-content-end m-3">
-      <button mat-icon-button (click)="openSide = !openSide">
+      <button mat-icon-button (click)="spinnerService.toggleSideCart()">
         <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
@@ -45,7 +46,7 @@
               alt="Logo"
               style="height: 70px; width: auto"
               class="img-fluid"
-            />
+            /> 
           </div>
 
           <!-- Cart -->
@@ -53,7 +54,7 @@
             <p class="mb-0 d-inline-flex" style="text-align: end">
               <app-login-logout-button></app-login-logout-button>
               <a
-                (click)="openSide = !openSide"
+               (click)="spinnerService.toggleSideCart()"
                 class="text-dark position-relative mx-2"
                 aria-label="Shopping cart"
               >
@@ -74,7 +75,7 @@
           [categoryResult]="categoryResult"
           [productCategories]="productCategories"
           [cartCount]="cartCount"
-          [cartTotal]="cartTotal"
+          [cartTotal]="cartTotal"  
         ></app-navbar>
       </div>
     </header>

@@ -4,7 +4,6 @@
       Class="login-wrapper d-flex align-items-center justify-content-center my-5"
     >
       <div class="">
-        <!-- @if(!inVerificationCodeStep){ -->
         <form #registerForm="ngForm" (ngSubmit)="save(registerForm)" novalidate>
           <h2 class="mb-4 text-titel">
             {{ "general.createUser" | translate }}
@@ -91,57 +90,27 @@
                 />
 
                 <app-form-error [control]="confirmpassword"></app-form-error>
-                <div
-                  *ngIf="
-                    registerForm.submitted &&
-                    user.confirmPassword !== user.password
-                  "
-                  class="text-danger"
-                >
+                @if( registerForm.submitted && user.confirmPassword !==
+                user.password){
+                <div class="text-danger">
                   {{ "errors.passwordMismatch" | translate }}
                 </div>
+                }
               </div>
             </div>
           </div>
-
+          <div class="my-2">
+            <small
+              >{{ "general.do-have-account" | translate }}
+              <a [routerLink]="['/user', 'login']">{{
+                "general.login" | translate
+              }}</a></small
+            >
+          </div>
           <button type="submit" class="btn btn-primary w-100">
             {{ "general.register" | translate }}
           </button>
         </form>
-        <!-- }@else{
-        <form
-          #verification="ngForm"
-          (ngSubmit)="checkVerification(verification)"
-          novalidate
-        >
-          <p class="form-label">
-            {{ "general.email-verification" | translate }}
-          </p>
-          <div class="row">
-            <div class="col-12">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.code" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="code"
-                  [(ngModel)]="user.code"
-                  required
-                  [maxLength]="6"
-                  minlength="6"
-                  #code="ngModel"
-                />
-                <app-form-error [control]="code"></app-form-error>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">
-              {{ "general.check" | translate }}
-            </button>
-          </div>
-        </form>
-        } -->
       </div>
     </div>
   </div>

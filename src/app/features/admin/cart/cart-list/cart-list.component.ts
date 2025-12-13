@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Cart, CartFilter, CartResult } from '@models/cart';
-import { CartStatus, OrderExitStatus } from '@shared/Enum/cart-enum';
+import { CartStatus, OrderExitStatus, PaymentMethod } from '@shared/Enum/cart-enum';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class CartListComponent extends BaseListComponent<
     
     this.displayedColumns = [
       'id',
-      'userName',
+      'email',
+      'payment-method',
       'payment-status',
       'order-exit-status',
       'createDate',
@@ -41,5 +42,8 @@ export class CartListComponent extends BaseListComponent<
   }
   getorderExitStatus(status: number): string {
     return OrderExitStatus[status];
+  }
+  getPaymentMethodStatus(status: number): string {
+    return PaymentMethod[status];
   }
 }

@@ -23,7 +23,8 @@ import { LoginLogoutButtonComponent } from '@shared/component/login-logout-butto
 import { LanguageButtonComponent } from '@shared/component/language-button/language-button.component';
 import { NavbarComponent } from '@shared/component/navbar/navbar.component';
 import { Swiper } from 'swiper';
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element/bundle'; 
+import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 register();
 
 @NgModule({
@@ -51,8 +52,9 @@ register();
     TopBarComponent,
     LoginLogoutButtonComponent,
     LanguageButtonComponent,
-    NavbarComponent,
-  ],
+    NavbarComponent, 
+    FormErrorComponent
+],
   providers: [ServiceBase, ProductService],
 })
 export class UserModule {}

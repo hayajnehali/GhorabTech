@@ -23,7 +23,7 @@ export class NotificationService {
           this.toastr.error(validationErrors,this.translate.instant("validation.error"));
         } else {
           Object.values(validationErrors).forEach((msg: any) => {
-            this.toastr.error(msg.errorMessage, this.translate.instant("validation.error"));
+            this.toastr.error(msg, this.translate.instant("validation.error"));
           });
         }
       } else {

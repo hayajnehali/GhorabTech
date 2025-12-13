@@ -1,4 +1,4 @@
-export enum CartStatus { 
+export enum CartStatus {
   Draft,
   Pending,
   RequiresAction,
@@ -20,4 +20,9 @@ export enum OrderExitStatus {
   Returned, // مرتجع
   DeliveryFailed, // فشل التسليم
   ReadyForPickup, // جاهز للاستلام
+}
+
+export enum PaymentMethod {
+  Visa,
+  Cliq,
 }

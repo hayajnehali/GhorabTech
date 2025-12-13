@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Cart } from '@models/cart';
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { CartItem } from '@models/cart-item';
 import { KeyAttribute, KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValueResult } from '@models/key-attribute-value';
@@ -9,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CartService } from '@shared/services/cart.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { ProductService } from '@shared/services/product.service';
+import { SpinnerService } from '@shared/services/spinner.service';
 
 @Component({
   selector: 'app-product-view',
@@ -19,6 +19,7 @@ import { ProductService } from '@shared/services/product.service';
 export class ProductViewComponent implements OnInit {
   product: ProductResult = new ProductResult();
   cartService = inject(CartService);
+  spinnerService = inject(SpinnerService);
   keyAttributes: KeyAttributeResult[] = [];
   item: CartItem = new CartItem();
   protected translate = inject(TranslateService);
@@ -64,6 +65,7 @@ export class ProductViewComponent implements OnInit {
       this.translate.instant('general.success')
     );
     this.item = new CartItem();
+    this.spinnerService.openSideCart()
   }
   getKeyAttribute() {
     if (this.product.keyAttributeValues) {

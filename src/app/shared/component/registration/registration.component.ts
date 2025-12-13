@@ -16,10 +16,11 @@ import { LocalStorageService } from '@shared/services/local-storage-service.serv
 import { UserService } from '@shared/services/user.service';
 import { SharedModule } from '@shared/shared.module';
 import { FormErrorComponent } from "../form-error/form-error.component"; 
+import { RouterLink } from '@angular/router'; 
 
 @Component({
   selector: 'app-registration',
-  imports: [CommonModule, SharedModule, FormErrorComponent],
+  imports: [CommonModule, SharedModule, FormErrorComponent, RouterLink],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
@@ -64,13 +65,5 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
       },
     });
   }
-  // checkCode(){
-  //   this.userService.checkCode(this.user).subscribe({
-  //     next:()=>{
 
-  //     },complete:()=>{
-        
-  //     }
-  //   })
-  // }
 }

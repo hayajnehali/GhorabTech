@@ -1,11 +1,9 @@
- @use 'variable' as *;
-@use 'mixins' as m;
+@use "variable" as *;
+@use "mixins" as m;
 
 .button {
   @include m.transition(all, 0.3s);
 }
-
-
 
 .wizard-container {
   max-width: 70%;
@@ -37,7 +35,7 @@
 
 .step.active {
   color: $primary-color;
-  border-color:  $primary-color;
+  border-color: $primary-color;
 }
 
 .wizard-content {
@@ -54,12 +52,22 @@
   padding: 8px 16px;
   margin-left: 10px;
   border: none;
-  background-color:  $primary-color;
+  background-color: $primary-color;
   color: white;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .wizard-buttons .btn:hover {
-  background-color:  $primary-color;
+  background-color: $primary-color;
+}
+
+.img-pay-way{
+     width: 5em;
+    height: 2.5em;
+}
+@media (max-width: 1024px) {
+  .wizard-container {
+     max-width: 100%; 
+  }
 }

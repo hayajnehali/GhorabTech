@@ -1,6 +1,6 @@
 <nav class="navbarr mt-2">
   <button
-    class="mobile tog"
+    class="mobile tog w-100"
     type="button"
     (click)="toggleMenu()"
     aria-label="Toggle navigation"
@@ -8,13 +8,14 @@
     <i class="fa fa-bars"></i>
   </button>
 
-  <div class="navbar-list justify-content-center" *ngIf="menuOpen || !isMobile" >
+  <div class="navbar-list justify-content-center" *ngIf="menuOpen || !isMobile">
     <!-- ========================================================================= -->
     <div
       [matMenuTriggerFor]="category"
       class="nav_bar__option text-description mx-2"
     >
-      <span class="mobile"><mat-icon class="menu-icon">minimize</mat-icon></span
+      <span class="mobile"
+        ><mat-icon class="menu-icon">minimize</mat-icon></span
       >
       <span>{{ "category.category" | translate }}</span>
     </div>
@@ -22,17 +23,20 @@
       [matMenuTriggerFor]="subCategory"
       class="nav_bar__option text-description mx-2"
     >
-      <span  class="mobile"
+      <span class="mobile"
         ><mat-icon class="menu-icon">minimize</mat-icon></span
       >
       <span>{{ "category.subCategory" | translate }}</span>
     </div>
- 
+
     <div class="nav_bar__option text-description mx-2 mobile">
       <app-language-button></app-language-button>
     </div>
+    <div class="nav_bar__option text-description mx-2 mobile">
+      <app-login-logout-button></app-login-logout-button>
+    </div>
     <div class="nav_bar__option mx-2 mobile">
-      <p class="mb-0 d-inline-flex align-items-center">
+      <p class="mb-0 d-inline-flex align-items-center" (click)="spinnerService.toggleSideCart()">
         <a class="text-dark position-relative" aria-label="Shopping cart">
           <mat-icon class="menu-icon">shopping_cart</mat-icon>
           <span
@@ -45,15 +49,15 @@
           >{{ "general.JOD" | translate }} {{ cartTotal }}</span
         >
       </p>
-    </div> 
+    </div>
     <mat-menu #category="matMenu" class="sub-list">
-      <div 
+      <div
         *ngFor="let item of categoryResult; trackBy: trackById"
         class="nav-item"
       >
         <a
           class="dropdown-item"
-          [routerLink]="['/user','category', item.id, 'product-category']"
+          [routerLink]="['/user', 'category', item.id, 'product-category']"
           (click)="menuOpen = false"
         >
           {{ item.name.local }}
@@ -61,13 +65,20 @@
       </div>
     </mat-menu>
     <mat-menu #subCategory="matMenu" class="sub-list">
-      <div 
+      <div
         *ngFor="let item of productCategories; trackBy: trackById"
         class="nav-item"
       >
         <a
-          class="dropdown-item" 
-          [routerLink]="['/user','category',item.categoryId,'product-category',item.id,'product']"
+          class="dropdown-item"
+          [routerLink]="[
+            '/user',
+            'category',
+            item.categoryId,
+            'product-category',
+            item.id,
+            'product'
+          ]"
         >
           {{ item.name.local }}
         </a>

@@ -34,9 +34,9 @@
         <div
           class="customization-item d-flex justify-content-between align-items-center"
         >
-          <h2 class="text-titel py-1 px-2">{{ product.name.local }}</h2>
+          <h2 class="text-titel">{{ product.name.local }}</h2>
         </div>
-        <div class="customization-item">
+        <div class="customization-item ">
           @if (product.priceBeforeDiscount!=null&&
           product.priceBeforeDiscount>0) {
           <span class="text-muted text-decoration-line-through py-1 px-2">
@@ -54,6 +54,12 @@
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
         </div>
+        @if(product.count==0){
+        <div>
+          <mat-icon>report_problem</mat-icon>
+          <p class="out-of-stock">{{ "general.out-of-stock" | translate }}</p>
+        </div>
+        }
         <div
           class="customization-item d-flex justify-content-between align-items-center"
         >
@@ -61,20 +67,6 @@
             product.description.local
           }}</span>
         </div>
-        <!-- @for (item of keyAttributes; track $index) {
-        <div
-          class="customization-item d-flex justify-content-between align-items-center"
-        >
-          <span class="text-description py-1 px-2">
-            {{ item.name.local }}:
-            <span
-              *ngFor="let val of item.keyAttributeValues; let isLast = last"
-            >
-              {{ val.value.local }}{{ isLast ? "" : ", " }}
-            </span>
-          </span>
-        </div>
-        } -->
         @for (item of keyAttributes; track $index) {
         <div class="customization-item py-2 text-description">
           <label class="fw-bold d-block mb-2">{{ item.name.local }}</label>
@@ -96,7 +88,9 @@
         }
       </div>
       <div class="summary">
-        <div class="d-flex justify-content-between fw-bold mb-2">
+        <div
+          class="d-flex justify-content-between fw-bold mb-2 align-items-center"
+        >
           <span>{{ "general.quantity" | translate }}:</span>
           <span class="text-titel quantity">
             <a class="mx-2" (click)="increment()">+</a>
@@ -104,7 +98,9 @@
             <a class="mx-2" (click)="decrement()">-</a>
           </span>
         </div>
-        <div class="d-flex justify-content-between fw-bold mb-4">
+        <div
+          class="d-flex justify-content-between fw-bold mb-4 align-items-center"
+        >
           <span>{{ "general.total" | translate }}:</span>
           <span class="text-titel">
             {{ "general.JOD" | translate }}

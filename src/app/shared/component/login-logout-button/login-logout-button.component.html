@@ -8,9 +8,12 @@
   </span>
   }@else {
   <span>
-    <a class="text-dark position-relative mx-2" [routerLink]="['/user','login']">
+    <a class="text-dark position-relative mx-2" (click)="openLogInLogoutDialog()">
       {{ "general.login" | translate }}
     </a>
+    <!-- <a class="text-dark position-relative mx-2" [routerLink]="['/user','login']">
+      {{ "general.login" | translate }}
+    </a> -->
   </span>
   }
   <!-- <span class="mx-3">|</span> -->

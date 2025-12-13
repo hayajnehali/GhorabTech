@@ -7,7 +7,10 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { OperationResultGeneric } from '@core/base/operation-result';
+import {
+  OperationResult,
+  OperationResultGeneric,
+} from '@core/base/operation-result';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
 import { KeyAttributeValue } from '@models/key-attribute-value';
 
@@ -103,6 +106,7 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
 
   clearCart(): void {
     this.cartSubject.next(new Cart());
+    this.cartTotal.next(0);
     this.storage.remove(this.CART_KEY);
   }
 
@@ -117,7 +121,7 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
       return sum + (i.product.price ?? 0) * i.quantity;
     }, 0);
     this.cartTotal.next(total);
-    this.cartSubject.next(cart); 
+    this.cartSubject.next(cart);
     return total;
   }
 
@@ -145,5 +149,12 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     const bIds = b.map((k) => k.id).sort();
 
     return aIds.every((id, index) => id === bIds[index]);
+  }
+
+  createAndPay(item: Cart): Observable<OperationResultGeneric<Cart>> {
+    return this.http.post<OperationResultGeneric<Cart>>(
+      this.baseUrl + '/create-and-pay',
+      item
+    );
   }
 }

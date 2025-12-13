@@ -11,7 +11,7 @@ export class User {
   confirmPassword!: string;
   phoneNumber?: string;
   phoneNumberConfirmed?: string;
-  //code:string|undefined
+  code:string|undefined
 }
 export class UserResult {
   userId?: string;
@@ -26,5 +26,9 @@ export class UserResult {
   phoneNumberConfirmed?: string;
 }
 export class UserFilter extends FilterBase{
- 
+  fullName!: string;
+  address?: string;
+  country?: string;
+  userName?: string;
+  email!: string; 
 }

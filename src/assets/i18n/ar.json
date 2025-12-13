@@ -74,6 +74,7 @@
     "notes": "ملاحظات",
     "user-name": "أسم المستخدم",
     "donot-have-account": "ليس لديك حساب؟",
+    "do-have-account": "هل لديك حساب؟",
     "usernameError": "اسم المستخدم مطلوب وصحيح.",
     "passwordError": "كلمة المرور مطلوبة.",
     "logout": "تسجيل خروج",
@@ -107,7 +108,10 @@
     "users": "مستخدمين",
     "result-for": "نتائج ل",
     "titleAr": "ألعنوان بالعربية",
-    "titleEn": "ألعنوان بالانجليزية"
+    "titleEn": "ألعنوان بالانجليزية",
+    "out-of-stock": "  خارج المستودع",
+    "signup": "تسجيل حساب",
+    "signin": "تسجيل دخول"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -212,7 +216,8 @@
     "cart-list": "قائمة عربة التسوق",
     "order-exit-status": "حالة خروج الطلب",
     "payment-status": "حالة الدفع",
-    "cart-item-list": "قائمة عناصر عربة التسوق"
+    "cart-item-list": "قائمة عناصر عربة التسوق",
+    "payment-method": "طرق الدفع"
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",
@@ -238,6 +243,20 @@
     "DeliveryFailed": "فشل التسليم",
     "ReadyForPickup": "جاهز للاستلام"
   },
+  "cartStatus": {
+    "Draft": "مسودة",
+    "Pending": "معلّق",
+    "RequiresAction": "يتطلب إجراء",
+    "Processing": "قيد المعالجة",
+    "Paid": "مدفوع",
+    "Refunded": "مسترد",
+    "Failed": "فشل",
+    "Canceled": "ملغى"
+  },
+  "paymentMethod": {
+    "Visa": "فيزا",
+    "Cliq": "كليك"
+  },
   "dashboard": {
     "dashboard": "لوحة التحكم",
     "total-sales": "إجمالي المبيعات",
@@ -260,7 +279,15 @@
   "slider": {
     "add-slider": "إضافة شريط تمرير",
     "edit-slider": "تعديل شريط التمرير",
-    "slider-image": "يجب أن يحتوي شريط الشرائح على صورة واحدة فقط"
+    "slider-image": "يجب أن يحتوي شريط الشرائح على صورة واحدة فقط",
+    "sliders": "شريط التمرير"
+  },
+  "login": {
+    "subject": "أهلاً بعودتك إلى روسل",
+    "message": "خلّك قريب من كل هدية مميزة… سجل دخولك وابدأ الاختيار."
+  },
+  "user": {
+    "user-list": "المستخدمين"
   },
   "backend": {
     "Invalid": "غير صالح"

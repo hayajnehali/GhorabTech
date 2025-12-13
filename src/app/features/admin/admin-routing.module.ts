@@ -23,11 +23,21 @@ export const routesAdmin: Routes = [
     },
   },
   {
+    path: 'users',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserModule),
+    data: {
+      label: 'user.users',
+      icon: 'groups',
+      showInSidebar: true,
+    },
+  },
+  {
     path: 'slider-list',
     component: SliderListComponent,
     data: {
       label: 'slider.sliders',
-      icon: 'analytics',
+      icon: 'report_problem',
       showInSidebar: true,
     },
   },

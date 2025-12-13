@@ -1,0 +1,117 @@
+<div class="container list">
+  <h3 class="text-titel">{{ "user.user-list" | translate }}</h3>
+  <!-- <div class="btn-container">
+    <button class="btn btn-primary" [routerLink]="['/admin/category/manage']">
+      {{ "add" | translate }}
+    </button>
+  </div> -->
+
+  <form (ngSubmit)="search()" #userForm="ngForm" class="form">
+    <div class="row">
+      <div class="form-group col-12 col-3 col-md-3">
+        <label for="nameEn">{{ "general.name" | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullName" 
+          name="fullName"
+          [(ngModel)]="filter.fullName"
+        />
+      </div>
+      <div class="form-group col-12 col-3 col-md-3">
+        <label for="email">{{ "general.email" | translate }}</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email" 
+          name="email"
+          [(ngModel)]="filter.email"
+        />
+      </div>
+
+      <div class="btn-container">
+        <button type="button" class="btn btn-secondary" (click)="reset()">
+          {{ "general.reset" | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary mx-2" >
+          {{ "general.search" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="hasData" class="table-responsive">
+    <table mat-table [dataSource]="dataSource" class="table">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "general.name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+      </ng-container>
+      <!-- Show In Main Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "general.email" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.email }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "general.country" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.country }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "general.phone" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.phoneNumber }}
+        </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "general.actions" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ul class="list-unstyled d-flex">
+            <li
+              class="d-flex btn btn-icon"
+              [title]="'productCategory.product-category-list' | translate"
+              [routerLink]="[element.id, 'product-category']"
+            >
+              <mat-icon>list</mat-icon>
+            </li>
+            <li
+              class="d-flex btn btn-icon"
+              [routerLink]="['manage', element.id]"
+            >
+              <mat-icon>edit</mat-icon>
+            </li>
+            <li class="d-flex btn btn-icon" (click)="delete(element.id)">
+              <mat-icon>delete</mat-icon>
+            </li>
+          </ul>
+        </td>
+      </ng-container> -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="totalNumberOf"
+      (page)="pageChanged($event)"
+      [pageSizeOptions]="pageSizeOptions"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
