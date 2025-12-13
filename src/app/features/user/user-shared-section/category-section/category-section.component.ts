@@ -23,7 +23,7 @@ export class CategorySectionComponent extends BaseListComponent<
 > {
   constructor(private categoryService: CategoryService) {
     super(categoryService,CategoryFilter);
-    this.filter.pageSize = 4;
+    //this.filter.pageSize = 4;
     this.filter.sectionView = true;
     this.filter.showInMain = true;
 

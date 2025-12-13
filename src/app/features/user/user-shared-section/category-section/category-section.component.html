@@ -21,7 +21,7 @@
               "
             >
               <div
-                class="col-12 col-md-4 col-lg-3"
+                class="col-6 col-sm-4 col-md-3 col-lg-3"
                 *ngFor="let product of category.productCategories"
               >
                 <div
@@ -33,7 +33,8 @@
                     product.id,
                     'product'
                   ]"
-                > 
+                >
+                  <div class="category-image-wrapper">
                     <swiper-container
                       slides-per-view="1"
                       space-between="20"
@@ -59,7 +60,8 @@
                           alt="product.name"
                         ></app-image> </swiper-slide
                       >}
-                    </swiper-container> 
+                    </swiper-container>
+                  </div>
                   <div class="card-body text-center">
                     <p class="text-titel">{{ product.name.local }}</p>
                   </div>

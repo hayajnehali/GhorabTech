@@ -125,7 +125,7 @@ export class LoginLogoutDialogComponent
     });
   }
 
-  navigateBasedOnRole(res: OperationResultGeneric<Auth>) {
+  navigateBasedOnRole(res: OperationResultGeneric<Auth>) { 
     this.authService.saveToken(res.data?.token ?? '');
     if (this.authService.isAdmin()) {
       this.router.navigate(['/admin']);

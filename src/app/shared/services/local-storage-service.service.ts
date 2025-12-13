@@ -12,6 +12,7 @@ export class LocalStorageService {
       localStorage.setItem(key, json);
     } catch (e) {
    //   console.error(`Error saving to localStorage key=${key}`, e);
+    alert('LocalStorage ERROR: ' + e);
     }
   }
 
