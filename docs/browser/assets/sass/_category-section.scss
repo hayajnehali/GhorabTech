@@ -1,5 +1,5 @@
-@use 'variable' as *;
-@use 'mixins' as m;
+@use "variable" as *;
+@use "mixins" as m;
 
 .button {
   @include m.transition(all, 0.3s);
@@ -36,7 +36,7 @@
     transition: all 0.3s ease;
     font-size: small;
     &:hover {
-    //  background-color: color.adjust($primary-color, 10%);
+      //  background-color: color.adjust($primary-color, 10%);
       transform: scale($hover-scale);
     }
   }
@@ -47,75 +47,42 @@
     &:hover {
       transform: translateY(-6px) scale($hover-scale);
     }
+
     .discountRated {
-      left: 3%;
-      top: 3%;
       position: absolute;
+      top: 3%;
+      left: 3%;
       z-index: 1;
-      background-color: $primary-color;
-      border-radius: 50%;
       padding: 0.5rem 0.3rem;
+      border-radius: 50%;
+      background-color: $primary-color;
       color: white;
       opacity: 0.5;
     }
-
-    .category-image-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      width: 100%;
-      height: 249px; // 🔹 حجم ثابت للصور (غيره حسب حاجتك)
-
-
-      .main-img,
-      .hover-img {
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        display: block;
-      }
-
-      .hover-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-      }
-
-      &:hover {
-        .main-img {
-          opacity: 0;
-          transform: scale($hover-scale);
-        }
-
-        .hover-img {
-          opacity: 1;
-          transform: scale($hover-scale);
-        }
-      }
-    }
+ 
+    .category-image-wrapper,
     .product-image-wrapper {
       position: relative;
       overflow: hidden;
-      border-radius: 2%;
       width: 100%;
       height: 300px;
-
+      border-radius: 2%;
+      @media (max-width: 500px) {
+        height: 183px;
+      }
       .main-img,
       .hover-img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: fill;
         transition: opacity 0.5s ease, transform 0.5s ease;
-        display: block;
       }
-
-   
-     
     }
+
     .card-body {
       text-transform: capitalize;
+
       .price {
         font-weight: bold;
         color: $primary-color;

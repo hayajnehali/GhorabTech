@@ -1,1 +1,0 @@
-var t=class{arabic;english;local;constructor(s,a,i){this.arabic=s,this.english=a,this.local=i}};var e=class{id;createStamp;updateStamp;createdBy;updatedBy;isDeleted=!1;isActive=!0;constructor(){this.createStamp=new Date,this.updateStamp=new Date,this.isDeleted=!1,this.isActive=!0}};export{t as a,e as b};
