@@ -38,4 +38,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 ];
 
-export const phoneNumber: string= '96781126031' 
+export const phoneNumber: string= '962781126031' 
