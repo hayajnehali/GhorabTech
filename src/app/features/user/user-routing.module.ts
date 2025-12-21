@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { PaymentComponent } from './payment/payment.component';
-import { ProductSectionComponent } from './category/product-section/product-section.component'; 
+import { ProductSectionComponent } from './category/product-section/product-section.component';
 import { RegistrationComponent } from '@shared/component/registration/registration.component';
+import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
 
 const userRoutes: Routes = [
   {
@@ -22,7 +23,7 @@ const userRoutes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent,
-  }, 
+  },
   {
     path: 'category',
     loadChildren: () =>
@@ -33,9 +34,13 @@ const userRoutes: Routes = [
     component: CartViewComponent,
   },
   {
+    path: 'my-cart',
+    component: MyCartListComponent,
+  },
+  {
     path: 'pay',
     component: PaymentComponent,
-  }, 
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 @NgModule({

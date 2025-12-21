@@ -1,5 +1,5 @@
 <!-- Hero Section Begin -->
-  <div class="listOfSlider">
+<div class="listOfSlider">
   <swiper-container
     slides-per-view="1"
     space-between="20"
@@ -21,23 +21,21 @@
           'background-image': 'url(' + assetsUrl + item.images[0].guidName + ')'
         }"
       >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-5 col-lg-7 col-md-8">
-              <div class="hero__text">
-                <h6>{{ item.title.local }}</h6>
-                <h2>{{ item.title.local }}</h2>
-                <p>{{ item.description.local }}</p>
-              </div>
-              <div class="hero__social">
-                <a [href]="item.url" *ngFor="let item of links" target="_blank"
-                  ><i [class]="item.icon"></i
-                ></a>
-              </div>
+        <div class="row w-100">
+          <div class="col-12 col-sm-4 col-md-4 col-lg-6">
+            <div class="hero__text">
+              <h6>{{ item.title.local }}</h6>
+              <h2>{{ item.title.local }}</h2>
+              <p>{{ item.description.local }}</p>
+            </div>
+            <div class="hero__social">
+              <a [href]="item.url" *ngFor="let item of links" target="_blank"
+                ><i [class]="item.icon"></i
+              ></a>
             </div>
           </div>
         </div></div
     ></swiper-slide>
     }
   </swiper-container>
-</div> 
+</div>

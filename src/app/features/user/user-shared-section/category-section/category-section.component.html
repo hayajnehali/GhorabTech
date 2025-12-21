@@ -21,7 +21,7 @@
               "
             >
               <div
-                class="col-6 col-sm-4 col-md-3 col-lg-3"
+                class="col-4 col-sm-4 col-md-3 col-lg-3"
                 *ngFor="let product of category.productCategories"
               >
                 <div
@@ -34,21 +34,20 @@
                     'product'
                   ]"
                 >
-                  <div class="category-image-wrapper">
+                  <div>
                     <swiper-container
                       slides-per-view="1"
                       space-between="20"
                       pagination="true"
                       speed="3000"
                       loop="true"
-                      class="product-image-wrapper"
                       autoplay='{
                   "delay": 3000,
                   "disableOnInteraction": false
                 }'
                     >
                       @for (item of product.images; track $index) {
-                      <swiper-slide>
+                      <swiper-slide class="category-image-wrapper">
                         <app-image
                           *ngIf="
                             product &&
@@ -56,14 +55,18 @@
                             product.images[0]?.guidName
                           "
                           src="{{ product.images[0].guidName }}"
-                          class="card-img-top main-img"
+                          [class]="'card-img-top main-img'"
                           alt="product.name"
                         ></app-image> </swiper-slide
                       >}
                     </swiper-container>
                   </div>
                   <div class="card-body text-center">
-                    <p class="text-titel">{{ product.name.local }}</p>
+                    <div class="">
+                      <p class="text-truncate fs-6 fs-sm-5 fs-md-4 fs-lg-3">
+                        {{ product.name.local }}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

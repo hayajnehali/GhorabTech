@@ -25,6 +25,7 @@ import { NavbarComponent } from '@shared/component/navbar/navbar.component';
 import { Swiper } from 'swiper';
 import { register } from 'swiper/element/bundle'; 
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
+import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
 register();
 
 @NgModule({
@@ -37,6 +38,7 @@ register();
     CardSidenavComponent,
     CartViewComponent,
     PaymentComponent,
+    MyCartListComponent,
   ],
   imports: [
     CommonModule,

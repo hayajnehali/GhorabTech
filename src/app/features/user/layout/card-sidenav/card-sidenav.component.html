@@ -27,7 +27,7 @@
   </div>
  
   <div class="d-grid mb-3">
-    <button class="btn btn-primary btn-lg"  [routerLink]="['/user/cart']">{{"cart.viewCart" |translate }}→</button>
+    <button class="btn btn-primary btn-lg" (click)="goToCart()">{{"cart.viewCart" |translate }}→</button>
   </div>
  
   <div class="text-center"> 

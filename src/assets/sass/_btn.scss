@@ -106,3 +106,9 @@ a {
   box-shadow: none !important; /* لإزالة الظل الأزرق */
   transform: translateY(0);
 }
+
+ 
+.my-swiper::part(button-prev),
+.my-swiper::part(button-next) {
+  width: 10px; 
+}

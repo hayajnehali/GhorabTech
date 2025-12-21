@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { BaseComponent } from '@core/base/base-component';
 import { Cart } from '@models/cart';
 import { CartItem } from '@models/cart-item';
 import { CartService } from '@shared/services/cart.service';
@@ -9,7 +10,8 @@ import { CartService } from '@shared/services/cart.service';
   styleUrl: './card-sidenav.component.scss',
   standalone: false,
 })
-export class CardSidenavComponent implements OnInit {
+export class CardSidenavComponent extends BaseComponent implements OnInit {
+  @Output() closeSideNav = new EventEmitter<void>();
   cartService = inject(CartService);
   cart: Cart = new Cart();
   total: number = 0;
@@ -21,25 +23,28 @@ export class CardSidenavComponent implements OnInit {
     });
     this.cartService.cart$.subscribe((cart) => {
       this.cart = cart;
-    }); 
+    });
   }
- 
 
   decreaseQuantity(item: CartItem): void {
-     this.cartService.decreaseQuantity(item);
+    this.cartService.decreaseQuantity(item);
     this.cart = this.cartService.getCart();
   }
-  increaseQuantity(item: CartItem ): void {
+  increaseQuantity(item: CartItem): void {
     this.cartService.increaseQuantity(item);
     this.cart = this.cartService.getCart();
-  } 
+  }
 
   clear() {
     this.cartService.clearCart();
     this.cart = this.cartService.getCart();
-  } 
+  }
 
   removeItem(arg0: string) {
     this.cartService.removeItem(arg0);
+  }
+  goToCart() {
+    this.router.navigate(['/user/cart']);
+    this.closeSideNav.emit();
   }
 }

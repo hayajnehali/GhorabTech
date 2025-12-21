@@ -6,7 +6,7 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
-    <app-card-sidenav></app-card-sidenav>
+    <app-card-sidenav (closeSideNav)="spinnerService.toggleSideCart()"></app-card-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
     <!-- Offcanvas Menu Begin -->

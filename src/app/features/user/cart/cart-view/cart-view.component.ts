@@ -39,7 +39,7 @@ export class CartViewComponent extends BaseComponent implements OnInit {
   }
   openLogInLogoutDialog() {
     if (this.authService.isAuthenticatedSignal()) {
-      this.router.navigate(["'/user/pay'"]);
+      this.router.navigate(['user','pay']);
     } else {
       const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
         width: '80%',

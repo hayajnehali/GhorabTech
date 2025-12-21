@@ -157,4 +157,17 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
       item
     );
   }
+
+  getCartsByUser(
+    filterCriteria: CartFilter
+  ): Observable<OperationResultGeneric<CartResult[]>> {
+    const params = this.buildHttpParams(filterCriteria);
+
+    return this.http.get<OperationResultGeneric<CartResult[]>>(
+      this.baseUrl + '/get-cart-by-user',
+      {
+        params,
+      }
+    );
+  }
 }

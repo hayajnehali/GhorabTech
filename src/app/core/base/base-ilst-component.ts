@@ -74,4 +74,6 @@ export abstract class BaseListComponent<
     this.filter = new this.filterT();
     this.loadData();
   }
+
+  
 }
