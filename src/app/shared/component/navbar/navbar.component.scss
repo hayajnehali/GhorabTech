@@ -1,0 +1,10 @@
+::ng-deep .sidenavv .mat-expansion-panel-header {
+  padding: 0 !important;
+}
+::ng-deep .sidenavv .mat-expansion-panel-header .mat-expansion-indicator {
+  display: none !important;
+}
+
+::ng-deep .sidenavv mat-expansion-panel {
+  box-shadow: none !important;
+}

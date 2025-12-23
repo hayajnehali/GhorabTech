@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SpinnerService {
   isOpen = signal(false);
+  isSideBarOpen = signal(false);
 
   private _isLoading = new BehaviorSubject<boolean>(false);
 
@@ -23,6 +24,9 @@ export class SpinnerService {
 
   toggleSideCart() {
     this.isOpen.update((v) => !v);
+  }
+  toggleSideBar() {
+    this.isSideBarOpen.update((v) => !v);
   }
 
   openSideCart() {

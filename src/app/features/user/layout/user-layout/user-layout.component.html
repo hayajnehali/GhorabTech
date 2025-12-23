@@ -1,12 +1,30 @@
 <mat-sidenav-container autosize>
-
-  <mat-sidenav mode="over" [opened]="spinnerService.isOpen()">
+  <mat-sidenav
+    mode="over"
+    position="start"
+    [opened]="spinnerService.isSideBarOpen()"
+  >
+    <div class="d-flex justify-content-end m-3">
+      <button mat-icon-button (click)="spinnerService.toggleSideBar()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <app-navbar
+      [categoryResult]="categoryResult"
+      [productCategories]="productCategories"
+      [cartCount]="cartCount"
+      [cartTotal]="cartTotal"
+    ></app-navbar>
+  </mat-sidenav>
+  <mat-sidenav mode="over" position="end" [opened]="spinnerService.isOpen()">
     <div class="d-flex justify-content-end m-3">
       <button mat-icon-button (click)="spinnerService.toggleSideCart()">
         <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
-    <app-card-sidenav (closeSideNav)="spinnerService.toggleSideCart()"></app-card-sidenav>
+    <app-card-sidenav
+      (closeSideNav)="spinnerService.toggleSideCart()"
+    ></app-card-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
     <!-- Offcanvas Menu Begin -->
@@ -20,41 +38,40 @@
         <div class="row align-items-center">
           <!-- Search + Lang -->
           <div
-            class="col-12 col-md-4 mb-2 mb-md-0 d-flex flex-wrap justify-content-between"
+            class="col-2 col-md-4 mb-2 mb-md-0 d-flex flex-wrap justify-content-between"
           >
-            <div class="search-wrapper flex-grow-1 me-2"> 
-                <input
-                  type="text"
-                  class="form-control rounded-pill"
-                  placeholder="{{ 'general.search' | translate }} ..."
-                  aria-label="Search"
-                  [(ngModel)]="nameOfProduct"
-                /> 
-                <button type="button" [routerLink]="['/user','product',nameOfProduct]"><i class="fa fa-search"></i></button>
-              
-            </div>
-
-            <div class="lang mt-2 mt-sm-0 lab">
+            @if ((responsiveService.isMobile$ | async)) {
+            <mat-icon
+              class="menu-icon"
+              (click)="spinnerService.toggleSideBar()"
+              >menu</mat-icon
+            >
+            }@else {
+            <app-search></app-search>
+            <div class="lang mt-2 mt-sm-0">
               <app-language-button></app-language-button>
             </div>
+            }
           </div>
 
           <!-- Logo -->
-          <div class="col-12 col-md-4 text-center mb-2 mb-md-0">
+          <div class="col-8 col-md-4 text-center mb-2 mb-md-0">
             <img
               src="./assets/img/R.png"
               alt="Logo"
               style="height: 70px; width: auto"
               class="img-fluid"
-            /> 
+            />
           </div>
 
           <!-- Cart -->
-          <div class="col-12 col-md-4 text-md-end text-center mt-2 lab">
+          <div class="col-2 col-md-4 text-md-end text-center mt-2">
             <p class="mb-0 d-inline-flex" style="text-align: end">
+              @if (!(responsiveService.isMobile$ | async)) {
               <app-login-logout-button></app-login-logout-button>
+              }
               <a
-               (click)="spinnerService.toggleSideCart()"
+                (click)="spinnerService.toggleSideCart()"
                 class="text-dark position-relative mx-2"
                 aria-label="Shopping cart"
               >
@@ -64,19 +81,23 @@
                   >{{ cartCount }}</span
                 >
               </a>
-              {{ "general.JOD" | translate }} {{ cartTotal }}
+              @if (!(responsiveService.isMobile$ | async)) {
+              <span>
+                {{ "general.JOD" | translate }} {{ cartTotal }}</span
+              >}
             </p>
           </div>
         </div>
 
         <hr class="mb-0" />
-
+        @if( !(responsiveService.isMobile$ | async)){
         <app-navbar
           [categoryResult]="categoryResult"
           [productCategories]="productCategories"
           [cartCount]="cartCount"
-          [cartTotal]="cartTotal"  
+          [cartTotal]="cartTotal"
         ></app-navbar>
+        }
       </div>
     </header>
     <router-outlet></router-outlet>

@@ -1,0 +1,12 @@
+<div class="search-wrapper flex-grow-1 me-2 lab">
+  <input
+    type="text"
+    class="form-control rounded-pill"
+    placeholder="{{ 'general.search' | translate }} ..."
+    aria-label="Search"
+    [(ngModel)]="nameOfProduct"
+  />
+  <button type="button" [routerLink]="['/user', 'product', nameOfProduct]">
+    <i class="fa fa-search"></i>
+  </button>
+</div>

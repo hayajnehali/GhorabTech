@@ -26,6 +26,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from './component/about/about.component';
 import { MatRadioModule } from '@angular/material/radio'; 
 import { EmailComponent } from './component/email/email.component'; 
+
 @NgModule({
   declarations: [ProductCardComponent, AboutComponent, EmailComponent],
   imports: [

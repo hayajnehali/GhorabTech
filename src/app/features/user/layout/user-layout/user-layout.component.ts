@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
 import { CartService } from '@shared/services/cart.service';
 import { CategoryService } from '@shared/services/category.service';
+import { ResponsiveService } from '@shared/services/responsive.service';
 import { SpinnerService } from '@shared/services/spinner.service';
 @Component({
   selector: 'app-user-layout',
@@ -24,15 +25,14 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
-  isActive: boolean = false;
-  //openSide: boolean = false;
+  isActive: boolean = false; 
   categoryService = inject(CategoryService);
   cartService = inject(CartService);
+  responsiveService = inject(ResponsiveService);
   categoryResult: CategoryResult[] | undefined = [];
   productCategories: ProductCategoryResult[] | undefined = [];
   cartCount = 0;
   cartTotal = 0;
-  nameOfProduct: string = '';
   spinnerService = inject(SpinnerService);
   constructor() {
     super();
@@ -44,14 +44,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     });
     this.cartService.cartTotal$.subscribe((total) => {
       this.cartTotal = total;
-    });
-    this.observer.observe(['(max-width: 766px)']).subscribe((screenSize) => {
-      if (screenSize.matches) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    });
+    }); 
     this.isAuthenticated = this.authService.isAuthenticated();
     this.getProductCategoryWithProduct();
   }

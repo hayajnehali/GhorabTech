@@ -1,68 +1,104 @@
-<nav class="navbarr mt-2">
-  <button
-    class="mobile tog w-100"
-    type="button"
-    (click)="toggleMenu()"
-    aria-label="Toggle navigation"
-  >
-    <i class="fa fa-bars"></i>
-  </button>
+@if(responsiveService.isMobile$|async){
+<div class="sidenavv" mode="side" opened>
+  <!-- <div class="logo">
+    <mat-icon>flutter_dash</mat-icon>
+    My App
+  </div> -->
+  <div class="mat-nav-list">
+    <a mat-list-item routerLink="/user">
+      <mat-icon matListIcon>home</mat-icon>
+      Home
+    </a>
+    <a mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>remove</mat-icon>
+          <span> {{ "category.category" | translate }}</span>
+        </mat-expansion-panel-header>
 
-  <div class="navbar-list justify-content-center" *ngIf="menuOpen || !isMobile">
-    <!-- ========================================================================= -->
+        @for (item of categoryResult; track $index) {
+        <a
+          mat-list-item
+          [routerLink]="['/user', 'category', item.id, 'product-category']"
+        >
+          <p class="text-description">{{ item.name.local }}</p>
+        </a>
+        }
+      </mat-expansion-panel>
+    </a>
+
+    <a mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>remove</mat-icon>
+          <span> {{ "category.subCategory" | translate }}</span>
+        </mat-expansion-panel-header>
+
+        @for (item of productCategories; track $index) {
+        <a  mat-list-item
+          [routerLink]="[
+            '/user',
+            'category',
+            item.categoryId,
+            'product-category',
+            item.id,
+            'product'
+          ]"
+        >
+          <p class="text-description">{{ item.name.local }}</p>
+        </a>
+        }
+      </mat-expansion-panel>
+    </a>
+
+    <a mat-list-item>
+      <app-language-button></app-language-button>
+    </a>
+    <a mat-list-item>
+      <app-login-logout-button></app-login-logout-button>
+    </a>
+
+    <a
+      mat-list-item
+      class="d-inline-flex align-items-center"
+      (click)="spinnerService.toggleSideCart()"
+    >
+      <mat-icon class="menu-icon">shopping_cart</mat-icon>
+      <span
+        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light"
+      >
+        {{ cartCount }} </span
+      >{{ "general.JOD" | translate }} {{ cartTotal }}
+    </a>
+  </div>
+</div>
+}@else {
+<nav class="navbarr mt-2">
+  <div class="navbar-list justify-content-center">
     <div
       [matMenuTriggerFor]="category"
       class="nav_bar__option text-description mx-2"
     >
-      <span class="mobile"
-        ><mat-icon class="menu-icon">minimize</mat-icon></span
-      >
       <span>{{ "category.category" | translate }}</span>
     </div>
     <div
       [matMenuTriggerFor]="subCategory"
       class="nav_bar__option text-description mx-2"
     >
-      <span class="mobile"
-        ><mat-icon class="menu-icon">minimize</mat-icon></span
-      >
       <span>{{ "category.subCategory" | translate }}</span>
     </div>
-
-    <div class="nav_bar__option text-description mx-2 mobile">
-      <app-language-button></app-language-button>
-    </div>
-    <div class="nav_bar__option text-description mx-2 mobile">
-      <app-login-logout-button></app-login-logout-button>
-    </div>
-    <div class="nav_bar__option mx-2 mobile">
-      <p class="mb-0 d-inline-flex align-items-center" (click)="spinnerService.toggleSideCart()">
-        <a class="text-dark position-relative" aria-label="Shopping cart">
-          <mat-icon class="menu-icon">shopping_cart</mat-icon>
-          <span
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light"
-          >
-            {{ cartCount }}
-          </span>
-        </a>
-        <span class="ms-2"
-          >{{ "general.JOD" | translate }} {{ cartTotal }}</span
-        >
-      </p>
-    </div>
+    <!-- ====================== Dropdown Menus ================================ -->
     <mat-menu #category="matMenu" class="sub-list">
-      <div
-        *ngFor="let item of categoryResult; trackBy: trackById"
-        class="nav-item"
-      >
+      @for (item of categoryResult; track $index) {
+      <div class="nav-item">
         <a
           class="dropdown-item"
           [routerLink]="['/user', 'category', item.id, 'product-category']"
-          (click)="menuOpen = false"
         >
           {{ item.name.local }}
         </a>
       </div>
+      }
     </mat-menu>
     <mat-menu #subCategory="matMenu" class="sub-list">
       <div
@@ -87,3 +123,5 @@
     <!-- ========================================================================= -->
   </div>
 </nav>
+
+}

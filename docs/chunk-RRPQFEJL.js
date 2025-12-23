@@ -1,0 +1,1 @@
+import{a as o,b as e}from"./chunk-35YHXOGJ.js";import{ab as r}from"./chunk-SPYTKP3K.js";var t=class extends e{name=new o;description=new o;showInMain=!1;constructor(){super()}},s=class extends e{name=new o;description=new o;showInMain=!1;productCategories=[];constructor(){super()}},i=class extends r{sectionView;showInMain};export{t as a,s as b,i as c};

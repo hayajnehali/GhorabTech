@@ -26,6 +26,7 @@ import { Swiper } from 'swiper';
 import { register } from 'swiper/element/bundle'; 
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
+import { SearchComponent } from "./user-shared-section/search/search.component"; 
 register();
 
 @NgModule({
@@ -54,8 +55,9 @@ register();
     TopBarComponent,
     LoginLogoutButtonComponent,
     LanguageButtonComponent,
-    NavbarComponent, 
-    FormErrorComponent
+    NavbarComponent,
+    FormErrorComponent,
+    SearchComponent
 ],
   providers: [ServiceBase, ProductService],
 })
