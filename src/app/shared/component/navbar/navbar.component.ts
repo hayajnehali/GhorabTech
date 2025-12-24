@@ -12,6 +12,8 @@ import { LoginLogoutButtonComponent } from '../login-logout-button/login-logout-
 import { ResponsiveService } from '@shared/services/responsive.service';
 import { MatListItem } from "@angular/material/list"; 
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SearchComponent } from "app/features/user/user-shared-section/search/search.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +27,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     LanguageButtonComponent,
     LoginLogoutButtonComponent,
     MatListItem,
-    MatExpansionModule
+    MatExpansionModule,
+    SearchComponent,
+    FormsModule
 ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
