@@ -6,8 +6,7 @@
     navigation="true"
     pagination="true"
     class="my-swiper"
-    speed="3000"
-    loop="true"
+    speed="3000" 
     autoplay='{
     "delay": 3000,
     "disableOnInteraction": false
@@ -16,12 +15,10 @@
     @for (item of dataSource.data; track $index) {
     <swiper-slide>
       <div
-        class="hero__items set-bg"
-        [ngStyle]="{
-          'background-image': 'url(' + assetsUrl + item.images[0].guidName + ')'
-        }"
+        class="hero__items set-bg" 
       >
-        <div class="row w-100">
+        <app-image [src]="item.images[0].guidName"></app-image> 
+      <!--   <div class="row w-100">
           <div class="col-12 col-sm-4 col-md-4 col-lg-6">
             <div class="hero__text">
               <h6>{{ item.title.local }}</h6>
@@ -34,8 +31,9 @@
               ></a>
             </div>
           </div>
-        </div></div
-    ></swiper-slide>
+        </div> -->
+      </div></swiper-slide
+    >
     }
   </swiper-container>
 </div>

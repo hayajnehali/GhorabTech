@@ -21,8 +21,7 @@ export class AppComponent {
   protected document = inject(DOCUMENT);
   spinnerService = inject(SpinnerService);
   constructor(
-    private translate: TranslateService,
-   // private cdr: ChangeDetectorRef
+    private translate: TranslateService, 
   ) {}
   ngOnInit() {
     const storedLanguage = localStorage.getItem(this.language);
@@ -39,11 +38,8 @@ export class AppComponent {
     this.document.documentElement.setAttribute(
       'dir',
       storedLanguage === 'en' ? 'ltr' : 'rtl'
-    );
-    // هذا يمنع NG0100 عند تحميل التطبيق
-   // this.cdr.detectChanges();
-  }
-  // Method to change language
+    ); 
+  } 
   changeLanguage(language: string) {
     this.translate.use(language);
     localStorage.setItem(this.language, language); // Save preference in local storage

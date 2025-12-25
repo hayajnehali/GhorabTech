@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
 
 <!-- app.component.html -->
-@if (spinnerService.isLoading$ | async) {
+@if (spinnerService.isLoading()) {
 <div class="spinner-overlay">
   <div class="spinner"></div>
 </div>

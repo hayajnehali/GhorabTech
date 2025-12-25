@@ -31,7 +31,7 @@ export class MultiImageUploadComponent implements ControlValueAccessor {
   @Output() imagesChange = new EventEmitter<any[]>(); // رجع الصور للأب
   maxFiles = 4;
   maxFileSize = 3 * 1024 * 1024; // 2MB
-  allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp','image/jpg','image/svg',"image/svg+xml"];
   selectedFiles: File[] = [];
   translateService = inject(TranslateService);
   notificationService = inject(NotificationService);

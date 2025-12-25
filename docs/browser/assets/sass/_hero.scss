@@ -1,8 +1,8 @@
 /*---------------------
   Hero (Responsive SCSS)
 -----------------------*/
-@use 'variable' as *;
-@use 'mixins' as m;
+@use "variable" as *;
+@use "mixins" as m;
 
 .button {
   @include m.transition(all, 0.3s);
@@ -57,19 +57,7 @@
     }
   }
 
-  /* make backgrounds cover and center */
-  .hero__items {
-    height: auto;
-    min-height: 70vh; /* flexible base height */
-    padding-top: 18vh;
-    padding-bottom: 6vh;
-    display: flex;
-    align-items: flex-start;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
+ 
   .hero__text {
     /* allow text block to size responsively */
     h6 {
@@ -145,14 +133,7 @@
 
 /* Large desktops */
 @media (min-width: 1400px) {
-  .hero__items {
-    min-height: 80vh;
-    padding-top: 20vh;
-  }
-  .hero__text h2 {
-    font-size: 56px;
-    line-height: 1.05;
-  }
+ 
 }
 
 /* Desktop / laptop */
@@ -164,11 +145,7 @@
 
 /* Tablet landscape and smaller laptops */
 @media (max-width: 992px) {
-  .hero__items {
-    min-height: 65vh;
-    padding-top: 14vh;
-    padding-bottom: 4vh;
-  }
+ 
 
   .hero__text {
     h2 {
@@ -198,10 +175,7 @@
 
 /* Tablet portrait / large phones */
 @media (max-width: 768px) {
-  .hero__items {
-    min-height: 60vh;
-    padding-top: 12vh;
-  }
+ 
 
   .hero__text {
     h6 {
@@ -243,11 +217,7 @@
 
 /* Mobile phones */
 @media (max-width: 576px) {
-  .hero__items {
-    min-height: 55vh;
-    padding-top: 10vh;
-    padding-bottom: 6vh;
-  }
+ 
 
   .hero__text {
     h6 {
@@ -281,15 +251,19 @@
 }
 /* إجبار الخلفيات على التغطية والتموضع الصحيح */
 .hero__items.set-bg {
-  background-position: center center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  height: auto !important;
-  min-height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
-  padding-top: 8vh !important;
-  padding-bottom: 6vh !important;
+  app-image {
+    img {
+      // background-position: center center !important;
+      // background-size: cover !important;
+      // background-repeat: no-repeat !important;
+      // // height: auto !important;
+      // height: 100vh !important;
+      // display: flex !important;
+      // align-items: center !important;
+      // padding-top: 8vh !important;
+      // padding-bottom: 6vh !important;
+    }
+  }
 }
 
 /* اجعل النص يشغل عرض مناسب ويمنع قطع العرض */
@@ -301,12 +275,22 @@
 }
 
 /* خطوط مرنة باستخدام clamp لتتلاءم مع أحجام الشاشات */
-.hero__text h6 { font-size: clamp(12px, 1.2vw, 14px) !important; }
-.hero__text h2 { font-size: clamp(20px, 4.5vw, 56px) !important; line-height: 1.05 !important; }
-.hero__text p  { font-size: clamp(13px, 1.8vw, 16px) !important; }
+.hero__text h6 {
+  font-size: clamp(12px, 1.2vw, 14px) !important;
+}
+.hero__text h2 {
+  font-size: clamp(20px, 4.5vw, 56px) !important;
+  line-height: 1.05 !important;
+}
+.hero__text p {
+  font-size: clamp(13px, 1.8vw, 16px) !important;
+}
 
 /* اجعل انتقال العناصر يظهر بدون إحداث مشاكل في الأجهزة الصغيرة */
-.hero__text h6, .hero__text h2, .hero__text p, .hero__text .primary-btn {
+.hero__text h6,
+.hero__text h2,
+.hero__text p,
+.hero__text .primary-btn {
   position: relative !important;
   top: 0 !important;
   opacity: 1 !important;
@@ -314,21 +298,31 @@
 }
 
 /* تباعد اجتماعي قابل للتصغير */
-.hero__social { margin-top: 1rem !important; }
-.hero__social a { margin-right: 1rem !important; font-size: clamp(14px, 2.2vw, 16px) !important; }
+.hero__social {
+  margin-top: 1rem !important;
+}
+.hero__social a {
+  margin-right: 1rem !important;
+  font-size: clamp(14px, 2.2vw, 16px) !important;
+}
 
 /* إخفاء أزرار التنقل الكبيرة على الشاشات الصغيرة وإظهار النقاط أو السماح بالسحب */
 @media (max-width: 768px) {
-  .hero .owl-nav { display: none !important; }
-  .hero__items.set-bg { padding-top: 6vh !important; min-height: 50vh !important; }
+  .hero .owl-nav {
+    display: none !important;
+  } 
 }
 
 /* تصغير المسافات للهواتف الصغيرة */
 @media (max-width: 420px) {
-  .hero__items.set-bg { padding-top: 5vh !important; min-height: 45vh !important; }
-  .hero__text { max-width: 100% !important; padding: 0 .75rem !important; }
-  .hero__text h2 { font-size: clamp(18px, 6.5vw, 28px) !important; }
+ 
+  .hero__text {
+    max-width: 100% !important;
+    padding: 0 0.75rem !important;
+  }
+  .hero__text h2 {
+    font-size: clamp(18px, 6.5vw, 28px) !important;
+  }
 }
 
-/* ضمان أن صور الخلفية الـ inline style لا تتغلب على القواعد */
-.hero__items[style] { background-size: cover !important; background-position: center center !important; }
+ 

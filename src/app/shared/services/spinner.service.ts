@@ -1,30 +1,34 @@
-// spinner.service.ts
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpinnerService {
+  // استخدام Signals لكل الحالات
   isOpen = signal(false);
-  isSideBarOpen = signal(false);
-
-  private _isLoading = new BehaviorSubject<boolean>(false);
-
-  // observable يمكن استخدامه مع async pipe
-  isLoading$ = this._isLoading.asObservable();
+  isSideBarOpen = signal(false); 
+  
+  // تحويل isLoading إلى Signal
+  private _isLoading = signal<boolean>(false);
+  // تصديرها كـ Readonly لحماية الحالة
+  isLoading = this._isLoading.asReadonly();
 
   show() {
-    this._isLoading.next(true);
+    this._isLoading.set(true);
   }
 
   hide() {
-    this._isLoading.next(false);
+    // الـ setTimeout هنا هي "السحر" الذي يحل خطأ NG0100
+    // لأنها تنقل التغيير إلى الدورة القادمة (Macrotask)
+    setTimeout(() => {
+      this._isLoading.set(false);
+    });
   }
 
   toggleSideCart() {
     this.isOpen.update((v) => !v);
   }
+
   toggleSideBar() {
     this.isSideBarOpen.update((v) => !v);
   }
