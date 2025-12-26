@@ -11,66 +11,62 @@
 
     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active"> 
+        <div class="carousel-item active">
+          <div
+            class="row g-4"
+            *ngIf="
+              category.productCategories &&
+              category.productCategories.length > 0
+            "
+          >
             <div
-              class="row g-4"
-              *ngIf="
-                category.productCategories &&
-                category.productCategories.length > 0
-              "
+              class="col-6 col-sm-4 col-md-3 col-lg-3"
+              *ngFor="let product of category.productCategories"
             >
               <div
-                class="col-6 col-sm-4 col-md-3 col-lg-3"
-                *ngFor="let product of category.productCategories"
+                class="product-card border-0"
+                [routerLink]="[
+                  'category',
+                  category.id,
+                  'product-category',
+                  product.id,
+                  'product'
+                ]"
               >
-                <div
-                  class="card product-card border-0"
-                  [routerLink]="[
-                    'category',
-                    category.id,
-                    'product-category',
-                    product.id,
-                    'product'
-                  ]"
-                >
-                  <div>
-                    <swiper-container
-                      slides-per-view="1"
-                      space-between="20"
-                      pagination="true"
-                      speed="3000"
-                      loop="true"
-                      autoplay='{
+                <div>
+                  <swiper-container
+                    slides-per-view="1"
+                    space-between="20"
+                    speed="3000"
+                    autoplay='{
                   "delay": 3000,
                   "disableOnInteraction": false
                 }'
-                    >
-                      @for (item of product.images; track $index) {
-                      <swiper-slide class="category-image-wrapper">
-                        <app-image
-                          *ngIf="
-                            product &&
-                            product.images &&
-                            product.images[0]?.guidName
-                          "
-                          src="{{ product.images[0].guidName }}"
-                          [class]="'card-img-top main-img'"
-                          alt="product.name"
-                        ></app-image> </swiper-slide
-                      >}
-                    </swiper-container>
-                  </div>
-                  <div class="card-body text-center">
-                    <div class="">
-                      <p class="text-truncate fs-6 fs-sm-5 fs-md-4 fs-lg-3">
-                        {{ product.name.local }}
-                      </p>
-                    </div>
-                  </div>
+                  >
+                    @for (item of product.images; track $index) {
+                    <swiper-slide class="category-image-wrapper">
+                      <app-image
+                        *ngIf="
+                          product &&
+                          product.images &&
+                          product.images[0]?.guidName
+                        "
+                        src="{{ product.images[0].guidName }}"
+                        [class]="'card-img-top main-img'"
+                        alt="product.name"
+                      ></app-image> </swiper-slide
+                    >}
+                  </swiper-container>
+                </div>
+                <div class="card-body text-center"> 
+                    <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
+                      {{ product.name.local }}
+                    </p> 
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
+        </div>
       </div>
     </div>
 
