@@ -63,11 +63,7 @@ export class LoginLogoutDialogComponent
       return;
     } 
     this.userService.create(this.user).subscribe({
-      next: (res: OperationResultGeneric<User>) => {
-        // this.notificationService.showSuccess(
-        //   this.translate.instant('general.success-message'),
-        //   this.translate.instant('general.success')
-        // );
+      next: (res: OperationResultGeneric<User>) => { 
         if (res.success) {
           this.auth.userName=this.user.userName;
           this.auth.password=this.user.password; 
@@ -101,8 +97,7 @@ export class LoginLogoutDialogComponent
         }
       },
       error: (err) => {
-        this.loginError = this.translate.instant('general.login-error');
-        console.error(err);
+        this.loginError = this.translate.instant('general.login-error'); 
       },
       complete: () => {},
     });

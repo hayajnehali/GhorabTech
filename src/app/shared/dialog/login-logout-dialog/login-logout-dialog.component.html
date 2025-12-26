@@ -134,6 +134,8 @@
                   class="form-control"
                   name="fullName"
                   #fullname="ngModel"
+                  minlength="3"
+                  maxlength="100"
                   [(ngModel)]="user.fullName"
                   required
                 />
@@ -148,6 +150,8 @@
                 <input
                   type="email"
                   class="form-control"
+                  minlength="3"
+                  maxlength="100"
                   name="email"
                   [(ngModel)]="user.email"
                   required
@@ -168,6 +172,7 @@
                   name="phone"
                   [(ngModel)]="user.phoneNumber"
                   required
+                  pattern="^[0-9]{10,15}$"
                   #phone="ngModel"
                 />
                 <app-form-error [control]="phone"></app-form-error>

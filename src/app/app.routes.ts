@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { AdminLayOutComponent } from './features/admin/layout/admin-layout/admin-layout.component';
 import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component'; 
 import { authChildGuard } from 'Auth/interceptor/auth.guard'; 
+import { LoginRegestrationComponent } from '@shared/component/login-regestration/login-regestration.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'm',
-  //   component: LoginRegestrationComponent,
-  // },
+  {
+    path: 'm',
+    component: LoginRegestrationComponent,
+  },
   // {
   //   path: 'e',
   //   component: EmailComponent,
