@@ -9,7 +9,7 @@
       <app-search class="search-wrapper flex-grow-1 me-2 w-100 mb-2"></app-search>
     </a>
 
-    <a mat-list-item routerLink="/user">
+    <a mat-list-item routerLink="/user" (click)="spinnerService.toggleSideBar()"> 
       <mat-icon matListIcon>home</mat-icon>
       Home
     </a>
@@ -23,7 +23,7 @@
 
         @for (item of categoryResult; track $index) {
         <a
-          mat-list-item
+          mat-list-item  (click)="spinnerService.toggleSideBar()"
           [routerLink]="['/user', 'category', item.id, 'product-category']"
         >
           <p class="text-description">{{ item.name.local }}</p>
@@ -41,7 +41,7 @@
 
         @for (item of productCategories; track $index) {
         <a
-          mat-list-item
+          mat-list-item (click)="spinnerService.toggleSideBar()"
           [routerLink]="[
             '/user',
             'category',
@@ -57,10 +57,10 @@
       </mat-expansion-panel>
     </a>
 
-    <a mat-list-item>
+    <a mat-list-item  (click)="spinnerService.toggleSideBar()">
       <app-language-button></app-language-button>
     </a>
-    <a mat-list-item>
+    <a mat-list-item  (click)="spinnerService.toggleSideBar()">
       <app-login-logout-button></app-login-logout-button>
     </a>
 

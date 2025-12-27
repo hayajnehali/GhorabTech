@@ -11,7 +11,10 @@ import { AuthService } from '@shared/services/auth.service';
 import { User } from '@models/user';
 import { environment } from '@shared/environment/environment';
 import { Auth } from '@models/auth';
-import { OperationResult, OperationResultGeneric } from '@core/base/operation-result';
+import {
+  OperationResult,
+  OperationResultGeneric,
+} from '@core/base/operation-result';
 
 @Component({
   selector: 'app-login-logout-dialog',
@@ -39,6 +42,7 @@ export class LoginLogoutDialogComponent
   confirmEmailForm: boolean = false;
   private readonly token_KEY = environment.token_KEY;
   @Output() notify = new EventEmitter<boolean>();
+  isLoginForm: boolean = true;
   //emailVerification: any;
   //inVerificationCodeStep = false;
   constructor(public dialogRef: MatDialogRef<LoginLogoutDialogComponent>) {
@@ -61,12 +65,12 @@ export class LoginLogoutDialogComponent
     if (form.invalid || this.user.password !== this.user.confirmPassword) {
       form.control.markAllAsTouched();
       return;
-    } 
+    }
     this.userService.create(this.user).subscribe({
-      next: (res: OperationResultGeneric<User>) => { 
+      next: (res: OperationResultGeneric<User>) => {
         if (res.success) {
-          this.auth.userName=this.user.userName;
-          this.auth.password=this.user.password; 
+          this.auth.userName = this.user.userName;
+          this.auth.password = this.user.password;
           this.confirmEmailForm = true;
         }
         // this.storage.set(this.token_KEY, res.data);
@@ -97,7 +101,7 @@ export class LoginLogoutDialogComponent
         }
       },
       error: (err) => {
-        this.loginError = this.translate.instant('general.login-error'); 
+        this.loginError = this.translate.instant('general.login-error');
       },
       complete: () => {},
     });
@@ -113,14 +117,14 @@ export class LoginLogoutDialogComponent
       return;
     }
     this.userService.checkCode(this.auth).subscribe({
-      next: (res:OperationResultGeneric<Auth>) => {
+      next: (res: OperationResultGeneric<Auth>) => {
         this.navigateBasedOnRole(res);
       },
       complete: () => {},
     });
   }
 
-  navigateBasedOnRole(res: OperationResultGeneric<Auth>) { 
+  navigateBasedOnRole(res: OperationResultGeneric<Auth>) {
     this.authService.saveToken(res.data?.token ?? '');
     if (this.authService.isAdmin()) {
       this.router.navigate(['/admin']);
