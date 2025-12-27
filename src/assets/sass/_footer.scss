@@ -148,13 +148,13 @@ $icon-size: 36px;
       width: 45px;
       filter: brightness(1.05);
       &.apple {
-        background-image: url("/assets/img/icon/pay.svg");
+        background-image: url("assets/img/icon/pay.svg");
       }
       &.visa {
-        background-image: url("/assets/img/icon/visa.svg");
+        background-image: url("assets/img/icon/visa.svg");
       }
       &.paypal {
-        background-image: url("/assets/img/icon/paypal.svg");
+        background-image: url("assets/img/icon/paypal.svg");
       }
       //   &.stripe { background-image: url('/assets/img/icon/pay.svg'); }
       //   &.secure-delivery { background-image: url('/assets/img/icon/pay.svg'); }

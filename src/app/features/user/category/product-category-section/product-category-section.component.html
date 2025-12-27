@@ -34,7 +34,7 @@
                     <ul class="">
                       <li>
                         <a class="dropdown-item">{{
-                          "general.en" | translate
+                          "general.price" | translate
                         }}</a>
                       </li>
                     </ul>
@@ -46,59 +46,65 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-0"></div>
-      <div class="col-md-9 col-sm-12">
+      <div class="col-md-9 col-sm-12 category-section">
         <!-- Description -->
-        <p class="text-muted" *ngIf="hasData">
+        @if(hasData){
+        <p class="text-muted">
           {{ dataSource.data[0].category.description?.local }}
         </p>
-
+        }
         <!-- Products Grid -->
-        <div
-          class="row g-4 category-section"
-          *ngIf="dataSource.data.length > 0"
-        >
-          <div
-            class="col-md-6 col-lg-4"
-            *ngFor="let productCategory of dataSource.data"
-          >
+        @if(dataSource.data.length > 0){
+        <div class="row g-4">
+          @for (productCategory of dataSource.data; track $index) {
+          <div class="col-6 col-sm-4 col-md-3 col-lg-3">
             <div
-              class="card product-card border-0"
+              class="product-card border-0"
               [routerLink]="[productCategory.id, 'product']"
             >
-              <div class="category-image-wrapper">
-                <ng-container
-                  *ngFor="
-                    let item of productCategory.images | slice : 0 : 2;
-                    let i = index
-                  "
+              <div>
+                <swiper-container
+                  slides-per-view="1"
+                  space-between="20"
+                  speed="3000"
+                  autoplay='{
+                  "delay": 3000,
+                  "disableOnInteraction": false
+                }'
                 >
-                  <app-image
-                    [src]="item.guidName"
-                    [ngClass]="
-                      i == 0
-                        ? 'card-img-top main-img'
-                        : 'card-img-top hover-img'
-                    "
-                    [alt]="productCategory.name.local ?? ''"
-                  ></app-image>
-                </ng-container>
+                  @for (item of productCategory.images; track $index) { @if(item
+                  && item?.guidName){
+                  <swiper-slide class="category-image-wrapper">
+                    <app-image
+                      [src]="item.guidName"
+                      [class]="'card-img-top main-img'"
+                      alt="product.name"
+                    ></app-image>
+                  </swiper-slide>
+                  } }
+                </swiper-container>
               </div>
               <div class="card-body text-center">
-                <p class="">{{ productCategory.name.local }}</p>
+                <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
+                  {{ productCategory.name.local }}
+                </p>
               </div>
             </div>
           </div>
+          }
         </div>
+        }
       </div>
       <div class="col-12">
+        @if(hasData){
         <mat-paginator
-          *ngIf="hasData"
           class="mat-paginator"
           [length]="totalNumberOf"
           (page)="pageChanged($event)"
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
         ></mat-paginator>
+        }
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
           <div class="col-md-10 col-sm-12">
             <nav class="navbar navbar-expand-lg mt-2">
               <div class="navbar-collapse">
-                <ul class="navbar-nav">
+                <ul>
                   <li
                     class="nav-item header__top__hover mx-2"
                     [routerLink]="['/']"
@@ -68,21 +68,17 @@
       </div>
       <div class="col-md-3 col-sm-0"></div>
       <div class="col-md-9 col-sm-12">
-        <div
-          class="row g-4 category-section"
-          *ngIf="dataSource.data.length > 0"
-        >
-          <div
-            class="col-6 col-sm-4 col-md-3 col-lg-3"
-            *ngFor="let product of dataSource.data"
-          >
+        @if(dataSource.data.length > 0){
+        <div class="row g-4 category-section">
+          @for (product of dataSource.data; track $index) {
+          <div class="col-6 col-sm-4 col-md-3 col-lg-3">
             <div class="product-card border-0" [routerLink]="[product.id]">
-              <div >
+              <div>
                 <swiper-container
                   slides-per-view="1"
-                  space-between="20" 
+                  space-between="20"
                   class="my-swiper"
-                  speed="3000" 
+                  speed="3000"
                   autoplay='{
                   "delay": 3000,
                   "disableOnInteraction": false
@@ -103,14 +99,18 @@
                 </swiper-container>
               </div>
               <div class="card-body text-center">
-                <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">{{ product.name.local }}</p>
+                <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
+                  {{ product.name.local }}
+                </p>
                 <div class="price">
                   {{ "general.JOD" | translate }} {{ product.price }}
                 </div>
               </div>
             </div>
           </div>
+          }
         </div>
+        }
       </div>
       <div class="col-12">
         <app-pagination

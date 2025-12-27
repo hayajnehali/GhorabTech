@@ -12,17 +12,11 @@
     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div
-            class="row g-4"
-            *ngIf="
-              category.productCategories &&
-              category.productCategories.length > 0
-            "
-          >
-            <div
-              class="col-6 col-sm-4 col-md-3 col-lg-3"
-              *ngFor="let product of category.productCategories"
-            >
+          @if( category.productCategories && category.productCategories.length >
+          0 ){
+          <div class="row g-4">
+            @for (product of category.productCategories; track $index) {
+            <div class="col-6 col-sm-4 col-md-3 col-lg-3">
               <div
                 class="product-card border-0"
                 [routerLink]="[
@@ -43,29 +37,28 @@
                   "disableOnInteraction": false
                 }'
                   >
-                    @for (item of product.images; track $index) {
+                    @for (item of product.images; track $index) { @if(item &&
+                    item?.guidName){
                     <swiper-slide class="category-image-wrapper">
                       <app-image
-                        *ngIf="
-                          product &&
-                          product.images &&
-                          product.images[0]?.guidName
-                        "
-                        src="{{ product.images[0].guidName }}"
+                        [src]="item.guidName"
                         [class]="'card-img-top main-img'"
                         alt="product.name"
-                      ></app-image> </swiper-slide
-                    >}
+                      ></app-image>
+                    </swiper-slide>
+                    } }
                   </swiper-container>
                 </div>
-                <div class="card-body text-center"> 
-                    <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
-                      {{ product.name.local }}
-                    </p> 
+                <div class="card-body text-center">
+                  <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
+                    {{ product.name.local }}
+                  </p>
                 </div>
               </div>
             </div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
