@@ -73,12 +73,13 @@
 
           <div class="d-flex flex-wrap gap-3">
             @for (val of item.keyAttributeValues; track $index) {
-            <div class="form-check-label d-flex align-items-center gap-2"> 
+            <div class="form-check-label d-flex align-items-center gap-2">
               <input
                 type="radio"
-                [value]="val"
+                [value]="val.id"
                 [id]="'val-' + val.id"
                 [name]="'attr-' + item.id"
+                [checked]="val.iselected"
                 (change)="onAttributeSelected(item, val)"
               />
               <label class="form-check-label" [for]="'val-' + val.id">

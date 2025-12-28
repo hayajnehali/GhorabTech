@@ -57,7 +57,6 @@
     }
   }
 
- 
   .hero__text {
     /* allow text block to size responsively */
     h6 {
@@ -133,7 +132,6 @@
 
 /* Large desktops */
 @media (min-width: 1400px) {
- 
 }
 
 /* Desktop / laptop */
@@ -145,8 +143,6 @@
 
 /* Tablet landscape and smaller laptops */
 @media (max-width: 992px) {
- 
-
   .hero__text {
     h2 {
       font-size: 40px;
@@ -175,8 +171,6 @@
 
 /* Tablet portrait / large phones */
 @media (max-width: 768px) {
- 
-
   .hero__text {
     h6 {
       font-size: 13px;
@@ -217,8 +211,6 @@
 
 /* Mobile phones */
 @media (max-width: 576px) {
- 
-
   .hero__text {
     h6 {
       font-size: 12px;
@@ -250,9 +242,11 @@
   }
 }
 /* إجبار الخلفيات على التغطية والتموضع الصحيح */
-.hero__items.set-bg {
+.set-bg {
+  height: 100vh;
   app-image {
     img {
+      object-fit: cover;
       // background-position: center center !important;
       // background-size: cover !important;
       // background-repeat: no-repeat !important;
@@ -310,12 +304,11 @@
 @media (max-width: 768px) {
   .hero .owl-nav {
     display: none !important;
-  } 
+  }
 }
 
 /* تصغير المسافات للهواتف الصغيرة */
 @media (max-width: 420px) {
- 
   .hero__text {
     max-width: 100% !important;
     padding: 0 0.75rem !important;
@@ -324,5 +317,3 @@
     font-size: clamp(18px, 6.5vw, 28px) !important;
   }
 }
-
- 

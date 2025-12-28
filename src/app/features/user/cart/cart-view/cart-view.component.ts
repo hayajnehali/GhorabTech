@@ -14,6 +14,7 @@ import { BaseComponent } from '@core/base/base-component';
   standalone: false,
 })
 export class CartViewComponent extends BaseComponent implements OnInit {
+
   cartService = inject(CartService);
   authService = inject(AuthService);
   cart: Cart = new Cart();
@@ -53,4 +54,21 @@ export class CartViewComponent extends BaseComponent implements OnInit {
       });
     }
   }
+
+  goToMyCrts() {
+    if (this.authService.isAuthenticatedSignal()) {
+      this.router.navigate(['user','my-cart']);
+    } else {
+      const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
+        width: '80%',
+        panelClass: 'custom-dialog',
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (this.authService.isAuthenticatedSignal()) {
+          this.router.navigate(["/user/my-cart"]);
+        }
+      });
+    }
+}
 }

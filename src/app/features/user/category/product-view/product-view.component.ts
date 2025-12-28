@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from '@models/cart-item';
 import { KeyAttribute, KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValueResult } from '@models/key-attribute-value';
@@ -45,28 +45,6 @@ export class ProductViewComponent implements OnInit {
       });
   }
 
-  addToCart() {
-    if (!this.item.keyAttributeValues || this.item.keyAttributeValues.length < this.keyAttributes.length) {
-      this.notificationService.showWarning(
-        this.translate.instant('general.select-all-attributes'),
-        this.translate.instant('general.error') 
-      );
-      return;
-    }
-
-    this.item.product.id = this.product.id;
-    this.item.product.name = this.product.name;
-    this.item.product.price = this.product.price;
-    this.item.product.images = this.product.images;
-
-    this.cartService.addItem(this.item);
-    this.notificationService.showSuccess(
-      this.translate.instant('cart.add-to-cart'),
-      this.translate.instant('general.success')
-    );
-    this.item = new CartItem();
-    this.spinnerService.openSideCart()
-  }
   getKeyAttribute() {
     if (this.product.keyAttributeValues) {
       this.product.keyAttributeValues.forEach((element) => {
@@ -85,11 +63,6 @@ export class ProductViewComponent implements OnInit {
           .find((x) => x.id == element.keyAttribute.id)
           ?.keyAttributeValues?.push(element);
       });
-      // this.keyAttributes.forEach((attr) => {
-      //   attr.keyAttributeValues[0].iselected = true;
-      //   this.onAttributeSelected(attr, attr.keyAttributeValues[0]);
-      // });
-      console.log(this.item.keyAttributeValues);
     }
   }
 
@@ -107,18 +80,50 @@ export class ProductViewComponent implements OnInit {
     }
   }
 
-  onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
-    val.iselected = true; 
-    let existing = this.item.keyAttributeValues.find(
-      (x) => x.keyAttribute.id === attr.id 
+  addToCart() {
+    this.addAttributeSelected();
+    if (
+      !this.item.keyAttributeValues ||
+      this.item.keyAttributeValues.length < this.keyAttributes.length
+    ) {
+      this.notificationService.showWarning(
+        this.translate.instant('general.select-all-attributes'),
+        this.translate.instant('general.error')
+      );
+      return;
+    } 
+    this.item.product.id = this.product.id;
+    this.item.product.name = this.product.name;
+    this.item.product.price = this.product.price;
+    this.item.product.images = this.product.images;
+
+    this.cartService.addItem(this.item);
+    this.notificationService.showSuccess(
+      this.translate.instant('cart.add-to-cart'),
+      this.translate.instant('general.success')
     );
-    if (!existing) { 
-    //   existing = val;
-    // } else { 
-      let newVal = new KeyAttributeValueResult();
-      newVal.id = val.id;
-      newVal.value = val.value;
-      this.item.keyAttributeValues.push(newVal);
+    this.item = new CartItem(); 
+    this.spinnerService.openSideCart();
+  }
+
+  addAttributeSelected() {
+    for (let att of this.keyAttributes) {
+      let value = att.keyAttributeValues.find((x) => x.iselected);
+      if (value) {
+        let newVal = new KeyAttributeValueResult();
+        newVal.id = value.id;
+        newVal.value = value.value;
+        this.item.keyAttributeValues.push(newVal);
+        value.iselected = false;
+      } 
     }
+  }
+  onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
+    val.iselected = true;
+    attr.keyAttributeValues
+      .filter((x) => x.id !== val.id)
+      .forEach((element) => {
+        element.iselected = false;
+      });
   }
 }

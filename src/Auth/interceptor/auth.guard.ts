@@ -11,7 +11,7 @@ export const authChildGuard: CanActivateChildFn = (route, state) => {
 
 
   const adminRoutes = state.url.startsWith('/admin'); // صفحات الإدارة
-  const userProtectedRoutes = ['/user/', '/user/']; // صفحات المستخدم المحمية
+  const userProtectedRoutes = ['/user/', '/user/','/user/my-cart']; // صفحات المستخدم المحمية
 
   // إذا المستخدم يحاول دخول صفحة الإدارة بدون تسجيل دخول
   if (adminRoutes && !token) {

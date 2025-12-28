@@ -36,13 +36,11 @@ const userRoutes: Routes = [
   },
   {
     path: 'my-cart',
-    component: MyCartListComponent,
-    canActivateChild: [authChildGuard],
+    component: MyCartListComponent, 
   },
   {
     path: 'pay',
-    component: PaymentComponent,
-    canActivateChild: [authChildGuard],
+    component: PaymentComponent, 
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
