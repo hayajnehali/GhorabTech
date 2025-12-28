@@ -49,7 +49,7 @@ export class NotificationService {
 
   showWarning(
     message: string = this.translate.instant('validation.warning-message'),
-    title: string = this.translate.instant('validation.Warning')
+    title: string = this.translate.instant('validation.warning')
   ) {
     this.toastr.warning(message, title);
   }

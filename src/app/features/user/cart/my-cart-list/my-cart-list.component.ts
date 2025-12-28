@@ -25,8 +25,6 @@ export class MyCartListComponent extends BaseListComponent<
     super(cartService, CartFilter);
 
     this.displayedColumns = [
-      'id',
-      'email',
       'payment-method',
       'payment-status',
       'order-exit-status',

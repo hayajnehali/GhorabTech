@@ -23,13 +23,12 @@ export class PaymentComponent extends BaseManageComponent<
   private readonly token_KEY = environment.token_KEY;
   authService = inject(AuthService);
   paymentService = inject(PaymentService);
-  private storage = inject(LocalStorageService); 
+  private storage = inject(LocalStorageService);
   payway = PayWay;
   currentStep: number = 1;
 
   constructor(private cartService: CartService) {
     super(cartService, Cart);
-    
   }
 
   override ngOnInit(): void {
@@ -62,15 +61,21 @@ export class PaymentComponent extends BaseManageComponent<
   }
   override add() {
     let reslut: OperationResultGeneric<Cart>;
+    if (this.entity.cartItems.length == 0) {
+      this.notificationService.showWarning(
+        this.translate.instant('cart.product-limit')
+      );
+      return;
+    }
     const sub = this.cartService.createAndPay(this.entity).subscribe({
       next: (res) => {
         reslut = res;
       },
       complete: () => {
-        this.notificationService.showSuccess(
-          this.translate.instant('general.success-message'),
-          this.translate.instant('general.success')
-        );
+        // this.notificationService.showSuccess(
+        //   this.translate.instant('general.success-message'),
+        //   this.translate.instant('general.success')
+        // );
         this.cartService.clearCart();
         if (this.entity.payWay == PayWay.visa) {
           window.location.href = reslut.message ?? '';

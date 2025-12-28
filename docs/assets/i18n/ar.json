@@ -217,7 +217,9 @@
     "order-exit-status": "حالة خروج الطلب",
     "payment-status": "حالة الدفع",
     "cart-item-list": "قائمة عناصر عربة التسوق",
-    "payment-method": "طرق الدفع"
+    "payment-method": "طرق الدفع",
+    "product-limit": "يرجى اختيار منتج واحد على الأقل لإتمام عملية الشراء.",
+    "purchase-record": "سجل الشراء"
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

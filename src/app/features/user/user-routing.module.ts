@@ -6,6 +6,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ProductSectionComponent } from './category/product-section/product-section.component';
 import { RegistrationComponent } from '@shared/component/registration/registration.component';
 import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
+import { authChildGuard } from 'Auth/interceptor/auth.guard';
 
 const userRoutes: Routes = [
   {
@@ -36,10 +37,12 @@ const userRoutes: Routes = [
   {
     path: 'my-cart',
     component: MyCartListComponent,
+    canActivateChild: [authChildGuard],
   },
   {
     path: 'pay',
     component: PaymentComponent,
+    canActivateChild: [authChildGuard],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

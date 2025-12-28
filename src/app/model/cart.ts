@@ -24,7 +24,7 @@ export class CartResult extends ModelBase {
 export class CartFilter extends FilterBase {
   paymentStatus?: CartStatus;
   orderExitStatus?: OrderExitStatus;
-  payWay: PayWay | undefined;
+  payWay?: PayWay | undefined;
 }
 
 export class RecipientInfo {

@@ -215,7 +215,9 @@
     "order-exit-status": "Order Exit Status",
     "payment-status": "Payment Status",
     "cart-item-list": "Cart Item List",
-    "payment-method": "Payment Method"
+    "payment-method": "Payment Method",
+    "product-limit": "Please select at least one product to proceed to checkout.",
+    "purchase-record": "Purchase Record"
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",

@@ -43,7 +43,7 @@
           [(ngModel)]="entity.recipientInfo.phoneNumber"
           #phoneNumber="ngModel"
           required
-          pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$" 
+          pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
           minlength="10"
           maxlength="10"
         />
@@ -83,7 +83,12 @@
         ></textarea>
       </div>
       <div class="mb-3">
-        <mat-radio-group required #pay_way="ngModel" name="payWay" [(ngModel)]="entity.payWay">
+        <mat-radio-group
+          required
+          #pay_way="ngModel"
+          name="payWay"
+          [(ngModel)]="entity.payWay"
+        >
           <mat-radio-button name="payWay" [value]="payway.cliq">
             <img
               src="./assets/img/icon/final_cliq_logo-02_1_0.png"
@@ -94,7 +99,7 @@
             <img src="./assets/img/icon/R.png" class="img-pay-way" alt=""
           /></mat-radio-button>
         </mat-radio-group>
-                <app-form-error [control]="pay_way"></app-form-error>
+        <app-form-error [control]="pay_way"></app-form-error>
       </div>
       <div class="btn-container d-flex justify-content-between mt-4">
         <button type="submit" class="btn btn-primary w-100">
