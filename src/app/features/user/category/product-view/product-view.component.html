@@ -36,7 +36,7 @@
         >
           <h2 class="text-titel">{{ product.name.local }}</h2>
         </div>
-        <div class="customization-item ">
+        <div class="customization-item">
           @if (product.priceBeforeDiscount!=null&&
           product.priceBeforeDiscount>0) {
           <span class="text-muted text-decoration-line-through py-1 px-2">
@@ -73,14 +73,17 @@
 
           <div class="d-flex flex-wrap gap-3">
             @for (val of item.keyAttributeValues; track $index) {
-            <div class="form-check-label d-flex align-items-center gap-2">
+            <div class="form-check-label d-flex align-items-center gap-2"> 
               <input
                 type="radio"
-                name="{{ val.id ?? '' + $index }}"
                 [value]="val"
+                [id]="'val-' + val.id"
+                [name]="'attr-' + item.id"
                 (change)="onAttributeSelected(item, val)"
               />
-              <span class=""> {{ val.value.local }}</span>
+              <label class="form-check-label" [for]="'val-' + val.id">
+                {{ val.value.local }}
+              </label>
             </div>
             }
           </div>

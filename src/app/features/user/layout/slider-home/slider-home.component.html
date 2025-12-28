@@ -1,5 +1,5 @@
 <!-- Hero Section Begin -->
-<div class="listOfSlider">
+<div >
   <swiper-container
     slides-per-view="1"
     space-between="20"
@@ -15,7 +15,7 @@
     @for (item of dataSource.data; track $index) {
     <swiper-slide>
       <div
-        class="hero__items set-bg" 
+        class="set-bg" 
       >
         <app-image [src]="item.images[0].guidName"></app-image> 
  

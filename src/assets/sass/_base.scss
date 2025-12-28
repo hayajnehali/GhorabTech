@@ -179,11 +179,7 @@ ol {
   }
 }
 
-.set-bg {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
-}
+ 
 
 .spad {
   padding-top: 100px;
@@ -391,4 +387,7 @@ $form-radius: 10px;
 .cdk-overlay-pane.mat-mdc-dialog-panel{
   max-width: none !important;        
   min-width: none !important;        
+}
+.listOfHomeSlider {
+  height: 100vh;
 }

@@ -108,17 +108,13 @@ export class ProductViewComponent implements OnInit {
   }
 
   onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
-    val.iselected = true;
-    // نبحث إذا كان نفس النوع مضاف مسبقًا (مثلاً: لون أو قياس)
+    val.iselected = true; 
     let existing = this.item.keyAttributeValues.find(
-      (x) => x.keyAttribute.id === attr.id
-      // (x) => x.keyAttribute.name.local === attr.name.local
+      (x) => x.keyAttribute.id === attr.id 
     );
-    if (existing) {
-      // نبدل القيمة القديمة بالجديدة
-      existing = val;
-    } else {
-      // نضيف قيمة جديدة
+    if (!existing) { 
+    //   existing = val;
+    // } else { 
       let newVal = new KeyAttributeValueResult();
       newVal.id = val.id;
       newVal.value = val.value;
