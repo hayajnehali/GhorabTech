@@ -4,6 +4,7 @@ import { BaseComponent } from './base-component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FilterBase } from '@models/filter-base';
+import { OrderByEnum } from '@shared/Enum/order-by-enum';
 
 @Directive()
 export abstract class BaseListComponent<
@@ -17,6 +18,7 @@ export abstract class BaseListComponent<
   loading = false;
   totalNumberOf: number = 0;
   pageSizeOptions: number[] = [5, 10, 20, 40, 80, 100];
+  orderBy = OrderByEnum;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -42,14 +44,13 @@ export abstract class BaseListComponent<
         this.loading = true;
       },
       complete: () => {
-        this.processAfterComplete()
+        this.processAfterComplete();
       },
       error: (err) => {},
     });
     this.subscribe(sub);
   }
-  processAfterComplete() { 
-  }
+  processAfterComplete() {}
 
   delete(id: string) {
     const sub = this.service.delete(id).subscribe(() => this.loadData());
@@ -75,5 +76,10 @@ export abstract class BaseListComponent<
     this.loadData();
   }
 
-  
+  onSort(sortBy: string, orderBy: OrderByEnum) {
+    this.filter.sortBy = sortBy;
+    this.filter.orderBy = orderBy;
+    this.filter.pageIndex = 1;
+    this.loadData();
+  }
 }

@@ -109,7 +109,11 @@
     "titleEn": "Title (English)",
     "out-of-stock": "Out Of Stock",
     "signup": "Sign Up",
-    "signin": "Sign In"
+    "signin": "Sign In",
+    "price-low-high": "Price: Low to High",
+    "price-high-low": "Price: High to Low",
+    "A-Z": "Name: A - Z",
+    "Z-A": "Name: Z - A"
   },
   "validation": {
     "required": "This field is required",
