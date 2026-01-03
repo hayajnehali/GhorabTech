@@ -19,6 +19,7 @@ export class SliderHomeComponent extends BaseListComponent<
 > { 
  
   assetsUrl=environment.assetsUrl
+  flipImage=localStorage.getItem(environment.language_KEY)==='ar'?true:false;
   constructor(private sliderService: SliderService) {
     super(sliderService, SliderFilter); 
   }

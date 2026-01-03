@@ -244,9 +244,29 @@
 /* إجبار الخلفيات على التغطية والتموضع الصحيح */
 .set-bg {
   height: 100vh;
+  position: relative;
+
+  padding: 0 1rem;
+  ._text {
+    margin: 0 5rem;
+    width: 50%;
+    position: absolute;
+    bottom: 20%;
+    h1 {
+      text-emphasis: dot;
+      font-family: math;
+      text-transform: uppercase;
+      letter-spacing: 12px;
+    }
+    p {
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      font-size: x-large;
+    }
+  }
   app-image {
     img {
-      object-fit: cover;
+      object-fit: fill;
       // background-position: center center !important;
       // background-size: cover !important;
       // background-repeat: no-repeat !important;
@@ -256,6 +276,25 @@
       // align-items: center !important;
       // padding-top: 8vh !important;
       // padding-bottom: 6vh !important;
+    }
+  }
+  @media (max-width: 1024px) {
+    height: 100%;
+    ._text {
+      margin: 0;
+    }
+  }
+  @media (max-width: 600px) {
+    height: 100%;
+    ._text {
+      h1 {
+        font-size: xx-large;
+      }
+      p {
+        font-size: x-small;
+      }
+      margin: 0;
+      bottom: 0%;
     }
   }
 }

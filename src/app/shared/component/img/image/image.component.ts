@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ImageComponent {
   @Input('src') src?: string;
+  @Input('flipImage') flipImage?: boolean=false;
   @Input('class') class: string="";
   @Input() alt: string = '';
   @Input('name') name: string = 'viewImage';
