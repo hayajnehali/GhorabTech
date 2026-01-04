@@ -20,8 +20,7 @@ export class CartItemService extends ServiceBase<CartItem, CartItemResult, CartI
    return this.http.get<OperationResultGeneric<ChartResult[]>>(this.baseUrl + '/sales-volume', { params });
  }
    getAllMyCartItem(filterCriteria: CartItemFilter): Observable<OperationResultGeneric<CartItemResult[]>> {
-     const params = this.buildHttpParams(filterCriteria);
- 
+     const params = this.buildHttpParams(filterCriteria); 
      return this.http
        .get<OperationResultGeneric<CartItemResult[]>>(this.baseUrl + '/get-all-my-cart-item', {
          params,

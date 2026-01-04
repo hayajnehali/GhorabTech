@@ -44,7 +44,7 @@ export class CartItemListComponent extends BaseListComponent<
 
  override   loadData(): void {
     this.loading = false;
-    const sub = this.cartItemService.getAll(this.filter).subscribe({
+    const sub = this.cartItemService.getAllMyCartItem(this.filter).subscribe({
       next: (data) => {
         if (data.data) this.dataSource.data = data.data;
         this.totalNumberOf = data.totalNumberOf;
