@@ -1,8 +1,8 @@
 <div class="container">
   <h3 class="text-titel">{{ "cart.cart-list" | translate }}</h3>
   @if (hasData) {
-  <div class="table-responsive">
-    <table mat-table [dataSource]="dataSource" class="table">
+  <div class="table-responsive cart-table">
+    <table mat-table [dataSource]="dataSource" class="table" >
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>No.</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
