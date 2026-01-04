@@ -291,7 +291,8 @@
     "message": "Stay close to every special gift… log in and start exploring."
   },
   "user": {
-    "user-list": "User List"
+    "user-list": "User List",
+    "users": "Users"
   },
   "backend": {
     "invalid": "Invalid"

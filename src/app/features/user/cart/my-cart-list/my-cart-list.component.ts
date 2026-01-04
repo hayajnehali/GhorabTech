@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Cart, CartFilter, CartResult } from '@models/cart';
 import {
@@ -6,7 +7,9 @@ import {
   OrderExitStatus,
   PaymentMethod,
 } from '@shared/Enum/cart-enum';
+import { AuthService } from '@shared/services/auth.service';
 import { CartService } from '@shared/services/cart.service';
+import { CartItemListComponent } from '../cart-item-list/cart-item-list.component';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -21,7 +24,8 @@ export class MyCartListComponent extends BaseListComponent<
 > {
   paymentStatus: string[] = [];
   orderExitStatus: string[] = [];
-  constructor(private cartService: CartService) {
+  authService = inject(AuthService);
+  constructor(private cartService: CartService,private dialog: MatDialog) {
     super(cartService, CartFilter);
 
     this.displayedColumns = [
@@ -61,4 +65,16 @@ export class MyCartListComponent extends BaseListComponent<
     });
     this.subscribe(sub);
   }
+    openCartItems(id: string) {
+    if (!this.authService.isAuthenticatedSignal()) {
+      this.router.navigate(['/user']);
+    } else {
+      const dialogRef = this.dialog.open(CartItemListComponent, {
+        width: '80%',
+        data: { cartId: id },
+        panelClass: 'custom-dialog',
+      });
+    }
+  }
+
 }
