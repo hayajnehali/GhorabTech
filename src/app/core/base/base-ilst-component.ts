@@ -35,7 +35,7 @@ export abstract class BaseListComponent<
     this.dataSource.paginator = this.paginator;
   }
 
-  loadData(): void {
+ loadData(): void {
     this.loading = false;
     const sub = this.service.getAll(this.filter).subscribe({
       next: (data) => {

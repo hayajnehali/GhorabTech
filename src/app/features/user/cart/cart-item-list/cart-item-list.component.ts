@@ -41,4 +41,20 @@ export class CartItemListComponent extends BaseListComponent<
       //      'action'
     ];
   }
+
+ override   loadData(): void {
+    this.loading = false;
+    const sub = this.cartItemService.getAll(this.filter).subscribe({
+      next: (data) => {
+        if (data.data) this.dataSource.data = data.data;
+        this.totalNumberOf = data.totalNumberOf;
+        this.loading = true;
+      },
+      complete: () => {
+        this.processAfterComplete();
+      },
+      error: (err) => {},
+    });
+    this.subscribe(sub);
+  }
 }
