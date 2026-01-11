@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { BaseComponent } from '@core/base/base-component';
@@ -17,22 +24,22 @@ import { environment } from '@shared/environment/environment';
   selector: 'app-login-regestration',
   templateUrl: './login-regestration.component.html',
   styleUrls: ['./login-regestration.component.scss'],
-  standalone:true,
+  standalone: true,
   imports: [CommonModule, SharedModule, FormsModule, FormErrorComponent],
 })
-export class LoginRegestrationComponent  extends BaseComponent implements OnInit {
-    links: SocialLink[] = SOCIAL_LINKS;
-
+export class LoginRegestrationComponent
+  extends BaseComponent
+  implements OnInit
+{
+  links: SocialLink[] = SOCIAL_LINKS;
   isSignUpMode = false;
-
-  private authService = inject(AuthService);
   auth: Auth = new Auth();
   loginError: string | null = null;
   loading = false;
-      private storage = inject(LocalStorageService);
-  userService = inject(UserService); 
+  private storage = inject(LocalStorageService);
+  userService = inject(UserService);
   user: User = new User();
-  private readonly token_KEY = environment.token_KEY; 
+  private readonly token_KEY = environment.token_KEY;
 
   constructor() {
     super();
@@ -44,7 +51,7 @@ export class LoginRegestrationComponent  extends BaseComponent implements OnInit
       } else {
         this.router.navigate(['/']);
       }
-    } 
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -58,7 +65,7 @@ export class LoginRegestrationComponent  extends BaseComponent implements OnInit
       next: (res) => {
         this.authService.saveToken(res.data?.token);
         if (this.authService.isAdmin()) {
-             this.router.navigate(['/admin']);
+          this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/user']);
         }
@@ -74,7 +81,6 @@ export class LoginRegestrationComponent  extends BaseComponent implements OnInit
     });
   }
 
-
   // التبديل إلى وضع التسجيل
   signUpMode() {
     this.isSignUpMode = true;
@@ -84,10 +90,6 @@ export class LoginRegestrationComponent  extends BaseComponent implements OnInit
   signInMode() {
     this.isSignUpMode = false;
   }
-
- 
-
-
 
   save(form: NgForm) {
     if (form.invalid) {
@@ -100,7 +102,7 @@ export class LoginRegestrationComponent  extends BaseComponent implements OnInit
           this.translate.instant('general.success-message'),
           this.translate.instant('general.success')
         );
-        this.storage.set(this.token_KEY, res.data);  
+        this.storage.set(this.token_KEY, res.data);
       },
       error: (err) => {
         this.notificationService.showError(err);

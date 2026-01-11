@@ -35,6 +35,7 @@ export class ProductResult extends ModelBase {
   keyAttributeValues?: KeyAttributeValueResult[] = [];
   priceBeforeDiscount?: number;
   discountRated?: string;
+  averageRating: number = 0;
   constructor() {
     super();
   }
@@ -42,5 +43,5 @@ export class ProductResult extends ModelBase {
 
 export class ProductFilter extends FilterBase {
   productCategoryId?: string | null;
-  name: string|null|undefined;
+  name: string | null | undefined;
 }

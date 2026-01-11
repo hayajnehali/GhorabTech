@@ -34,8 +34,7 @@ export class LoginLogoutDialogComponent
   implements OnInit
 {
   private storage = inject(LocalStorageService);
-  userService = inject(UserService);
-  authService = inject(AuthService);
+  userService = inject(UserService); 
   user: User = new User();
   loginError: string | null = null;
   auth: Auth = new Auth();

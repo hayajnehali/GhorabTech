@@ -1,4 +1,4 @@
-<div class="form-group">
+<!-- <div class="form-group">
   <label for="images">{{'general.upload-images' | translate}}</label>
   <input
     type="file"
@@ -9,8 +9,7 @@
     multiple
     class="form-control"
   />
-
-  <!-- Thumbnail Gallery -->
+ 
   <div class="row w-100 mt-3 thumbnail-gallery" *ngIf="images.length > 0">
     <div *ngFor="let image of images; let i = index" class="col-2 p-1">
       <div class="thumbnail-wrapper">
@@ -31,4 +30,62 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="form-group position-relative">
+  <label for="images" class="fw-bold mb-2">{{'general.upload-images' | translate}}</label>
+  <input
+    type="file"
+    id="images"
+    (change)="onFilesSelected($event)"
+    accept="image/*"
+    multiple
+    class="form-control shadow-sm"
+  />
+
+  <div class="row w-100 mt-3 thumbnail-gallery" *ngIf="images.length > 0">
+    <div *ngFor="let image of images; let i = index" class="col-md-3 col-4 p-1">
+      <div class="thumbnail-wrapper border rounded shadow-sm position-relative">
+        <app-image
+          [src]="image.guidName"
+          class="thumb-img w-100"
+          alt="Uploaded Image"
+        ></app-image>
+        <button
+          type="button"
+          class="btn btn-sm btn-danger remove-btn shadow"
+          (click)="removeImage(i)"
+        >✕</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cropper-overlay" *ngIf="currentImageEvent()">
+    <div class="cropper-card shadow-lg animate__animated animate__fadeIn">
+      <div class="cropper-header d-flex justify-content-between align-items-center mb-3">
+        <h5 class="m-0 text-primary">{{'general.crop-image' | translate}}</h5>
+        <span class="badge bg-secondary">{{filesToProcess.length + 1}} {{'general.remaining' | translate}}</span>
+      </div>
+
+      <div class="cropper-content" style="max-height: 60vh; overflow: hidden;">
+        <image-cropper
+          [imageChangedEvent]="currentImageEvent()"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="aspectRatio"
+          [roundCropper]="false"
+          format="png"
+          (imageCropped)="onImageCropped($event)"
+        ></image-cropper>
+      </div>
+
+      <div class="cropper-footer d-flex justify-content-end gap-2 mt-4">
+        <button type="button" class="btn btn-light" (click)="cancelAll()">{{'general.cancel' | translate}}</button>
+        <button type="button" class="btn btn-primary px-4" (click)="confirmCrop()">
+          {{ filesToProcess.length > 0 ? ('general.next' | translate) : ('general.save' | translate) }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+
+ 

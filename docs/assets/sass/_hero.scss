@@ -244,14 +244,12 @@
 /* إجبار الخلفيات على التغطية والتموضع الصحيح */
 .set-bg {
   height: 100vh;
-  position: relative;
-
-  padding: 0 1rem;
+  position: relative; 
   ._text {
     margin: 0 5rem;
     width: 50%;
     position: absolute;
-    bottom: 20%;
+    bottom: 10%;
     h1 {
       text-emphasis: dot;
       font-family: math;

@@ -1,14 +1,28 @@
-.star-rating {
-  i {
-    font-size: 1rem;
-    color: #ffc107; // Bootstrap's yellow color
-    margin: 0 4px;
-  }
+// .star-rating {
+//   i {
+//     font-size: 1rem;
+//     color: #ffc107; // Bootstrap's yellow color
+//     margin: 0 4px;
+//   }
+// }
+
+// .quantity {
+//   border: 1px solid #e3e3e3;
+//   padding: 6px;
+//   border-radius: 3px;
+// }
+ 
+
+.fa-star {
+  color: #ccc; /* لون النجوم غير المختارة */
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
-.quantity {
-  border: 1px solid #e3e3e3;
-  padding: 6px;
-  border-radius: 3px;
+.fa-star.checked {
+  color: #ffc107; /* اللون الذهبي للنجوم المختارة */
 }
- 
+
+.fa-star:hover {
+  color: #ffdb58; /* لون خفيف عند تمرير الماوس */
+}

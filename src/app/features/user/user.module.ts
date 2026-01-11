@@ -41,7 +41,7 @@ register();
     CartViewComponent,
     PaymentComponent,
     MyCartListComponent,
-    CartItemListComponent,
+    CartItemListComponent, 
   ],
   imports: [
     CommonModule,

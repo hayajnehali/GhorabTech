@@ -115,7 +115,10 @@
     "price-low-high": "السعر: من الأقل إلى الأعلى",
     "price-high-low": "السعر: من الأعلى إلى الأقل",
     "A-Z": "الاسم: أ - ي",
-    "Z-A": "الاسم: ي - أ"
+    "Z-A": "الاسم: ي - أ",
+    "cancel": "إلغاء",
+    "crop-image": "قص الصورة",
+    "remaining": "المتبقي"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -298,5 +301,20 @@
   },
   "backend": {
     "Invalid": "غير صالح"
+  },
+  "comments": {
+    "title": "التعليقات",
+    "placeholder": "أضف تعليقك...",
+    "publish_btn": "نشر",
+    "no_comments": "لا توجد تعليقات بعد",
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف",
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    },
+    "confirmation": {
+      "delete_message": "هل أنت متأكد من حذف هذا التعليق؟"
+    }
   }
 }

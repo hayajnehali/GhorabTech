@@ -23,8 +23,7 @@ export class MyCartListComponent extends BaseListComponent<
   CartFilter
 > {
   paymentStatus: string[] = [];
-  orderExitStatus: string[] = [];
-  authService = inject(AuthService);
+  orderExitStatus: string[] = []; 
   constructor(private cartService: CartService,private dialog: MatDialog) {
     super(cartService, CartFilter);
 

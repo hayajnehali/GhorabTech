@@ -26,8 +26,7 @@ import { RouterLink } from '@angular/router';
 })
 export class RegistrationComponent extends BaseComponent implements OnInit {
   private storage = inject(LocalStorageService);
-  userService = inject(UserService);
-  authService = inject(AuthService);
+  userService = inject(UserService); 
   user: User = new User();
   private readonly token_KEY = environment.token_KEY;
   @Output() notify = new EventEmitter<boolean>();

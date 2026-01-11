@@ -69,6 +69,7 @@
         <app-multi-image-upload
           name="images"
           required
+          [aspectRatio]="16 / 9"
           #images="ngModel"
           [(ngModel)]="entity.images"
         ></app-multi-image-upload>

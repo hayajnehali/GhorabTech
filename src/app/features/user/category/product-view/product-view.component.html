@@ -34,7 +34,7 @@
         <div
           class="customization-item d-flex justify-content-between align-items-center"
         >
-          <h2 class="text-titel">{{ product.name.local }}</h2>
+          <h4 class="text-titel">{{ product.name.local }}</h4>
         </div>
         <div class="customization-item">
           @if (product.priceBeforeDiscount!=null&&
@@ -47,12 +47,22 @@
             {{ product.price }} {{ "general.JOD" | translate }}
           </span>
         </div>
+        <!-- <div class="star-rating pb-2">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div> -->
         <div class="star-rating pb-2">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
+          <i
+            *ngFor="let star of stars"
+            class="fa fa-star cursor-pointer"
+            [class.checked]="star <= currentRating"
+            (click)="rate(star)"
+          >
+          </i
+          >({{ product.averageRating }}/5)
         </div>
         @if(product.count==0){
         <div>
@@ -136,6 +146,13 @@
           />
         </div>
       </div>
+    </div>
+    <div class="col-md-12">
+      @defer (on viewport ) {
+      <app-comment-manage-with-list [productId]="id"></app-comment-manage-with-list>
+      } @placeholder {
+      <div class="placeholder-box">انزل لأسفل لرؤية التعليقات</div>
+      }
     </div>
   </div>
 </div>

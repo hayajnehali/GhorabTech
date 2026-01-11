@@ -1,10 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '@core/base/base-component';
 import { CartItem } from '@models/cart-item';
 import { KeyAttribute, KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValueResult } from '@models/key-attribute-value';
 import { ProductResult } from '@models/product';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
 import { CartService } from '@shared/services/cart.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { ProductService } from '@shared/services/product.service';
@@ -16,28 +19,26 @@ import { SpinnerService } from '@shared/services/spinner.service';
   styleUrl: './product-view.component.scss',
   standalone: false,
 })
-export class ProductViewComponent implements OnInit {
+export class ProductViewComponent extends BaseComponent implements OnInit {
   product: ProductResult = new ProductResult();
   cartService = inject(CartService);
   spinnerService = inject(SpinnerService);
   keyAttributes: KeyAttributeResult[] = [];
   item: CartItem = new CartItem();
-  protected translate = inject(TranslateService);
-  constructor(
-    private router: Router,
-    private productService: ProductService,
-    private notificationService: NotificationService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  id: string | null = null;
+  currentRating = 0;
+  stars = [1, 2, 3, 4, 5];
+  constructor(private productService: ProductService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.getProductById();
   }
   getProductById() {
-    const id: string | null =
-      this.activatedRoute.snapshot.paramMap.get('productId');
-    if (id != null)
-      this.productService.getById(id).subscribe((req) => {
+    this.id = this.activatedRoute.snapshot.paramMap.get('productId');
+    if (this.id != null)
+      this.productService.getById(this.id).subscribe((req) => {
         if (req.data) {
           this.product = req.data!;
           this.getKeyAttribute();
@@ -67,7 +68,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   selectOption(attr: KeyAttributeResult, value: KeyAttributeValueResult) {
-    console.log('Selected:', attr, value);
+    // console.log('Selected:', attr, value);
   }
 
   increment() {
@@ -91,7 +92,7 @@ export class ProductViewComponent implements OnInit {
         this.translate.instant('general.error')
       );
       return;
-    } 
+    }
     this.item.product.id = this.product.id;
     this.item.product.name = this.product.name;
     this.item.product.price = this.product.price;
@@ -102,7 +103,7 @@ export class ProductViewComponent implements OnInit {
       this.translate.instant('cart.add-to-cart'),
       this.translate.instant('general.success')
     );
-    this.item = new CartItem(); 
+    this.item = new CartItem();
     this.spinnerService.openSideCart();
   }
 
@@ -115,7 +116,7 @@ export class ProductViewComponent implements OnInit {
         newVal.value = value.value;
         this.item.keyAttributeValues.push(newVal);
         value.iselected = false;
-      } 
+      }
     }
   }
   onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
@@ -125,5 +126,21 @@ export class ProductViewComponent implements OnInit {
       .forEach((element) => {
         element.iselected = false;
       });
+  }
+
+  rate(stars: number) {
+    this.authService.runWithAuth(() => {
+      this.submitRating(stars);
+    });
+  }
+
+  private submitRating(stars: number) {
+    this.currentRating = stars;
+    this.productService.addOrUpdateRating(this.id!, stars).subscribe({
+      next: (res) => {
+        this.product.averageRating = res.data ?? 0;
+      },
+      error: (err) => console.error('Rating failed', err),
+    });
   }
 }

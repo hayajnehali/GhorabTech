@@ -9,6 +9,8 @@ import { LocalStorageService } from './local-storage-service.service';
 import { Router } from '@angular/router';
 import { Roles } from '@shared/Enum/role-enum';
 import { OperationResultGeneric } from '@core/base/operation-result';
+import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface JwtPayload {
   sub: string;
@@ -29,6 +31,7 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly storage = inject(LocalStorageService);
   private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
   private readonly baseUrl = environment.apiUrl + apiName.auth;
   private readonly tokenKey = environment.token_KEY;
 
@@ -119,4 +122,21 @@ export class AuthService {
     this.storage.remove(this.tokenKey);
     this.user.set(null);
   }
+ 
+runWithAuth(action: () => void) {
+  if (this.isAuthenticatedSignal()) {
+    action();
+  } else {
+    const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
+      width: '80%',
+      panelClass: 'custom-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.isAuthenticatedSignal()) {
+        action();
+      }
+    });
+  }
+}
 }

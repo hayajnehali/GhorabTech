@@ -20,8 +20,7 @@ export class PaymentComponent extends BaseManageComponent<
   CartResult,
   CartFilter
 > {
-  private readonly token_KEY = environment.token_KEY;
-  authService = inject(AuthService);
+  private readonly token_KEY = environment.token_KEY; 
   paymentService = inject(PaymentService);
   private storage = inject(LocalStorageService);
   payway = PayWay;

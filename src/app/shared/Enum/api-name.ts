@@ -8,5 +8,6 @@ user="user",
 payment="payment",
 auth="auth",
 keyAttribute="keyAttribute",
-slider="slider"
+slider="slider",
+Comment="comment"
 }

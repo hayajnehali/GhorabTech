@@ -1,0 +1,66 @@
+<div class="comments-container">
+  <h3>{{ "comments.title" | translate }}</h3>
+
+  <div class="comments-list">
+    @for (comment of dataSource.data; track comment.id) {
+    <div class="comment-card">
+      <div class="avatar">{{ comment.userName?.charAt(0) }}</div>
+
+      <div class="content">
+        <div class="comment-header">
+          <span class="username">{{ comment.userName }}</span>
+          @if(authService.isAuthenticated() && authService.user()?.certserialnumber === comment.createdBy) { 
+          <div class="actions">
+            <button class="btn-edit" (click)="toggleEdit(comment)"><mat-icon>edit</mat-icon></button>
+            <button class="btn-delete" (click)="deleteComment(comment.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          }
+        </div>
+
+        @if (comment.isEditing) {
+        <div class="edit-mode">
+          <textarea #editInput [value]="comment.comment"></textarea>
+          <div class="btn-container">
+            <button
+              type="button" 
+              (click)="toggleEdit(comment)"
+            >
+              <!-- {{ "comments.actions.cancel" | translate }} -->
+                <mat-icon>close</mat-icon>
+            </button>
+            <button
+              type="button" 
+              (click)="saveEdit(comment, editInput.value)"
+            >
+              <!-- {{ "comments.actions.save" | translate }} -->
+                <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </div>
+        } @else {
+        <p class="text">{{ comment.comment }}</p>
+        }
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="comment-input-section d-f">
+    <input
+      [(ngModel)]="newCommentText"
+      maxlength="200"
+      #commentInput="ngModel"
+      [placeholder]="'comments.placeholder' | translate"
+    />
+    <app-form-error [control]="commentInput"></app-form-error>
+    <button 
+      (click)="addComment()"
+      [disabled]="!newCommentText()"
+    >
+      <!-- {{ "comments.publish_btn" | translate }} -->
+        <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>
