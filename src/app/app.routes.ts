@@ -6,10 +6,10 @@ import { authChildGuard } from 'Auth/interceptor/auth.guard';
 import { LoginRegestrationComponent } from '@shared/component/login-regestration/login-regestration.component';
 
 const routes: Routes = [
-  {
-    path: 'm',
-    component: LoginRegestrationComponent,
-  },
+  // {
+  //   path: 'm',
+  //   component: LoginRegestrationComponent,
+  // },
   // {
   //   path: 'e',
   //   component: EmailComponent,

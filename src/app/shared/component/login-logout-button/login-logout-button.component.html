@@ -1,4 +1,4 @@
-<div class="d-inline-flex">
+<!-- <div class="d-inline-flex">
   <span> <mat-icon class="menu-icon">account_circle</mat-icon></span>
   @if(authService.isAuthenticatedSignal()){
   <span>
@@ -10,11 +10,26 @@
   <span>
     <a class="text-dark position-relative mx-2" (click)="openLogInLogoutDialog()">
       {{ "general.login" | translate }}
-    </a>
-    <!-- <a class="text-dark position-relative mx-2" [routerLink]="['/user','login']">
-      {{ "general.login" | translate }}
-    </a> -->
+    </a> 
   </span>
-  }
-  <!-- <span class="mx-3">|</span> -->
+  } 
+</div> -->
+<div class="auth-wrapper d-inline-flex">
+  <span class="icon-container">
+    <mat-icon class="menu_icon">account_circle</mat-icon>
+  </span>
+  
+  @if(authService.isAuthenticatedSignal()){
+    <span class="link-container">
+      <a class="auth-link" (click)="logout()">
+        {{ "general.logout" | translate }}
+      </a>
+    </span>
+  }@else {
+    <span class="link-container">
+      <a class="auth-link" (click)="openLogInLogoutDialog()">
+        {{ "general.login" | translate }}
+      </a> 
+    </span>
+  } 
 </div>
