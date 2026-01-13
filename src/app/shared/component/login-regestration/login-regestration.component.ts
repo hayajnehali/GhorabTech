@@ -45,7 +45,7 @@ export class LoginRegestrationComponent
     super();
   }
   ngOnInit() {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticatedSignal()) {
       if (this.authService.isAdmin()) {
         this.router.navigate(['/admin']);
       } else {

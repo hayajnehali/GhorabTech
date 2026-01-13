@@ -92,7 +92,7 @@ export class AuthService {
   }
 
   // ===== Auth Logic =====
-  isAuthenticated(): boolean {
+ private isAuthenticated(): boolean {
     const token = this.getToken();
     if (!token || this.isTokenExpired(token)) {
       this.clearToken();

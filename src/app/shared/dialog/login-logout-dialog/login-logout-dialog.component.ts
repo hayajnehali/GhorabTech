@@ -60,7 +60,7 @@ export class LoginLogoutDialogComponent
   //   }
   // }
   createUser(form: NgForm) {
-    if (this.authService.isAuthenticated()) return;
+    if (this.authService.isAuthenticatedSignal()) return;
     if (form.invalid || this.user.password !== this.user.confirmPassword) {
       form.control.markAllAsTouched();
       return;
@@ -85,7 +85,7 @@ export class LoginLogoutDialogComponent
   }
 
   logIn(form: NgForm) {
-    if (this.authService.isAuthenticated()) return;
+    if (this.authService.isAuthenticatedSignal()) return;
     this.loginError = null;
     if (form.invalid) {
       form.control.markAllAsTouched();

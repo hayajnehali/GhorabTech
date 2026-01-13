@@ -45,7 +45,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     this.cartService.cartTotal$.subscribe((total) => {
       this.cartTotal = total;
     }); 
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAuthenticated = this.authService.isAuthenticatedSignal();
     this.getProductCategoryWithProduct();
   }
   getProductCategoryWithProduct() {

@@ -33,7 +33,7 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
   //emailVerification: any;
   //inVerificationCodeStep = false;
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticatedSignal()) {
       this.router.navigate(['/']);
     }
   }

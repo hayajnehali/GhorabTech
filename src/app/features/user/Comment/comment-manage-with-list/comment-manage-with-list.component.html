@@ -9,7 +9,7 @@
       <div class="content">
         <div class="comment-header">
           <span class="username">{{ comment.userName }}</span>
-          @if(authService.isAuthenticated() && authService.user()?.certserialnumber === comment.createdBy) { 
+          @if(authService.isAuthenticatedSignal() && authService.user()?.certserialnumber === comment.createdBy) { 
           <div class="actions">
             <button class="btn-edit" (click)="toggleEdit(comment)"><mat-icon>edit</mat-icon></button>
             <button class="btn-delete" (click)="deleteComment(comment.id!)">
