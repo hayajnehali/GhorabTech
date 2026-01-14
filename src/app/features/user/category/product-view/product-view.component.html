@@ -48,16 +48,16 @@
           </span>
         </div>
         <!-- <div class="star-rating pb-2">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
+          <i class="fab fa-star"></i>
+          <i class="fab fa-star"></i>
+          <i class="fab fa-star"></i>
+          <i class="fab fa-star"></i>
+          <i class="fab fa-star"></i>
         </div> -->
         <div class="star-rating pb-2">
           <i
             *ngFor="let star of stars"
-            class="fa fa-star cursor-pointer"
+            class="fab fa-star cursor-pointer"
             [class.checked]="star <= currentRating"
             (click)="rate(star)"
           >

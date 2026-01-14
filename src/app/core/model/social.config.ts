@@ -17,23 +17,23 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     platform: 'facebook',
     url: 'https://facebook.com/yourPage',
-    icon: 'fa fa-facebook',
+    icon: 'fab fa-facebook',
   },
   {
     platform: 'instagram',
     url: 'https://instagram.com/yourProfile',
-    icon: 'fa fa-instagram',
+    icon: 'fab fa-instagram',
   },
   {
     platform: 'twitter',
     url: 'https://twitter.com/yourHandle',
-    icon: 'fa fa-twitter',
+    icon: 'fab fa-twitter',
   },
   // { platform: 'linkedin', url: 'https://linkedin.com/in/yourProfile' },
   {
     platform: 'youtube',
     url: 'https://youtube.com/yourChannel',
-    icon: 'fa fa-youtube',
+    icon: 'fab fa-youtube',
   },
 
 ];

@@ -1,0 +1,50 @@
+@use "variable" as *; 
+
+table {
+  border-radius: 15px;
+  overflow: hidden; // لضمان ظهور انحناء الزوايا
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+  width: 100%;
+  background: $white-color;
+
+  // تنسيق الهيدر (العناوين)
+  .mat-mdc-header-row {
+    background-color: $primary-color;
+
+    .mat-mdc-header-cell {
+      color: $white-color;
+      padding: 16px;
+      border: none;
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  // تنسيق الأسطر (البيانات)
+  .mat-mdc-row {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.03); // تغيير بسيط عند التمرير
+    }
+
+    .mat-mdc-cell {
+      padding: 16px;
+      font-size: 0.95rem;
+      color: #444;
+      border-bottom: 1px solid #eee;
+    }
+
+    &:nth-child(even) {
+      background-color: $background-2;
+    }
+  }
+
+  // تنسيق خاص لعمود المعرف (ID)
+  .mat-column-id {
+    font-weight: bold;
+    color: $primary-color;
+    width: 80px;
+  }
+}

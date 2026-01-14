@@ -127,10 +127,10 @@
         // margin-top: 10px;
         // padding: 0 15px;
         // border-top: 1px solid rgba($secondary-color, 0.2);
-        // padding-top: 20px; 
+        // padding-top: 20px;
         .auth-wrapper {
           display: flex;
-          align-items: center; 
+          align-items: center;
 
           .icon-container {
             display: flex;
@@ -165,4 +165,69 @@
       }
     }
   }
+}
+
+.admin-mat-sidenav {
+  background-color: $primary-color !important;
+  color: $white-color;
+  border: none;
+  transition: width 0.3s ease;
+  z-index: 1 !important;
+  // عند توسيع القائمة (expanded)
+  &.expanded {
+    width: 95px; // أو العرض الذي تفضله
+  }
+
+  mat-nav-list {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // المسافة بين العناصر كما في الموبايل
+
+    .mat-mdc-list-item {
+      height: 54px; // ارتفاع العنصر
+      // margin: 0 12px; // ترك مسافة جانبية ليعطي شكل الـ Rounded Box
+      border-radius: 12px;
+      transition: background-color 0.3s ease;
+
+      // تنسيق المحتوى الداخلي (Icon + Text)
+      .entry {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: $white-color;
+        text-decoration: none;
+        cursor: pointer;
+
+        mat-icon {
+          color: $white-color;
+          margin-inline-end: 15px; // المسافة بين الأيقونة والنص
+          font-size: 24px;
+          transition: transform 0.3s ease;
+        }
+
+        // span {
+        //   // font-size: 1.1rem;
+        //   // font-weight: 500;
+        //   // white-space: nowrap;
+        // }
+      }
+
+      // تأثير عند تمرير الماوس أو الضغط (Hover & Active)
+      &:hover,
+      &.active-link {
+        background-color: rgba($white-color, 0.1) !important;
+
+        .entry mat-icon {
+          color: $third-color; // تغيير لون الأيقونة عند التمرير
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// زر القائمة العلوي (Toggle Button)
+.entry mat-icon {
+  cursor: pointer;
 }

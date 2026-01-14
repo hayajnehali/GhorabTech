@@ -11,9 +11,10 @@ import { environment } from '@shared/environment/environment';
 })
 export class FooterComponent {
   language=environment.language_KEY
+  currentLang =localStorage.getItem(this.language) || 'ar';
   constructor(private translate: TranslateService, private router: Router) {}
   switchLanguage(language: string) {
-    this.translate.use(language);
+    this.translate.use(language); 
     localStorage.setItem(this.language, language);
     this.router.navigate([this.router.url]).then(() => {
       window.location.reload();

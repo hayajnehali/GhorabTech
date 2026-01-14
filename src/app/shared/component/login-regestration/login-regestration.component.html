@@ -8,7 +8,7 @@
         <form class="sign-in-form" #login="ngForm" (ngSubmit)="onSubmit(login)">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fab fa-user" aria-hidden="true"></i>
             <input
               placeholder="{{ 'general.user-name' | translate }}"
               required
@@ -20,7 +20,7 @@
             <app-form-error [control]="userName"></app-form-error>
           </div>
           <div class="input-field">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fab fa-user" aria-hidden="true"></i>
             <input
               asp-for="Password"
               name="password"
@@ -71,7 +71,7 @@
         >
           <h2 class="title">{{ "general.createUser" | translate }}</h2>
           <div class="input-field">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fab fa-user" aria-hidden="true"></i>
             <input
               type="text"
               class="form-control"
@@ -85,7 +85,7 @@
           </div>
 
           <div class="input-field">
-            <i class="fa fa-music" aria-hidden="true"></i>
+            <i class="fab fa-music" aria-hidden="true"></i>
             <input
               type="email"
               class="form-control"
@@ -99,7 +99,7 @@
           </div>
 
           <div class="input-field">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <i class="fab fa-envelope" aria-hidden="true"></i>
             <input
               type="tel"
               class="form-control"
@@ -112,7 +112,7 @@
           </div>
 
           <div class="input-field">
-            <i class="fa fa-lock" aria-hidden="true"></i>
+            <i class="fab fa-lock" aria-hidden="true"></i>
             <input
               type="password"
               class="form-control"
@@ -125,7 +125,7 @@
             <app-form-error [control]="password"></app-form-error>
           </div>
           <div class="input-field">
-            <i class="fa fa-lock" aria-hidden="true"></i>
+            <i class="fab fa-lock" aria-hidden="true"></i>
             <input
               type="password"
               class="form-control"

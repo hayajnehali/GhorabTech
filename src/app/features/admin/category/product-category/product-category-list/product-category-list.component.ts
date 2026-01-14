@@ -20,7 +20,8 @@ export class ProductCategoryListComponent extends BaseListComponent<
 > {
   constructor(private productCategoryService: ProductCategoryService) {
     super(productCategoryService,ProductCategoryFilter);
-    this.displayedColumns = ['Id', 'categoryName', 'action'];
+    this.displayedColumns = ['categoryName', 'action'];
+    // this.displayedColumns = ['Id', 'categoryName', 'action'];
     this.filter.CategoryId = this.activatedRoute.snapshot.paramMap.get('id') ?? null;
   }
 }
