@@ -14,47 +14,52 @@
         <div class="carousel-item active">
           @if( category.productCategories && category.productCategories.length >
           0 ){
-   <div class="row g-3 g-md-4 category-section">
-  @for (product of category.productCategories; track $index) {
-  <div class="col-6 col-sm-4 col-md-3">
-    <div class="product-card" 
-         [routerLink]="['category', category.id, 'product-category', product.id, 'product']">
-      
-      <div class="image-container">
-        <swiper-container 
-          slides-per-view="1" 
-          speed="1500" 
-          loop="true" 
-          [autoplay]="{ delay: 3000, disableOnInteraction: false }">
-          
-          @for (item of product.images; track $index) {
-            @if(item && item?.guidName){
-              <swiper-slide>
-                <app-image
-                  [src]="item.guidName"
-                  class="main-img"
-                  [alt]="product.name.local"
-                ></app-image>
-              </swiper-slide>
+          <div class="row g-3 g-md-4 category-section">
+            @for (product of category.productCategories; track $index) {
+            <div class="col-6 col-sm-4 col-md-3">
+              <div
+                class="product-card"
+                [routerLink]="[
+                  'category',
+                  category.id,
+                  'product-category',
+                  product.id,
+                  'product'
+                ]"
+              >
+                <div class="image-container">
+                  <swiper-container
+                    slides-per-view="1"
+                    speed="1500"
+                    loop="true"
+                    [autoplay]="{ delay: 3000, disableOnInteraction: false }"
+                  >
+                    @for (item of product.images; track $index) { @if(item &&
+                    item?.guidName){
+                    <swiper-slide>
+                      <app-image
+                        [src]="item.guidName"
+                        class="main-img"
+                        [alt]="product.name.local"
+                      ></app-image>
+                    </swiper-slide>
+                    } }
+                  </swiper-container>
+                </div>
+
+                <div class="card-body text-center">
+                  <p class="category-name text-truncate px-2">
+                    {{ product.name.local }}
+                  </p>
+                  <div class="explore-badge">
+                    {{ "general.explore" | translate }}
+                    <mat-icon>chevron_right</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
             }
-          }
-        </swiper-container>
-      </div>
-
-      <div class="card-body text-center">
-        <p class="category-name text-truncate px-2">
-          {{ product.name.local }}
-        </p>
-        <div class="explore-badge">
-           {{ 'general.explore' | translate }}
-           <mat-icon>chevron_right</mat-icon>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  }
-</div>
+          </div>
           }
         </div>
       </div>
@@ -62,10 +67,10 @@
 
     <div class="text-center mt-4">
       <button
-        class="btn btn-pink"
+        class="btn btn-primary"
         [routerLink]="['category', category.id, 'product-category']"
       >
-        <i class="fab fa-shopping-cart me-2"></i>
+        <i class="fa fa-shopping-cart me-2"></i>
         {{ "general.show-more" | translate }}
       </button>
     </div>

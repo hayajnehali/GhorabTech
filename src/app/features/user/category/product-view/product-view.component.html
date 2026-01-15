@@ -57,7 +57,7 @@
         <div class="star-rating pb-2">
           <i
             *ngFor="let star of stars"
-            class="fab fa-star cursor-pointer"
+            class="fa fa-star cursor-pointer"
             [class.checked]="star <= currentRating"
             (click)="rate(star)"
           >
