@@ -67,39 +67,41 @@
         }
         <!-- Products Grid -->
         @if(dataSource.data.length > 0){
-        <div class="row g-4">
+        <div class="row g-3 g-md-4 category-section">
           @for (productCategory of dataSource.data; track $index) {
-          <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+          <div class="col-6 col-sm-4 col-md-3">
             <div
-              class="product-card border-0"
+              class="product-card"
               [routerLink]="[productCategory.id, 'product']"
             >
-              <div>
+              <div class="image-container">
                 <swiper-container
                   slides-per-view="1"
-                  space-between="20"
-                  speed="3000"
-                  autoplay='{
-                  "delay": 3000,
-                  "disableOnInteraction": false
-                }'
+                  speed="1500"
+                  loop="true"
+                  [autoplay]="{ delay: 4000, disableOnInteraction: false }"
                 >
-                  @for (item of productCategory.images; track $index) { @if(item
-                  && item?.guidName){
-                  <swiper-slide class="category-image-wrapper">
+                  @for (item of productCategory.images; track $index) {
+                  @if(item?.guidName){
+                  <swiper-slide>
                     <app-image
                       [src]="item.guidName"
-                      [class]="'card-img-top main-img'"
-                      alt="product.name"
+                      class="main-img"
+                      [alt]="productCategory.name.local"
                     ></app-image>
                   </swiper-slide>
                   } }
                 </swiper-container>
               </div>
+
               <div class="card-body text-center">
-                <p class="text-truncate fs-9 fs-sm-5 fs-md-4 fs-lg-3">
+                <p class="category-name text-truncate">
                   {{ productCategory.name.local }}
                 </p>
+                <div class="explore-badge">
+                  {{ "general.explore" | translate }}
+                  <mat-icon>chevron_right</mat-icon>
+                </div>
               </div>
             </div>
           </div>

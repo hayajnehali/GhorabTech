@@ -116,7 +116,10 @@
     "Z-A": "Name: Z - A",
     "cancel": "Cancel",
     "crop-image": "Crop Image",
-    "remaining": "Remaining"
+    "remaining": "Remaining",
+    "explore": "Explore Now",
+    "view_all": "View All",
+    "shop_now": "Shop Now"
   },
   "validation": {
     "required": "This field is required",

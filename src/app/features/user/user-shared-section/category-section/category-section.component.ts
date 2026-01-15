@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
 import { AdminModuleRoutingModule } from "app/features/admin/admin-routing.module";
 import { Swiper } from 'swiper';
 import { register } from 'swiper/element/bundle';
+import { SharedModule } from '@shared/shared.module';
 register();
 @Component({
     selector: 'app-category-section',
-    imports: [CommonModule, TranslateModule, ImageComponent, AdminModuleRoutingModule],
+    imports: [CommonModule, TranslateModule, ImageComponent, AdminModuleRoutingModule,SharedModule],
     templateUrl: './category-section.component.html',
     styleUrl: './category-section.component.scss',
      schemas: [CUSTOM_ELEMENTS_SCHEMA],

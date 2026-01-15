@@ -11,7 +11,7 @@ export class ImageComponent {
   @Input('src') src?: string;
   @Input('flipImage') flipImage?: boolean=false;
   @Input('class') class: string="";
-  @Input() alt: string = '';
+  @Input() alt: string | undefined = '';
   @Input('name') name: string = 'viewImage';
   @Input() width: number = 100; // نسبة مئوية
   @Input() height: number = 100; // نسبة مئوية

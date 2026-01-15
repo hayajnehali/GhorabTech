@@ -118,7 +118,10 @@
     "Z-A": "الاسم: ي - أ",
     "cancel": "إلغاء",
     "crop-image": "قص الصورة",
-    "remaining": "المتبقي"
+    "remaining": "المتبقي",
+    "explore": "استكشف الآن",
+    "view_all": "عرض الكل",
+    "shop_now": "تسوّق الآن"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
