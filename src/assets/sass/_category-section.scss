@@ -119,4 +119,26 @@
   }
 }
 
- 
+@media (max-width: 767px) {
+  .category-section {
+    .product-card {
+      // تقليل الحركة عند النقر لأنها مزعجة على الموبايل
+      &:hover {
+        transform: translateY(-5px) scale(1.01);
+
+        .main-img {
+          transform: scale(1.05); // حركة أخف
+        }
+      }
+
+      // عرض زر "استكشف" دائماً لأن المستخدم لا يملك ماوس ليظهره
+      .btn-view {
+        opacity: 1;
+        bottom: 10px;
+      }
+    }
+
+    // تصغير الحشوات قليلاً لتوفير مساحة
+    padding: 20px 0;
+  }
+}
