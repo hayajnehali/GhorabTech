@@ -229,7 +229,8 @@
     "cart-item-list": "قائمة عناصر عربة التسوق",
     "payment-method": "طرق الدفع",
     "product-limit": "يرجى اختيار منتج واحد على الأقل لإتمام عملية الشراء.",
-    "purchase-record": "سجل الشراء"
+    "purchase-record": "سجل الشراء",
+    "cart-details": "تفاصيل عربة التسوق"
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

@@ -1,4 +1,4 @@
-<app-admin-header-section></app-admin-header-section>
+
 @if (responsiveService.isMobile() && responsiveService.isNavBarOpen()) {
 <nav class="mobile-nav-overlay">
   <div class="nav-container">
@@ -56,7 +56,8 @@
       >} }
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content  style="min-height: 70vh;">
+  <mat-sidenav-content  >
+    <app-admin-header-section></app-admin-header-section>
     <div class="container">
       <router-outlet></router-outlet>
     </div>

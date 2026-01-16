@@ -4,10 +4,8 @@ import { Cart, CartFilter, CartResult } from '@models/cart';
 import { CartItem, CartItemFilter, CartItemResult } from '@models/cart-item';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
 import { CartItemService } from '@shared/services/cart-item.service';
-import { CartService } from '@shared/services/cart.service';
-import { CartModule } from '../cart.module';
-import { OperationResultGeneric } from '@core/base/operation-result';
-import { find } from 'rxjs';
+import { CartService } from '@shared/services/cart.service'; 
+import { OperationResultGeneric } from '@core/base/operation-result'; 
 import { getEnumList } from '@shared/Enum/enum-list';
 
 @Component({
@@ -41,7 +39,7 @@ export class CartItemListComponent extends BaseListComponent<
       'details',
       'quantity',
       'unitPrice', 
-      'total',
+      'total', 
       //      'action'
     ];
     this.orderExitStatus = getEnumList(OrderExitStatus);

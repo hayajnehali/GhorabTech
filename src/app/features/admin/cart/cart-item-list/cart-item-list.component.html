@@ -1,5 +1,5 @@
-<div class="container">
-  <h3 class="text-titel">{{ "cart.cart-list" | translate }}</h3>
+<div class="container list">
+  <h3 class="text-titel">{{ "cart.cart-details" | translate }}</h3>
   <form #productForm="ngForm" class="form">
     <div class="row">
       <div class="form-group form-group col-12 col-md-6">
@@ -31,7 +31,8 @@
       </div>
     </div>
   </form>
-  <div *ngIf="hasData" class="cart-table table-responsive">
+  @if(hasData){
+  <div class="cart-table table-responsive">
     <table mat-table [dataSource]="dataSource" class="_table">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -144,4 +145,5 @@
       showFirstLastButtons
     ></mat-paginator>
   </div>
+  }
 </div>

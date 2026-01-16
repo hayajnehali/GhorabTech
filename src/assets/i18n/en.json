@@ -227,7 +227,8 @@
     "cart-item-list": "Cart Item List",
     "payment-method": "Payment Method",
     "product-limit": "Please select at least one product to proceed to checkout.",
-    "purchase-record": "Purchase Record"
+    "purchase-record": "Purchase Record",
+    "cart-details": "Cart Details"
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",

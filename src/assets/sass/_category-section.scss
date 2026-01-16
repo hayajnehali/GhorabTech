@@ -264,26 +264,156 @@
     }
   }
 }
-// @media (max-width: 767px) {
-//   .category-section {
-//     .product-card {
-//       // تقليل الحركة عند النقر لأنها مزعجة على الموبايل
-//       &:hover {
-//         transform: translateY(-5px) scale(1.01);
 
-//         .main-img {
-//           transform: scale(1.05); // حركة أخف
-//         }
-//       }
 
-//       // عرض زر "استكشف" دائماً لأن المستخدم لا يملك ماوس ليظهره
-//       .btn-view {
-//         opacity: 1;
-//         bottom: 10px;
-//       }
-//     }
 
-//     // تصغير الحشوات قليلاً لتوفير مساحة
-//     padding: 20px 0;
-//   }
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// المتغيرات الأساسية
+$primary-color: #0a192f;
+$accent-color: #68719a;
+$white: #ffffff;
+$bg-body: #f4f7f9;
+
+.cart-main-wrapper {
+  padding-top: 30px;
+  padding-bottom: 50px;
+
+  .cart-header {
+    margin-bottom: 25px;
+    .text-titel {
+      color: $primary-color;
+      font-weight: 800;
+      font-size: 2rem;
+      border-right: 5px solid $accent-color;
+      padding-right: 15px;
+    }
+  }
+}
+
+// كرت حالة الطلب
+.status-card {
+  background: $white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  border: 1px solid rgba($primary-color, 0.05);
+
+  .custom-label {
+    display: block;
+    font-weight: 600;
+    color: $accent-color;
+    margin-bottom: 10px;
+  }
+
+  .custom-select {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .btn-save-status {
+    width: 100%;
+    background: $primary-color;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.3s;
+    &:hover { opacity: 0.9; transform: translateY(-2px); }
+  }
+}
+
+// تصميم الجدول (Desktop)
+.table-container {
+  background: $white;
+  border-radius: 24px;
+  overflow: hidden; // لضمان الزوايا الدائرية
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+
+  .modern-table {
+    width: 100%;
+    th {
+      background: #f8fafc;
+      color: $primary-color;
+      font-weight: 700;
+      padding: 20px;
+    }
+    td { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; }
+  }
+
+  .prod-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .prod-info {
+    .name { display: block; font-weight: 700; color: $primary-color; margin-bottom: 5px; }
+    .tags {
+      display: flex; gap: 5px;
+      .tag { font-size: 11px; background: #edf2f7; padding: 2px 8px; border-radius: 5px; color: $accent-color; }
+    }
+  }
+
+  .qty-badge { background: $primary-color; color: white; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+  .price-total { font-weight: 800; color: $primary-color; font-size: 1.1rem; }
+}
+
+// تصميم الموبايل (Cards)
+.modern-cart-card {
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #f1f5f9;
+
+  .card-image { width: 90px; height: 90px; border-radius: 15px; overflow: hidden; }
+  .card-details {
+    flex: 1;
+    .product-title { font-size: 1rem; font-weight: 700; color: $primary-color; margin-bottom: 10px; }
+    .detail-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 4px; color: $accent-color; }
+    .total-row { border-top: 1px solid #eee; margin-top: 8px; padding-top: 8px; display: flex; justify-content: space-between;
+      .final-price { font-weight: 800; color: $primary-color; }
+    }
+  }
+}
+
+.paginator-section {
+  margin-top: 20px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+}

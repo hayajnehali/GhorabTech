@@ -8,7 +8,7 @@
 
   <form (ngSubmit)="search()" #userForm="ngForm" class="form">
     <div class="row">
-      <div class="form-group col-12 col-3 col-md-3">
+      <div class="form-group col-6 col-md-3">
         <label for="nameEn">{{ "general.name" | translate }}</label>
         <input
           type="text"
@@ -18,7 +18,7 @@
           [(ngModel)]="filter.fullName"
         />
       </div>
-      <div class="form-group col-12 col-3 col-md-3">
+      <div class="form-group col-6 col-md-3">
         <label for="email">{{ "general.email" | translate }}</label>
         <input
           type="email"
