@@ -1,28 +1,154 @@
 @use "variable" as *;
 
+// .category-section {
+//   padding: 40px 0;
+
+//   .product-card {
+//     background: $white-color;
+//     border-radius: 24px; // زوايا دائرية أكثر حداثة
+//     border: 1px solid rgba($primary-color, 0.03) !important;
+//     position: relative;
+//     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+//     box-shadow: 0 10px 30px rgba($primary-color, 0.05);
+//     height: 100%;
+//     overflow: hidden;
+
+//     &:hover {
+//       transform: translateY(-12px) scale(1.02);
+//       box-shadow: 0 20px 40px rgba($primary-color, 0.15);
+
+//       .main-img {
+//         transform: scale(1.15) rotate(2deg); // حركة فنية للصورة
+//       }
+
+//       .card-body p {
+//         color: $third-color; // يتغير لون النص عند التمرير
+//       }
+
+//       .btn-view {
+//         opacity: 1;
+//         bottom: 20px;
+//       }
+//     }
+
+//     // منطقة الصورة
+//     .image-container {
+//       width: 100%;
+//       aspect-ratio: 1 / 1; // يضمن أن المربع سيبقى مربعاً مهما كان حجم الصورة
+//       background-color: #f8fafc;
+//       overflow: hidden;
+//       position: relative;
+
+//       .main-img {
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover; // هذا هو السر في ثبات الأبعاد
+//         object-position: center;
+//         transition: transform 0.6s ease-in-out;
+//       }
+//     }
+
+//     // ستايل النص وكلمة استكشف
+//     .category-name {
+//       color: #0a192f;
+//       font-weight: 700;
+//       font-size: 1rem;
+//       margin-top: 10px;
+//     }
+
+//     .explore-badge {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       font-size: 0.8rem;
+//       color: #68719a;
+//       margin-top: 5px;
+//       gap: 2px;
+
+//       mat-icon {
+//         font-size: 16px;
+//         width: 16px;
+//         height: 16px;
+//       }
+//     }
+//     // ملصق الخصم بتصميم عصري
+//     .discountRated {
+//       position: absolute;
+//       top: 15px;
+//       left: 15px;
+//       z-index: 10;
+//       background: $primary-color;
+//       color: $white-color;
+//       padding: 6px 14px;
+//       border-radius: 12px;
+//       font-size: 0.75rem;
+//       font-weight: 800;
+//       letter-spacing: 1px;
+//       box-shadow: 0 5px 15px rgba($primary-color, 0.3);
+//     }
+
+//     // محتوى البطاقة
+//     .card-body {
+//       padding: 20px 15px;
+//       position: relative;
+
+//       p {
+//         color: $primary-color;
+//         font-weight: 700;
+//         font-size: 1.1rem;
+//         margin-bottom: 10px;
+//         transition: color 0.3s;
+//       }
+
+//       .price-tag {
+//         display: inline-block;
+//         background: rgba($third-color, 0.1);
+//         padding: 5px 15px;
+//         border-radius: 50px;
+//         color: $primary-color;
+//         font-weight: 800;
+//         font-size: 1.2rem;
+
+//         small {
+//           font-size: 0.7rem;
+//           margin-right: 3px;
+//           color: $secondary-color;
+//         }
+//       }
+//     }
+//   }
+// }
+
 .category-section {
   padding: 40px 0;
 
   .product-card {
     background: $white-color;
-    border-radius: 24px; // زوايا دائرية أكثر حداثة
+    border-radius: 24px; // الزوايا الدائرية
     border: 1px solid rgba($primary-color, 0.03) !important;
     position: relative;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba($primary-color, 0.05);
     height: 100%;
-    overflow: hidden;
+    
+    /* حل مشكلة الزوايا الحادة قبل اللمس */
+    overflow: hidden; // قص المحتوى الزائد
+    isolation: isolate; // إجبار المتصفح على معالجة البطاقة كطبقة مستقلة
+    -webkit-backface-visibility: hidden; // تفعيل تسريع الجرافيك لضمان نعومة الحواف
+    backface-visibility: hidden;
+    transform: translateZ(0); // يضمن بقاء الحواف دائرية في متصفحات الموبايل
+    -webkit-tap-highlight-color: transparent; // إلغاء اللون الرمادي المزعج عند النقر
 
     &:hover {
       transform: translateY(-12px) scale(1.02);
       box-shadow: 0 20px 40px rgba($primary-color, 0.15);
 
       .main-img {
-        transform: scale(1.15) rotate(2deg); // حركة فنية للصورة
+        transform: scale(1.15) rotate(2deg);
       }
 
       .card-body p {
-        color: $third-color; // يتغير لون النص عند التمرير
+        color: $third-color;
       }
 
       .btn-view {
@@ -34,17 +160,19 @@
     // منطقة الصورة
     .image-container {
       width: 100%;
-      aspect-ratio: 1 / 1; // يضمن أن المربع سيبقى مربعاً مهما كان حجم الصورة
+      aspect-ratio: 1 / 1;
       background-color: #f8fafc;
       overflow: hidden;
       position: relative;
+      border-radius: 24px 24px 0 0; // زوايا دائرية من الأعلى لتطابق الأب
 
       .main-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; // هذا هو السر في ثبات الأبعاد
+        object-fit: cover;
         object-position: center;
         transition: transform 0.6s ease-in-out;
+        border-radius: inherit; // ترث الزوايا الدائرية
       }
     }
 
@@ -71,7 +199,8 @@
         height: 16px;
       }
     }
-    // ملصق الخصم بتصميم عصري
+
+    // ملصق الخصم
     .discountRated {
       position: absolute;
       top: 15px;
@@ -119,26 +248,42 @@
   }
 }
 
+/* إضافات خاصة لتجربة أفضل على الموبايل */
 @media (max-width: 767px) {
   .category-section {
+    padding: 20px 0;
+    
     .product-card {
-      // تقليل الحركة عند النقر لأنها مزعجة على الموبايل
       &:hover {
-        transform: translateY(-5px) scale(1.01);
-
-        .main-img {
-          transform: scale(1.05); // حركة أخف
-        }
+        transform: translateY(-5px) scale(1.01); // حركة أخف للموبايل
       }
-
-      // عرض زر "استكشف" دائماً لأن المستخدم لا يملك ماوس ليظهره
-      .btn-view {
-        opacity: 1;
-        bottom: 10px;
+      
+      .card-body {
+        padding: 15px 10px;
       }
     }
-
-    // تصغير الحشوات قليلاً لتوفير مساحة
-    padding: 20px 0;
   }
 }
+// @media (max-width: 767px) {
+//   .category-section {
+//     .product-card {
+//       // تقليل الحركة عند النقر لأنها مزعجة على الموبايل
+//       &:hover {
+//         transform: translateY(-5px) scale(1.01);
+
+//         .main-img {
+//           transform: scale(1.05); // حركة أخف
+//         }
+//       }
+
+//       // عرض زر "استكشف" دائماً لأن المستخدم لا يملك ماوس ليظهره
+//       .btn-view {
+//         opacity: 1;
+//         bottom: 10px;
+//       }
+//     }
+
+//     // تصغير الحشوات قليلاً لتوفير مساحة
+//     padding: 20px 0;
+//   }
+// }
