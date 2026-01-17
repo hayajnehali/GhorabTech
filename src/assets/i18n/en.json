@@ -119,7 +119,8 @@
     "remaining": "Remaining",
     "explore": "Explore Now",
     "view_all": "View All",
-    "shop_now": "Shop Now"
+    "shop_now": "Shop Now",
+    "percent-off": "OFF"
   },
   "validation": {
     "required": "This field is required",

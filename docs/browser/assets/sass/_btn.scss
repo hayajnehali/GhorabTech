@@ -1,17 +1,17 @@
 /* Add Product Button */
-@use 'variable' as *;
+@use "variable" as *;
 .btn-primary {
- // padding: 0.6rem 2rem;
+  // padding: 0.6rem 2rem;
   color: $white-color;
   background-color: $primary-color;
-  transition: background-color 0.3s ease, transform 0.3s ease;
   border: 1px solid $primary-color;
-}
-
-.btn-primary:hover {
-  background-color: inherit;
-  color: $primary-color;
-  transform: translateY(-2px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($primary-color, 0.2);
+    background-color: inherit;
+    color: $primary-color;
+    transform: translateY(-2px);
+  }
 }
 
 /* أضف هذه لتمنع الرجوع للّون الافتراضي */
@@ -26,8 +26,10 @@
   border: 1px solid $primary-color;
 }
 
-.btn-secondary { 
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.btn-secondary {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   background-color: inherit;
   color: $primary-color;
   border: 1px solid $primary-color; // اختياري إذا بدك إطار خفيف
@@ -52,7 +54,9 @@
 
 .btn-delete-key {
   padding: 0.6rem 2rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   background-color: inherit;
   color: $primary-color;
 }
@@ -66,6 +70,7 @@
 .btn-container {
   display: flex;
   justify-content: end;
+  margin: 1rem 0;
 }
 
 .btn-icon {
@@ -76,27 +81,57 @@
   color: $secondary-color;
 }
 
-a {
+a,
+.link-text {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 700;
   cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+
+  // تأثير الخط السفلي الذكي (Animated Underline)
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $third-color;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: $primary-color;
+    background-color: rgba($third-color, 0.05);
+    border-radius: 4px;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95); // تأثير الضغط
+  }
 }
 
-
-
-
-
-
-.btn-third { 
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.btn-third {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   background-color: inherit;
   color: $white-color;
-  border: 1px solid $white-color; 
+  border: 1px solid $white-color;
 }
 
-.btn-third:hover { 
+.btn-third:hover {
   color: $white-color;
   transform: translateY(-2px);
 }
- 
+
 .btn-third:focus,
 .btn-third:active,
 .btn-third:focus:active {
@@ -107,8 +142,7 @@ a {
   transform: translateY(0);
 }
 
- 
 .my-swiper::part(button-prev),
 .my-swiper::part(button-next) {
-  width: 10px; 
+  width: 10px;
 }

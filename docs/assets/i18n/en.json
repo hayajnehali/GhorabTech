@@ -119,7 +119,8 @@
     "remaining": "Remaining",
     "explore": "Explore Now",
     "view_all": "View All",
-    "shop_now": "Shop Now"
+    "shop_now": "Shop Now",
+    "percent-off": "OFF"
   },
   "validation": {
     "required": "This field is required",
@@ -227,7 +228,8 @@
     "cart-item-list": "Cart Item List",
     "payment-method": "Payment Method",
     "product-limit": "Please select at least one product to proceed to checkout.",
-    "purchase-record": "Purchase Record"
+    "purchase-record": "Purchase Record",
+    "cart-details": "Cart Details"
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",

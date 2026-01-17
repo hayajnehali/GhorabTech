@@ -100,13 +100,13 @@
       <div class="col-md-12 col-sm-12">
         @if(dataSource.data.length > 0){
         <div class="row g-4 category-section">
-          @for (product of dataSource.data; track $index) {
+          @for (product of dataSource.data; track $index;) {
           <div class="col-6 col-md-3">
             <div class="product-card" [routerLink]="[product.id]">
               <div class="image-container">
                 @if (product.discountRated) {
                 <div class="discountRated">
-                  {{ product.discountRated }}% OFF
+                  {{ product.discountRated }} {{ "general.percent-off" | translate }}
                 </div>
                 }
 
@@ -139,6 +139,8 @@
           </div>
           }
         </div>
+        }@else{
+        <app-no-data></app-no-data>
         }
       </div>
       <div class="col-12">

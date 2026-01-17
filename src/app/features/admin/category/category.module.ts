@@ -5,12 +5,14 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
 import { RouterModule } from '@angular/router';
 import { routesCategory } from './category-routing.module';
 import { CommonModule } from '@angular/common';
+import { NoDataComponent } from '@shared/component/no-data/no-data.component';
 
 @NgModule({
   declarations: [CategoryListComponent, CategoryManageComponent],
   imports: [
     CommonModule,
     SharedModule, 
+    NoDataComponent,
     RouterModule.forChild(routesCategory)
   ],
   exports: [],

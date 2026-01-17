@@ -176,6 +176,7 @@
   // عند توسيع القائمة (expanded)
   &.expanded {
     width: 95px; // أو العرض الذي تفضله
+    border-radius: 0;
   }
 
   mat-nav-list {

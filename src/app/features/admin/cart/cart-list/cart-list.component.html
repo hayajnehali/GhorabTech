@@ -33,88 +33,94 @@
       </div>
     </div>
   </form>
-  <div *ngIf="hasData" class="table-responsive">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-      </ng-container>
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.email" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.user.email }}</td>
-      </ng-container>
-      <ng-container matColumnDef="payment-method">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "cart.payment-method" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{
-            "paymentMethod." + getPaymentMethodStatus(element.payWay) | translate
-          }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="payment-status">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "cart.payment-status" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{
-            "cartStatus." + getCartStatusName(element.paymentStatus) | translate
-          }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="order-exit-status">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "cart.order-exit-status" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{
-            "orderExitStatus." + getorderExitStatus(element.orderExitStatus)
-              | translate
-          }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="createDate">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.create-date" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.createStamp | date }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.actions" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <ul class="list-unstyled d-flex">
-            <li
-              class="d-flex btn btn-icon"
-              [title]="'cart.cart-item-list' | translate"
-              [routerLink]="[element.id, 'cart-item-list']"
-            >
-              <mat-icon>list</mat-icon>
-            </li>
-            <!-- <li
+  @if (hasData) {
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "general.email" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.user.email }}</td>
+        </ng-container>
+        <ng-container matColumnDef="payment-method">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "cart.payment-method" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              "paymentMethod." + getPaymentMethodStatus(element.payWay)
+                | translate
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="payment-status">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "cart.payment-status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              "cartStatus." + getCartStatusName(element.paymentStatus)
+                | translate
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="order-exit-status">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "cart.order-exit-status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              "orderExitStatus." + getorderExitStatus(element.orderExitStatus)
+                | translate
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="createDate">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "general.create-date" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.createStamp | date }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "general.actions" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <ul class="list-unstyled d-flex">
+              <li
+                class="d-flex btn btn-icon"
+                [title]="'cart.cart-item-list' | translate"
+                [routerLink]="[element.id, 'cart-item-list']"
+              >
+                <mat-icon>list</mat-icon>
+              </li>
+              <!-- <li
               class="d-flex btn btn-icon"
               [routerLink]="['manage', element.id]"
             >
               <mat-icon>edit</mat-icon>
             </li> -->
-          </ul>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+            </ul>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
 
-    <mat-paginator
-      [length]="totalNumberOf"
-      (page)="pageChanged($event)"
-      [pageSizeOptions]="pageSizeOptions"
-      showFirstLastButtons
-    ></mat-paginator>
-  </div>
+      <mat-paginator
+        [length]="totalNumberOf"
+        (page)="pageChanged($event)"
+        [pageSizeOptions]="pageSizeOptions"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  } @else {
+    <app-no-data></app-no-data>
+  }
 </div>

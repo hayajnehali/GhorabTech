@@ -46,8 +46,8 @@
       </a>
       @for (r of routesList; track $index) { @if
       (r.data?.['showInSidebar']??false) {
-      <a mat-list-item>
-        <span class="entry" [routerLink]="[r.path]">
+      <a mat-list-item [routerLink]="[r.path]">
+        <span class="entry">
           <mat-icon class="menu-icon">{{r.data?.['icon']}}</mat-icon>
           @if(!isCollapsed){
           <span>{{ (r.data?.['label'] ?? "") | translate }}</span>
@@ -56,7 +56,7 @@
       >} }
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content  >
+  <mat-sidenav-content  style="min-height: 70vh;">
     <app-admin-header-section></app-admin-header-section>
     <div class="container">
       <router-outlet></router-outlet>

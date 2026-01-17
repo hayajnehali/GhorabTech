@@ -1,254 +1,258 @@
 <div class="login-box shadow p-4 bg-white m-4">
   @if (confirmEmailForm) {
-  <div class="row m-5">
-    <div class="col-12">
-      <div
-        Class="login-wrapper d-flex align-items-center justify-content-center my-5"
-      >
-        <form
-          #verification="ngForm"
-          (ngSubmit)="checkVerification(verification)"
-          novalidate
+    <div class="row m-5">
+      <div class="col-12">
+        <div
+          Class="login-wrapper d-flex align-items-center justify-content-center my-5"
         >
-          <p class="form-label">
-            {{ "general.email-verification" | translate }}
-          </p>
-          <div class="row">
-            <div class="col-12">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.code" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="code"
-                  [(ngModel)]="auth.code"
-                  required
-                  [maxLength]="6"
-                  minlength="6"
-                  #code="ngModel"
-                />
-                <app-form-error [control]="code"></app-form-error>
+          <form
+            #verification="ngForm"
+            (ngSubmit)="checkVerification(verification)"
+            novalidate
+          >
+            <p class="form-label">
+              {{ "general.email-verification" | translate }}
+            </p>
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-3">
+                  <label class="form-label">{{
+                    "general.code" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="code"
+                    [(ngModel)]="auth.code"
+                    required
+                    [maxLength]="6"
+                    minlength="6"
+                    #code="ngModel"
+                  />
+                  <app-form-error [control]="code"></app-form-error>
+                </div>
               </div>
+              <button type="submit" class="btn btn-primary w-100">
+                {{ "general.check" | translate }}
+              </button>
             </div>
-            <button type="submit" class="btn btn-primary w-100">
-              {{ "general.check" | translate }}
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  }@else {
-  <div class="row">
-    <div class="col-12 d-flex justify-content-end red">
-      <mat-icon (click)="close()">close</mat-icon>
-    </div>
-    @if(isLoginForm){
-    <div class="col-12">
-      <div
-        class="login-wrapper d-flex align-items-center justify-content-center"
-      >
-        <form #login="ngForm" (ngSubmit)="logIn(login)">
-          <h2 class="mb-4 text-titel">{{ "general.login" | translate }}</h2>
-          <div class="row">
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="email" class="form-label">{{
-                  "general.user-name" | translate
-                }}</label>
-                <input
-                  type="text"
-                  id="userName"
-                  name="userName"
-                  class="form-control"
-                  placeholder="{{ 'general.user-name' | translate }}"
-                  required
-                  #userName="ngModel"
-                  [(ngModel)]="auth.userName"
-                />
-                <app-form-error [control]="userName"></app-form-error>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="password" class="form-label">{{
-                  "general.password" | translate
-                }}</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="••••••"
-                  [(ngModel)]="auth.password"
-                  required
-                  #password="ngModel"
-                />
-                <app-form-error [control]="password"></app-form-error>
-              </div>
-            </div>
-            <div class="col-12 mb-2 mt-4">
-              <small
-                >{{ "general.donot-have-account" | translate }}
-                <a (click)="isLoginForm = !isLoginForm">
-                  {{ "general.register" | translate }}</a
-                ></small
-              >
-            </div>
+  } @else {
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end red">
+        <mat-icon (click)="close()">close</mat-icon>
+      </div>
+      @if (isLoginForm) {
+        <div class="col-12">
+          <div
+            class="login-wrapper d-flex align-items-center justify-content-center"
+          >
+            <form #login="ngForm" (ngSubmit)="logIn(login)">
+              <h2 class="mb-4 text-titel">{{ "general.login" | translate }}</h2>
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">{{
+                      "general.user-name" | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      id="userName"
+                      name="userName"
+                      class="form-control"
+                      placeholder="{{ 'general.user-name' | translate }}"
+                      required
+                      #userName="ngModel"
+                      [(ngModel)]="auth.userName"
+                    />
+                    <app-form-error [control]="userName"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="password" class="form-label">{{
+                      "general.password" | translate
+                    }}</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="••••••"
+                      [(ngModel)]="auth.password"
+                      required
+                      #password="ngModel"
+                    />
+                    <app-form-error [control]="password"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-12 mb-2 mt-4">
+                  <small
+                    >{{ "general.donot-have-account" | translate }}
+                    <a (click)="isLoginForm = !isLoginForm">
+                      {{ "general.register" | translate }}</a
+                    ></small
+                  >
+                </div>
 
-            <div class="col-12 d-grid gap-2">
-              <div *ngIf="loginError" class="alert alert-danger py-2 small">
-                {{ loginError }}
-              </div>
-              <button class="btn btn-primary w-100" type="submit">
-                <span> {{ "general.login" | translate }}</span>
-                <!-- <span
+                <div class="col-12 d-grid gap-2">
+                  @if (loginError) {
+                    <div class="alert alert-danger py-2 small">
+                      {{ loginError }}
+                    </div>
+                  }
+                  <button class="btn btn-primary w-100" type="submit">
+                    <span> {{ "general.login" | translate }}</span>
+                    <!-- <span
                 *ngIf="loading"
                 class="spinner-border spinner-border-sm"
                 role="status"
                 aria-hidden="true"
               ></span> -->
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    }@else {
-
-    <!-- ==============start regestration============================= -->
-    <!-- ==============start regestration============================= -->
-    <!-- ==============start regestration============================= -->
-    <div class="col-12">
-      <div
-        Class="login-wrapper d-flex align-items-center justify-content-center"
-      >
-        <form
-          #registerForm="ngForm"
-          (ngSubmit)="createUser(registerForm)"
-          novalidate
-        >
-          <h2 class="mb-4 text-titel">
-            {{ "general.createUser" | translate }}
-          </h2>
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.fullName" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="fullName"
-                  #fullname="ngModel"
-                  minlength="3"
-                  maxlength="100"
-                  [(ngModel)]="user.fullName"
-                  required
-                />
-                <app-form-error [control]="fullname"></app-form-error>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.email" | translate
-                }}</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  minlength="3"
-                  maxlength="100"
-                  name="email"
-                  [(ngModel)]="user.email"
-                  required
-                  email
-                  #email="ngModel"
-                />
-                <app-form-error [control]="email"></app-form-error>
-              </div>
-            </div>
-            <div class="col-md-12 col-12">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.phone" | translate
-                }}</label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  name="phone"
-                  [(ngModel)]="user.phoneNumber"
-                  required
-                  pattern="^[0-9]{10,15}$"
-                  #phone="ngModel"
-                />
-                <app-form-error [control]="phone"></app-form-error>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.password" | translate
-                }}</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  [(ngModel)]="user.password"
-                  required
-                  minlength="6"
-                  #password="ngModel"
-                />
-                <app-form-error [control]="password"></app-form-error>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">{{
-                  "general.confirmPassword" | translate
-                }}</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="confirmPassword"
-                  [(ngModel)]="user.confirmPassword"
-                  required
-                  #confirmpassword="ngModel"
-                />
-
-                <app-form-error [control]="confirmpassword"></app-form-error>
-                @if( registerForm.submitted && user.confirmPassword !==
-                user.password){
-                <div class="text-danger">
-                  {{ "errors.passwordMismatch" | translate }}
+                  </button>
                 </div>
-                }
               </div>
-            </div>
-            <div class="col-12 mt-4 mb-2">
-              <small
-                >{{ "general.do-have-account" | translate }}
-                <a (click)="isLoginForm=!isLoginForm">{{
-                  "general.login" | translate
-                }}</a></small
-              >
-            </div>
+            </form>
           </div>
-          <button type="submit" class="btn btn-primary w-100">
-            {{ "general.register" | translate }}
-          </button>
-        </form>
-      </div>
+        </div>
+      } @else {
+        <!-- ==============start regestration============================= -->
+        <!-- ==============start regestration============================= -->
+        <!-- ==============start regestration============================= -->
+        <div class="col-12">
+          <div
+            Class="login-wrapper d-flex align-items-center justify-content-center"
+          >
+            <form
+              #registerForm="ngForm"
+              (ngSubmit)="createUser(registerForm)"
+              novalidate
+            >
+              <h2 class="mb-4 text-titel">
+                {{ "general.createUser" | translate }}
+              </h2>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">{{
+                      "general.fullName" | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="fullName"
+                      #fullname="ngModel"
+                      minlength="3"
+                      maxlength="100"
+                      [(ngModel)]="user.fullName"
+                      required
+                    />
+                    <app-form-error [control]="fullname"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">{{
+                      "general.email" | translate
+                    }}</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      minlength="3"
+                      maxlength="100"
+                      name="email"
+                      [(ngModel)]="user.email"
+                      required
+                      email
+                      #email="ngModel"
+                    />
+                    <app-form-error [control]="email"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="mb-3">
+                    <label class="form-label">{{
+                      "general.phone" | translate
+                    }}</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      name="phone"
+                      [(ngModel)]="user.phoneNumber"
+                      required
+                      pattern="^[0-9]{10,15}$"
+                      #phone="ngModel"
+                    />
+                    <app-form-error [control]="phone"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">{{
+                      "general.password" | translate
+                    }}</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      [(ngModel)]="user.password"
+                      required
+                      minlength="6"
+                      #password="ngModel"
+                    />
+                    <app-form-error [control]="password"></app-form-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">{{
+                      "general.confirmPassword" | translate
+                    }}</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="confirmPassword"
+                      [(ngModel)]="user.confirmPassword"
+                      required
+                      #confirmpassword="ngModel"
+                    />
+
+                    <app-form-error
+                      [control]="confirmpassword"
+                    ></app-form-error>
+                    @if (
+                      registerForm.submitted &&
+                      user.confirmPassword !== user.password
+                    ) {
+                      <div class="text-danger">
+                        {{ "errors.passwordMismatch" | translate }}
+                      </div>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 mt-4 mb-2">
+                  <small
+                    >{{ "general.do-have-account" | translate }}
+                    <a (click)="isLoginForm = !isLoginForm">{{
+                      "general.login" | translate
+                    }}</a></small
+                  >
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                {{ "general.register" | translate }}
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- ==============end regestration============================= -->
+        <!-- ==============end regestration============================= -->
+        <!-- ==============end regestration============================= -->
+      }
     </div>
-
-    <!-- ==============end regestration============================= -->
-    <!-- ==============end regestration============================= -->
-    <!-- ==============end regestration============================= -->
-
-    }
-  </div>
   }
 </div>

@@ -12,6 +12,7 @@ import { PaginationComponent } from '@shared/component/pagination/pagination.com
 import { Swiper } from 'swiper';
 import { register } from 'swiper/element/bundle';
 import { CommentManageWithListComponent } from '../Comment/comment-manage-with-list/comment-manage-with-list.component';
+import { NoDataComponent } from '@shared/component/no-data/no-data.component';
 register();
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -28,6 +29,7 @@ register();
     ReviewsSectionComponent,
     PaginationComponent,
     CommentManageWithListComponent,
+    NoDataComponent
   ],
   exports: [],
 })

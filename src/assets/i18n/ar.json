@@ -121,7 +121,8 @@
     "remaining": "المتبقي",
     "explore": "استكشف الآن",
     "view_all": "عرض الكل",
-    "shop_now": "تسوّق الآن"
+    "shop_now": "تسوّق الآن",
+    "percent-off": "خصم"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
