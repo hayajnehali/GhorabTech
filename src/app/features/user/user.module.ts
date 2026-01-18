@@ -21,8 +21,7 @@ import { RegistrationComponent } from '@shared/component/registration/registrati
 import { TopBarComponent } from '@shared/component/top-header/top-bar.component';
 import { LoginLogoutButtonComponent } from '@shared/component/login-logout-button/login-logout-button.component';
 import { LanguageButtonComponent } from '@shared/component/language-button/language-button.component';
-import { NavbarComponent } from '@shared/component/navbar/navbar.component';
-import { Swiper } from 'swiper';
+import { NavbarComponent } from '@shared/component/navbar/navbar.component'; 
 import { register } from 'swiper/element/bundle'; 
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';

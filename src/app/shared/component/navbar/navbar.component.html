@@ -1,9 +1,5 @@
 @if(responsiveService.isMobile()){
-<div class="sidenavv" mode="side" opened>
-  <!-- <div class="logo">
-    <mat-icon>flutter_dash</mat-icon>
-    My App
-  </div> -->
+<div class="sidenavv" mode="side" opened> 
   <div class="mat-nav-list">
     <a mat-list-item>
       <app-search
@@ -87,54 +83,33 @@
   </div>
 </div>
 }@else {
-<nav class="navbarr mt-2">
-  <div class="navbar-list justify-content-center">
-    <div
-      [matMenuTriggerFor]="category"
-      class="nav_bar__option text-description mx-2"
-    >
+<nav class="mt-2">
+  <div class="navbar-list d-flex justify-content-center">
+    
+    <div [matMenuTriggerFor]="category" class="nav_bar__option mx-3">
       <span>{{ "category.category" | translate }}</span>
     </div>
-    <div
-      [matMenuTriggerFor]="subCategory"
-      class="nav_bar__option text-description mx-2"
-    >
+
+    <div [matMenuTriggerFor]="subCategory" class="nav_bar__option mx-3">
       <span>{{ "category.subCategory" | translate }}</span>
     </div>
-    <!-- ====================== Dropdown Menus ================================ -->
-    <mat-menu #category="matMenu" class="sub-list">
-      @for (item of categoryResult; track $index) {
-      <div class="nav-item">
-        <a
-          class="dropdown-item"
-          [routerLink]="['/user', 'category', item.id, 'product-category']"
-        >
+
+    <mat-menu #category="matMenu" backdropClass="custom-backdrop" class="premium-menu">
+      @for (item of categoryResult; track item.id) {
+        <a mat-menu-item [routerLink]="['/user', 'category', item.id, 'product-category']">
           {{ item.name.local }}
         </a>
-      </div>
       }
     </mat-menu>
-    <mat-menu #subCategory="matMenu" class="sub-list">
-      <div
-        *ngFor="let item of productCategories; trackBy: trackById"
-        class="nav-item"
-      >
-        <a
-          class="dropdown-item"
-          [routerLink]="[
-            '/user',
-            'category',
-            item.categoryId,
-            'product-category',
-            item.id,
-            'product'
-          ]"
-        >
+
+    <mat-menu #subCategory="matMenu" class="premium-menu">
+      @for (item of productCategories; track item.id) {
+        <a mat-menu-item [routerLink]="['/user', 'category', item.categoryId, 'product-category', item.id, 'product']">
           {{ item.name.local }}
         </a>
-      </div>
+      }
     </mat-menu>
-    <!-- ========================================================================= -->
+
   </div>
 </nav>
 

@@ -232,3 +232,29 @@
 .entry mat-icon {
   cursor: pointer;
 }
+
+
+
+// التنسيق السحري للقائمة (هذا ما سيحل المشكلة)
+.premium-menu {
+  margin-top: 10px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border-top: 4px solid $primary-color !important; // شريط كحلي في الأعلى
+
+  a {
+    background-color: #ffffff !important;
+    text-transform: capitalize;
+    color: $primary-color !important;
+    font-size: 0.9rem !important;
+    height: 45px !important;
+    transition: all 0.2s ease !important;
+
+    &:hover {
+      background-color: $background-2 !important;
+      color: $third-color !important;
+      padding-left: 24px !important; // حركة إزاحة بسيطة
+    }
+  }
+}

@@ -28,7 +28,7 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
   id: string | null = null;
   currentRating = 0;
   stars = [1, 2, 3, 4, 5];
-  constructor(private productService: ProductService) {
+  constructor(readonly productService: ProductService) {
     super();
   }
 

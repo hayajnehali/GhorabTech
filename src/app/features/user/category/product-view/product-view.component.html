@@ -15,7 +15,7 @@
         navigation="true"
         speed="3000"
         loop="true"
-        class="product-image-wrapper"
+        class="my-swiper"
         autoplay='{
                   "delay": 3000,
                   "disableOnInteraction": false
@@ -46,20 +46,13 @@
           <span class="text-danger fw-bold py-1 px-2">
             {{ product.price }} {{ "general.JOD" | translate }}
           </span>
-        </div>
-        <!-- <div class="star-rating pb-2">
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-        </div> -->
+        </div> 
         <div class="star-rating pb-2">
-          <i
-            *ngFor="let star of stars"
+          <i *ngFor="let star of stars" 
             class="fa fa-star cursor-pointer"
             [class.checked]="star <= currentRating"
             (click)="rate(star)"
+            onKeyPress="rate(star)"
           >
           </i
           >({{ product.averageRating }}/5)

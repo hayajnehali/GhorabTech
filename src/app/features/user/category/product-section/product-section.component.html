@@ -4,7 +4,7 @@
       <div class="col-12 my-4">
         <div class="row">
           <div class="col-md-10 col-sm-12">
-            <nav class="navbar navbar-expand-lg mt-2">
+            <nav class="navbar navbar-expand-lg mt-2" aria-label="breadcrumb">
               <div class="navbar-collapse">
                 <ul>
                   <li
@@ -13,41 +13,43 @@
                   >
                     <span>{{ "general.home" | translate }} > </span>
                   </li>
-                  @if(filter.name==null ||filter.name!=""){
-                  <li
-                    class="nav-item header__top__hover mx-2"
-                    *ngIf="hasData"
-                    [routerLink]="['../../']"
-                  >
-                    <span
-                      >{{
-                        dataSource.data[0].productCategory.category.name.local
-                      }}
-                      ></span
+                  @if (!fromSearch && hasData) {
+                    <li
+                      class="nav-item header__top__hover mx-2"
+                      [routerLink]="['../../']"
                     >
-                  </li>
-                  <li class="nav-item header__top__hover mx-2">
-                    <span
-                      *ngIf="
-                        dataSource.data[0] && dataSource.data[0].productCategory
-                      "
-                      >{{ dataSource.data[0].productCategory.name.local }}</span
-                    >
-                  </li>
-                  }@else {
-                  <li class="nav-item header__top__hover mx-2">
-                    <span
-                      >{{ "general.result-for" | translate }}
-                      {{ filter.name }} ></span
-                    >
-                  </li>
+                      <span
+                        >{{
+                          dataSource.data[0].productCategory.category.name.local
+                        }}
+                        ></span
+                      >
+                    </li>
+                    <li class="nav-item header__top__hover mx-2">
+                      <span
+                        *ngIf="
+                          dataSource.data[0] &&
+                          dataSource.data[0].productCategory
+                        "
+                        >{{
+                          dataSource.data[0].productCategory.name.local
+                        }}</span
+                      >
+                    </li>
+                  } @else {
+                    <li class="nav-item header__top__hover mx-2">
+                      <span
+                        >{{ "general.result-for" | translate }} >
+                        {{ filter.name }}
+                      </span>
+                    </li>
                   }
                 </ul>
               </div>
             </nav>
           </div>
           <div class="col-md-2 col-sm-12">
-            <nav class="navbar navbar-expand-lg mt-2 border">
+            <nav class="navbar navbar-expand-lg mt-2 border" aria-label="breadcrumb">
               <div class="navbar-collapse">
                 <ul class="navbar-nav">
                   <li class="nav-item header__top__hover mx-2">
@@ -98,49 +100,57 @@
       </div>
       <div class="col-md-0 col-sm-0"></div>
       <div class="col-md-12 col-sm-12">
-        @if(dataSource.data.length > 0){
-        <div class="row g-4 category-section">
-          @for (product of dataSource.data; track $index;) {
-          <div class="col-6 col-md-3">
-            <div class="product-card" [routerLink]="[product.id]">
-              <div class="image-container">
-                @if (product.discountRated) {
-                <div class="discountRated">
-                  {{ product.discountRated }} {{ "general.percent-off" | translate }}
-                </div>
-                }
-
-                <swiper-container
-                  slides-per-view="1"
-                  speed="1500"
-                  loop="true"
-                  autoplay='{"delay": 3500}'
+        @if (dataSource.data.length > 0) {
+          <div class="row g-4 category-section">
+            @for (product of dataSource.data; track $index) {
+              <div class="col-6 col-md-3">
+                <div
+                  class="product-card"
+                  [routerLink]="
+                    fromSearch
+                      ? ['/user/category/view-product', product.id]
+                      : [product.id]
+                  "
                 >
-                  @for (item of product.images; track $index) {
-                  <swiper-slide>
-                    <app-image
-                      [src]="item.guidName"
-                      class="main-img"
-                      [alt]="product.name.local"
-                    ></app-image>
-                  </swiper-slide>
-                  }
-                </swiper-container>
-              </div>
+                  <div class="image-container">
+                    @if (product.discountRated) {
+                      <div class="discountRated">
+                        {{ product.discountRated }}
+                        {{ "general.percent-off" | translate }}
+                      </div>
+                    }
 
-              <div class="card-body text-center">
-                <p class="text-truncate px-2">{{ product.name.local }}</p>
-                <div class="price-tag">
-                  <small>{{ "general.JOD" | translate }}</small>
-                  {{ product.price }}
+                    <swiper-container
+                      slides-per-view="1"
+                      speed="1500"
+                      loop="true"
+                      autoplay='{"delay": 3500}'
+                    >
+                      @for (item of product.images; track $index) {
+                        <swiper-slide>
+                          <app-image
+                            [src]="item.guidName"
+                            class="main-img"
+                            [alt]="product.name.local"
+                          ></app-image>
+                        </swiper-slide>
+                      }
+                    </swiper-container>
+                  </div>
+
+                  <div class="card-body text-center">
+                    <p class="text-truncate px-2">{{ product.name.local }}</p>
+                    <div class="price-tag">
+                      <small>{{ "general.JOD" | translate }}</small>
+                      {{ product.price }}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           </div>
-          }
-        </div>
-        }@else{
-        <app-no-data></app-no-data>
+        } @else {
+          <app-no-data></app-no-data>
         }
       </div>
       <div class="col-12">

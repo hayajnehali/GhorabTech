@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg mt-2">
     <div class="navbar-collapse">
       <ul class="navbar-nav">
-        <li class="nav-item " (click)="goToMyCrts()" >
+        <li class="nav-item " (click)="goToMyCrts()" (keydown.enter)="goToMyCrts()" (keydown.space)="goToMyCrts()">
           <a>🛒 {{ "cart.purchase-record" | translate }} </a>
         </li>
       </ul>

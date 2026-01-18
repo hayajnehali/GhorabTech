@@ -30,8 +30,7 @@ export class PaginationComponent {
     return this.pageIndex + 1; // للتحويل للـ1-based داخل الكود
   }
 
-  get pages(): number[] {
-    console.log("ss")
+  get pages(): number[] {  
     const total = this.totalPages;
     const visible = 5; // عدد أرقام الصفحات المراد عرضها
     let start = Math.max(1, this.currentPage - Math.floor(visible / 2));

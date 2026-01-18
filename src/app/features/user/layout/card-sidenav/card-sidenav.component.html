@@ -1,36 +1,59 @@
-<div class="cart-container p-3">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <span class="cart-count badge bg-secondary">{{cart.cartItems.length}}</span>
-    <h5 class="mb-0">{{ "cart.review-your-cart" | translate }}</h5>
+
+<div class="cart-side-container">
+  <div class="cart-header">
+    <h5>{{ "cart.review-your-cart" | translate }}</h5>
+    <span class="cart-count badge rounded-pill">{{
+      cart.cartItems.length
+    }}</span>
   </div>
- 
-  <div class="cart-item d-flex mb-3" *ngFor="let item of cart.cartItems">
-    <app-image [src]="item.product.images[0].guidName" class="item-img" alt="Elegant Bloom"></app-image> 
-    <div class="item-details flex-grow-1 px-2">
-      <h6>{{item.product.name.local}}</h6>
-      <p class="price-usd">{{"general.JOD" |translate }}  {{item.product.price}}</p>
-      
-      <a class="remove-link" (click)="removeItem(item.product.id!)">{{"general.remove" |translate }}</a>
+
+  <div class="cart-items-wrapper">
+    <div class="cart-item" *ngFor="let item of cart.cartItems">
+      <div class="item-img-container">
+        <app-image
+          [src]="item.product.images[0].guidName"
+          class="item-img"
+          alt="Product"
+        ></app-image>
+      </div>
+
+      <div class="item-details">
+        <h6>{{ item.product.name.local }}</h6>
+        <p class="price-usd mb-0">
+          {{ "general.JOD" | translate }} {{ item.product.price }}
+        </p>
+        <a class="remove-link" (click)="removeItem(item.product.id!)">
+          <i class="bi bi-trash3"></i> {{ "general.remove" | translate }}
+        </a>
+      </div>
+
+      <div class="qty-box">
+        <button (click)="increaseQuantity(item)">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="decreaseQuantity(item)">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+      </div>
     </div>
-    <div class="qty-box d-flex flex-column align-items-center ms-2 border">
-      <button class="btn   btn-sm" (click)="increaseQuantity(item)">+</button>
-      <span class="my-1">{{item.quantity}}</span>
-      <button class="btn   btn-sm" (click)="decreaseQuantity(item)">−</button>
+  </div>
+
+  <div class="cart-footer">
+    <div class="totals d-flex justify-content-between align-items-end">
+      <span class="total-label">{{ "general.total" | translate }}</span>
+      <span class="total-amount"
+        >{{ "general.JOD" | translate }} {{ total }}</span
+      >
     </div>
-  </div>
-  
-  <div class="totals border-top pt-3 mb-3"> 
-    <div class="d-flex justify-content-between fw-bold">
-      <span>{{"general.total" |translate }}</span>
-      <span>{{"general.JOD" |translate }}  {{total}}</span>
+
+    <div class="d-grid mb-3">
+      <button class="btn btn-primary btn-lg" (click)="goToCart()">
+        {{ "cart.viewCart" | translate }}→
+      </button>
     </div>
-  </div>
- 
-  <div class="d-grid mb-3">
-    <button class="btn btn-primary btn-lg" (click)="goToCart()">{{"cart.viewCart" |translate }}→</button>
-  </div>
- 
-  <div class="text-center"> 
-    <button class="btn btn-light w-100" (click)="clear()">{{"cart.delete-cart" |translate }}</button>
+    <button class="btn-secondary-link" (click)="clear()">
+      {{ "cart.delete-cart" | translate }}
+    </button>
   </div>
 </div>

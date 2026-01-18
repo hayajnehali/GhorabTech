@@ -33,42 +33,13 @@ export class CartViewComponent extends BaseComponent implements OnInit {
   increaseQuantity(item: CartItem): void {
     this.cartService.increaseQuantity(item);
   }
-  openLogInLogoutDialog() {
-    // if (this.authService.isAuthenticatedSignal()) {
-    //   this.router.navigate(['user', 'pay']);
-    // } else {
-    //   const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
-    //     width: '80%',
-    //     panelClass: 'custom-dialog',
-    //   });
-
-    //   dialogRef.afterClosed().subscribe((result) => {
-    //     if (this.authService.isAuthenticatedSignal()) {
-    //       this.router.navigate(['/user/pay']);
-    //     }
-    //   });
-    // }
+  openLogInLogoutDialog() { 
     this.authService.runWithAuth(() => {
       this.router.navigate(['/user/pay']);
     });
   }
 
-  goToMyCrts() {
-    // if (this.authService.isAuthenticatedSignal()) {
-    //   this.router.navigate(['user', 'my-cart']);
-    // } else {
-    //   const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
-    //     width: '80%',
-    //     panelClass: 'custom-dialog',
-    //   });
-
-    //   dialogRef.afterClosed().subscribe((result) => {
-    //     if (this.authService.isAuthenticatedSignal()) {
-    //       this.router.navigate(['/user/my-cart']);
-    //     }
-    //   });
-    // }
-
+  goToMyCrts() {  
     this.authService.runWithAuth(() => {
       this.router.navigate(['user', 'my-cart']);
     });

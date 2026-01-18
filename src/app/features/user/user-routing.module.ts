@@ -5,22 +5,17 @@ import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProductSectionComponent } from './category/product-section/product-section.component';
 import { RegistrationComponent } from '@shared/component/registration/registration.component';
-import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
-import { authChildGuard } from 'Auth/interceptor/auth.guard';
+import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component'; 
 
 const userRoutes: Routes = [
   {
     path: '',
     component: MainComponent,
   },
-  {
-    path: 'product/:nameOfProduct',
-    component: ProductSectionComponent,
-  },
   // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
+  //   path: 'product/:nameOfProduct',
+  //   component: ProductSectionComponent,
+  // }, 
   {
     path: 'register',
     component: RegistrationComponent,
