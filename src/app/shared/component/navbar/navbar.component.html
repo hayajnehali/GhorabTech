@@ -1,116 +1,178 @@
-@if(responsiveService.isMobile()){
-<div class="sidenavv" mode="side" opened> 
-  <div class="mat-nav-list">
-    <a mat-list-item>
-      <app-search
-        class="search-wrapper flex-grow-1 me-2 w-100 mb-2"
-      ></app-search>
-    </a>
+@if (responsiveService.isMobile()) {
+  <div class="sidenavv" mode="side" opened>
+    <div class="mat-nav-list">
+      <a mat-list-item>
+        <app-search
+          class="search-wrapper flex-grow-1 me-2 w-100 mb-2"
+        ></app-search>
+      </a>
 
-    <a
-      mat-list-item
-      routerLink="/user"
-      (click)="spinnerService.toggleSideBar()"
-    >
-      <mat-icon matListIcon>home</mat-icon>
-      {{ "general.home" | translate }}
-    </a>
-
-    <a mat-list-item>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-icon>remove</mat-icon>
-          <span> {{ "category.category" | translate }}</span>
-        </mat-expansion-panel-header>
-
-        @for (item of categoryResult; track $index) {
-        <a
-          mat-list-item
-          (click)="spinnerService.toggleSideBar()"
-          [routerLink]="['/user', 'category', item.id, 'product-category']"
-        >
-          <p class="text-description">{{ item.name.local }}</p>
-        </a>
-        }
-      </mat-expansion-panel>
-    </a>
-
-    <a mat-list-item>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-icon>remove</mat-icon>
-          <span> {{ "category.subCategory" | translate }}</span>
-        </mat-expansion-panel-header>
-
-        @for (item of productCategories; track $index) {
-        <a
-          mat-list-item
-          (click)="spinnerService.toggleSideBar()"
-          [routerLink]="[
-            '/user',
-            'category',
-            item.categoryId,
-            'product-category',
-            item.id,
-            'product'
-          ]"
-        >
-          <p class="text-description">{{ item.name.local }}</p>
-        </a>
-        }
-      </mat-expansion-panel>
-    </a>
-
-    <a mat-list-item (click)="spinnerService.toggleSideBar()">
-      <app-language-button></app-language-button>
-    </a>
-    <a mat-list-item (click)="spinnerService.toggleSideBar()">
-      <app-login-logout-button></app-login-logout-button>
-    </a>
-
-    <a
-      mat-list-item
-      class="d-inline-flex align-items-center"
-      (click)="spinnerService.toggleSideCart() ; spinnerService.toggleSideBar()"
-    >
-      <mat-icon class="menu-icon">shopping_cart</mat-icon>
-      <span
-        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light"
+      <a
+        mat-list-item
+        routerLink="/user"
+        (click)="spinnerService.toggleSideBar()"
       >
-        {{ cartCount }} </span
-      >{{ "general.JOD" | translate }} {{ cartTotal }}
-    </a>
-  </div>
-</div>
-}@else {
-<nav class="mt-2">
-  <div class="navbar-list d-flex justify-content-center">
-    
-    <div [matMenuTriggerFor]="category" class="nav_bar__option mx-3">
-      <span>{{ "category.category" | translate }}</span>
-    </div>
+        <mat-icon matListIcon>home</mat-icon>
+        {{ "general.home" | translate }}
+      </a>
 
-    <div [matMenuTriggerFor]="subCategory" class="nav_bar__option mx-3">
-      <span>{{ "category.subCategory" | translate }}</span>
-    </div>
+      <!-- <a mat-list-item>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-icon>remove</mat-icon>
+            <span> {{ "category.category" | translate }}</span>
+          </mat-expansion-panel-header>
 
-    <mat-menu #category="matMenu" backdropClass="custom-backdrop" class="premium-menu">
-      @for (item of categoryResult; track item.id) {
-        <a mat-menu-item [routerLink]="['/user', 'category', item.id, 'product-category']">
-          {{ item.name.local }}
+          @for (item of categoryResult; track $index) {
+            <a
+              mat-list-item
+              (click)="spinnerService.toggleSideBar()"
+              [routerLink]="['/user', 'category', item.id, 'product-category']"
+            >
+              <p class="text-description">{{ item.name.local }}</p>
+            </a>
+          }
+        </mat-expansion-panel>
+      </a> -->
+      @for (category of categoryResult; track $index) {
+        <a mat-list-item>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-icon>remove</mat-icon>
+              <span> {{ category.name.local }}</span>
+            </mat-expansion-panel-header>
+
+            @for (categorie of category.productCategories; track $index) {
+              <a
+                mat-list-item
+                (click)="spinnerService.toggleSideBar()"
+                [routerLink]="[
+                  '/user',
+                  'category',
+                  categorie.categoryId,
+                  'product-category',
+                  categorie.id,
+                  'product',
+                ]"
+              >
+                <p class="text-description">{{ categorie.name.local }}</p>
+              </a>
+            }
+          </mat-expansion-panel>
         </a>
       }
-    </mat-menu>
+      <a mat-list-item (click)="spinnerService.toggleSideBar()">
+        <app-language-button></app-language-button>
+      </a>
+      <a mat-list-item (click)="spinnerService.toggleSideBar()">
+        <app-login-logout-button></app-login-logout-button>
+      </a>
 
-    <mat-menu #subCategory="matMenu" class="premium-menu">
-      @for (item of productCategories; track item.id) {
-        <a mat-menu-item [routerLink]="['/user', 'category', item.categoryId, 'product-category', item.id, 'product']">
-          {{ item.name.local }}
-        </a>
-      }
-    </mat-menu>
-
+      <a
+        mat-list-item
+        class="d-inline-flex align-items-center"
+        (click)="
+          spinnerService.toggleSideCart(); spinnerService.toggleSideBar()
+        "
+      >
+        <mat-icon class="menu-icon">shopping_cart</mat-icon>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light"
+        >
+          {{ cartCount }} </span
+        >{{ "general.JOD" | translate }} {{ cartTotal }}
+      </a>
+    </div>
   </div>
-</nav>
+} @else {
+  <nav class="custom-navigation mt-3">
+    <div class="nav-container d-flex justify-content-center align-items-center">
+      @for (category of categoryResult; track category.id) {
+        <div class="custom-dropdown mx-4">
+          <div class="dropdown-trigger">
+            <span class="nav-text">{{ category.name.local }}</span>
+            <span class="custom-arrow"></span>
+          </div>
 
+          <div class="custom-menu-panel">
+            @for (categorie of category.productCategories; track categorie.id) {
+              <div class="menu-scroll-container">
+                <a
+                  [routerLink]="[
+                    '/user',
+                    'category',
+                    categorie.categoryId,
+                    'product-category',
+                    categorie.id,
+                    'product',
+                  ]"
+                  class="custom-menu-item"
+                >
+                  <span class="item-indicator"></span>
+                  <span class="item-label">{{ categorie.name.local }}</span>
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </nav>
+  <!-- <nav class="custom-navigation mt-3">
+    <div class="nav-container d-flex justify-content-center align-items-center">
+      <div class="custom-dropdown mx-4">
+        <div class="dropdown-trigger">
+          <span class="nav-text">{{ "category.category" | translate }}</span>
+          <span class="custom-arrow"></span>
+        </div>
+
+        <div class="custom-menu-panel">
+          <div class="menu-scroll-container">
+            @for (item of categoryResult; track item.id) {
+              <a
+                [routerLink]="[
+                  '/user',
+                  'category',
+                  item.id,
+                  'product-category',
+                ]"
+                class="custom-menu-item"
+              >
+                <span class="item-indicator"></span>
+                <span class="item-label">{{ item.name.local }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-dropdown mx-4">
+        <div class="dropdown-trigger">
+          <span class="nav-text">{{ "category.subCategory" | translate }}</span>
+          <span class="custom-arrow"></span>
+        </div>
+
+        <div class="custom-menu-panel">
+          <div class="menu-scroll-container">
+            @for (item of productCategories; track item.id) {
+              <a
+                [routerLink]="[
+                  '/user',
+                  'category',
+                  item.categoryId,
+                  'product-category',
+                  item.id,
+                  'product',
+                ]"
+                class="custom-menu-item"
+              >
+                <span class="item-indicator"></span>
+                <span class="item-label">{{ item.name.local }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav> -->
 }

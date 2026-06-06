@@ -30,32 +30,36 @@
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <!-- Header Section Begin -->
-    <header class="header shadow-sm">
+
+    <header class="header">
       <!-- Top Bar -->
       <app-top-bar> </app-top-bar>
       <!-- Main Header -->
-      <div class="container py-3 containerMenu">
+      <div class="container containerMenu">
         <div class="row align-items-center">
           <!-- Search + Lang -->
           <div
             class="col-2 col-md-4 mb-2 mb-md-0 d-flex flex-wrap justify-content-between"
           >
-            @if ((responsiveService.isMobile())) {
-            <mat-icon class="menu-icon" (click)="spinnerService.toggleSideBar()"
-              >menu</mat-icon
-            >
-            }@else {
-            <app-search class="search-wrapper flex-grow-1 me-2"
-              >></app-search
-            >
-            <app-language-button
-              class="lang mt-2 mt-sm-0 d-flex align-items-center"
-            ></app-language-button>
+            @if (responsiveService.isMobile()) {
+              <mat-icon
+                class="menu-icon"
+                (click)="spinnerService.toggleSideBar()"
+                >menu</mat-icon
+              >
+            } @else {
+              <app-search class="search-wrapper flex-grow-1 me-2">></app-search>
+              <app-language-button
+                class="lang mt-2 mt-sm-0 d-flex align-items-center"
+              ></app-language-button>
             }
           </div>
 
           <!-- Logo -->
-          <div class="col-8 col-md-4 text-center mb-2 mb-md-0" [routerLink]="['/user']">
+          <div
+            class="col-8 col-md-4 text-center mb-md-0"
+            [routerLink]="['/user']"
+          >
             <img
               src="./assets/img/R.png"
               alt="Logo"
@@ -67,8 +71,8 @@
           <!-- Cart -->
           <div class="col-2 col-md-4 text-md-end text-center mt-2">
             <p class="mb-0 d-inline-flex" style="text-align: end">
-              @if (!(responsiveService.isMobile())) {
-              <app-login-logout-button></app-login-logout-button>
+              @if (!responsiveService.isMobile()) {
+                <app-login-logout-button></app-login-logout-button>
               }
               <a
                 (click)="spinnerService.toggleSideCart()"
@@ -82,24 +86,26 @@
                 >
               </a>
               @if (!responsiveService.isMobile()) {
-              <span> {{ "general.JOD" | translate }} {{ cartTotal }}</span
-              >}
+                <span> {{ "general.JOD" | translate }} {{ cartTotal }}</span>
+              }
             </p>
           </div>
         </div>
 
-        <hr class="mb-0" />
-        @if( !responsiveService.isMobile()){
-        <app-navbar
-          [categoryResult]="categoryResult"
-          [productCategories]="productCategories"
-          [cartCount]="cartCount"
-          [cartTotal]="cartTotal"
-        ></app-navbar>
+        <hr class="my-0 py-0" />
+        @if (!responsiveService.isMobile()) {
+          <app-navbar
+            [categoryResult]="categoryResult"
+            [productCategories]="productCategories"
+            [cartCount]="cartCount"
+            [cartTotal]="cartTotal"
+          ></app-navbar>
         }
       </div>
     </header>
-    <router-outlet></router-outlet>
+    <div class="mx-2 p-0 bo">
+      <router-outlet></router-outlet>
+    </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

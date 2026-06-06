@@ -8,3 +8,135 @@
 ::ng-deep .sidenavv mat-expansion-panel {
   box-shadow: none !important;
 }
+
+
+/* الحاوية الرئيسية للقوائم */
+.custom-navigation {
+  position: relative;
+  z-index: 1000; /* لضمان ظهور القائمة فوق أي عنصر آخر في الموقع */
+}
+
+/* العنصر الأب لكل قائمة */
+.custom-dropdown {
+  position: relative;
+  padding: 10px 0;
+}
+
+/* الزر المثير لفتح القائمة */
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2b2b2b;
+  font-size: 15px;
+  transition: color 0.25s ease;
+}
+
+/* السهم المخصص المصمم بالـ CSS الصافي */
+.custom-arrow {
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #8c8c8c;
+  border-bottom: 2px solid #8c8c8c;
+  transform: rotate(45deg);
+  margin-left: 8px;
+  margin-top: -2px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* حركة الخط السفلي الراقي عند تمرير الماوس */
+.dropdown-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #4A154B; /* لون الهوية الخاص بك */
+  transition: width 0.3s ease;
+}
+
+/* تأثير الـ Hover على الزر الرئيسي */
+.custom-dropdown:hover .dropdown-trigger {
+  color: #4A154B;
+}
+
+.custom-dropdown:hover .dropdown-trigger::after {
+  width: 100%;
+}
+
+.custom-dropdown:hover .custom-arrow {
+  transform: rotate(-135deg); /* يلتف السهم للأعلى بسلاسة */
+  border-color: #4A154B;
+}
+
+/* -----------------------------------------------
+   تصميم الليستة البيضاء المخصصة (The Custom Menu Panel)
+-------------------------------------------------- */
+.custom-menu-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px); /* تبدأ مزاحة للأسفل قليلاً */
+  background-color: #ffffff; /* خلفية بيضاء نقية وثابتة */
+  min-width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.3s;
+}
+
+/* حاوية التمرير الداخلي في حال كانت العناصر كثيرة */
+.menu-scroll-container {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+/* إظهار القائمة بسلاسة عند الـ Hover على الأب */
+.custom-dropdown:hover .custom-menu-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(5px); /* ترتفع لمكانها الطبيعي */
+}
+
+/* تصميم العناصر داخل الليستة */
+.custom-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 11px 20px;
+  color: #4a4a4a;
+  text-decoration: none;
+  font-size: 14.5px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* مؤشر جانبي (خط صغير) يظهر عند الـ Hover داخل الليستة */
+.item-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 0;
+  background-color: #4A154B;
+  border-radius: 0 4px 4px 0;
+  transition: height 0.25s ease;
+}
+
+/* تأثير تمرير الماوس على عنصر الليستة */
+.custom-menu-item:hover {
+  background-color: rgba(74, 21, 75, 0.03); /* خلفية بنفسجية ناعمة جداً */
+  color: #4A154B;
+  padding-left: 25px; /* إزاحة خفيفة تعطي حيوية */
+}
+
+.custom-menu-item:hover .item-indicator {
+  height: 60%; /* يتمدد الخط الجانبي الأنيق */
+}
