@@ -53,6 +53,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
       .getProductCategoryWithProduct(new CategoryFilter())
       .subscribe({
         next: (res: OperationResultGeneric<CategoryResult[]>) => {
+          
           this.categoryResult = res.data;
           this.productCategories =
             res.data?.flatMap((item) => item.productCategories) ?? undefined;
