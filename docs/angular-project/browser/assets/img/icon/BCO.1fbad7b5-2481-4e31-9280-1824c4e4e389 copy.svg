@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="150" viewBox="0 0 600 150">
+  <!-- الخلفية -->
+  <rect width="100%" height="100%" fill="#f9f9f9" />
+
+  <!-- رمز الطائر -->
+  <g transform="translate(40,40)">
+    <!-- جسم الطائر -->
+    <path d="M20 40 C10 20, 40 10, 60 30 C70 50, 50 70, 30 60 Z" fill="#4B0082" />
+    <!-- جناح -->
+    <path d="M30 40 C20 30, 50 20, 55 35 C50 50, 35 50, 30 40 Z" fill="#FF5733" />
+    <!-- عين -->
+    <circle cx="25" cy="35" r="3" fill="#ffffff" />
+  </g>
+
+  <!-- النص بخطين ومائل -->
+  <g transform="translate(140,95) skewX(-10)">
+    <!-- الطبقة الخلفية (الظل) -->
+    <text x="0" y="0" font-family="Arial Black" font-size="60" fill="#FF5733">
+      Rusul
+    </text>
+    <!-- الطبقة الأمامية -->
+    <text x="0" y="0" font-family="Arial Black" font-size="60" fill="#231F20">
+      Rusul
+    </text>
+  </g>
+</svg>
