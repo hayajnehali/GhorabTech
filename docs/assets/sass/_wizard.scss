@@ -1,0 +1,73 @@
+@use "variable" as *;
+@use "mixins" as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
+.wizard-container {
+  max-width: 70%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.wizard-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  color: #999;
+  font-weight: bold;
+  border-bottom: 3px solid #ccc;
+  cursor: default;
+}
+
+.step.active {
+  color: $primary-color;
+  border-color: $primary-color;
+}
+
+.wizard-content {
+  min-height: 200px;
+  margin-bottom: 20px;
+  /* أضف هنا تصميم الخطوة الحالية */
+}
+
+.wizard-buttons {
+  text-align: right;
+}
+
+.wizard-buttons .btn {
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.wizard-buttons .btn:hover {
+  background-color: $primary-color;
+}
+
+.img-pay-way{
+     width: 5em;
+    height: 2.5em;
+}
+@media (max-width: 1024px) {
+  .wizard-container {
+     max-width: 100%; 
+  }
+}
