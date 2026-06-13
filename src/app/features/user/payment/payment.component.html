@@ -18,38 +18,39 @@
   </div>
 
   <div class="wizard-content" *ngIf="currentStep === 2">
-    <form #recipientForm="ngForm" (ngSubmit)="save(recipientForm)">
-      <!-- Full Name -->
-      <div class="mb-3">
-        <label>{{ "general.recipient-name" | translate }}</label>
-        <input
-          type="text"
-          class="form-control"
-          name="fullName"
-          [(ngModel)]="entity.recipientInfo.fullName"
-          #fullName="ngModel"
-          required
-        />
-        <app-form-error [control]="fullName"></app-form-error>
-      </div>
+    @if (entity.recipientInfo) {
+      <form #recipientForm="ngForm" (ngSubmit)="save(recipientForm)">
+        <!-- Full Name -->
+        <div class="mb-3">
+          <label>{{ "general.recipient-name" | translate }}</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fullName"
+            [(ngModel)]="entity.recipientInfo.fullName"
+            #fullName="ngModel"
+            required
+          />
+          <app-form-error [control]="fullName"></app-form-error>
+        </div>
 
-      <!-- Phone Number -->
-      <div class="mb-3">
-        <label>{{ "general.phoneNumber" | translate }}</label>
-        <input
-          type="tel"
-          class="form-control"
-          name="phoneNumber"
-          [(ngModel)]="entity.recipientInfo.phoneNumber"
-          #phoneNumber="ngModel"
-          required
-          pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
-          minlength="10"
-          maxlength="10"
-        />
-        <app-form-error [control]="phoneNumber"></app-form-error>
-        <!-- pattern="^\\+?[0-9]{7,15}$" -->
-        <!-- <div
+        <!-- Phone Number -->
+        <div class="mb-3">
+          <label>{{ "general.phoneNumber" | translate }}</label>
+          <input
+            type="tel"
+            class="form-control"
+            name="phoneNumber"
+            [(ngModel)]="entity.recipientInfo.phoneNumber"
+            #phoneNumber="ngModel"
+            required
+            pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
+            minlength="10"
+            maxlength="10"
+          />
+          <app-form-error [control]="phoneNumber"></app-form-error>
+          <!-- pattern="^\\+?[0-9]{7,15}$" -->
+          <!-- <div
           *ngIf="recipientForm.submitted && phoneNumber.invalid"
           class="text-danger"
         >
@@ -57,56 +58,48 @@
             ? ("errors.phoneRequired" | translate)
             : ("errors.invalidPhoneNumber" | translate) }}
         </div> -->
-      </div>
+        </div>
 
-      <!-- City -->
-      <div class="mb-3">
-        <label>{{ "general.city" | translate }}</label>
-        <input
-          type="text"
-          class="form-control"
-          name="city"
-          [(ngModel)]="entity.recipientInfo.city"
-          #city="ngModel"
-          required
-        />
-        <app-form-error [control]="city"></app-form-error>
-      </div>
-
-      <!-- Notes -->
-      <div class="mb-3">
-        <label>{{ "general.notes" | translate }}</label>
-        <textarea
-          class="form-control"
-          name="notes"
-          [(ngModel)]="entity.recipientInfo.notes"
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <mat-radio-group
-          required
-          #pay_way="ngModel"
-          name="payWay"
-          [(ngModel)]="entity.payWay"
-        >
-          <mat-radio-button name="payWay" [value]="payway.cliq">
-            <img
-              src="./assets/img/icon/final_cliq_logo-02_1_0.png"
-              class="img-pay-way"
-              alt=""
-          /></mat-radio-button>
-          <mat-radio-button name="payWay" [value]="payway.visa">
-            <img src="./assets/img/icon/R.png" class="img-pay-way" alt=""
-          /></mat-radio-button>
-        </mat-radio-group>
-        <app-form-error [control]="pay_way"></app-form-error>
-      </div>
-      <div class="btn-container d-flex justify-content-between mt-4">
-        <button type="submit" class="btn btn-primary w-100">
-          {{ "cart.checkout" | translate }}
-        </button>
-      </div>
-    </form>
+        <!-- City -->
+        <div class="mb-3">
+          <label>{{ "general.city" | translate }}</label>
+          <input
+            type="text"
+            class="form-control"
+            name="city"
+            [(ngModel)]="entity.recipientInfo.city"
+            #city="ngModel"
+            required
+          />
+          <app-form-error [control]="city"></app-form-error>
+        </div>
+ 
+        <div class="mb-3">
+          <mat-radio-group
+            required
+            #pay_way="ngModel"
+            name="payWay"
+            [(ngModel)]="entity.payWay"
+          >
+            <mat-radio-button name="payWay" [value]="payway.cliq">
+              <img
+                src="./assets/img/icon/final_cliq_logo-02_1_0.png"
+                class="img-pay-way"
+                alt=""
+            /></mat-radio-button>
+            <mat-radio-button name="payWay" [value]="payway.visa">
+              <img src="./assets/img/icon/R.png" class="img-pay-way" alt=""
+            /></mat-radio-button>
+          </mat-radio-group>
+          <app-form-error [control]="pay_way"></app-form-error>
+        </div>
+        <div class="btn-container d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-primary w-100">
+            {{ "cart.checkout" | translate }}
+          </button>
+        </div>
+      </form>
+    }
   </div>
   <!-- <div class="wizard-content" *ngIf="currentStep === 3">
 

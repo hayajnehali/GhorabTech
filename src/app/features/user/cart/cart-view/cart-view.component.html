@@ -1,84 +1,389 @@
-<div class="container my-5">
-  <nav class="navbar navbar-expand-lg mt-2">
-    <div class="navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-item " (click)="goToMyCrts()" (keydown.enter)="goToMyCrts()" (keydown.space)="goToMyCrts()">
-          <a>🛒 {{ "cart.purchase-record" | translate }} </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="table-responsive shopping__cart__table">
-    <table class="table align-middle text-center">
-      <thead>
-        <tr>
-          <th>{{ "general.name" | translate }}</th>
-          <th>{{ "general.price" | translate }}</th>
-          <th>{{ "general.count" | translate }}</th>
-          <th>{{ "general.subtotal" | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (cartItem of cart.cartItems; track $index) {
-        <tr>
-          <td class="product__cart__item">
-            <div class="product__cart__item__pic">
-              <app-image
-                [src]="cartItem.product.images[0].guidName"
-                alt="product image"
-              ></app-image>
-            </div>
-            <div class="product__cart__item__text">
-              {{ cartItem.product.name.local }}
-            </div>
-          </td>
+<div class="my-5 mx-3">
+  <h4 class="mb-3">
+    {{ "general.payment-and-order-confirmation" | translate }}
+  </h4>
+  <form #cartForm="ngForm" (ngSubmit)="save(cartForm)">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="mb-3">
+          <mat-radio-group
+            required
+            #registration_way="ngModel"
+            name="registration_way"
+            [(ngModel)]="cart.registrationWay"
+          >
+            <mat-radio-button
+              name="registration_way"
+              [value]="registrationWay.login"
+            >
+              {{ "general.login" | translate }}
+            </mat-radio-button>
+            <mat-radio-button
+              name="registration_way"
+              [value]="registrationWay.signup"
+            >
+              {{ "general.signup" | translate }}
+            </mat-radio-button>
+            <mat-radio-button
+              name="registration_way"
+              [value]="registrationWay.guest"
+            >
+              {{ "general.guest" | translate }}
+            </mat-radio-button>
+          </mat-radio-group>
+          <app-form-error [control]="registration_way"></app-form-error>
+        </div>
+        <h5 class="mb-3">
+          {{ "cart.account-information" | translate }}
+        </h5>
+        <!-- Cart owner -->
+        <div class="mb-5">
+          <!-- Full Name -->
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="cartownerFullName"
+              placeholder="{{ 'general.fullName' | translate }}"
+              [(ngModel)]="cart.cartowner.fullName"
+              #cartownerFullName="ngModel"
+              required
+            />
+            <app-form-error [control]="cartownerFullName"></app-form-error>
+          </div>
+          <!-- Email -->
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="cartownerEmail"
+              placeholder="{{ 'general.email' | translate }}"
+              [(ngModel)]="cart.cartowner.email"
+              #cartownerEmail="ngModel"
+              required
+            />
+            <app-form-error [control]="cartownerEmail"></app-form-error>
+          </div>
+          <!-- Phone Number -->
+          <div class="mb-3">
+            <input
+              type="tel"
+              class="form-control"
+              name="cartownerPhoneNumber"
+              placeholder="{{ 'general.phoneNumber' | translate }}"
+              [(ngModel)]="cart.cartowner.phoneNumber"
+              #cartownerPhoneNumber="ngModel"
+              required
+              pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
+              minlength="10"
+              maxlength="10"
+            />
+            <app-form-error [control]="cartownerPhoneNumber"></app-form-error>
+          </div>
+          <!-- City -->
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="cartownerCity"
+              placeholder="{{ 'general.city' | translate }}"
+              [(ngModel)]="cart.cartowner.city"
+              #cartownerCity="ngModel"
+              required
+            />
+            <app-form-error [control]="cartownerCity"></app-form-error>
+          </div>
+          <!-- Address Line -->
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="cartownerAddressLine"
+              placeholder="{{ 'general.addressLine' | translate }}"
+              [(ngModel)]="cart.cartowner.addressLine"
+              #cartownerAddressLine="ngModel"
+              required
+            />
+            <app-form-error [control]="cartownerAddressLine"></app-form-error>
+          </div>
 
-          <td class="cart__price">
-            {{ "general.JOD" | translate }} {{ cartItem.product.price }}
-          </td>
+          <!-- same cart owner -->
 
-          <td class="quantity__item">
-            <div class="quantity">
-              <div class="pro-qty-2">
-                <a class="qtybtn" (click)="decreaseQuantity(cartItem)">-</a>
-                {{ cartItem.quantity }}
-                <a class="qtybtn" (click)="increaseQuantity(cartItem)">+</a>
-              </div>
+          <div class="form-check mb-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name="sameSenderRecipientInfo"
+              [(ngModel)]="cart.sameSenderRecipientInfo"
+              #sameSenderRecipientInfo="ngModel"
+            />
+            <label class="form-check-label" for="sameSenderRecipientInfo">
+              {{ "cart.same-sender-recipient-info" | translate }}
+            </label>
+          </div>
+        </div>
+        @if (!cart.sameSenderRecipientInfo && cart.recipientInfo != undefined) {
+          <!-- Recipient Info -->
+          <div class="mt-2">
+            <h5 class="mb-3">
+              {{ "cart.recipient-information" | translate }}
+            </h5>
+            <!-- Full Name -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="fullName"
+                placeholder="{{ 'general.recipient-name' | translate }}"
+                [(ngModel)]="cart.recipientInfo.fullName"
+                #fullName="ngModel"
+                required
+              />
+              <app-form-error [control]="fullName"></app-form-error>
             </div>
-          </td>
 
-          <td class="cart__price">
-            {{ "general.JOD" | translate }}
-            {{ cartItem.total }}
-          </td>
-        </tr>
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <input
+                type="tel"
+                class="form-control"
+                name="phoneNumber"
+                placeholder="{{ 'general.phoneNumber' | translate }}"
+                [(ngModel)]="cart.recipientInfo.phoneNumber"
+                #phoneNumber="ngModel"
+                required
+                pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
+                minlength="10"
+                maxlength="10"
+              />
+              <app-form-error [control]="phoneNumber"></app-form-error>
+            </div>
+            <!-- City -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="recipientInfoCity"
+                placeholder="{{ 'general.city' | translate }}"
+                [(ngModel)]="cart.recipientInfo.city"
+                #recipientInfoCity="ngModel"
+                required
+              />
+              <app-form-error [control]="recipientInfoCity"></app-form-error>
+            </div>
+            <!-- Address Line -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="recipientInfoAddressLine"
+                placeholder="{{ 'general.addressLine' | translate }}"
+                [(ngModel)]="cart.recipientInfo.addressLine"
+                #recipientInfoAddressLine="ngModel"
+                required
+              />
+              <app-form-error
+                [control]="recipientInfoAddressLine"
+              ></app-form-error>
+            </div>
+          </div>
         }
-      </tbody>
-    </table>
-  </div>
+      </div>
+      <div class="col-md-8">
+        <nav class="navbar navbar-expand-lg mt-2">
+          <div class="navbar-collapse">
+            <ul class="navbar-nav">
+              <li
+                class="nav-item"
+                (click)="goToMyCrts()"
+                (keydown.enter)="goToMyCrts()"
+                (keydown.space)="goToMyCrts()"
+              >
+                <a>🛒 {{ "cart.purchase-record" | translate }} </a>
+              </li>
 
-  <!-- Continue Shopping -->
-  <div class="mb-4">
-    <button class="btn btn-primary" [routerLink]="['/user']">
-      &larr; {{ "cart.continue-shopping" | translate }}
-    </button>
-  </div>
+              <li [routerLink]="['/user']" class="nav-item">
+                <a> &larr; {{ "cart.continue-shopping" | translate }} </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div
+          class="table-responsive shopping__cart__table border border-light-subtle"
+        >
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>{{ "general.name" | translate }}</th>
+                <th>{{ "general.image" | translate }}</th>
+                <th>{{ "general.price" | translate }}</th>
+                <th>{{ "general.count" | translate }}</th>
+                <th>{{ "general.subtotal" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (cartItem of cart.cartItems; track $index) {
+                <tr>
+                  <td class="product__cart__item">
+                    <div class="product__cart__item__pic">
+                      <app-image
+                        [src]="cartItem.product.images[0].guidName"
+                        alt="product image"
+                      ></app-image>
+                    </div>
+                  </td>
+                  <td class="product__cart__item">
+                    <div class="product__cart__item__text">
+                      <p>
+                        {{ cartItem.product.name.local }}
+                      </p>
+                    </div>
+                  </td>
+                  <td class="quantity__item">
+                    <div class="quantity">
+                      <div class="pro-qty-2">
+                        <a class="qtybtn" (click)="decreaseQuantity(cartItem)"
+                          >-</a
+                        >
+                        {{ cartItem.quantity }}
+                        <a class="qtybtn" (click)="increaseQuantity(cartItem)"
+                          >+</a
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td class="cart__price">
+                    {{ cartItem.product.price }}{{ "general.JOD" | translate }}
+                  </td>
 
-  <!-- Totals -->
-  <div class="text-end">
-    <p>
-      {{ "general.total" | translate }}:
-      <strong>{{ "general.JOD" | translate }} : {{ total }}</strong>
-    </p>
-  </div>
+                  <td class="cart__price">
+                    {{ cartItem.product.price ?? 0 * cartItem.quantity }}
+                    {{ "general.JOD" | translate }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="table-responsive shopping__cart__table border border-light-subtle"
+        >
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>{{ "general.total" | translate }}</th>
+                <th>{{ this.total }} {{ "general.JOD" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="product__cart__item">
+                  {{ "general.delivery" | translate }}
+                </td>
+                <td class="product__cart__item">
+                  {{ "general.JOD" | translate }}
+                </td>
+              </tr>
+              <tr>
+                <td class="product__cart__item">
+                  {{ "general.total-final" | translate }}
+                </td>
+                <td class="product__cart__item">
+                  {{ this.total + 2 }} {{ "general.JOD" | translate }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row border border-light-subtle m-0 py-3">
+          <div class="col-md-4">
+            <h5 class="">
+              <mat-icon>payment_arrow_down</mat-icon>
+              {{ "cart.payment-method" | translate }}
+            </h5>
+            <p>{{ "cart.transactions-secure-encrypted" | translate }}</p>
+            <div class="mb-3">
+              <mat-radio-group
+                required
+                #pay_way="ngModel"
+                name="payWay"
+                [(ngModel)]="cart.payWay"
+                class="d-flex flex-column"
+              >
+                <mat-radio-button name="payWay" [value]="payway.cliq">
+                  <img
+                    src="./assets/img/icon/final_cliq_logo-02_1_0.png"
+                    class="img-pay-way"
+                    alt=""
+                /></mat-radio-button>
+                <mat-radio-button name="payWay" [value]="payway.visa">
+                  <img src="./assets/img/icon/R.png" class="img-pay-way" alt=""
+                /></mat-radio-button>
+              </mat-radio-group>
+              <app-form-error [control]="pay_way"></app-form-error>
+            </div>
+          </div>
+          <!-- add delivary date and select time from list -->
+          <div class="col-md-4">
+            <h5 class="mb-4">
+              <mat-icon>local_shipping</mat-icon>
+              {{ "cart.delivery-information" | translate }}
+            </h5>
+            <div class="mb-3">
+              <label class="form-label">
+                {{ "cart.delivery-date" | translate }} *
+              </label>
+              <input
+                type="date"
+                class="form-control"
+                name="deliveryDate"
+                [(ngModel)]="cart.deliveryDate"
+                #deliveryDate="ngModel"
+                required
+              />
+              <app-form-error [control]="deliveryDate"></app-form-error>
+            </div>
 
-  <!-- Checkout -->
-  <div class="text-center">
-    <button
-      (click)="openLogInLogoutDialog()"
-      class="btn btn-primary px-5 py-2 w-100"
-    >
-      {{ "cart.checkout" | translate }}
-    </button>
-  </div>
+            <div class="mb-3">
+              <label class="form-label">
+                {{ "cart.delivery-time" | translate }}
+              </label>
+              @if (cart && cart.cartowner) {
+                <select
+                  class="form-select"
+                  name="deliveryTime"
+                  [(ngModel)]="cart.delivaryTimeId"
+                  #deliveryTime="ngModel"
+                  required
+                >
+                  @for (item of delivaryTimes; track $index) {
+                    <option [value]="item.id">{{ item.time }}</option>
+                  }
+                </select>
+                <app-form-error [control]="deliveryTime"></app-form-error>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="row border border-light-subtle mx-0 my-3 py-3">
+          <div class="col-md-12">
+            <h5 class="mb-3">{{ "cart.add-gift-card" | translate }}</h5>
+            <!-- Notes -->
+            <textarea
+              class="form-control"
+              name="notes"
+              placeholder="{{ 'cart.express-yourfeelings-words' | translate }}"
+              [(ngModel)]="cart.notes"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- Checkout -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary px-5 py-2 w-100">
+          {{ "cart.checkout" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

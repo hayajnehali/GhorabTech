@@ -14,6 +14,7 @@
 .custom-navigation {
   position: relative;
   z-index: 1000; /* لضمان ظهور القائمة فوق أي عنصر آخر في الموقع */
+  text-transform: capitalize;
 }
 
 /* العنصر الأب لكل قائمة */
