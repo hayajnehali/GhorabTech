@@ -1,0 +1,76 @@
+<ui-modal [(isOpen)]="isModalOpen" size="xl">
+  <div modal-title>
+    <h1 class="modal-title fs-4 fw-bold mb-1">{{ "PRODUCT_COLLECTION.ADD_PRODUCTS_TITLE" | translate }}</h1>
+    <p class="text-muted small mb-0">{{ "PRODUCT_COLLECTION.ADD_PRODUCTS_SUBTITLE" | translate }}</p>
+  </div>
+
+  <div modal-filters class="row g-3 align-items-center">
+    <div class="col-md-5">
+      <div class="search-group">
+        <span class="material-symbols-outlined">search</span>
+        <input class="form-control" [placeholder]="'PRODUCT_COLLECTION.SEARCH_NAME_SKU' | translate" type="text" />
+      </div>
+    </div>
+  </div>
+
+  <div modal-body class="p-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+      
+      @for (product of products(); track product.id) {
+        <div class="col">
+          <div class="card product-card p-2 cursor-pointer" 
+               [class.selected]="isProductSelected(product.id!)" 
+               (click)="toggleProductSelection(product.id!)">
+            
+            <input class="form-check-input" 
+                   type="checkbox"
+                   [checked]="isProductSelected(product.id!)"
+                   (click)="$event.stopPropagation(); toggleProductSelection(product.id!)" />
+            
+            <div class="card-img-container rounded">
+                <app-image [src]="product.images[0]?.guidName"></app-image>
+            </div>
+            
+            <div class="px-1">
+              <h3 class="fs-6 fw-semibold text-truncate mb-0">{{ product.name.local }}</h3>
+              <p class="text-muted mb-2" style="font-size: 11px">{{ "PRODUCT_COLLECTION.SKU" | translate }}: {{ product.productCategory }}</p>
+              
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="fw-bold small">{{ product.price }} ر.س</span>
+                <span class="badge bg-light text-dark fw-bold border" style="font-size: 10px">
+                  {{ product.count }} {{ "PRODUCT_COLLECTION.IN_STOCK" | translate }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+
+  <ng-container modal-footer>
+    <div class="d-flex align-items-center gap-3">
+      <div class="selection-badge">
+        <span class="material-symbols-outlined">check_circle</span>
+        <span>{{ selectedCount() }}</span> {{ "PRODUCT_COLLECTION.PRODUCTS_SELECTED" | translate }}
+      </div>
+      <button class="btn btn-link text-danger text-decoration-none small p-0" (click)="resetSelection()">
+        {{ "PRODUCT_COLLECTION.RESET_SELECTION" | translate }}
+      </button>
+    </div>
+    
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-secondary" type="button" style="border-radius: 0.125rem; padding: 0.625rem 2rem;" (click)="isModalOpen.set(false)">
+        {{ "PRODUCT_COLLECTION.CANCEL" | translate }}
+      </button>
+      <button class="btn btn-primary" type="button" style="border-radius: 0.125rem; padding: 0.625rem 2rem; background-color: #000; border-color: #000;"
+              (click)="confirmSelection()"
+              [disabled]="selectedCount() === 0">
+        {{ "PRODUCT_COLLECTION.ADD_SELECTED" | translate }}
+      </button>
+    </div>
+  </ng-container>
+
+</ui-modal>

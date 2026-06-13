@@ -21,6 +21,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Interceptor } from 'Auth/interceptor/auth.interceptor';
 import { AuthService } from '@shared/services/auth.service';
+import { BASE_URL } from '@shared/services/base.service';
+import { environment } from '@shared/environment/environment';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -66,7 +68,7 @@ export function initAuth(authService: AuthService) {
       useFactory: initAuth,
       deps: [AuthService],
       multi: true,
-    },
+    }
   ],
 })
 export class AppModule {}

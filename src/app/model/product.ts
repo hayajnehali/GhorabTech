@@ -36,6 +36,7 @@ export class ProductResult extends ModelBase {
   priceBeforeDiscount?: number;
   discountRated?: string;
   averageRating: number = 0;
+  selected:boolean = false;
   constructor() {
     super();
   }

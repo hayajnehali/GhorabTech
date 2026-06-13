@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { AbstractControl, NgModel } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ValidationErrorResult } from './models/error.models';
+import { getFirstError } from './helpers/error.helper';
 
 @Component({
     selector: 'app-form-error',
@@ -10,7 +12,22 @@ import { TranslateModule } from '@ngx-translate/core';
     styleUrl: './form-error.component.scss'
 })
 export class FormErrorComponent {
-  @Input() control!: NgModel;
-  @Input() fieldName: string = 'هذا الحقل'; // نص افتراضي
+    @Input({ required: true }) control!: NgModel | AbstractControl;
+    @Input() fieldName!: string; // TODO : Not used must remove this and any related code in the template 
+
+    private get resolvedControl(): AbstractControl | null {
+        if (!this.control) return null;
+        return this.control instanceof NgModel
+            ? this.control.control
+            : this.control;
+    }
+
+    get error(): ValidationErrorResult | null {
+        const ctrl = this.resolvedControl;
+        if (!ctrl) return null;
+        if (!ctrl.touched && !ctrl.dirty) return null;
+        if (ctrl.valid) return null;
+        return getFirstError(ctrl);
+    }
 }
 
