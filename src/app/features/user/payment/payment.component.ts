@@ -40,7 +40,7 @@ export class PaymentComponent extends BaseManageComponent<
   }
 
   override processData(): void {
-    this.entity.userId = this.authService.user()?.certserialnumber;
+    this.entity.cartowner.userId = this.authService.user()?.certserialnumber;
   }
   override onLoadedData(req: any): void {
     window.location.href = req.data;

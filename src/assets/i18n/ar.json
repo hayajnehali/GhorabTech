@@ -122,7 +122,12 @@
     "explore": "استكشف الآن",
     "view_all": "عرض الكل",
     "shop_now": "تسوّق الآن",
-    "percent-off": "خصم"
+    "percent-off": "خصم",
+    "delivery": "توصيل",
+    "total-final": "المجموع النهائي",
+    "payment-method": "طريقة الدفع",
+    "payment-and-order-confirmation": "تأكيد الدفع والطلب",
+    "guest": "ضيف"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -231,7 +236,13 @@
     "payment-method": "طرق الدفع",
     "product-limit": "يرجى اختيار منتج واحد على الأقل لإتمام عملية الشراء.",
     "purchase-record": "سجل الشراء",
-    "cart-details": "تفاصيل عربة التسوق"
+    "cart-details": "تفاصيل عربة التسوق",
+    "account-information": "معلومات الحساب",
+    "recipient-information": "معلومات جهة الاستلام",
+    "same-sender-recipient-info": "نفس معلومات المرسل والمستلم",
+    "transactions-secure-encrypted": "جميع المعاملات آمنة ومشفرة.",
+    "choose-delivery-date": "اختر تاريخ التسليم",
+    "delivery-information": "معلومات التوصيل"
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

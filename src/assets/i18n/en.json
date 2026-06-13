@@ -120,7 +120,12 @@
     "explore": "Explore Now",
     "view_all": "View All",
     "shop_now": "Shop Now",
-    "percent-off": "OFF"
+    "percent-off": "OFF",
+    "delivery": "Delivery",
+    "total-final": "Total Final",
+    "payment-method": "Payment Method",
+    "payment-and-order-confirmation": "Payment & Order Confirmation",
+    "guest": "Guest"
   },
   "validation": {
     "required": "This field is required",
@@ -229,7 +234,11 @@
     "payment-method": "Payment Method",
     "product-limit": "Please select at least one product to proceed to checkout.",
     "purchase-record": "Purchase Record",
-    "cart-details": "Cart Details"
+    "cart-details": "Cart Details",
+    "account-information": "Account Information",
+    "recipient-information": "Recipient Information",
+    "same-sender-recipient-info": "Same Sender and Recipient Information",
+    "transactions-secure-encrypted": "All transactions are secure and encrypted."
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",
