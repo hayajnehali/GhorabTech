@@ -321,5 +321,30 @@
     "confirmation": {
       "delete_message": "هل أنت متأكد من حذف هذا التعليق؟"
     }
+  },
+  "PRODUCT_COLLECTION": {
+    "ADD_NEW_COLLECTION": "إضافة مجموعة جديدة",
+    "CREATE_COLLECTION_DESC": "أنشئ مجموعة منسقة من المنتجات لمتجرك.",
+    "BASIC_INFORMATION": "المعلومات الأساسية",
+    "COLLECTION_NAME_EN": "اسم المجموعة (إنجليزي)",
+    "COLLECTION_NAME_AR": "اسم المجموعة (عربي)",
+    "COLLECTION_NAME_EN_PLACEHOLDER": "مثال: مستلزمات الصيف",
+    "COLLECTION_NAME_AR_PLACEHOLDER": "مثلاً: أساسيات الصيف",
+    "DESCRIPTION_EN": "الوصف (إنجليزي)",
+    "DESCRIPTION_AR": "الوصف (عربي)",
+    "DESCRIPTION_PLACEHOLDER": "صف هذه المجموعة باختصار...",
+    "ADD_PRODUCTS_TITLE": "إضافة منتجات للمجموعة",
+    "ADD_PRODUCTS_SUBTITLE": "اختر المنتجات التي ترغب في إضافتها إلى مجموعتك الجديدة.",
+    "SEARCH_NAME_SKU": "البحث عن طريق الاسم أو SKU...",
+    "SELECTED_PRODUCTS_TITLE": "المنتجات المحددة",
+    "ITEMS_COUNT": "عناصر",
+    "SEARCH_IN_COLLECTION": "البحث في المجموعة...",
+    "BROWSE_ADD_PRODUCTS": "تصفح وإضافة منتجات",
+    "IN_STOCK": "في المخزن",
+    "PRODUCTS_SELECTED": "منتجات مختارة",
+    "RESET_SELECTION": "إعادة تعيين",
+    "CANCEL": "إلغاء",
+    "ADD_SELECTED": "إضافة المنتجات المختارة",
+    "SKU": "SKU"
   }
 }

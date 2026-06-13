@@ -320,5 +320,30 @@
     "confirmation": {
       "delete_message": "Are you sure you want to delete this comment?"
     }
+  },
+  "PRODUCT_COLLECTION": {
+    "ADD_NEW_COLLECTION": "Add New Collection",
+    "CREATE_COLLECTION_DESC": "Create a curated group of products for your store.",
+    "BASIC_INFORMATION": "Basic Information",
+    "COLLECTION_NAME_EN": "Collection Name (English)",
+    "COLLECTION_NAME_AR": "Collection Name (Arabic)",
+    "COLLECTION_NAME_EN_PLACEHOLDER": "e.g. Summer Essentials",
+    "COLLECTION_NAME_AR_PLACEHOLDER": "مثلاً: أساسيات الصيف",
+    "DESCRIPTION_EN": "Description EN",
+    "DESCRIPTION_AR": "Description AR",
+    "DESCRIPTION_PLACEHOLDER": "Briefly describe this collection...",
+    "ADD_PRODUCTS_TITLE": "Add Products to Collection",
+    "ADD_PRODUCTS_SUBTITLE": "Select the products you want to add to your new collection.",
+    "SEARCH_NAME_SKU": "Search by name or SKU...",
+    "SELECTED_PRODUCTS_TITLE": "Selected Products",
+    "ITEMS_COUNT": "Items",
+    "SEARCH_IN_COLLECTION": "Search in collection...",
+    "BROWSE_ADD_PRODUCTS": "Browse & Add Products",
+    "IN_STOCK": "in stock",
+    "PRODUCTS_SELECTED": "products selected",
+    "RESET_SELECTION": "Reset Selection",
+    "CANCEL": "Cancel",
+    "ADD_SELECTED": "Add Selected Products",
+    "SKU": "SKU"
   }
 }

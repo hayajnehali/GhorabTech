@@ -1,0 +1,41 @@
+@if (isOpen()) {
+  <!-- The dialog handles max-width configurations -->
+  <div class="modal-dialog" [class]="sizeClass()">
+    <div class="modal-content">
+      
+      <!-- Header Section -->
+      <div class="modal-header d-flex align-items-center justify-content-between">
+        <div class="modal-title-wrapper flex-grow-1">
+          <!-- Named slot for the Title/Header content -->
+          <ng-content select="[modal-title]"></ng-content>
+        </div>
+
+        @if (showCloseButton()) {
+          <button
+            aria-label="Close"
+            class="btn-close ms-0"
+            type="button"
+            (click)="close()"
+          ></button>
+        }
+      </div>
+
+      <!-- Optional Filters/Sub-header Section -->
+      <!-- Only projects content if the parent provides a [modal-filters] element -->
+      <div class="filter-bar" #filtersWrapper>
+        <ng-content select="[modal-filters]"></ng-content>
+      </div>
+
+      <!-- Scrollable Body Content -->
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+
+      <!-- Footer Actions Section -->
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+
+    </div>
+  </div>
+}
