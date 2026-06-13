@@ -242,7 +242,15 @@
     "same-sender-recipient-info": "نفس معلومات المرسل والمستلم",
     "transactions-secure-encrypted": "جميع المعاملات آمنة ومشفرة.",
     "choose-delivery-date": "اختر تاريخ التسليم",
-    "delivery-information": "معلومات التوصيل"
+    "delivery-information": "معلومات التوصيل",
+    "delivery-date": "تاريخ التوصيل",
+    "delivery-time": "وقت التوصيل",
+    "select-time-placeholder": "اختر الوقت المناسب لك",
+    "time-morning": "الفترة الصباحية",
+    "time-afternoon": "فترة بعد الظهر",
+    "time-evening": "الفترة المسائية",
+    "add-gift-card":"أضف بطاقة إهداء",
+    "express-yourfeelings-words":"عبّر عن مشاعرك بالكلمات."
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

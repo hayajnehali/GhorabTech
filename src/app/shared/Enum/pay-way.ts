@@ -1,11 +1,9 @@
-export enum PayWay { 
-visa,
-cliq
+export enum PayWay {
+  visa,
+  cliq,
 }
 export enum RegistrationWay {
-    gust,
-    login,
-    signup
+  guest,
+  login,
+  signup,
 }
-
-

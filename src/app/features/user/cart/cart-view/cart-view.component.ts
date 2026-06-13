@@ -18,7 +18,10 @@ export class CartViewComponent extends BaseComponent implements OnInit {
   total: number = 0;
   payway: any = PayWay;
   entity: any;
-  registrationWay: any = RegistrationWay;
+  registrationWay: typeof RegistrationWay = RegistrationWay;
+  todayDate: string = new Date().toISOString().split('T')[0];
+  delivaryTimes: any = [{ id: "3077f4f2-d343-49ac-5748-08de0eaa7085", time: '02:00 PM - 06:00 PM' }];
+
   constructor() {
     super();
   }
@@ -50,7 +53,29 @@ export class CartViewComponent extends BaseComponent implements OnInit {
       this.router.navigate(['user', 'my-cart']);
     });
   }
-  save(_t8: NgForm) {
-    throw new Error('Method not implemented.');
+  save(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+
+    let reslut: any;
+    this.cartService.createAndPay(this.cart).subscribe({
+      next: (res) => {
+        reslut = res;
+      },
+      complete: () => {
+        // this.cartService.clearCart();
+        if (this.entity.payWay == PayWay.visa) {
+          window.location.href = reslut.message ?? '';
+        }
+        // else {
+        //   this.goBack();
+        // }
+      },
+      error: (err) => {
+        this.notificationService.showError(err);
+      },
+    });
   }
 }

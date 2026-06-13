@@ -238,7 +238,15 @@
     "account-information": "Account Information",
     "recipient-information": "Recipient Information",
     "same-sender-recipient-info": "Same Sender and Recipient Information",
-    "transactions-secure-encrypted": "All transactions are secure and encrypted."
+    "transactions-secure-encrypted": "All transactions are secure and encrypted.",
+    "delivery-date": "Delivery date",
+    "delivery-time": "Delivery time",
+    "select-time-placeholder": "Select a suitable time",
+    "time-morning": "Morning period",
+    "time-afternoon": "Afternoon period",
+    "time-evening": "Evening period",
+    "add-gift-card":"Add a gift card",
+    "express-yourfeelings-words":"Express your feelings in words."
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",

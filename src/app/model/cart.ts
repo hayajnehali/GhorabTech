@@ -46,7 +46,7 @@ export class CartOwner {
   stateOrProvince?: string;
   postalCode?: string;
   country?: string;
-  email: any;
+  email?: string;
 }
 export class RecipientInfo {
   fullName?: string;
