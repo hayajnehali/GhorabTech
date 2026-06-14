@@ -1,0 +1,106 @@
+<div class="grid-wrapper mat-elevation-z1">
+
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+
+  <div class="table-scroll-container">
+    <table mat-table [dataSource]="data()" matSort
+           (matSortChange)="onSort($event)"
+           multiTemplateDataRows>
+
+      <!-- ── SELECT column — always registered, hidden via displayedColumns ── -->
+      <ng-container matColumnDef="__select__">
+        <th mat-header-cell *matHeaderCellDef class="col-select">
+          <mat-checkbox
+            [checked]="isAllSelected()"
+            [indeterminate]="selModel.hasValue() && !isAllSelected()"
+            (change)="toggleAll()"
+            aria-label="Select all rows"
+          />
+        </th>
+        <td mat-cell *matCellDef="let row" class="col-select">
+          <mat-checkbox
+            [checked]="isSelected(row)"
+            (change)="$event; toggleRow(row)"
+            [aria-label]="'Select row ' + readField(row, dataKey())"
+          />
+        </td>
+      </ng-container>
+
+      <!-- ── EXPAND column — always registered ── -->
+      <ng-container matColumnDef="__expand__">
+        <th mat-header-cell *matHeaderCellDef class="col-expand"></th>
+        <td mat-cell *matCellDef="let row" class="col-expand">
+          <button mat-icon-button
+                  (click)="$event.stopPropagation(); toggleExpand(row)"
+                  [attr.aria-label]="isExpanded(row) ? 'Collapse row' : 'Expand row'">
+            <mat-icon class="expand-icon" [class.rotated]="isExpanded(row)">
+              expand_more
+            </mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- ── DATA columns ── -->
+      @for (col of finalColumns(); track col.field()) {
+        <ng-container [matColumnDef]="col.field()">
+          <th mat-header-cell *matHeaderCellDef [mat-sort-header]="col.field()">
+            {{ col.label()  | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            @if (col.template(); as tpl) {
+              <ng-container *ngTemplateOutlet="tpl; context: { $implicit: row, data: row }" />
+            } @else {
+              {{ readField(row, col.field()) }}
+            }
+          </td>
+        </ng-container>
+      }
+
+      <!-- ── DETAIL column — always registered ── -->
+      <ng-container matColumnDef="__detail__">
+        <td mat-cell *matCellDef="let row"
+            [attr.colspan]="displayedColumns().length"
+            class="detail-cell">
+          <div class="detail-content" [class.detail-expanded]="isExpanded(row)">
+            @if (isExpanded(row)) {
+              @if (finalExpandedTemplate(); as tpl) {
+                <ng-container *ngTemplateOutlet="tpl; context: { $implicit: row, data: row }" />
+              }
+            }
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- ── rows ── -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns(); sticky: true"></tr>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns();"
+          [class.selected-row]="isSelected(row)"
+          (click)="allowSelection() && toggleRow(row)">
+      </tr>
+
+      <tr mat-row *matRowDef="let row; columns: ['__detail__']; when: isDetailRow"
+          class="detail-row">
+      </tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns().length">
+          No records found.
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+  <mat-paginator
+    [length]="totalRecords()"
+    [pageSize]="rows()"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [pageIndex]="pageIndex()"
+    (page)="onPage($event)"
+    showFirstLastButtons
+    aria-label="Table pagination"
+  />
+</div>

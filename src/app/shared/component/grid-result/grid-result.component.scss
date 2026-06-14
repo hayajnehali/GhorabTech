@@ -1,0 +1,69 @@
+// Matches Material theming — override via your theme if needed
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--mat-table-background-color, #fff);
+}
+
+.table-scroll-container {
+  overflow-x: auto;
+  flex: 1;
+
+  table {
+    width: 100%;
+  }
+}
+
+// Sticky header uses mat's built-in; this keeps z-index safe
+th.mat-header-cell {
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+td.mat-cell {
+  font-size: 0.875rem;
+}
+
+.col-select,
+.col-expand {
+  width: 48px;
+  text-align: center;
+  padding: 0 8px;
+}
+
+// Row highlight on selection
+.selected-row {
+  background: rgba(var(--mat-sys-primary-rgb, 63,81,181), 0.08);
+}
+
+// Expand icon rotation
+.expand-icon {
+  transition: transform 200ms ease;
+  &.rotated { transform: rotate(180deg); }
+}
+
+// Detail / expanded row
+.detail-row {
+  height: 0;
+  overflow: hidden;
+}
+
+.detail-cell {
+  padding: 0 !important;
+  border-bottom: none;
+}
+
+.detail-content {
+  overflow: hidden;
+  padding: 0;
+
+  // When "expanded" the padding reveals; animate via Angular animation or plain CSS
+  &.expanded-visible {
+    padding: 16px 24px;
+  }
+}

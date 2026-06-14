@@ -87,6 +87,10 @@
     "last": "Last",
     "price-before-discount": "Price Before Discount",
     "create-date": "Create Date",
+    "updated": "Updated",
+    "sort-order": "Sort Order",
+    "active": "Active",
+    "inactive": "Inactive",
     "reset": "Reset",
     "quantity": "Quantity",
     "number-sales": "Number of Sales",
@@ -369,5 +373,23 @@
     "CANCEL": "Cancel",
     "ADD_SELECTED": "Add Selected Products",
     "SKU": "SKU"
+  },
+  "product-collection":{
+    "product-collections": "Product Collections",
+    "add-new-collection": "Add Product Collection",
+    "edit-product-collection": "Edit Product Collection",
+    "collection-name": "Collection Name",
+    "code": "Code",
+    "subject": "Subject",
+    "status": "Status",
+    "collection-type": "Collection Type",
+    "description": "Description",
+    "items-count": "Items Count",
+    "actions": "Actions",
+    "text": "Search Text",
+    "manage-collections": "Manage Collections",
+    "add-new": "Add New Collection",
+    "filter": "Filter",
+    "search-by-name-code-description": "Search by name, code, or description..."
   }
 }

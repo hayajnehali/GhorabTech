@@ -1,0 +1,166 @@
+@use "variable" as *;
+
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.app-button--full {
+  width: 100%;
+}
+
+.app-button--xs {
+  padding: 0.25rem 0.5rem;
+}
+
+.app-button--sm {
+  padding: 0.5rem 0.75rem;
+}
+
+.app-button--md {
+  padding: 0.75rem 1rem;
+}
+
+.app-button--lg {
+  padding: 1rem 1.25rem;
+}
+
+.app-button--xl {
+  padding: 1.25rem 1.5rem;
+}
+
+.app-button--rounded-none {
+  border-radius: 0;
+}
+
+.app-button--rounded-sm {
+  border-radius: 4px;
+}
+
+.app-button--rounded-md {
+  border-radius: 8px;
+}
+
+.app-button--rounded-lg {
+  border-radius: 12px;
+}
+
+.app-button--rounded-full {
+  border-radius: 9999px;
+}
+
+// Existing styles for reference
+.app-button--primary {
+  color: $white-color;
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($primary-color, 0.2);
+    background-color: inherit;
+    color: $primary-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--secondary {
+  color: $white-color;
+  background-color: $secondary-color;
+  border: 1px solid $secondary-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($secondary-color, 0.2);
+    background-color: inherit;
+    color: $secondary-color;
+    transform: translateY(-2px);
+  }
+}
+
+// --- Continued Design System ---
+
+.app-button--success {
+  color: $white-color;
+  background-color: $success-color;
+  border: 1px solid $success-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($success-color, 0.2);
+    background-color: inherit;
+    color: $success-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--danger {
+  color: $white-color;
+  background-color: $danger-color;
+  border: 1px solid $danger-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($danger-color, 0.2);
+    background-color: inherit;
+    color: $danger-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--warning {
+  color: $white-color; // Switch to a dark color variable if your warning color is very light
+  background-color: $warning-color;
+  border: 1px solid $warning-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($warning-color, 0.2);
+    background-color: inherit;
+    color: $warning-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--info {
+  color: $white-color;
+  background-color: $info-color;
+  border: 1px solid $info-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($info-color, 0.2);
+    background-color: inherit;
+    color: $info-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--outline {
+  color: $primary-color;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 8px 20px rgba($primary-color, 0.15);
+    background-color: $primary-color;
+    color: $white-color;
+    transform: translateY(-2px);
+  }
+}
+
+.app-button--ghost {
+  color: $primary-color;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    background-color: rgba($primary-color, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}

@@ -25,7 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from './component/about/about.component';
 import { MatRadioModule } from '@angular/material/radio'; 
-import { EmailComponent } from './component/email/email.component'; 
+import { EmailComponent } from './component/email/email.component';
 
 @NgModule({
   declarations: [ProductCardComponent, AboutComponent, EmailComponent],
