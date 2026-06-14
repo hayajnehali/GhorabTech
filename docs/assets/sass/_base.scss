@@ -45,7 +45,7 @@ h5,
 h6 {
   margin: 0;
   color: $primary-color;
-  font-weight: 400;
+  font-weight: 600;
   font-family: sans-serif;
 }
 
@@ -75,7 +75,7 @@ h6 {
 
 p {
   font-size: 0.9rem;
-  font-family: 'Tajawal', sans-serif;
+  font-family: "Tajawal", sans-serif;
   color: $third-color;
   font-weight: 400;
   line-height: 25px;
@@ -100,7 +100,7 @@ p {
   // font-family: "serif";
   color: $primary-color;
   font-weight: 600;
- // line-height: 25px;
+  // line-height: 25px;
   margin: 2rem 0;
   text-transform: capitalize;
 }
@@ -178,8 +178,6 @@ ol {
     line-height: 46px;
   }
 }
-
- 
 
 .spad {
   padding-top: 100px;
@@ -383,11 +381,13 @@ $form-radius: 10px;
   border-radius: 10px;
 }
 
- 
-.cdk-overlay-pane.mat-mdc-dialog-panel{
-  max-width: none !important;        
-  min-width: none !important;        
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: none !important;
+  min-width: none !important;
 }
 .listOfHomeSlider {
   height: 100vh;
+}
+.mat-mdc-dialog-surface {
+  border-radius: 0 !important;
 }

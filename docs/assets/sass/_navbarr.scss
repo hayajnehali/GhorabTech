@@ -105,7 +105,9 @@
           height: 24px;
           width: 24px;
           margin: 0 1rem;
-          transition: color 0.3s ease, transform 0.3s ease;
+          transition:
+            color 0.3s ease,
+            transform 0.3s ease;
         }
 
         .link-label {
@@ -232,8 +234,6 @@
 .entry mat-icon {
   cursor: pointer;
 }
-
-
 
 // التنسيق السحري للقائمة (هذا ما سيحل المشكلة)
 .premium-menu {

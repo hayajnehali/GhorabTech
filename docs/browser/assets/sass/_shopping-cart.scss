@@ -1,7 +1,7 @@
 /*---------------------
   Shopping Cart
 -----------------------*/
-@use 'variable' as *;
+@use "variable" as *;
 
 .shopping__cart__table {
   margin-bottom: 30px;
@@ -17,7 +17,9 @@
         th {
           color: $primary-color;
           text-transform: capitalize;
-          font: 400 1rem / 1.5rem Roboto, sans-serif;
+          font:
+            400 1rem / 1.5rem Roboto,
+            sans-serif;
           font-weight: 500;
         }
       }
@@ -32,8 +34,6 @@
 
           &.product__cart__item {
             // width: 75px;
-            display: flex;
-            align-items: center;
 
             .product__cart__item__pic {
               width: 76px;
@@ -43,11 +43,15 @@
             }
 
             .product__cart__item__text {
+              display: flex;
+              align-items: start;
               h6 {
                 margin-bottom: 10px;
                 color: $primary-color;
                 text-transform: capitalize;
-                font: 400 1rem / 1.5rem Roboto, sans-serif;
+                font:
+                  400 1rem / 1.5rem Roboto,
+                  sans-serif;
                 font-weight: 500;
               }
 
