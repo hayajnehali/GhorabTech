@@ -85,7 +85,7 @@ export const routesAdmin: Routes = [
     path: 'product-collection',
     loadChildren: () => import('./product-collection/product-collection.module').then((m) => m.ProductCollectionModule),
     data: {
-      label: 'productCollection.product-collection',
+      label: 'product-collection.product-collections',
       icon: 'shopping_cart',
       showInSidebar: true,
     },
