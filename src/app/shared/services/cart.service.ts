@@ -151,6 +151,12 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     return aIds.every((id, index) => id === bIds[index]);
   }
 
+  gustCreateAndPay(item: Cart): Observable<OperationResultGeneric<Cart>> {
+    return this.http.post<OperationResultGeneric<Cart>>(
+      this.baseUrl + '/guest/create-and-pay',
+      item
+    );
+  }
   createAndPay(item: Cart): Observable<OperationResultGeneric<Cart>> {
     return this.http.post<OperationResultGeneric<Cart>>(
       this.baseUrl + '/create-and-pay',

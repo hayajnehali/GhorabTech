@@ -131,7 +131,8 @@
     "welcome-back": "Welcome Back",
     "example-email": "Email@gmail.com",
     "fill-information-register-new-account": "Fill in the following information to register your new account on the site",
-    "verification-code-email": "Please enter the 6-digit verification code sent to your email."
+    "verification-code-email": "Please enter the 6-digit verification code sent to your email.",
+    "autoFilled": "Account verified - Automatic filling"
   },
   "validation": {
     "required": "This field is required",

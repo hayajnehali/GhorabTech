@@ -32,6 +32,7 @@ export class CartViewComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cart = new Cart();
     this.cartService.cart$.subscribe((cart) => {
       this.cart = cart;
       this.cart.cartowner = new CartOwner();
@@ -65,7 +66,10 @@ export class CartViewComponent extends BaseComponent implements OnInit {
     }
 
     let reslut: any;
-    this.cartService.createAndPay(this.cart).subscribe({
+    let apicul = this.authService.isAuthenticatedSignal()
+      ? this.cartService.createAndPay(this.cart)
+      : this.cartService.gustCreateAndPay(this.cart);
+    apicul.subscribe({
       next: (res) => {
         reslut = res;
       },
@@ -95,7 +99,8 @@ export class CartViewComponent extends BaseComponent implements OnInit {
         preventRedirect: true,
       },
     });
-
-    dialogRef.afterClosed().subscribe((result: any) => {});
+    dialogRef.afterClosed().subscribe({
+      complete: () => {},
+    });
   }
 }

@@ -1,3 +1,6 @@
+@use "variable" as *;
+@use "sass:color";
+
 .table td, .table th {
   vertical-align: middle;
 }
@@ -10,4 +13,108 @@ input[type="text"] {
 .image{
   width: 76px;
   height: 76px;
+}
+
+
+
+
+
+
+// الحاوية الكبرى الحاضنة
+.blur-locked-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(10, 25, 47, 0.05);
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  
+  // 1. حاوية الحقول التي سيتم تغبيشها
+  .blurred-fields-container {
+    filter: blur(4px); // هنا يحدث السحر السري للغباش الناعم
+    opacity: 0.6;
+    pointer-events: none; // منع أي نقرة ماوس أو اختيار للنصوص تماماً
+    user-select: none;
+  }
+
+  // 2. الطبقة الزجاجية العلوية الذكية (The Overlay)
+  .blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(248, 249, 250, 0.15); // مسحة خلفية خفيفة جداً
+    backdrop-filter: blur(2px); // زيادة تأكيد الغباش على الطبقة الخارجية
+    cursor: not-allowed; // تغيير شكل المؤشر ليعرف المستخدم أن الإدخال ممنوع هنا
+  }
+
+  // 3. صندوق رسالة التوثيق والقفل بوسط الغباش
+  .lock-info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: $white-color;
+    border: 1px solid rgba(16, 185, 129, 0.2); // إطار أخضر خفيف للنجاح والأمان
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px; // شكل كبسولة فخم
+    box-shadow: 0 10px 25px rgba(10, 25, 47, 0.08);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+
+    .lock-icon {
+      color: #10b981; // اللون الأخضر المميز للتوثيق
+      font-size: 26px;
+      width: 260x;
+      height: 26px;
+    }
+
+    .lock-text {
+      color: $primary-color;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      
+      html[dir="rtl"] & {
+        font-family: $fm-unna;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // تأثير حركي تفاعلي ممتع عند تمرير الماوس فوق المنطقة المغبشة
+  &:hover {
+    .lock-info-box {
+      transform: translateY(-3px) scale(1.02); // يرتفع الصندوق للأعلى برقة ترحيبية
+    }
+  }
+}
+
+// تخصيص شكل الحقول المغبشة بالداخل لتطابق الهوية العصرية
+.modern-blur-input {
+  border-radius: 10px !important;
+  border: 1px solid $border !important;
+  background-color: rgba(10, 25, 47, 0.02) !important;
+  height: 44px;
+}
+
+// أنيميشن دخول الحاوية بأكملها
+.animate-fade-in {
+  animation: blurWrapperIn 0.4s ease-out forwards;
+}
+
+@keyframes blurWrapperIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
