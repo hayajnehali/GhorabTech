@@ -6,32 +6,60 @@
     <div class="row">
       <div class="col-md-4">
         <div class="mb-3">
-          <mat-radio-group
-            required
-            #registration_way="ngModel"
-            name="registration_way"
-            [(ngModel)]="cart.registrationWay"
-          >
-            <mat-radio-button
+          @if (authService.isAuthenticatedSignal()) {
+            <mat-radio-group disabled name="registration_way_readonly">
+              <mat-radio-button
+                [checked]="true"
+                [value]="registrationWay.login"
+                name="registration_way_readonly"
+              >
+                {{ "general.login" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                [checked]="false"
+                [value]="registrationWay.signup"
+                name="registration_way_readonly"
+              >
+                {{ "general.signup" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                [checked]="false"
+                [value]="registrationWay.guest"
+                name="registration_way_readonly"
+              >
+                {{ "general.guest" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+          } @else {
+            <mat-radio-group
+              required
+              #registration_way="ngModel"
               name="registration_way"
-              [value]="registrationWay.login"
+              [(ngModel)]="cart.registrationWay"
             >
-              {{ "general.login" | translate }}
-            </mat-radio-button>
-            <mat-radio-button
-              name="registration_way"
-              [value]="registrationWay.signup"
-            >
-              {{ "general.signup" | translate }}
-            </mat-radio-button>
-            <mat-radio-button
-              name="registration_way"
-              [value]="registrationWay.guest"
-            >
-              {{ "general.guest" | translate }}
-            </mat-radio-button>
-          </mat-radio-group>
-          <app-form-error [control]="registration_way"></app-form-error>
+              <mat-radio-button
+                name="registration_way"
+                (click)="checkIfLogend()"
+                [value]="registrationWay.login"
+              >
+                {{ "general.login" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                (click)="checkIfLogend()"
+                name="registration_way"
+                [value]="registrationWay.signup"
+              >
+                {{ "general.signup" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                name="registration_way"
+                [value]="registrationWay.guest"
+              >
+                {{ "general.guest" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <app-form-error [control]="registration_way"></app-form-error>
+          }
         </div>
         <h5 class="mb-3">
           {{ "cart.account-information" | translate }}

@@ -5,6 +5,8 @@ import { CartService } from '@shared/services/cart.service';
 import { BaseComponent } from '@core/base/base-component';
 import { PayWay, RegistrationWay } from '@shared/Enum/pay-way';
 import { NgForm } from '@angular/forms';
+import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart-view',
@@ -14,13 +16,16 @@ import { NgForm } from '@angular/forms';
 })
 export class CartViewComponent extends BaseComponent implements OnInit {
   cartService = inject(CartService);
+  dialog = inject(MatDialog);
   cart: Cart = new Cart();
   total: number = 0;
   payway: any = PayWay;
   entity: any;
   registrationWay: typeof RegistrationWay = RegistrationWay;
   todayDate: string = new Date().toISOString().split('T')[0];
-  delivaryTimes: any = [{ id: "3077f4f2-d343-49ac-5748-08de0eaa7085", time: '02:00 PM - 06:00 PM' }];
+  delivaryTimes: any = [
+    { id: '3077f4f2-d343-49ac-5748-08de0eaa7085', time: '02:00 PM - 06:00 PM' },
+  ];
 
   constructor() {
     super();
@@ -65,17 +70,32 @@ export class CartViewComponent extends BaseComponent implements OnInit {
         reslut = res;
       },
       complete: () => {
-        // this.cartService.clearCart();
+        this.cartService.clearCart();
         if (this.entity.payWay == PayWay.visa) {
           window.location.href = reslut.message ?? '';
+        } else {
+          this.goBack();
         }
-        // else {
-        //   this.goBack();
-        // }
       },
       error: (err) => {
         this.notificationService.showError(err);
       },
     });
+  }
+  goBack() {
+    if (this.authService.isAuthenticatedSignal()) {
+      this.goToMyCrts();
+    } else {
+      this.router.navigateByUrl('/');
+    }
+  }
+  checkIfLogend() {
+    const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
+      data: {
+        preventRedirect: true,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {});
   }
 }

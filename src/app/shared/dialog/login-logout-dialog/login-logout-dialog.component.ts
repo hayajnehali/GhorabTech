@@ -1,9 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  inject,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormErrorComponent } from '@shared/component/form-error/form-error.component';
 import { SharedModule } from '@shared/shared.module';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base-component';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
@@ -49,7 +60,11 @@ export class LoginLogoutDialogComponent
   hideConfirmPassword: any = true;
   //emailVerification: any;
   //inVerificationCodeStep = false;
-  constructor(public dialogRef: MatDialogRef<LoginLogoutDialogComponent>) {
+  constructor(
+    public dialogRef: MatDialogRef<LoginLogoutDialogComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { urlAfterLogin?: string; preventRedirect: boolean },
+  ) {
     super();
   }
   ngOnInit(): void {
@@ -130,11 +145,17 @@ export class LoginLogoutDialogComponent
 
   navigateBasedOnRole(res: OperationResultGeneric<Auth>) {
     this.authService.saveToken(res.data?.token ?? '');
+
     if (this.authService.isAdmin()) {
       this.router.navigate(['/admin']);
-    } else {
-      this.router.navigate(['/user']);
+    } else if (!this.data?.preventRedirect) {
+      if (this.data?.urlAfterLogin) {
+        this.router.navigate([this.data.urlAfterLogin]);
+      } else {
+        this.router.navigate(['/user']);
+      }
     }
+
     this.dialogRef.close();
   }
 }
