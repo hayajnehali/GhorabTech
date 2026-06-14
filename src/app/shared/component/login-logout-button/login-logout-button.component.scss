@@ -1,0 +1,61 @@
+@use "variable" as *;
+
+.auth-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; // يصنع مسافة ذكية وثابتة بين الأيقونة والنص تلقائياً في الاتجاهين
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-family: $fm-nunito;
+  transition: all 0.25s ease-in-out;
+
+  // جعل العنصر يبدو تفاعلياً عند التحويم بالكامل
+  &:hover {
+    background-color: rgba(
+      10,
+      25,
+      47,
+      0.05
+    ); // خلفية خفيفة جداً من اللون الرئيسي للموقع
+
+    .auth-link {
+      color: $primary-color !important; // يضيء الرابط باللون الأساسي
+    }
+
+    .menu_icon {
+      color: $primary-color; // تضيء الأيقونة أيضاً
+      transform: scale(1.05); // تأثير حركي خفيف للأيقونة
+    }
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .menu_icon {
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      color: $third-color; // اللون الافتراضي الهادئ للأيقونة قبل التحويم
+      transition: all 0.25s ease;
+    }
+  }
+
+  .link-container {
+    display: flex;
+    align-items: center;
+
+    .auth-link {
+      color: $heading-color-2; // استخدام لون نصوص العناوين الفرعية الفخم الخاص بك
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: color 0.25s ease;
+
+      // لضمان عدم التفاف النص إلى سطرين في الشاشات الصغيرة
+      white-space: nowrap;
+    }
+  }
+}

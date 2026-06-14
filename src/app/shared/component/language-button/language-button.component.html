@@ -8,20 +8,17 @@
   }
 </div> -->
 
-<div class="auth-wrapper d-inline-flex">
+
+<div class="auth-wrapper language-switcher d-inline-flex align-items-center"  (click)="switchLanguage()">
   <span class="icon-container">
     <mat-icon class="menu-icon">language</mat-icon>
   </span>
 
   <span class="link-container">
-    @if(currentLang === 'ar' || currentLang !== 'en'){ 
-      <a class="auth-link" (click)="switchLanguage('en')">English</a>
-    } 
-    
-    @if(currentLang === 'en'){ 
-      <a class="auth-link" (click)="switchLanguage('ar')">عربي</a>
+    @if (currentLang === 'ar') {
+      <a class="auth-link" >English</a>
+    } @else {
+      <a class="auth-link">عربي</a>
     }
   </span>
 </div>
-
-

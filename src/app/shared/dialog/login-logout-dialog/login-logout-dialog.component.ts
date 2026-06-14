@@ -15,6 +15,7 @@ import {
   OperationResult,
   OperationResultGeneric,
 } from '@core/base/operation-result';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-logout-dialog',
@@ -25,6 +26,7 @@ import {
     FormsModule,
     FormErrorComponent,
     MatDialogModule,
+    MatIcon,
   ],
   templateUrl: './login-logout-dialog.component.html',
   styleUrl: './login-logout-dialog.component.scss',
@@ -34,7 +36,7 @@ export class LoginLogoutDialogComponent
   implements OnInit
 {
   private storage = inject(LocalStorageService);
-  userService = inject(UserService); 
+  userService = inject(UserService);
   user: User = new User();
   loginError: string | null = null;
   auth: Auth = new Auth();
@@ -42,6 +44,9 @@ export class LoginLogoutDialogComponent
   private readonly token_KEY = environment.token_KEY;
   @Output() notify = new EventEmitter<boolean>();
   isLoginForm: boolean = true;
+  hidePassword: any = false;
+  loading: boolean | null = false;
+  hideConfirmPassword: any = true;
   //emailVerification: any;
   //inVerificationCodeStep = false;
   constructor(public dialogRef: MatDialogRef<LoginLogoutDialogComponent>) {

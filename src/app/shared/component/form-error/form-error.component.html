@@ -1,5 +1,8 @@
 @if (error) {
-    <small class="error">
-        {{ error.key | translate: error.params }}
-    </small>
+  <small class="error">
+    <mat-icon style="font-size: 16px; width: 16px; height: 16px; margin: 0"
+      >error_outline</mat-icon
+    >
+    <span>{{ error.key | translate: error.params }}</span>
+  </small>
 }

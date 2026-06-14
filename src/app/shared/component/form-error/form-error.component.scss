@@ -1,0 +1,40 @@
+@use "variable" as *;
+
+// تنسيق رسالة الخطأ العصرية
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; // مسافة صغيرة بين النص وأي أيقونة مستقبلاً
+  color: #ef4444; // لون أحمر صريح وواضح للخطأ (Soft Red)
+  font-family: $fm-nunito;
+  font-size: 0.825rem; // حجم خط صغير وأنيق
+  font-weight: 500;
+  margin-top: 0.35rem; // مسافة بسيطة أسفل حقل الإدخال
+
+  // محاذاة تلقائية لبداية السطر حسب لغة الموقع (يمين في العربي، يسار في الإنجليزي)
+  text-align: start;
+
+  // أنيميشن اهتزاز خفيف جداً عند ظهور الخطأ لجذب الانتباه بشكل احترافي
+  animation: shakeError 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+// حركة الاهتزاز الذكية (Micro-interaction)
+@keyframes shakeError {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(2px, 0, 0);
+  }
+}

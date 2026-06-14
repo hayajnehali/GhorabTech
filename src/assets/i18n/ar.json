@@ -127,7 +127,13 @@
     "total-final": "المجموع النهائي",
     "payment-method": "طريقة الدفع",
     "payment-and-order-confirmation": "تأكيد الدفع والطلب",
-    "guest": "ضيف"
+    "guest": "ضيف",
+    "enter-valid-email": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "enter-credentials": "أدخل بيانات اعتمادك للوصول إلى حسابك الآمن.",
+    "welcome-back": "مرحبًا بعودتك",
+    "example-email": "Email@gmail.com",
+    "fill-information-register-new-account": "قم بملء البيانات التالية لتسجيل حسابك الجديد بالموقع",
+    "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -249,8 +255,8 @@
     "time-morning": "الفترة الصباحية",
     "time-afternoon": "فترة بعد الظهر",
     "time-evening": "الفترة المسائية",
-    "add-gift-card":"أضف بطاقة إهداء",
-    "express-yourfeelings-words":"عبّر عن مشاعرك بالكلمات."
+    "add-gift-card": "أضف بطاقة إهداء",
+    "express-yourfeelings-words": "عبّر عن مشاعرك بالكلمات."
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

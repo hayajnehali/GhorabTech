@@ -4,10 +4,11 @@ import { AbstractControl, NgModel } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ValidationErrorResult } from './models/error.models';
 import { getFirstError } from './helpers/error.helper';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
     selector: 'app-form-error',
-    imports: [CommonModule, TranslateModule],
+    imports: [CommonModule, TranslateModule, MatIcon],
     templateUrl: './form-error.component.html',
     styleUrl: './form-error.component.scss'
 })
