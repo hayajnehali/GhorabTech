@@ -1,5 +1,5 @@
 @if (responsiveService.isMobile()) {
-  <div class="sidenavv" mode="side" opened>
+  <!-- <div class="sidenavv" mode="side" opened>
     <div class="mat-nav-list">
       <a mat-list-item>
         <app-search
@@ -63,6 +63,101 @@
         >{{ "general.JOD" | translate }} {{ cartTotal }}
       </a>
     </div>
+  </div> -->
+  <div class="modern-mobile-sidebar animate-fade-in">
+    <div class="sidebar-scroll-wrapper">
+      <div class="sidebar-nav-content">
+        <div class="search-block-zone mb-3 animate-item">
+          <app-search class="w-100"></app-search>
+        </div>
+
+        <a
+          class="sidebar-action-link animate-item"
+          routerLink="/user"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="spinnerService.toggleSideBar()"
+        >
+          <div class="link-core">
+            <mat-icon class="link-icon">home</mat-icon>
+            <span class="link-text">{{ "general.home" | translate }}</span>
+          </div>
+          <mat-icon class="arrow-indicator">chevron_left</mat-icon>
+        </a>
+
+        <div class="categories-accordion-group my-2">
+          @for (category of categoryResult; track $index) {
+            <mat-expansion-panel
+              class="modern-expansion-panel animate-item"
+              [expanded]="false"
+            >
+              <mat-expansion-panel-header class="modern-panel-header">
+                <mat-panel-title class="panel-title-wrapper">
+                  <span class="category-dot"></span>
+                  <span class="panel-title-text">{{
+                    category.name.local
+                  }}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="sub-links-container">
+                @for (categorie of category.productCategories; track $index) {
+                  <a
+                    class="sub-category-item"
+                    (click)="spinnerService.toggleSideBar()"
+                    [routerLink]="[
+                      '/user',
+                      'category',
+                      categorie.categoryId,
+                      'product-category',
+                      categorie.id,
+                      'product',
+                    ]"
+                    routerLinkActive="active-sub-link"
+                  >
+                    <span class="sub-indicator"></span>
+                    <span class="sub-text">{{ categorie.name.local }}</span>
+                  </a>
+                }
+              </div>
+            </mat-expansion-panel>
+          }
+        </div>
+
+        <hr class="sidebar-divider my-4" />
+
+        <div class="sidebar-footer-actions animate-item">
+          <div class="action-item-row" (click)="spinnerService.toggleSideBar()">
+            <app-language-button></app-language-button>
+          </div>
+
+          <div class="action-item-row" (click)="spinnerService.toggleSideBar()">
+            <app-login-logout-button></app-login-logout-button>
+          </div>
+
+          <a
+            class="sidebar-cart-button mt-3"
+            (click)="
+              spinnerService.toggleSideCart(); spinnerService.toggleSideBar()
+            "
+          >
+            <div class="cart-left-side">
+              <div class="cart-icon-wrapper">
+                <mat-icon>shopping_cart</mat-icon>
+                <span class="cart-floating-badge">{{ cartCount }}</span>
+              </div>
+              <span
+                class="cart-btn-label"
+                >{{ "cart.cart" | translate}}</span
+              >
+            </div>
+            <span class="cart-total-badge"
+              >{{ "general.JOD" | translate }} {{ cartTotal }}</span
+            >
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 } @else {
   <!-- <nav class="custom-navigation mt-3">
@@ -99,40 +194,41 @@
     </div>
   </nav> -->
   <nav class="custom-navigation mt-3">
-  <div class="nav-container d-flex justify-content-center align-items-center gap-4">
-    
-    @for (category of categoryResult; track category.id) {
-      <div class="custom-dropdown">
-        
-        <div class="dropdown-trigger">
-          <span class="nav-text">{{ category.name.local }}</span>
-          <span class="custom-arrow"></span>
-        </div>
+    <div
+      class="nav-container d-flex justify-content-center align-items-center gap-4"
+    >
+      @for (category of categoryResult; track category.id) {
+        <div class="custom-dropdown">
+          <div class="dropdown-trigger">
+            <span class="nav-text">{{ category.name.local }}</span>
+            <span class="custom-arrow"></span>
+          </div>
 
-        <div class="custom-menu-panel">
-          <div class="menu-scroll-container">
-            @for (categorie of category.productCategories; track categorie.id) {
-              <a
-                [routerLink]="[
-                  '/user',
-                  'category',
-                  categorie.categoryId,
-                  'product-category',
-                  categorie.id,
-                  'product'
-                ]"
-                class="custom-menu-item"
-              >
-                <span class="item-indicator"></span>
-                <span class="item-label">{{ categorie.name.local }}</span>
-              </a>
-            }
+          <div class="custom-menu-panel">
+            <div class="menu-scroll-container">
+              @for (
+                categorie of category.productCategories;
+                track categorie.id
+              ) {
+                <a
+                  [routerLink]="[
+                    '/user',
+                    'category',
+                    categorie.categoryId,
+                    'product-category',
+                    categorie.id,
+                    'product',
+                  ]"
+                  class="custom-menu-item"
+                >
+                  <span class="item-indicator"></span>
+                  <span class="item-label">{{ categorie.name.local }}</span>
+                </a>
+              }
+            </div>
           </div>
         </div>
-
-      </div>
-    }
-    
-  </div>
-</nav>
+      }
+    </div>
+  </nav>
 }

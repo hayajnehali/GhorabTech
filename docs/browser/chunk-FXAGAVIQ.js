@@ -1,0 +1,1 @@
+import{fb as a,j as i}from"./chunk-IT2DF5FW.js";import{Y as e,aa as o}from"./chunk-NX3ZCWIS.js";var m=class t extends a{constructor(r){super(r,"keyAttribute")}static \u0275fac=function(c){return new(c||t)(o(i))};static \u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})};export{m as a};

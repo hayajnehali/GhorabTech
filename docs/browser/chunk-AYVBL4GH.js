@@ -1,1 +1,0 @@
-import{a as r}from"./chunk-624BUJL5.js";import{b as t}from"./chunk-KU6GPCNL.js";import{cb as e}from"./chunk-JGHYTIVJ.js";var u=class extends t{cartItemId;quantity=1;product=new r;keyAttributeValues=[];get total(){return this.quantity*(this.product.price??0)}constructor(){super()}};var s=class extends e{cartId};export{u as a,s as b};
