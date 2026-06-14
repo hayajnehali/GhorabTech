@@ -24,8 +24,8 @@ export class LoginLogoutButtonComponent {
   }
   openLogInLogoutDialog() {
     const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
-      maxWidth: '80%',
-      height: '90%',
+    maxWidth: '100vw',
+    maxHeight: '100vh',
       panelClass: 'custom-dialog',
     });
   }

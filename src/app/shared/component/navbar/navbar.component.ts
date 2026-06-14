@@ -25,8 +25,7 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     TranslateModule,
     LanguageButtonComponent,
-    LoginLogoutButtonComponent,
-    MatListItem,
+    LoginLogoutButtonComponent, 
     MatExpansionModule,
     SearchComponent,
     FormsModule
