@@ -6,107 +6,204 @@
     <div class="row">
       <div class="col-md-4">
         <div class="mb-3">
-          <mat-radio-group
-            required
-            #registration_way="ngModel"
-            name="registration_way"
-            [(ngModel)]="cart.registrationWay"
-          >
-            <mat-radio-button
-              name="registration_way"
-              [value]="registrationWay.login"
+          @if (authService.isAuthenticatedSignal()) {
+            <mat-radio-group
+              disabled
+              [(ngModel)]="cart.registrationWay"
+              name="registration_way_readonly"
             >
-              {{ "general.login" | translate }}
-            </mat-radio-button>
-            <mat-radio-button
+              <mat-radio-button
+                [checked]="true"
+                [value]="registrationWay.login"
+                name="registration_way_readonly"
+              >
+                {{ "general.login" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                [checked]="false"
+                [value]="registrationWay.signup"
+                name="registration_way_readonly"
+              >
+                {{ "general.signup" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                [checked]="false"
+                [value]="registrationWay.guest"
+                name="registration_way_readonly"
+              >
+                {{ "general.guest" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+          } @else {
+            <mat-radio-group
+              required
+              #registration_way="ngModel"
               name="registration_way"
-              [value]="registrationWay.signup"
+              [(ngModel)]="cart.registrationWay"
             >
-              {{ "general.signup" | translate }}
-            </mat-radio-button>
-            <mat-radio-button
-              name="registration_way"
-              [value]="registrationWay.guest"
-            >
-              {{ "general.guest" | translate }}
-            </mat-radio-button>
-          </mat-radio-group>
-          <app-form-error [control]="registration_way"></app-form-error>
+              <mat-radio-button
+                name="registration_way"
+                (click)="checkIfLogend()"
+                [value]="registrationWay.login"
+              >
+                {{ "general.login" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                (click)="checkIfLogend()"
+                name="registration_way"
+                [value]="registrationWay.signup"
+              >
+                {{ "general.signup" | translate }}
+              </mat-radio-button>
+              <mat-radio-button
+                name="registration_way"
+                [value]="registrationWay.guest"
+              >
+                {{ "general.guest" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <app-form-error [control]="registration_way"></app-form-error>
+          }
         </div>
         <h5 class="mb-3">
           {{ "cart.account-information" | translate }}
         </h5>
         <!-- Cart owner -->
         <div class="mb-5">
-          <!-- Full Name -->
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              name="cartownerFullName"
-              placeholder="{{ 'general.fullName' | translate }}"
-              [(ngModel)]="cart.cartowner.fullName"
-              #cartownerFullName="ngModel"
-              required
-            />
-            <app-form-error [control]="cartownerFullName"></app-form-error>
+          <div
+            *ngIf="authService.isAuthenticatedSignal()"
+            class="blur-locked-wrapper"
+          >
+            <div class="blur-overlay">
+              <div class="lock-info-box">
+                <mat-icon class="lock-icon">verified_user</mat-icon>
+                <span class="lock-text">{{
+                  "general.autoFilled" | translate
+                }}</span>
+              </div>
+            </div>
+            <!-- Full Name -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerFullName"
+                placeholder="{{ 'general.fullName' | translate }}"
+                disabled
+                readonly
+              />
+            </div>
+            <!-- Email -->
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                name="cartownerEmail"
+                placeholder="{{ 'general.email' | translate }}"
+                disabled
+              />
+            </div>
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <input
+                type="tel"
+                class="form-control"
+                name="cartownerPhoneNumber"
+                placeholder="{{ 'general.phoneNumber' | translate }}"
+                disabled
+              />
+            </div>
+            <!-- City -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerCity"
+                placeholder="{{ 'general.city' | translate }}"
+                disabled
+              />
+            </div>
+            <!-- Address Line -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerAddressLine"
+                placeholder="{{ 'general.addressLine' | translate }}"
+                disabled
+              />
+            </div>
           </div>
-          <!-- Email -->
-          <div class="mb-3">
-            <input
-              type="email"
-              class="form-control"
-              name="cartownerEmail"
-              placeholder="{{ 'general.email' | translate }}"
-              [(ngModel)]="cart.cartowner.email"
-              #cartownerEmail="ngModel"
-              required
-            />
-            <app-form-error [control]="cartownerEmail"></app-form-error>
+          <div *ngIf="!authService.isAuthenticatedSignal()">
+            <!-- Full Name -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerFullName"
+                placeholder="{{ 'general.fullName' | translate }}"
+                [(ngModel)]="cart.cartowner.fullName"
+                #cartownerFullName="ngModel"
+                required
+              />
+              <app-form-error [control]="cartownerFullName"></app-form-error>
+            </div>
+            <!-- Email -->
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                name="cartownerEmail"
+                placeholder="{{ 'general.email' | translate }}"
+                [(ngModel)]="cart.cartowner.email"
+                #cartownerEmail="ngModel"
+                required
+              />
+              <app-form-error [control]="cartownerEmail"></app-form-error>
+            </div>
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <input
+                type="tel"
+                class="form-control"
+                name="cartownerPhoneNumber"
+                placeholder="{{ 'general.phoneNumber' | translate }}"
+                [(ngModel)]="cart.cartowner.phoneNumber"
+                #cartownerPhoneNumber="ngModel"
+                required
+                pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
+                minlength="10"
+                maxlength="10"
+              />
+              <app-form-error [control]="cartownerPhoneNumber"></app-form-error>
+            </div>
+            <!-- City -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerCity"
+                placeholder="{{ 'general.city' | translate }}"
+                [(ngModel)]="cart.cartowner.city"
+                #cartownerCity="ngModel"
+                required
+              />
+              <app-form-error [control]="cartownerCity"></app-form-error>
+            </div>
+            <!-- Address Line -->
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="cartownerAddressLine"
+                placeholder="{{ 'general.addressLine' | translate }}"
+                [(ngModel)]="cart.cartowner.addressLine"
+                #cartownerAddressLine="ngModel"
+                required
+              />
+              <app-form-error [control]="cartownerAddressLine"></app-form-error>
+            </div>
           </div>
-          <!-- Phone Number -->
-          <div class="mb-3">
-            <input
-              type="tel"
-              class="form-control"
-              name="cartownerPhoneNumber"
-              placeholder="{{ 'general.phoneNumber' | translate }}"
-              [(ngModel)]="cart.cartowner.phoneNumber"
-              #cartownerPhoneNumber="ngModel"
-              required
-              pattern="^\+?[0-9]{1,4}?[-.\s]?[0-9]{1,15}$"
-              minlength="10"
-              maxlength="10"
-            />
-            <app-form-error [control]="cartownerPhoneNumber"></app-form-error>
-          </div>
-          <!-- City -->
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              name="cartownerCity"
-              placeholder="{{ 'general.city' | translate }}"
-              [(ngModel)]="cart.cartowner.city"
-              #cartownerCity="ngModel"
-              required
-            />
-            <app-form-error [control]="cartownerCity"></app-form-error>
-          </div>
-          <!-- Address Line -->
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              name="cartownerAddressLine"
-              placeholder="{{ 'general.addressLine' | translate }}"
-              [(ngModel)]="cart.cartowner.addressLine"
-              #cartownerAddressLine="ngModel"
-              required
-            />
-            <app-form-error [control]="cartownerAddressLine"></app-form-error>
-          </div>
-
           <!-- same cart owner -->
 
           <div class="form-check mb-3">
@@ -323,7 +420,6 @@
               <app-form-error [control]="pay_way"></app-form-error>
             </div>
           </div>
-          <!-- add delivary date and select time from list -->
           <div class="col-md-4">
             <h5 class="mb-4">
               <mat-icon>local_shipping</mat-icon>

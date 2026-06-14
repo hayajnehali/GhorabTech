@@ -137,7 +137,8 @@
     "welcome-back": "مرحبًا بعودتك",
     "example-email": "Email@gmail.com",
     "fill-information-register-new-account": "قم بملء البيانات التالية لتسجيل حسابك الجديد بالموقع",
-    "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني"
+    "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+    "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -261,7 +262,7 @@
     "time-evening": "الفترة المسائية",
     "add-gift-card": "أضف بطاقة إهداء",
     "express-yourfeelings-words": "عبّر عن مشاعرك بالكلمات.",
-    "cart":"عربة التسوق"
+    "cart": "عربة التسوق"
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",

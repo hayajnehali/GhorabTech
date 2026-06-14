@@ -17,7 +17,7 @@ export class Cart extends ModelBase {
   deliveryDate?: Date;
   delivaryTimeId?: string;
   notes?: string;
-  registrationWay: any = RegistrationWay;
+  registrationWay: typeof RegistrationWay;
 }
 export class CartResult extends ModelBase {
   userName?: string;

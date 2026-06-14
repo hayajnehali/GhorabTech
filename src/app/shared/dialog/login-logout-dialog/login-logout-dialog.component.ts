@@ -1,9 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  inject,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormErrorComponent } from '@shared/component/form-error/form-error.component';
 import { SharedModule } from '@shared/shared.module';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base-component';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
@@ -44,26 +55,18 @@ export class LoginLogoutDialogComponent
   private readonly token_KEY = environment.token_KEY;
   @Output() notify = new EventEmitter<boolean>();
   isLoginForm: boolean = true;
-  hidePassword: any = false;
+  hidePassword: any = true;
   loading: boolean | null = false;
-  hideConfirmPassword: any = true;
-  //emailVerification: any;
-  //inVerificationCodeStep = false;
-  constructor(public dialogRef: MatDialogRef<LoginLogoutDialogComponent>) {
+  hideConfirmPassword: any = true; 
+  constructor(
+    public dialogRef: MatDialogRef<LoginLogoutDialogComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { urlAfterLogin?: string; preventRedirect: boolean },
+  ) {
     super();
   }
-  ngOnInit(): void {
-    // if (this.authService.isAuthenticated()) {
-    //   this.router.navigate(['/']);
-    // }
-  }
-
-  // checkVerification(form: NgForm) {
-  //   if (form.invalid) {
-  //     form.control.markAllAsTouched();
-  //     return;
-  //   }
-  // }
+  ngOnInit(): void {}
+ 
   createUser(form: NgForm) {
     if (this.authService.isAuthenticatedSignal()) return;
     if (form.invalid || this.user.password !== this.user.confirmPassword) {
@@ -129,12 +132,26 @@ export class LoginLogoutDialogComponent
   }
 
   navigateBasedOnRole(res: OperationResultGeneric<Auth>) {
+    // 1. حفظ التوكن أولاً وبشكل فوري
     this.authService.saveToken(res.data?.token ?? '');
+ 
     if (this.authService.isAdmin()) {
       this.router.navigate(['/admin']);
+      this.dialogRef.close(); // إغلاق مضمون للأدمن
+      return; // إنهاء الدالة لمنع التداخل
+    }
+ 
+    if (this.data?.preventRedirect) {
+      this.dialogRef.close(); // إغلاق مضمون عند منع التوجيه (مثل صفحة السلة)
+      return; // إنهاء الدالة
+    }
+ 
+    if (this.data?.urlAfterLogin) {
+      this.router.navigate([this.data.urlAfterLogin]);
     } else {
       this.router.navigate(['/user']);
     }
+ 
     this.dialogRef.close();
   }
 }
