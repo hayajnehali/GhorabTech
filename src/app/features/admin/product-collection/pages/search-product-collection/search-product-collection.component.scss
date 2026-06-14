@@ -1,0 +1,247 @@
+.btn-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #fff;
+  color: #6c757d;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  .material-icons {
+    font-size: 18px;
+  }
+
+  &:hover {
+    border-color: #0d6efd;
+    color: #0d6efd;
+    background: rgba(13, 110, 253, 0.04);
+  }
+
+  &.active {
+    border-color: #0d6efd;
+    color: #fff;
+    background: #0d6efd;
+
+    &:hover {
+      background: #0b5ed7;
+    }
+  }
+}
+
+.filter-panel {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafbfc;
+}
+
+.filter-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  flex: 1;
+  min-width: 260px;
+  max-width: 420px;
+
+  .form-label-custom {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+.filter-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 18px;
+  color: #adb5bd;
+  pointer-events: none;
+}
+
+.filter-input {
+  padding-left: 38px !important;
+  height: 40px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+  }
+
+  &::placeholder {
+    color: #adb5bd;
+    font-size: 0.825rem;
+  }
+}
+
+.badge-products {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 22px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: capitalize;
+
+  &.status-active {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+  }
+
+  &.status-inactive {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+  }
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+
+  .status-active & {
+    background-color: #198754;
+  }
+
+  .status-inactive & {
+    background-color: #6c757d;
+  }
+}
+
+.action-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  .material-icons {
+    font-size: 18px;
+  }
+
+  &.btn-action-view {
+    color: #0d6efd;
+    &:hover { background-color: rgba(13, 110, 253, 0.1); }
+  }
+
+  &.btn-action-edit {
+    color: #fd7e14;
+    &:hover { background-color: rgba(253, 126, 20, 0.1); }
+  }
+
+  &.btn-action-delete {
+    color: #dc3545;
+    &:hover { background-color: rgba(220, 53, 69, 0.1); }
+  }
+}
+
+.expanded-root {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.expanded-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+  margin-bottom: 8px;
+
+  .material-icons {
+    font-size: 16px;
+  }
+}
+
+.expanded-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #212529;
+  white-space: pre-line;
+}
+
+.expanded-divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.expanded-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background-color: rgba(33, 37, 41, 0.03);
+  font-size: 0.8rem;
+}
+
+.meta-chip-label {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.meta-chip-value {
+  color: #212529;
+  font-weight: 600;
+}

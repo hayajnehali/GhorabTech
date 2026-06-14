@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
-import { ProductCollectionRequest } from '../../models/product-collection.model';
+import { ProductCollectionRequest, ProductCollectionResponse } from '../../models/product-collection.model';
 import { LocalizedString } from '@core/base/localized-string ';
 import { ProductCollectionService } from '../../services/product-collection.service';
 
@@ -43,7 +43,7 @@ export class ManageProductCollectionComponent implements OnInit {
     }
   }
 
-  private patchForm(collection: any): void {
+  private patchForm(collection: ProductCollectionResponse): void {
     this.collectionForm.patchValue({
       name: collection.name,
       description: collection.description,
@@ -52,9 +52,13 @@ export class ManageProductCollectionComponent implements OnInit {
   }
 
   private loadCollection(id: string): void {
-    // Replace with your actual service call, e.g.:
-    // this.collectionService.getById(id).subscribe(data => this.patchForm(data));
-    console.log('Loading collection with id:', id);
+    this.productCollectionService.getById(id).subscribe({
+      next: (result) => {
+        if (result.data) {
+          this.patchForm(result.data);
+        }
+      },
+    });
   }
 
   // ── Submit ────────────────────────────────────────────────────────────────

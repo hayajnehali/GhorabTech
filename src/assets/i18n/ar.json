@@ -89,6 +89,10 @@
     "last": "ألاخيرر",
     "price-before-discount": "السعر قبل الخصم",
     "create-date": "تاريخ الإنشاء",
+    "updated": "آخر تحديث",
+    "sort-order": "ترتيب الفرز",
+    "active": "نشط",
+    "inactive": "غير نشط",
     "reset": "إعادة ضبط",
     "quantity": "ألكمية",
     "number-sales": "عدد المبيعات",
@@ -372,5 +376,23 @@
     "CANCEL": "إلغاء",
     "ADD_SELECTED": "إضافة المنتجات المختارة",
     "SKU": "SKU"
+  },
+  "product-collection":{
+    "product-collections": "مجموعات المنتجات",
+    "add-new-collection": "إضافة مجموعة منتجات",
+    "edit-product-collection": "تعديل مجموعة المنتجات",
+    "collection-name": "اسم المجموعة",
+    "code": "الكود",
+    "subject": "الموضوع",
+    "status": "الحالة",
+    "collection-type": "نوع المجموعة",
+    "description": "الوصف",
+    "items-count": "عدد العناصر",
+    "actions": "الإجراءات",
+    "text": "نص البحث",
+    "manage-collections": "إدارة المجموعات",
+    "add-new": "إضافة مجموعة جديدة",
+    "filter": "فلتر",
+    "search-by-name-code-description": "ابحث بالاسم، أو الرمز، أو الوصف..."
   }
 }

@@ -1,0 +1,31 @@
+<button
+  [id]="id()"
+  [name]="name()"
+  [type]="type()"
+  [disabled]="isDisabled()"
+  [tabIndex]="tabIndex()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.title]="tooltip()! | translate"
+  [autofocus]="autoFocus()"
+  [class]="classes().join(' ')"
+  (click)="onClick($event)"
+>
+  @if (loading()) {
+    <span class="spinner"></span>
+  } @else {
+
+    @if (icon() && iconPosition() === 'start') {
+      <span class="material-icons">{{icon()}}</span>
+    }
+
+    @if(!iconOnly())
+    {
+        <ng-content></ng-content>
+    }
+
+    @if (icon() && iconPosition() === 'end') {
+      <span class="material-icons">{{icon()}}</span>
+    }
+
+  }
+</button>
