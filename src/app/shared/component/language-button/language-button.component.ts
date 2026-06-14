@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '@core/base/base-component';
 import { environment } from '@shared/environment/environment';
-import { MatIcon } from "@angular/material/icon";
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-language-button',
@@ -12,7 +12,8 @@ import { MatIcon } from "@angular/material/icon";
 export class LanguageButtonComponent extends BaseComponent {
   language = environment.language_KEY;
   currentLang: string | null = localStorage.getItem(this.language);
-  switchLanguage(language: string) {
+  switchLanguage() {
+    let language = this.currentLang == 'ar' ? 'en' : 'ar';
     this.translate.use(language);
     localStorage.setItem(this.language, language);
     this.router.navigate([this.router.url]).then(() => {

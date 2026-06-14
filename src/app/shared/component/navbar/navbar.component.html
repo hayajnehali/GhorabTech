@@ -6,7 +6,6 @@
           class="search-wrapper flex-grow-1 me-2 w-100 mb-2"
         ></app-search>
       </a>
-
       <a
         mat-list-item
         routerLink="/user"
@@ -15,27 +14,6 @@
         <mat-icon matListIcon>home</mat-icon>
         {{ "general.home" | translate }}
       </a>
-
-
-      
-      <!-- <a mat-list-item>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-icon>remove</mat-icon>
-            <span> {{ "category.category" | translate }}</span>
-          </mat-expansion-panel-header>
-
-          @for (item of categoryResult; track $index) {
-            <a
-              mat-list-item
-              (click)="spinnerService.toggleSideBar()"
-              [routerLink]="['/user', 'category', item.id, 'product-category']"
-            >
-              <p class="text-description">{{ item.name.local }}</p>
-            </a>
-          }
-        </mat-expansion-panel>
-      </a> -->
       @for (category of categoryResult; track $index) {
         <a mat-list-item>
           <mat-expansion-panel>
@@ -87,7 +65,7 @@
     </div>
   </div>
 } @else {
-  <nav class="custom-navigation mt-3">
+  <!-- <nav class="custom-navigation mt-3">
     <div class="nav-container d-flex justify-content-center align-items-center">
       @for (category of categoryResult; track category.id) {
         <div class="custom-dropdown mx-4">
@@ -119,62 +97,42 @@
         </div>
       }
     </div>
-  </nav>
-  <!-- <nav class="custom-navigation mt-3">
-    <div class="nav-container d-flex justify-content-center align-items-center">
-      <div class="custom-dropdown mx-4">
-        <div class="dropdown-trigger">
-          <span class="nav-text">{{ "category.category" | translate }}</span>
-          <span class="custom-arrow"></span>
-        </div>
-
-        <div class="custom-menu-panel">
-          <div class="menu-scroll-container">
-            @for (item of categoryResult; track item.id) {
-              <a
-                [routerLink]="[
-                  '/user',
-                  'category',
-                  item.id,
-                  'product-category',
-                ]"
-                class="custom-menu-item"
-              >
-                <span class="item-indicator"></span>
-                <span class="item-label">{{ item.name.local }}</span>
-              </a>
-            }
-          </div>
-        </div>
-      </div>
-
-      <div class="custom-dropdown mx-4">
-        <div class="dropdown-trigger">
-          <span class="nav-text">{{ "category.subCategory" | translate }}</span>
-          <span class="custom-arrow"></span>
-        </div>
-
-        <div class="custom-menu-panel">
-          <div class="menu-scroll-container">
-            @for (item of productCategories; track item.id) {
-              <a
-                [routerLink]="[
-                  '/user',
-                  'category',
-                  item.categoryId,
-                  'product-category',
-                  item.id,
-                  'product',
-                ]"
-                class="custom-menu-item"
-              >
-                <span class="item-indicator"></span>
-                <span class="item-label">{{ item.name.local }}</span>
-              </a>
-            }
-          </div>
-        </div>
-      </div>
-    </div>
   </nav> -->
+  <nav class="custom-navigation mt-3">
+  <div class="nav-container d-flex justify-content-center align-items-center gap-4">
+    
+    @for (category of categoryResult; track category.id) {
+      <div class="custom-dropdown">
+        
+        <div class="dropdown-trigger">
+          <span class="nav-text">{{ category.name.local }}</span>
+          <span class="custom-arrow"></span>
+        </div>
+
+        <div class="custom-menu-panel">
+          <div class="menu-scroll-container">
+            @for (categorie of category.productCategories; track categorie.id) {
+              <a
+                [routerLink]="[
+                  '/user',
+                  'category',
+                  categorie.categoryId,
+                  'product-category',
+                  categorie.id,
+                  'product'
+                ]"
+                class="custom-menu-item"
+              >
+                <span class="item-indicator"></span>
+                <span class="item-label">{{ categorie.name.local }}</span>
+              </a>
+            }
+          </div>
+        </div>
+
+      </div>
+    }
+    
+  </div>
+</nav>
 }

@@ -1,3 +1,5 @@
+@use "variable" as *;
+
 ::ng-deep .sidenavv .mat-expansion-panel-header {
   padding: 0 !important;
 }
@@ -9,135 +11,167 @@
   box-shadow: none !important;
 }
 
-
-/* الحاوية الرئيسية للقوائم */
 .custom-navigation {
+  font-family: $fm-nunito;
   position: relative;
-  z-index: 1000; /* لضمان ظهور القائمة فوق أي عنصر آخر في الموقع */
-  text-transform: capitalize;
+  z-index: 1000; // يضمن ظهور القائمة فوق محتوى الصفحة والـ sliders دائماً
 }
 
-/* العنصر الأب لكل قائمة */
 .custom-dropdown {
   position: relative;
-  padding: 10px 0;
-}
+  padding: 0.5rem 0;
 
-/* الزر المثير لفتح القائمة */
-.dropdown-trigger {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 500;
-  color: #2b2b2b;
-  font-size: 15px;
-  transition: color 0.25s ease;
-}
+  // 1. تنسيق الزر الرئيسي للقائمة
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
 
-/* السهم المخصص المصمم بالـ CSS الصافي */
-.custom-arrow {
-  width: 6px;
-  height: 6px;
-  border-right: 2px solid #8c8c8c;
-  border-bottom: 2px solid #8c8c8c;
-  transform: rotate(45deg);
-  margin-left: 8px;
-  margin-top: -2px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
+    .nav-text {
+      text-transform: capitalize;
+      color: $heading-color;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s ease;
 
-/* حركة الخط السفلي الراقي عند تمرير الماوس */
-.dropdown-trigger::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #4A154B; /* لون الهوية الخاص بك */
-  transition: width 0.3s ease;
-}
+      // تأثير الخط السفلي الذكي الذي يمتد من المنتصف عند التحويم
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $primary-color;
+        transform: scaleX(0);
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+    }
 
-/* تأثير الـ Hover على الزر الرئيسي */
-.custom-dropdown:hover .dropdown-trigger {
-  color: #4A154B;
-}
+    // تصميم السهم النظيف بدون صور
+    .custom-arrow {
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid $third-color;
+      border-bottom: 2px solid $third-color;
+      transform: rotate(45deg);
+      margin-top: -2px;
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+    }
+  }
 
-.custom-dropdown:hover .dropdown-trigger::after {
-  width: 100%;
-}
+  // 2. لوحة القائمة المنسدلة الفاخرة (The Panel)
+  .custom-menu-panel {
+    position: absolute;
+    top: 100%;
+    // المحاذاة المنطقية التلقائية لبداية الصندوق (يسار في الإنجليزي / يمين في العربي)
+    inset-inline-start: 0;
+    min-width: 220px;
+    background-color: $white-color;
+    border: 1px solid $border;
+    border-radius: 3px;
+    padding: 0.5rem;
 
-.custom-dropdown:hover .custom-arrow {
-  transform: rotate(-135deg); /* يلتف السهم للأعلى بسلاسة */
-  border-color: #4A154B;
-}
+    // إخفاء القائمة افتراضياً مع تجهيز أنيميشن الإزاحة للأسفل
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
-/* -----------------------------------------------
-   تصميم الليستة البيضاء المخصصة (The Custom Menu Panel)
--------------------------------------------------- */
-.custom-menu-panel {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(15px); /* تبدأ مزاحة للأسفل قليلاً */
-  background-color: #ffffff; /* خلفية بيضاء نقية وثابتة */
-  min-width: 240px;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              visibility 0.3s;
-}
+    .menu-scroll-container {
+      max-height: 300px;
+      overflow-y: auto; // دعم التمرير الداخلي إذا كانت العناصر كثيرة جداً
+      padding-inline-end: 4px;
 
-/* حاوية التمرير الداخلي في حال كانت العناصر كثيرة */
-.menu-scroll-container {
-  max-height: 350px;
-  overflow-y: auto;
-}
+      // تخصيص شكل شريط التمرير (Scrollbar) ليكون ناعماً وعصرياً
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $border;
+        border-radius: 10px;
+      }
+    }
+  }
 
-/* إظهار القائمة بسلاسة عند الـ Hover على الأب */
-.custom-dropdown:hover .custom-menu-panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(5px); /* ترتفع لمكانها الطبيعي */
-}
+  // 3. تنسيق عناصر الروابط الداخلية للقائمة المنسدلة
+  .custom-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    color: $para-color;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.25s ease;
 
-/* تصميم العناصر داخل الليستة */
-.custom-menu-item {
-  display: flex;
-  align-items: center;
-  padding: 11px 20px;
-  color: #4a4a4a;
-  text-decoration: none;
-  font-size: 14.5px;
-  transition: all 0.25s ease;
-  position: relative;
-}
+    // النقطة الجانبية التي تظهر عند التحويم
+    .item-indicator {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $accent-gold; // اللون الذهبي الفاخر الخاص بك
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-/* مؤشر جانبي (خط صغير) يظهر عند الـ Hover داخل الليستة */
-.item-indicator {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 0;
-  background-color: #4A154B;
-  border-radius: 0 4px 4px 0;
-  transition: height 0.25s ease;
-}
+    .item-label {
+      text-transform: capitalize;
+      transition: transform 0.25s ease;
+    }
 
-/* تأثير تمرير الماوس على عنصر الليستة */
-.custom-menu-item:hover {
-  background-color: rgba(74, 21, 75, 0.03); /* خلفية بنفسجية ناعمة جداً */
-  color: #4A154B;
-  padding-left: 25px; /* إزاحة خفيفة تعطي حيوية */
-}
+    // تأثير تحويم الماوس فوق العنصر الداخلي
+    &:hover {
+      // background-color: rgba(10, 25, 47, 0.04); // خلفية كحلية ناعمة جداً
+      color: $primary-color;
 
-.custom-menu-item:hover .item-indicator {
-  height: 60%; /* يتمدد الخط الجانبي الأنيق */
+      .item-indicator {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      // إزاحة النص قليلاً للداخل عند ظهور النقطة الذهبية بشكل تفاعلي مرن للغتين
+      .item-label {
+        transform: translateX(4px);
+        html[dir="rtl"] & {
+          transform: translateX(-4px);
+        }
+      }
+    }
+  }
+
+  // 🔥 4. إطلاق التأثيرات الحركية والأنيميشن بالكامل عند عمل Hover فوق الـ Dropdown
+  &:hover {
+    .dropdown-trigger {
+      .nav-text {
+        color: $primary-color;
+        &::after {
+          transform: scaleX(1); // يمتد الخط السفلي
+        }
+      }
+      .custom-arrow {
+        border-color: $primary-color;
+        transform: rotate(-135deg); // يلتف السهم للأعلى بسلاسة مذهلة
+        margin-top: 2px;
+      }
+    }
+
+    // ظهور اللوحة بأنيميشن يرتفع من الأسفل للأعلى (Slide-up Fade)
+    .custom-menu-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(4px);
+    }
+  }
 }

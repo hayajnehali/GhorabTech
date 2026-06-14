@@ -1,40 +1,65 @@
-<div class="login-box shadow p-4 bg-white m-4">
+<div class="p-4 m-4">
   @if (confirmEmailForm) {
-    <div class="row m-5">
+    <div class="row m-5 fade-in-up">
       <div class="col-12">
         <div
-          Class="login-wrapper d-flex align-items-center justify-content-center my-5"
+          class="login-wrapper d-flex align-items-center justify-content-center my-5"
         >
           <form
             #verification="ngForm"
             (ngSubmit)="checkVerification(verification)"
             novalidate
+            class="w-100 modern-auth-form"
           >
-            <p class="form-label">
-              {{ "general.email-verification" | translate }}
-            </p>
+            <div class="brand-welcome text-center mb-4">
+              <div class="verification-icon-wrapper mb-3">
+                <mat-icon>mark_email_read</mat-icon>
+              </div>
+              <h4 class="mb-2">
+                {{ "general.email-verification" | translate }}
+              </h4>
+              <p class="small">
+                {{ "general.verification-code-email" | translate }}
+              </p>
+            </div>
+
             <div class="row">
-              <div class="col-12">
-                <div class="mb-3">
-                  <label class="form-label">{{
-                    "general.code" | translate
-                  }}</label>
+              <div class="col-12 mb-4">
+                <label class="form-label fw-semibold small">
+                  {{ "general.code" | translate }}
+                </label>
+
+                <div class="input-group modern-input-group shadow-sm">
+                  <span
+                    class="input-group-text bg-white border-end-0 text-muted"
+                  >
+                    <mat-icon>pin</mat-icon>
+                  </span>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control border-start-0 ps-2 letter-spacing-code text-center"
                     name="code"
+                    placeholder="000000"
                     [(ngModel)]="auth.code"
                     required
                     [maxLength]="6"
                     minlength="6"
                     #code="ngModel"
                   />
-                  <app-form-error [control]="code"></app-form-error>
                 </div>
+                <app-form-error [control]="code"></app-form-error>
               </div>
-              <button type="submit" class="btn btn-primary w-100">
-                {{ "general.check" | translate }}
-              </button>
+
+              <div class="col-12 d-grid">
+                <button
+                  type="submit"
+                  class="btn btn-primary modern-btn w-100 py-25 fw-bold d-flex align-items-center justify-content-center gap-2"
+                  [disabled]="verification.invalid"
+                >
+                  <span>{{ "general.check" | translate }}</span>
+                  <mat-icon class="fs-5 w-auto h-auto m-0">verified</mat-icon>
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -46,72 +71,130 @@
         <mat-icon (click)="close()">close</mat-icon>
       </div>
       @if (isLoginForm) {
-        <div class="col-12">
+        <div class="col-12 fade-in-up">
           <div
             class="login-wrapper d-flex align-items-center justify-content-center"
           >
-            <form #login="ngForm" (ngSubmit)="logIn(login)">
-              <h2 class="mb-4 text-titel">{{ "general.login" | translate }}</h2>
+            <form
+              #login="ngForm"
+              (ngSubmit)="logIn(login)"
+              class="w-100 modern-auth-form"
+            >
+              <div class="brand-welcome text-center mb-4">
+                <h2 class="fw-bold text-dark mb-2">
+                  {{ "general.welcome-back" | translate }}
+                </h2>
+                <p class="text-muted small">
+                  {{ "general.enter-credentials" | translate }}
+                </p>
+              </div>
+
               <div class="row">
-                <div class="col-12">
-                  <div class="mb-3">
-                    <label for="email" class="form-label">{{
-                      "general.user-name" | translate
-                    }}</label>
+                <div class="col-12 mb-3">
+                  <label
+                    for="email"
+                    class="form-label fw-semibold text-secondary small"
+                  >
+                    {{ "general.email" | translate }}
+                  </label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>attach_email</mat-icon>
+                    </span>
                     <input
-                      type="text"
-                      id="userName"
-                      name="userName"
-                      class="form-control"
-                      placeholder="{{ 'general.user-name' | translate }}"
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control border-start-0 ps-2"
+                      placeholder="Email@gmail.com"
                       required
-                      #userName="ngModel"
+                      #email="ngModel"
                       [(ngModel)]="auth.userName"
                     />
-                    <app-form-error [control]="userName"></app-form-error>
                   </div>
+                  <app-form-error [control]="email"></app-form-error>
                 </div>
-                <div class="col-12">
-                  <div class="mb-3">
-                    <label for="password" class="form-label">{{
-                      "general.password" | translate
-                    }}</label>
+
+                <div class="col-12 mb-3">
+                  <label
+                    for="password"
+                    class="form-label fw-semibold text-secondary small"
+                  >
+                    {{ "general.password" | translate }}
+                  </label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>password_2</mat-icon>
+                    </span>
                     <input
-                      type="password"
+                      [type]="hidePassword ? 'password' : 'text'"
                       id="password"
                       name="password"
-                      class="form-control"
+                      class="form-control border-start-0 border-end-0 ps-2"
                       placeholder="••••••"
                       [(ngModel)]="auth.password"
                       required
                       #password="ngModel"
                     />
-                    <app-form-error [control]="password"></app-form-error>
+                    <span
+                      class="input-group-text bg-white border-start-0 text-muted cursor-pointer"
+                      (click)="hidePassword = !hidePassword"
+                      style="user-select: none"
+                    >
+                      <mat-icon>{{
+                        hidePassword ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </span>
                   </div>
-                </div>
-                <div class="col-12 mb-2 mt-4">
-                  <small
-                    >{{ "general.donot-have-account" | translate }}
-                    <a (click)="isLoginForm = !isLoginForm">
-                      {{ "general.register" | translate }}</a
-                    ></small
-                  >
+                  <app-form-error [control]="password"></app-form-error>
                 </div>
 
-                <div class="col-12 d-grid gap-2">
+                <div
+                  class="col-12 mb-4 d-flex justify-content-between align-items-center"
+                >
+                  <small class="text-muted">
+                    {{ "general.donot-have-account" | translate }}
+                    <a
+                      (click)="isLoginForm = !isLoginForm"
+                      class="text-primary fw-bold text-decoration-none ms-1 link-hover"
+                    >
+                      {{ "general.register" | translate }}
+                    </a>
+                  </small>
+                </div>
+
+                <div class="col-12 d-grid">
                   @if (loginError) {
-                    <div class="alert alert-danger py-2 small">
+                    <div
+                      class="alert alert-danger py-2 small border-0 shadow-sm mb-3 animate__animated animate__headShake"
+                    >
+                      <mat-icon class="align-middle me-1 fs-5"
+                        >error_outline</mat-icon
+                      >
                       {{ loginError }}
                     </div>
                   }
-                  <button class="btn btn-primary w-100" type="submit">
-                    <span> {{ "general.login" | translate }}</span>
-                    <!-- <span
-                *ngIf="loading"
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span> -->
+
+                  <button
+                    class="btn btn-primary modern-btn py-25 fw-bold d-flex align-items-center justify-content-center gap-2"
+                    type="submit"
+                    [disabled]="login.invalid || loading"
+                  >
+                    @if (loading) {
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      <span>جاري التحميل...</span>
+                    } @else {
+                      <span>{{ "general.login" | translate }}</span>
+                      <mat-icon class="fs-5 w-auto h-auto m-0">login</mat-icon>
+                    }
                   </button>
                 </div>
               </div>
@@ -122,27 +205,41 @@
         <!-- ==============start regestration============================= -->
         <!-- ==============start regestration============================= -->
         <!-- ==============start regestration============================= -->
-        <div class="col-12">
+        <div class="col-12 fade-in-up">
           <div
-            Class="login-wrapper d-flex align-items-center justify-content-center"
+            class="login-wrapper d-flex align-items-center justify-content-center"
           >
             <form
               #registerForm="ngForm"
               (ngSubmit)="createUser(registerForm)"
               novalidate
+              class="w-100 modern-auth-form"
             >
-              <h2 class="mb-4 text-titel">
-                {{ "general.createUser" | translate }}
-              </h2>
+              <div class="brand-welcome text-center mb-4">
+                <h2 class="fw-bold mb-2">
+                  {{ "general.createUser" | translate }}
+                </h2>
+                <p class="small">
+                  {{
+                    "general.fill-information-register-new-account" | translate
+                  }}
+                </p>
+              </div>
+
               <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">{{
-                      "general.fullName" | translate
-                    }}</label>
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label fw-semibold small">{{
+                    "general.fullName" | translate
+                  }}</label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>person</mat-icon>
+                    </span>
                     <input
                       type="text"
-                      class="form-control"
+                      class="form-control border-start-0 ps-2"
                       name="fullName"
                       #fullname="ngModel"
                       minlength="3"
@@ -150,100 +247,153 @@
                       [(ngModel)]="user.fullName"
                       required
                     />
-                    <app-form-error [control]="fullname"></app-form-error>
                   </div>
+                  <app-form-error [control]="fullname"></app-form-error>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">{{
-                      "general.email" | translate
-                    }}</label>
+
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label fw-semibold small">{{
+                    "general.email" | translate
+                  }}</label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>attach_email</mat-icon>
+                    </span>
                     <input
                       type="email"
-                      class="form-control"
-                      minlength="3"
-                      maxlength="100"
+                      class="form-control border-start-0 ps-2"
+                      placeholder="Email@gmail.com"
                       name="email"
                       [(ngModel)]="user.email"
                       required
                       email
                       #email="ngModel"
                     />
-                    <app-form-error [control]="email"></app-form-error>
                   </div>
+                  <app-form-error [control]="email"></app-form-error>
                 </div>
-                <div class="col-md-12 col-12">
-                  <div class="mb-3">
-                    <label class="form-label">{{
-                      "general.phone" | translate
-                    }}</label>
+
+                <div class="col-12 mb-3">
+                  <label class="form-label fw-semibold small">{{
+                    "general.phone" | translate
+                  }}</label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>smartphone</mat-icon>
+                    </span>
                     <input
                       type="tel"
-                      class="form-control"
+                      class="form-control border-start-0 ps-2"
                       name="phone"
                       [(ngModel)]="user.phoneNumber"
                       required
                       pattern="^[0-9]{10,15}$"
                       #phone="ngModel"
                     />
-                    <app-form-error [control]="phone"></app-form-error>
                   </div>
+                  <app-form-error [control]="phone"></app-form-error>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">{{
-                      "general.password" | translate
-                    }}</label>
+
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label fw-semibold small">{{
+                    "general.password" | translate
+                  }}</label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>password_2</mat-icon>
+                    </span>
                     <input
-                      type="password"
-                      class="form-control"
+                      [type]="hidePassword ? 'password' : 'text'"
+                      class="form-control border-start-0 border-end-0 ps-2"
                       name="password"
                       [(ngModel)]="user.password"
                       required
                       minlength="6"
                       #password="ngModel"
                     />
-                    <app-form-error [control]="password"></app-form-error>
+                    <span
+                      class="input-group-text bg-white border-start-0 text-muted cursor-pointer"
+                      (click)="hidePassword = !hidePassword"
+                    >
+                      <mat-icon>{{
+                        hidePassword ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </span>
                   </div>
+                  <app-form-error [control]="password"></app-form-error>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">{{
-                      "general.confirmPassword" | translate
-                    }}</label>
+
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label fw-semibold small">{{
+                    "general.confirmPassword" | translate
+                  }}</label>
+                  <div class="input-group modern-input-group shadow-sm">
+                    <span
+                      class="input-group-text bg-white border-end-0 text-muted"
+                    >
+                      <mat-icon>lock_reset</mat-icon>
+                    </span>
                     <input
-                      type="password"
-                      class="form-control"
+                      [type]="hideConfirmPassword ? 'password' : 'text'"
+                      class="form-control border-start-0 border-end-0 ps-2"
                       name="confirmPassword"
                       [(ngModel)]="user.confirmPassword"
                       required
                       #confirmpassword="ngModel"
                     />
-
-                    <app-form-error
-                      [control]="confirmpassword"
-                    ></app-form-error>
-                    @if (
-                      registerForm.submitted &&
-                      user.confirmPassword !== user.password
-                    ) {
-                      <div class="text-danger">
-                        {{ "errors.passwordMismatch" | translate }}
-                      </div>
-                    }
+                    <span
+                      class="input-group-text bg-white border-start-0 text-muted cursor-pointer"
+                      (click)="hideConfirmPassword = !hideConfirmPassword"
+                    >
+                      <mat-icon>{{
+                        hideConfirmPassword ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </span>
                   </div>
+
+                  <app-form-error [control]="confirmpassword"></app-form-error>
+
+                  @if (
+                    registerForm.submitted &&
+                    user.confirmPassword !== user.password
+                  ) {
+                    <div
+                      class="text-danger small mt-2 d-flex align-items-center gap-1 animate__animated animate__headShake"
+                    >
+                      <mat-icon class="fs-6 w-auto h-auto m-0"
+                        >error_outline</mat-icon
+                      >
+                      <span>{{ "errors.passwordMismatch" | translate }}</span>
+                    </div>
+                  }
                 </div>
-                <div class="col-12 mt-4 mb-2">
-                  <small
-                    >{{ "general.do-have-account" | translate }}
-                    <a (click)="isLoginForm = !isLoginForm">{{
-                      "general.login" | translate
-                    }}</a></small
-                  >
+
+                <div class="col-12 mt-3 mb-4">
+                  <small class="text-muted">
+                    {{ "general.do-have-account" | translate }}
+                    <a
+                      (click)="isLoginForm = !isLoginForm"
+                      class="fw-bold text-decoration-none ms-1 link-hover"
+                    >
+                      {{ "general.login" | translate }}
+                    </a>
+                  </small>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary w-100">
-                {{ "general.register" | translate }}
+
+              <button
+                type="submit"
+                class="btn btn-primary modern-btn w-100 py-25 fw-bold d-flex align-items-center justify-content-center gap-2"
+                [disabled]="registerForm.invalid"
+              >
+                <span>{{ "general.register" | translate }}</span>
+                <mat-icon class="fs-5 w-auto h-auto m-0">how_to_reg</mat-icon>
               </button>
             </form>
           </div>

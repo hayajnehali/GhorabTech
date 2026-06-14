@@ -1,0 +1,60 @@
+@use "variable" as *;
+
+.auth-wrapper.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem; // توزيع مسافة ثابتة ومرنة بين أيقونة الكرة الأرضية والنص تلقائياً في الاتجاهين
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  font-family: $fm-nunito;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  
+  // تأثير التحويم الفخم الموحد للموقع
+  &:hover {
+    background-color: rgba(10, 25, 47, 0.05); // خلفية خفيفة جداً من لون موقعك الكحلي
+    
+    .auth-link {
+      color: $primary-color !important; // يضيء النص باللون الأساسي
+    }
+    
+    .menu-icon {
+      color: $primary-color; // تضيء الأيقونة أيضاً
+      transform: rotate(15deg) scale(1.05); // تأثير حركي مميز (دوران خفيف للأيقونة عند التحويم)
+    }
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .menu-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: $third-color; // اللون الافتراضي الممرر من متغيراتك
+      transition: all 0.25s ease-in-out;
+    }
+  }
+
+  .link-container {
+    display: flex;
+    align-items: center;
+    
+    .auth-link {
+      color: $heading-color-2; // لون نصوص العناوين الفرعية الفخم الخاص بك
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.25s ease;
+      white-space: nowrap; // يمنع النص من الانقسام أو الالتفاف
+      
+      // تطبيق خط "Unna" الفاخر إذا كانت الكلمة المعروضة هي "عربي" لمظهر أكثر جمالاً
+      &:lang(ar) {
+        font-family: $fm-unna;
+        font-size: 1.05rem;
+      }
+    }
+  }
+}

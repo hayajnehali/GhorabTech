@@ -122,7 +122,18 @@
     "explore": "استكشف الآن",
     "view_all": "عرض الكل",
     "shop_now": "تسوّق الآن",
-    "percent-off": "خصم"
+    "percent-off": "خصم",
+    "delivery": "توصيل",
+    "total-final": "المجموع النهائي",
+    "payment-method": "طريقة الدفع",
+    "payment-and-order-confirmation": "تأكيد الدفع والطلب",
+    "guest": "ضيف",
+    "enter-valid-email": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "enter-credentials": "أدخل بيانات اعتمادك للوصول إلى حسابك الآمن.",
+    "welcome-back": "مرحبًا بعودتك",
+    "example-email": "Email@gmail.com",
+    "fill-information-register-new-account": "قم بملء البيانات التالية لتسجيل حسابك الجديد بالموقع",
+    "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -231,7 +242,21 @@
     "payment-method": "طرق الدفع",
     "product-limit": "يرجى اختيار منتج واحد على الأقل لإتمام عملية الشراء.",
     "purchase-record": "سجل الشراء",
-    "cart-details": "تفاصيل عربة التسوق"
+    "cart-details": "تفاصيل عربة التسوق",
+    "account-information": "معلومات الحساب",
+    "recipient-information": "معلومات جهة الاستلام",
+    "same-sender-recipient-info": "نفس معلومات المرسل والمستلم",
+    "transactions-secure-encrypted": "جميع المعاملات آمنة ومشفرة.",
+    "choose-delivery-date": "اختر تاريخ التسليم",
+    "delivery-information": "معلومات التوصيل",
+    "delivery-date": "تاريخ التوصيل",
+    "delivery-time": "وقت التوصيل",
+    "select-time-placeholder": "اختر الوقت المناسب لك",
+    "time-morning": "الفترة الصباحية",
+    "time-afternoon": "فترة بعد الظهر",
+    "time-evening": "الفترة المسائية",
+    "add-gift-card": "أضف بطاقة إهداء",
+    "express-yourfeelings-words": "عبّر عن مشاعرك بالكلمات."
   },
   "keyAttribute": {
     "key-attribute": "السمة الرئيسية",
@@ -321,5 +346,30 @@
     "confirmation": {
       "delete_message": "هل أنت متأكد من حذف هذا التعليق؟"
     }
+  },
+  "PRODUCT_COLLECTION": {
+    "ADD_NEW_COLLECTION": "إضافة مجموعة جديدة",
+    "CREATE_COLLECTION_DESC": "أنشئ مجموعة منسقة من المنتجات لمتجرك.",
+    "BASIC_INFORMATION": "المعلومات الأساسية",
+    "COLLECTION_NAME_EN": "اسم المجموعة (إنجليزي)",
+    "COLLECTION_NAME_AR": "اسم المجموعة (عربي)",
+    "COLLECTION_NAME_EN_PLACEHOLDER": "مثال: مستلزمات الصيف",
+    "COLLECTION_NAME_AR_PLACEHOLDER": "مثلاً: أساسيات الصيف",
+    "DESCRIPTION_EN": "الوصف (إنجليزي)",
+    "DESCRIPTION_AR": "الوصف (عربي)",
+    "DESCRIPTION_PLACEHOLDER": "صف هذه المجموعة باختصار...",
+    "ADD_PRODUCTS_TITLE": "إضافة منتجات للمجموعة",
+    "ADD_PRODUCTS_SUBTITLE": "اختر المنتجات التي ترغب في إضافتها إلى مجموعتك الجديدة.",
+    "SEARCH_NAME_SKU": "البحث عن طريق الاسم أو SKU...",
+    "SELECTED_PRODUCTS_TITLE": "المنتجات المحددة",
+    "ITEMS_COUNT": "عناصر",
+    "SEARCH_IN_COLLECTION": "البحث في المجموعة...",
+    "BROWSE_ADD_PRODUCTS": "تصفح وإضافة منتجات",
+    "IN_STOCK": "في المخزن",
+    "PRODUCTS_SELECTED": "منتجات مختارة",
+    "RESET_SELECTION": "إعادة تعيين",
+    "CANCEL": "إلغاء",
+    "ADD_SELECTED": "إضافة المنتجات المختارة",
+    "SKU": "SKU"
   }
 }

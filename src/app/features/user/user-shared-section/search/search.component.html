@@ -1,11 +1,24 @@
+<div class="search-motion-container">
+  <div class="input-group modern-search-box">
+    <input
+      type="text"
+      class="form-control search-input-field"
+      placeholder="{{ 'general.search' | translate }}..."
+      aria-label="Search"
+      [(ngModel)]="nameOfProduct"
+      (keyup.enter)="nameOfProduct ? searchTrigger.click() : null"
+    />
 
-  <input
-    type="text"
-    class="form-control rounded-pill"
-    placeholder="{{ 'general.search' | translate }} ..."
-    aria-label="Search"
-    [(ngModel)]="nameOfProduct"
-  />
-  <button type="button" [routerLink]="['/user/category/list-product', nameOfProduct]">
-    <i class="fa fa-search"></i>
-  </button> 
+    <button
+      #searchTrigger
+      type="button"
+      class="btn search-submit-btn"
+      [routerLink]="
+        nameOfProduct ? ['/user/category/list-product', nameOfProduct] : null
+      "
+      [attr.disabled]="!nameOfProduct ? true : null"
+    >
+      <i class="fa fa-search search-icon-animate"></i>
+    </button>
+  </div>
+</div>

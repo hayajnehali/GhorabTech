@@ -3,7 +3,7 @@
     mode="over"
     position="start"
     [opened]="spinnerService.isSideBarOpen()"
-  > 
+  >
     <div class="d-flex justify-content-end m-3">
       <button mat-icon-button (click)="spinnerService.toggleSideBar()">
         <mat-icon>arrow_back</mat-icon>
@@ -69,24 +69,32 @@
           </div>
 
           <!-- Cart -->
-          <div class="col-2 col-md-4 text-md-end text-center mt-2">
-            <p class="mb-0 d-inline-flex" style="text-align: end">
+          <div
+            class="col-2 col-md-4 text-md-start text-center mt-2 header-cart-zone"
+          >
+            <p class="mb-0 d-inline-flex align-items-center gap-3">
               @if (!responsiveService.isMobile()) {
                 <app-login-logout-button></app-login-logout-button>
               }
+
               <a
                 (click)="spinnerService.toggleSideCart()"
-                class="text-dark position-relative mx-2"
+                class="text-dark position-relative cart-icon-btn d-flex align-items-center"
                 aria-label="Shopping cart"
               >
                 <i class="fa fa-shopping-cart fs-5"></i>
+
                 <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  >{{ cartCount }}</span
+                  class="custom-cart-badge badge rounded-pill bg-danger shadow-sm"
                 >
+                  {{ cartCount }}
+                </span>
               </a>
+
               @if (!responsiveService.isMobile()) {
-                <span> {{ "general.JOD" | translate }} {{ cartTotal }}</span>
+                <span class="fw-semibold total-price-text">
+                  {{ "general.JOD" | translate }} {{ cartTotal }}
+                </span>
               }
             </p>
           </div>

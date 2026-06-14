@@ -25,7 +25,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
-  isActive: boolean = false; 
+  isActive: boolean = false;
   categoryService = inject(CategoryService);
   cartService = inject(CartService);
   responsiveService = inject(ResponsiveService);
@@ -44,7 +44,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     });
     this.cartService.cartTotal$.subscribe((total) => {
       this.cartTotal = total;
-    }); 
+    });
     this.isAuthenticated = this.authService.isAuthenticatedSignal();
     this.getProductCategoryWithProduct();
   }
@@ -53,7 +53,6 @@ export class UserLayOutComponent extends BaseLayOutComponent {
       .getProductCategoryWithProduct(new CategoryFilter())
       .subscribe({
         next: (res: OperationResultGeneric<CategoryResult[]>) => {
-          
           this.categoryResult = res.data;
           this.productCategories =
             res.data?.flatMap((item) => item.productCategories) ?? undefined;
@@ -64,9 +63,9 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   toggleMenu() {
     if (this.isMobile) {
       this.sidenav.toggle();
-      this.isCollapsed = false;  
+      this.isCollapsed = false;
     } else {
-      this.sidenav.open(); 
+      this.sidenav.open();
       this.isCollapsed = !this.isCollapsed;
     }
   }
@@ -80,7 +79,7 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   goToproduct(arg0: string | undefined, arg1: string | undefined) {
     this.router.navigate(
       [`category/${arg0}/product-category/${arg1}/product`],
-      { relativeTo: this.activatedRoute }
+      { relativeTo: this.activatedRoute },
     );
   }
   toggleActive(): void {
@@ -90,5 +89,12 @@ export class UserLayOutComponent extends BaseLayOutComponent {
   openWhatsApp(): void {
     const message = encodeURIComponent('مرحبًا، أود الاستفسار عن منتج');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  }
+  // دالة تفحص اتجاه المستند الحالي (RTL أم LTR)
+  isRtl(): boolean {
+    return (
+      document.documentElement.dir === 'rtl' ||
+      document.body.getAttribute('direction') === 'rtl'
+    );
   }
 }

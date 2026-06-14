@@ -58,7 +58,7 @@
     "register": "Register",
     "createUser": "Create New Account",
     "fullName": "Full Name",
-    "email": "Email",
+    "email": "Email Address",
     "phone": "Phone Number",
     "password": "Password",
     "confirmPassword": "Confirm Password",
@@ -120,7 +120,18 @@
     "explore": "Explore Now",
     "view_all": "View All",
     "shop_now": "Shop Now",
-    "percent-off": "OFF"
+    "percent-off": "OFF",
+    "delivery": "Delivery",
+    "total-final": "Total Final",
+    "payment-method": "Payment Method",
+    "payment-and-order-confirmation": "Payment & Order Confirmation",
+    "guest": "Guest",
+    "enter-valid-email": "Please enter a valid email address",
+    "enter-credentials": "Enter your credentials to access your secure account.",
+    "welcome-back": "Welcome Back",
+    "example-email": "Email@gmail.com",
+    "fill-information-register-new-account": "Fill in the following information to register your new account on the site",
+    "verification-code-email": "Please enter the 6-digit verification code sent to your email."
   },
   "validation": {
     "required": "This field is required",
@@ -229,7 +240,19 @@
     "payment-method": "Payment Method",
     "product-limit": "Please select at least one product to proceed to checkout.",
     "purchase-record": "Purchase Record",
-    "cart-details": "Cart Details"
+    "cart-details": "Cart Details",
+    "account-information": "Account Information",
+    "recipient-information": "Recipient Information",
+    "same-sender-recipient-info": "Same Sender and Recipient Information",
+    "transactions-secure-encrypted": "All transactions are secure and encrypted.",
+    "delivery-date": "Delivery date",
+    "delivery-time": "Delivery time",
+    "select-time-placeholder": "Select a suitable time",
+    "time-morning": "Morning period",
+    "time-afternoon": "Afternoon period",
+    "time-evening": "Evening period",
+    "add-gift-card": "Add a gift card",
+    "express-yourfeelings-words": "Express your feelings in words."
   },
   "keyAttribute": {
     "key-attribute": "Key Attribute",
@@ -320,5 +343,30 @@
     "confirmation": {
       "delete_message": "Are you sure you want to delete this comment?"
     }
+  },
+  "PRODUCT_COLLECTION": {
+    "ADD_NEW_COLLECTION": "Add New Collection",
+    "CREATE_COLLECTION_DESC": "Create a curated group of products for your store.",
+    "BASIC_INFORMATION": "Basic Information",
+    "COLLECTION_NAME_EN": "Collection Name (English)",
+    "COLLECTION_NAME_AR": "Collection Name (Arabic)",
+    "COLLECTION_NAME_EN_PLACEHOLDER": "e.g. Summer Essentials",
+    "COLLECTION_NAME_AR_PLACEHOLDER": "مثلاً: أساسيات الصيف",
+    "DESCRIPTION_EN": "Description EN",
+    "DESCRIPTION_AR": "Description AR",
+    "DESCRIPTION_PLACEHOLDER": "Briefly describe this collection...",
+    "ADD_PRODUCTS_TITLE": "Add Products to Collection",
+    "ADD_PRODUCTS_SUBTITLE": "Select the products you want to add to your new collection.",
+    "SEARCH_NAME_SKU": "Search by name or SKU...",
+    "SELECTED_PRODUCTS_TITLE": "Selected Products",
+    "ITEMS_COUNT": "Items",
+    "SEARCH_IN_COLLECTION": "Search in collection...",
+    "BROWSE_ADD_PRODUCTS": "Browse & Add Products",
+    "IN_STOCK": "in stock",
+    "PRODUCTS_SELECTED": "products selected",
+    "RESET_SELECTION": "Reset Selection",
+    "CANCEL": "Cancel",
+    "ADD_SELECTED": "Add Selected Products",
+    "SKU": "SKU"
   }
 }
