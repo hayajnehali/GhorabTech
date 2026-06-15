@@ -6,7 +6,8 @@ export type ButtonVariant =
   | 'warning'
   | 'info'
   | 'outline'
-  | 'ghost';
+  | 'ghost'
+  | 'white';
 
 export type ButtonSize =
   | 'xs'
@@ -30,3 +31,5 @@ export type Rounded =
   | 'md'
   | 'lg'
   | 'full';
+  
+

@@ -1,10 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
-import { ProductCollectionRequest, ProductCollectionResponse } from '../../models/product-collection.model';
+import {
+  ItemProductResult,
+  ProductCollectionRequest,
+  ProductCollectionResponse,
+} from '../../models/product-collection.model';
 import { LocalizedString } from '@core/base/localized-string ';
 import { ProductCollectionService } from '../../services/product-collection.service';
+import { NotificationService } from '@shared/services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductCollectionSelectorDialogComponent } from '../../dialog/product-collection-selector-dialog/product-collection-selector-dialog.component';
 
 @Component({
   selector: 'app-manage-product-collection',
@@ -14,14 +22,18 @@ import { ProductCollectionService } from '../../services/product-collection.serv
 })
 export class ManageProductCollectionComponent implements OnInit {
   isAdd = true;
+  loading = signal(false);
 
-  isModalOpen: boolean = false;
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly productCollectionService = inject(ProductCollectionService);
+  private readonly notificationService = inject(NotificationService);
+  private readonly translate = inject(TranslateService);
+  private readonly dialog = inject(MatDialog);
 
   collectionForm = this.fb.group({
+    id: '',
     name: this.fb.group({
       english: ['', [Validators.required, Validators.maxLength(100)]],
       arabic: ['', [Validators.required, Validators.maxLength(100)]],
@@ -45,23 +57,35 @@ export class ManageProductCollectionComponent implements OnInit {
 
   private patchForm(collection: ProductCollectionResponse): void {
     this.collectionForm.patchValue({
+      id: collection.id,
       name: collection.name,
       description: collection.description,
       sortOrder: collection.sortOrder,
     });
+    this.productsSelected =
+      collection.items?.map((i) => this.mapToProductResult(i.product)) || [];
   }
 
   private loadCollection(id: string): void {
+    this.loading.set(true);
     this.productCollectionService.getById(id).subscribe({
       next: (result) => {
-        if (result.data) {
-          this.patchForm(result.data);
+        if (!result.data) {
+          this.goBack();
         }
+
+        this.patchForm(result.data!);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.loading.set(false);
+        this.notificationService.showError({
+          error: 'Failed to load collection',
+        } as any);
       },
     });
   }
 
-  // ── Submit ────────────────────────────────────────────────────────────────
   save(): void {
     if (this.collectionForm.invalid) {
       this.collectionForm.markAllAsTouched();
@@ -69,6 +93,7 @@ export class ManageProductCollectionComponent implements OnInit {
     }
 
     const payload: ProductCollectionRequest = {
+      id: !this.isAdd ? this.collectionForm.value.id as string : null,
       name: this.collectionForm.value.name as LocalizedString,
       description: this.collectionForm.value.description as LocalizedString,
       sortOrder: this.collectionForm.value.sortOrder as number,
@@ -78,13 +103,12 @@ export class ManageProductCollectionComponent implements OnInit {
       })),
     };
 
+    this.loading.set(true);
+
     if (this.isAdd) {
-      console.log('Creating collection with payload:', payload);
       this.createProductCollection(payload);
     } else {
-      const id = this.activatedRoute.snapshot.paramMap.get('id')!;
-      // this.collectionService.update(id, payload).subscribe(() => this.goBack());
-      console.log('Updating:', id, payload);
+      this.updateProductCollection(payload);
     }
   }
 
@@ -92,15 +116,74 @@ export class ManageProductCollectionComponent implements OnInit {
     this.productCollectionService.create(item).subscribe({
       next: (result) => {
         if (result.data) {
-          console.log('Collection created successfully');
+          this.notificationService.showSuccess(
+            this.translate.instant('general.success-message'),
+            this.translate.instant('general.success'),
+          );
           this.goBack();
         }
+        this.loading.set(false);
+      },
+      error: (err) => {
+        this.loading.set(false);
+        this.notificationService.showError(err);
       },
     });
   }
 
-  // ── Navigation ────────────────────────────────────────────────────────────
+  private updateProductCollection(payload: ProductCollectionRequest): void {
+    this.productCollectionService.update(payload).subscribe({
+      next: (result) => {
+        if (result.data) {
+          this.notificationService.showSuccess(
+            this.translate.instant('general.success-message'),
+            this.translate.instant('general.success'),
+          );
+          this.goBack();
+        }
+        this.loading.set(false);
+      },
+      error: (err) => {
+        this.loading.set(false);
+        this.notificationService.showError(err);
+      },
+    });
+  }
+
+  removeProduct(product: ProductResult): void {
+    this.productsSelected = this.productsSelected.filter(
+      (p) => p.id !== product.id,
+    );
+  }
+
   goBack(): void {
-    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    this.router.navigateByUrl('/admin/product-collection');
+  }
+
+  private mapToProductResult(source: ItemProductResult): ProductResult {
+    return Object.assign(new ProductResult(), {
+      id: source.id,
+      productId: Number(source.id),
+      name: source.name,
+      price: source.price,
+      images: source.productImages ?? [],
+    });
+  }
+
+  openAddProductDialog() {
+    const dialogRef = this.dialog.open(
+      ProductCollectionSelectorDialogComponent,
+      {
+        width: '1140px', // Matches 'xl' Bootstrap layout specifications
+        maxWidth: '95vw',
+        data: { selectedProducts: this.productsSelected },
+      },
+    );
+
+    dialogRef.afterClosed().subscribe((result: ProductResult[] | undefined) => {
+      if (result) {
+        this.productsSelected = result;
+      }
+    });
   }
 }

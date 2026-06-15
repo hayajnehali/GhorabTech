@@ -138,7 +138,10 @@
     "example-email": "Email@gmail.com",
     "fill-information-register-new-account": "قم بملء البيانات التالية لتسجيل حسابك الجديد بالموقع",
     "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
-    "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً"
+    "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل",
+    "confirm-delete": "هل أنت متأكد من حذف هذا العنصر؟"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -355,7 +358,9 @@
   },
   "PRODUCT_COLLECTION": {
     "ADD_NEW_COLLECTION": "إضافة مجموعة جديدة",
+    "EDIT_COLLECTION": "تعديل المجموعة",
     "CREATE_COLLECTION_DESC": "أنشئ مجموعة منسقة من المنتجات لمتجرك.",
+    "EDIT_COLLECTION_DESC": "قم بتحديث المنتجات والتفاصيل الخاصة بمجموعتك.",
     "BASIC_INFORMATION": "المعلومات الأساسية",
     "COLLECTION_NAME_EN": "اسم المجموعة (إنجليزي)",
     "COLLECTION_NAME_AR": "اسم المجموعة (عربي)",
@@ -376,7 +381,8 @@
     "RESET_SELECTION": "إعادة تعيين",
     "CANCEL": "إلغاء",
     "ADD_SELECTED": "إضافة المنتجات المختارة",
-    "SKU": "SKU"
+    "SKU": "SKU",
+    "NO_PRODUCTS_FOUND": "لا توجد منتجات"
   },
   "product-collection":{
     "product-collections": "مجموعات المنتجات",

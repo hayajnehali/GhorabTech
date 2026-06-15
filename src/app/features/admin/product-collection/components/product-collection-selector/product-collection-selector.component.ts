@@ -4,7 +4,6 @@ import {
   inject,
   model,
   OnInit,
-  output,
   signal,
 } from '@angular/core';
 import { ProductFilter, ProductResult } from '@models/product';
@@ -18,22 +17,28 @@ import { ProductService } from '@shared/services/product.service';
 })
 export class ProductCollectionSelectorComponent implements OnInit {
   isModalOpen = model.required<boolean>();
-
-  // Output to pass the selected products to the parent component
-  productsSelected = output<ProductResult[]>();
+  selectedProducts = model<ProductResult[]>([]);
 
   products = signal<ProductResult[]>([]);
-  productFilter: ProductFilter = new ProductFilter();
+  searchTerm = signal('');
 
-  // Track selected IDs efficiently
-  selectedIds = signal<Set<string>>(new Set());
+  filteredProducts = computed(() => {
+    const term = this.searchTerm().toLowerCase().trim();
+    if (!term) return this.products();
+    return this.products().filter(p =>
+      p.name?.local?.toLowerCase().includes(term) ||
+      p.name?.english?.toLowerCase().includes(term) ||
+      p.name?.arabic?.toLowerCase().includes(term)
+    );
+  });
 
-  // Reactively compute the number of selected products
-  selectedCount = computed(() => this.selectedIds().size);
+  selectedCount = computed(() => this.selectedProducts().length);
 
   private readonly productService = inject(ProductService);
+  private readonly productFilter = new ProductFilter();
 
   ngOnInit(): void {
+    this.productFilter.pageSize = 10000;
     this.loadProducts();
   }
 
@@ -43,32 +48,28 @@ export class ProductCollectionSelectorComponent implements OnInit {
     });
   }
 
-  toggleProductSelection(productId: string): void {
-    this.selectedIds.update((currentSet) => {
-      const nextSet = new Set(currentSet);
-      if (nextSet.has(productId)) {
-        nextSet.delete(productId);
-      } else {
-        nextSet.add(productId);
-      }
-      return nextSet;
+  onSearchInput(value: string): void {
+    this.searchTerm.set(value);
+  }
+
+  toggleProductSelection(product: ProductResult): void {
+    this.selectedProducts.update(current => {
+      const exists = current.some(p => p.id === product.id);
+      return exists
+        ? current.filter(p => p.id !== product.id)
+        : [...current, product];
     });
   }
 
   isProductSelected(productId: string): boolean {
-    return this.selectedIds().has(productId);
+    return this.selectedProducts().some(p => p.id === productId);
   }
 
   resetSelection(): void {
-    this.selectedIds.set(new Set());
+    this.selectedProducts.set([]);
   }
 
   confirmSelection(): void {
-    // Filter the items that match our selected ID list
-    const selectedProductsList = this.products().filter((p:any) =>
-      this.selectedIds().has(p.id),
-    );
-    this.productsSelected.emit(selectedProductsList);
-    this.isModalOpen.set(false); // Close modal on success
+    this.isModalOpen.set(false);
   }
 }

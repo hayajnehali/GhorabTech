@@ -1,13 +1,13 @@
-<div class="card p-4 shadow-sm bg-body border rounded-3">
+<div class=" p-4 shadow-sm bg-body border rounded-3">
   <div
-    class="flex justify-between items-end pb-4 border-b border-outline-variant"
+    class="flex pb-4 border-b border-outline-variant"
   >
     <div>
       <h4 class="text-headline-lg font-headline-lg text-on-background">
-        {{ "PRODUCT_COLLECTION.ADD_NEW_COLLECTION" | translate }}
+        {{ (isAdd ? "PRODUCT_COLLECTION.ADD_NEW_COLLECTION" : "PRODUCT_COLLECTION.EDIT_COLLECTION") | translate }}
       </h4>
       <p class="text-body-md text-on-surface-variant">
-        {{ "PRODUCT_COLLECTION.CREATE_COLLECTION_DESC" | translate }}
+        {{ (isAdd ? "PRODUCT_COLLECTION.CREATE_COLLECTION_DESC" : "PRODUCT_COLLECTION.EDIT_COLLECTION_DESC") | translate }}
       </p>
     </div>
   </div>
@@ -107,24 +107,22 @@
       <div class="col-12 col-lg-5">
         <app-view-product-collection-selector
           [productsSelected]="productsSelected"
-          (onAddProductClicked)="isModalOpen = true"
+          (onAddProductClicked)="openAddProductDialog()"
+          (onDeleteProduct)="removeProduct($event)"
         ></app-view-product-collection-selector>
       </div>
 
-      <div class="btn-container">
+      <div class="col-md-12">
         <button class="btn btn-secondary" (click)="goBack()">
           {{ "general.back" | translate }}
         </button>
-        <button type="submit" class="btn btn-primary mx-2">
+        <button type="submit" class="btn btn-primary mx-2" [disabled]="loading()">
+          @if (loading()) {
+            <span class="spinner-border spinner-border-sm me-1"></span>
+          }
           {{ "general.save" | translate }}
         </button>
       </div>
     </div>
   </form>
 </div>
-
-<app-product-collection-selector
-  [(isModalOpen)]="isModalOpen"
-  (productsSelected)="productsSelected = $event"
->
-</app-product-collection-selector>

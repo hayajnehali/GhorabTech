@@ -21,9 +21,17 @@ import { PageHeaderComponent } from "@shared/component/search-page/components/pa
 import { HeaderActionsComponent } from "@shared/component/search-page/components/header-actions.component";
 import { PageFilterComponent } from "@shared/component/search-page/components/page-filter.component";
 import { ButtonComponent } from "@shared/component/ui/button/button/button.component";
+import { ProductCollectionSelectorDialogComponent } from './dialog/product-collection-selector-dialog/product-collection-selector-dialog.component';
+import { MatDialogActions, MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({ 
-  declarations: [ManageProductCollectionComponent, ProductCollectionSelectorComponent, ViewProductCollectionSelectorComponent, SearchProductCollectionComponent],
+  declarations: [
+    ManageProductCollectionComponent,
+     ProductCollectionSelectorComponent,
+      ViewProductCollectionSelectorComponent,
+       SearchProductCollectionComponent, 
+       ProductCollectionSelectorDialogComponent,
+      ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -31,7 +39,6 @@ import { ButtonComponent } from "@shared/component/ui/button/button/button.compo
     SharedModule,
     RouterModule,
     FormErrorComponent,
-    ModalComponent,
     ModalComponent,
     ImageComponent,
     A11yModule,
@@ -43,7 +50,9 @@ import { ButtonComponent } from "@shared/component/ui/button/button/button.compo
     PageHeaderComponent,
     HeaderActionsComponent,
     PageFilterComponent,
-    ButtonComponent
+    ButtonComponent,
+    MatDialogActions,
+    MatDialogModule
 ],
   exports: [],
 })
