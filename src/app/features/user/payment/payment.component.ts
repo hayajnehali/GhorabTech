@@ -4,10 +4,9 @@ import { Cart, CartFilter, CartResult, RecipientInfo } from '@models/cart';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { environment } from '@shared/environment/environment';
 import { PaymentService } from '@shared/services/payment.service';
-import { AuthService } from '@shared/services/auth.service';
 import { PayWay } from '@shared/Enum/pay-way';
 import { BaseManageComponent } from '@core/base/base-manage-component';
-import { OperationResultGeneric } from '@core/base/operation-result';
+import { Result } from '@models/results/result';
 
 @Component({
   selector: 'app-payment',
@@ -59,7 +58,7 @@ export class PaymentComponent extends BaseManageComponent<
     }
   }
   override add() {
-    let reslut: OperationResultGeneric<Cart>;
+    let reslut: Result<Cart>;
     if (this.entity.cartItems.length == 0) {
       this.notificationService.showWarning(
         this.translate.instant('cart.product-limit')
@@ -77,7 +76,7 @@ export class PaymentComponent extends BaseManageComponent<
         // );
         this.cartService.clearCart();
         if (this.entity.payWay == PayWay.visa) {
-          window.location.href = reslut.message ?? '';
+          window.location.href = reslut.error?.message ?? '';
         } else {
           this.goBack();
         }

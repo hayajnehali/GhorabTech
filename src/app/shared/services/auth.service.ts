@@ -8,9 +8,9 @@ import { environment } from '@shared/environment/environment';
 import { LocalStorageService } from './local-storage-service.service';
 import { Router } from '@angular/router';
 import { Roles } from '@shared/Enum/role-enum';
-import { OperationResultGeneric } from '@core/base/operation-result';
 import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Result } from '@models/results/result';
 
 export interface JwtPayload {
   sub: string;
@@ -42,8 +42,8 @@ export class AuthService {
   isUser = computed(() => this.user()?.role === Roles.user);
 
   // ===== API Calls =====
-  login(data: Auth): Observable<OperationResultGeneric<Auth>> {
-    return this.http.post<OperationResultGeneric<Auth>>(`${this.baseUrl}/signIn`, data);
+  login(data: Auth): Observable<Result<Auth>> {
+    return this.http.post<Result<Auth>>(`${this.baseUrl}/signIn`, data);
   }
 
   // ===== Token Management =====

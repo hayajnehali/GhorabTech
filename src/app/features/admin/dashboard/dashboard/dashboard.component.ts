@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   }
   getSalesVolume() {
     this.cartItemService.getSalesVolume(this.filter).subscribe((res) => {
-      this.data = res.data ?? []; 
+      this.data = res.items ?? []; 
     });
   }
   getTotalUsers() {

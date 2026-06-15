@@ -43,8 +43,8 @@ export class CommentManageWithListComponent extends BaseListComponent<
       newEntry.comment = this.newCommentText();
       this.commentService.create(newEntry).subscribe({
         next: (addedComment) => {
-          if (addedComment.success) {
-            newEntry.id = addedComment.data?.id;
+          if (addedComment.isSuccess && addedComment.data) {
+            newEntry.id = addedComment.data.id;
             this.dataSource.data.push(newEntry);
             this.newCommentText.set('');
           }

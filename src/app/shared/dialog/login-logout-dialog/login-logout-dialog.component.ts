@@ -18,15 +18,11 @@ import {
 import { BaseComponent } from '@core/base/base-component';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
-import { AuthService } from '@shared/services/auth.service';
 import { User } from '@models/user';
 import { environment } from '@shared/environment/environment';
 import { Auth } from '@models/auth';
-import {
-  OperationResult,
-  OperationResultGeneric,
-} from '@core/base/operation-result';
 import { MatIcon } from '@angular/material/icon';
+import { Result } from '@models/results/result';
 
 @Component({
   selector: 'app-login-logout-dialog',
@@ -74,8 +70,8 @@ export class LoginLogoutDialogComponent
       return;
     }
     this.userService.create(this.user).subscribe({
-      next: (res: OperationResultGeneric<User>) => {
-        if (res.success) {
+      next: (res: Result<User>) => {
+        if (res.isSuccess && res.data) {
           this.auth.userName = this.user.userName;
           this.auth.password = this.user.password;
           this.confirmEmailForm = true;
@@ -124,14 +120,14 @@ export class LoginLogoutDialogComponent
       return;
     }
     this.userService.checkCode(this.auth).subscribe({
-      next: (res: OperationResultGeneric<Auth>) => {
+      next: (res: Result<Auth>) => {
         this.navigateBasedOnRole(res);
       },
       complete: () => {},
     });
   }
 
-  navigateBasedOnRole(res: OperationResultGeneric<Auth>) {
+  navigateBasedOnRole(res: Result<Auth>) {
     // 1. حفظ التوكن أولاً وبشكل فوري
     this.authService.saveToken(res.data?.token ?? '');
  
