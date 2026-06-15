@@ -159,6 +159,16 @@
   }
 }
 
+.app-button__icon--primary { color: $primary-color; }
+.app-button__icon--secondary { color: $secondary-color; }
+.app-button__icon--success { color: $success-color; }
+.app-button__icon--danger { color: $danger-color; }
+.app-button__icon--warning { color: $warning-color; }
+.app-button__icon--info { color: $info-color; }
+.app-button__icon--outline { color: $primary-color; }
+.app-button__icon--ghost { color: $primary-color; }
+.app-button__icon--white { color:$white-color; }
+
 .spinner {
   width: 16px;
   height: 16px;

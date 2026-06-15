@@ -19,7 +19,23 @@ export class ProductCollectionService {
     return this.http.post<Result<ProductCollectionResponse>>(this.baseUrl + '/create', item);
   }
 
+  update(item: ProductCollectionRequest): Observable<Result<ProductCollectionResponse>> {
+    return this.http.put<Result<ProductCollectionResponse>>(this.baseUrl + '/update', item);
+  }
+
   getById(id: string): Observable<Result<ProductCollectionResponse>> {
     return this.http.get<Result<ProductCollectionResponse>>(this.baseUrl + '/get-by-id/' + id);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(this.baseUrl + '/delete/' + id);
+  }
+
+  activate(id: string): Observable<Result<ProductCollectionResponse>> {
+    return this.http.put<Result<ProductCollectionResponse>>(this.baseUrl + '/activate/' + id, {});
+  }
+
+  deactivate(id: string): Observable<Result<ProductCollectionResponse>> {
+    return this.http.put<Result<ProductCollectionResponse>>(this.baseUrl + '/deactivate/' + id, {});
   }
 }

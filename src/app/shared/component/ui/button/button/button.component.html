@@ -13,19 +13,20 @@
   @if (loading()) {
     <span class="spinner"></span>
   } @else {
-
-    @if (icon() && iconPosition() === 'start') {
-      <span class="material-icons">{{icon()}}</span>
+    @if (icon() && iconPosition() === "start") {
+      <span class="material-icons" [class]="'app-button__icon--' + variantIcon()">{{
+        icon()
+      }}</span>
     }
 
-    @if(!iconOnly())
-    {
-        <ng-content></ng-content>
+    @if (!iconOnly()) {
+      <ng-content></ng-content>
     }
 
-    @if (icon() && iconPosition() === 'end') {
-      <span class="material-icons">{{icon()}}</span>
+    @if (icon() && iconPosition() === "end") {
+      <span class="material-icons" [class]="'app-button__icon--' + variantIcon()">{{
+        icon()
+      }}</span>
     }
-
   }
 </button>
