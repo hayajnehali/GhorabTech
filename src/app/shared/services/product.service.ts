@@ -4,8 +4,9 @@ import { ServiceBase } from './base.service';
 import { Product, ProductFilter, ProductResult } from '../../model/product';
 import { apiName } from '../Enum/api-name';
 import { Observable } from 'rxjs';
-import { OperationResultGeneric } from '@core/base/operation-result';
 import { Comment } from '@models/comment';
+import { PagedResult } from '@models/results/search-filter';
+import { Result } from '@models/results/result';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +21,9 @@ export class ProductService extends ServiceBase<
 
   getTotalProduct(
     filter: ProductFilter
-  ): Observable<OperationResultGeneric<number>> {
+  ): Observable<Result<number>> {
     const params = this.buildHttpParams(filter);
-    return this.http.get<OperationResultGeneric<number>>(
+    return this.http.get<Result<number>>(
       this.baseUrl + '/get-total-product',
       { params }
     );
@@ -30,8 +31,8 @@ export class ProductService extends ServiceBase<
   addOrUpdateRating(
     productId: string,
     stars: number
-  ): Observable<OperationResultGeneric<number>> {
-    return this.http.put<OperationResultGeneric<number>>(
+  ): Observable<Result<number>> {
+    return this.http.put<Result<number>>(
       `${this.baseUrl}/add-or-update-rating/${productId}/${stars}`,
       {}
     );

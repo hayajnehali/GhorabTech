@@ -5,8 +5,8 @@ import { CartItem, CartItemFilter, CartItemResult } from '@models/cart-item';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
 import { CartItemService } from '@shared/services/cart-item.service';
 import { CartService } from '@shared/services/cart.service'; 
-import { OperationResultGeneric } from '@core/base/operation-result'; 
 import { getEnumList } from '@shared/Enum/enum-list';
+import { Result } from '@models/results/result';
 
 @Component({
     selector: 'app-cart-item-list',
@@ -48,9 +48,9 @@ export class CartItemListComponent extends BaseListComponent<
     this.cartService
       .changeOrderExitStatusOfCart(this.cart.id!, this.cart.orderExitStatus!)
       .subscribe({
-        next: (res: OperationResultGeneric<CartResult>) => {
-          if (res.success && res.data) {
-            this.cart.orderExitStatus = res.data?.orderExitStatus;
+        next: (res: Result<CartResult>) => {
+          if (res.isSuccess && res.data) {
+            this.cart.orderExitStatus = res.data.orderExitStatus;
           }
         },
         complete: () => {
@@ -67,8 +67,8 @@ export class CartItemListComponent extends BaseListComponent<
   getCartById() {
     this.loadingCart = true;
     this.cartService.getById(this.cart.id!).subscribe({
-      next: (res: OperationResultGeneric<CartResult>) => {
-        if (res.success && res.data) {
+      next: (res: Result<CartResult>) => {
+        if (res.isSuccess && res.data) {
           Object.assign(this.cart, res.data);
         }
       },

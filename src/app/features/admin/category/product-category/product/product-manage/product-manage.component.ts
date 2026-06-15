@@ -47,7 +47,7 @@ export class ProductManageComponent extends BaseManageComponent<
     this.keyAttributeService
       .getAll(new KeyAttributeFilter())
       .subscribe((result) => {
-        this.keyAttributeList = result.data ?? [];
+        this.keyAttributeList = result.items ?? [];
       });
   }
   override processData() {

@@ -27,7 +27,7 @@ export class ButtonComponent {
   readonly name = input<string>();
   readonly ariaLabel = input<string>();
   readonly tooltip = input<string>();
-readonly iconOnly = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly iconOnly = input<boolean, unknown>(false, { transform: booleanAttribute });
   readonly clicked = output<MouseEvent>();
 
   readonly isDisabled = computed(() => {

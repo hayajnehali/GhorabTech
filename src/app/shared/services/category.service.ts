@@ -4,7 +4,7 @@ import { apiName } from '../Enum/api-name';
 import { Observable } from 'rxjs';
 import { ServiceBase } from './base.service'; 
 import { Category, CategoryFilter, CategoryResult } from '@models/category';
-import { OperationResultGeneric } from '@core/base/operation-result';
+import { PagedResult } from '@models/results/search-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,9 @@ export class CategoryService extends ServiceBase<
 
   getProductCategoryWithProduct(
     filterCriteria: CategoryFilter
-  ): Observable<OperationResultGeneric<CategoryResult[]>> {
+  ): Observable<PagedResult<CategoryResult>> {
     let params: HttpParams = this.buildHttpParams(filterCriteria);
-    return this.http.get<OperationResultGeneric<CategoryResult[]>>(this.baseUrl + '/get-all-category-name', {
+    return this.http.get<PagedResult<CategoryResult>>(this.baseUrl + '/get-all-category-name', {
       params,
     });
   }

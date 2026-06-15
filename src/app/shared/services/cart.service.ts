@@ -7,12 +7,10 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  OperationResult,
-  OperationResultGeneric,
-} from '@core/base/operation-result';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
 import { KeyAttributeValue } from '@models/key-attribute-value';
+import { Result } from '@models/results/result';
+import { PagedResult } from '@models/results/search-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -132,8 +130,8 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   changeOrderExitStatusOfCart(
     cartId: string,
     orderExitStatus: OrderExitStatus
-  ): Observable<OperationResultGeneric<CartResult>> {
-    return this.http.put<OperationResultGeneric<CartResult>>(
+  ): Observable<Result<CartResult>> {
+    return this.http.put<Result<CartResult>>(
       `${this.baseUrl}/change-order-exit-status-cart/${cartId}?orderExitStatus=${orderExitStatus}`,
       {}
     );
@@ -151,14 +149,14 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     return aIds.every((id, index) => id === bIds[index]);
   }
 
-  gustCreateAndPay(item: Cart): Observable<OperationResultGeneric<Cart>> {
-    return this.http.post<OperationResultGeneric<Cart>>(
+  gustCreateAndPay(item: Cart): Observable<Result<Cart>> {
+    return this.http.post<Result<Cart>>(
       this.baseUrl + '/guest/create-and-pay',
       item
     );
   }
-  createAndPay(item: Cart): Observable<OperationResultGeneric<Cart>> {
-    return this.http.post<OperationResultGeneric<Cart>>(
+  createAndPay(item: Cart): Observable<Result<Cart>> {
+    return this.http.post<Result<Cart>>(
       this.baseUrl + '/create-and-pay',
       item
     );
@@ -166,10 +164,10 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
 
   getCartsByUser(
     filterCriteria: CartFilter
-  ): Observable<OperationResultGeneric<CartResult[]>> {
+  ): Observable<PagedResult<CartResult>> {
     const params = this.buildHttpParams(filterCriteria);
 
-    return this.http.get<OperationResultGeneric<CartResult[]>>(
+    return this.http.get<PagedResult<CartResult>>(
       this.baseUrl + '/get-cart-by-user',
       {
         params,

@@ -1,13 +1,11 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { OperationResultGeneric } from '@core/base/operation-result';
 import { phoneNumber } from '@core/model/social.config';
 import { CategoryFilter, CategoryResult } from '@models/category';
 import {
-  ProductCategory,
   ProductCategoryResult,
 } from '@models/product-category';
-import { TranslateModule } from '@ngx-translate/core';
+import { PagedResult } from '@models/results/search-filter';
 import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
 import { CartService } from '@shared/services/cart.service';
 import { CategoryService } from '@shared/services/category.service';
@@ -52,10 +50,10 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     this.categoryService
       .getProductCategoryWithProduct(new CategoryFilter())
       .subscribe({
-        next: (res: OperationResultGeneric<CategoryResult[]>) => {
-          this.categoryResult = res.data;
+        next: (res: PagedResult<CategoryResult>) => {
+          this.categoryResult = res.items;
           this.productCategories =
-            res.data?.flatMap((item) => item.productCategories) ?? undefined;
+            res.items?.flatMap((item) => item.productCategories) ?? undefined;
         },
       });
   }

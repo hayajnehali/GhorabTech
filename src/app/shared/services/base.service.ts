@@ -4,10 +4,8 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { InjectionToken } from '@angular/core'; 
 import { environment } from '../environment/environment';
-import {
-  OperationResult,
-  OperationResultGeneric,
-} from '@core/base/operation-result';
+import { PagedResult } from '@models/results/search-filter';
+import { Result } from '@models/results/result';
 export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
 @Injectable({
@@ -19,11 +17,11 @@ export class ServiceBase<TData, TResult, F extends object> {
   constructor(protected http: HttpClient, @Inject(BASE_URL) baseUrll: string) {
     this.baseUrl = this.baseUrl + baseUrll;
   }
-  getAll(filterCriteria: F): Observable<OperationResultGeneric<TResult[]>> {
+  getAll(filterCriteria: F): Observable<PagedResult<TResult>> {
     const params = this.buildHttpParams(filterCriteria);
 
     return this.http
-      .get<OperationResultGeneric<TResult[]>>(this.baseUrl + '/getAll', {
+      .get<PagedResult<TResult>>(this.baseUrl + '/getAll', {
         params,
       })
       .pipe(
@@ -46,22 +44,22 @@ export class ServiceBase<TData, TResult, F extends object> {
     return params;
   }
 
-  getById(id: string): Observable<OperationResultGeneric<TResult>> {
+  getById(id: string): Observable<Result<TResult>> {
     return this.http
-      .get<OperationResultGeneric<TResult>>(`${this.baseUrl}/getById/${id}`)
+      .get<Result<TResult>>(`${this.baseUrl}/getById/${id}`)
       .pipe(
         catchError(
-          this.handleError<OperationResultGeneric<TResult>>(`getById id=${id}`)
+          this.handleError<Result<TResult>>(`getById id=${id}`)
         )
       );
   }
 
-  create(item: TData): Observable<OperationResultGeneric<TData>> {
-    return this.http.post<OperationResultGeneric<TData>>(this.baseUrl + '/create', item);
+  create(item: TData): Observable<Result<TData>> {
+    return this.http.post<Result<TData>>(this.baseUrl + '/create', item);
   }
 
-  update(item: TData): Observable<OperationResultGeneric<TData>> {
-    return this.http.put<OperationResultGeneric<TData>>(`${this.baseUrl}/update`, item);
+  update(item: TData): Observable<Result<TData>> {
+    return this.http.put<Result<TData>>(`${this.baseUrl}/update`, item);
   }
 
   delete(id: string) {

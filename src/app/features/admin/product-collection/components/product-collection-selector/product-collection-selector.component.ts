@@ -39,7 +39,7 @@ export class ProductCollectionSelectorComponent implements OnInit {
 
   private loadProducts() {
     this.productService.getAll(this.productFilter).subscribe((products) => {
-      this.products.set(products?.data || []);
+      this.products.set(products?.items || []);
     });
   }
 

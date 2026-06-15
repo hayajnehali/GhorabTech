@@ -75,7 +75,7 @@ export class CartViewComponent extends BaseComponent implements OnInit {
       },
       complete: () => {
         this.cartService.clearCart();
-        if (this.entity.payWay == PayWay.visa) {
+        if (this.cart.payWay == PayWay.visa) {
           window.location.href = reslut.message ?? '';
         } else {
           this.goBack();
