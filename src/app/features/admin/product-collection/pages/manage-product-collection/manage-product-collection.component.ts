@@ -2,7 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
-import { ProductCollectionRequest, ProductCollectionResponse } from '../../models/product-collection.model';
+import {
+  ProductCollectionItemRequest,
+  ProductCollectionRequest,
+  ProductCollectionResponse,
+} from '../../models/product-collection.model';
 import { LocalizedString } from '@core/base/localized-string ';
 import { ProductCollectionService } from '../../services/product-collection.service';
 
@@ -68,15 +72,19 @@ export class ManageProductCollectionComponent implements OnInit {
       return;
     }
 
-    const payload: ProductCollectionRequest = {
-      name: this.collectionForm.value.name as LocalizedString,
-      description: this.collectionForm.value.description as LocalizedString,
-      sortOrder: this.collectionForm.value.sortOrder as number,
-      items: this.productsSelected.map((p, index) => ({
-        productId: p.id!,
-        sortOrder: index,
-      })),
-    };
+    let payload: ProductCollectionRequest = new ProductCollectionRequest();
+
+    payload.name = this.collectionForm.value.name as LocalizedString;
+    payload.description = this.collectionForm.value
+      .description as LocalizedString;
+    payload.sortOrder = this.collectionForm.value.sortOrder as number;
+    payload.items = this.productsSelected.map((p, index) => {
+      let item = new ProductCollectionItemRequest();
+      item.productId = p.id!;
+      item.sortOrder = index;
+
+      return item;
+    });
 
     if (this.isAdd) {
       console.log('Creating collection with payload:', payload);

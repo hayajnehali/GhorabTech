@@ -90,6 +90,15 @@ export const routesAdmin: Routes = [
       showInSidebar: true,
     },
   },
+    {
+    path: 'delivery',
+    loadChildren: () => import('./delivery/delivery.module').then((m) => m.DeliveryModule),
+    data: {
+      label: 'delivery.delivery',
+      icon: 'shopping_cart',
+      showInSidebar: true,
+    },
+  },
   // أي مسار غير معروف داخل user
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
