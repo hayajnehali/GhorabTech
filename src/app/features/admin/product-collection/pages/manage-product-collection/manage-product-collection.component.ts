@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
 import {
+  ItemProductResult,
   ProductCollectionItemRequest,
   ProductCollectionRequest,
   ProductCollectionResponse,

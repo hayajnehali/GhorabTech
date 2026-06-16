@@ -1,23 +1,22 @@
 import { LocalizedString } from '@core/base/localized-string ';
 import { ModelBase } from '@models/base.model';
 import { FilterBase } from '@models/filter-base';
+import { ProductImage } from '@models/Images';
 
-export class ProductCollectionRequest extends ModelBase {
-    id:string | null;
-  name: LocalizedString; 
+export class ProductCollectionRequest extends ModelBase { 
+  name: LocalizedString;
   description: LocalizedString;
   sortOrder: number;
   items: ProductCollectionItemRequest[];
 }
 
-export class ProductCollectionItemRequest extends ModelBase{
+export class ProductCollectionItemRequest extends ModelBase {
   productId: string;
   sortOrder: number;
 }
- export class ProductCollectionFilter extends FilterBase{
-   text: string;
- }
- 
+export class ProductCollectionFilter extends FilterBase {
+  text: string;
+}
 
 export class ProductCollectionResponse extends ModelBase {
   name: LocalizedString;
