@@ -25,7 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from './component/about/about.component';
 import { MatRadioModule } from '@angular/material/radio'; 
-import { EmailComponent } from './component/email/email.component';
+import { EmailComponent } from './component/email/email.component'; 
+import { DatePickerComponent } from './component/ui/date/date.component';
 
 @NgModule({
   declarations: [ProductCardComponent, AboutComponent, EmailComponent],
@@ -46,6 +47,7 @@ import { EmailComponent } from './component/email/email.component';
     MatSelectModule,
     TranslateModule,
     MatRadioModule,
+    DatePickerComponent
   ],
   exports: [
     FormsModule,
@@ -64,6 +66,7 @@ import { EmailComponent } from './component/email/email.component';
     TranslateModule,
     AboutComponent,
     MatRadioModule,
+    DatePickerComponent
   ],
   providers: [
     // FormsModule,

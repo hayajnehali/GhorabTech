@@ -1,4 +1,3 @@
-
  <search-page 
   [(pagedResult)]="dataEntity"
   [searchTrigger]="$searchTrigger"
@@ -6,7 +5,7 @@
   (resetBase)="reset()"
   (searchBase)="search()"
   (onResetSearch)="onResetSearch()"
-> 
+>
   <page-header
     [title]="'product-collection.product-collections' | translate"
     [label]="'product-collection.manage-collections' | translate"
@@ -60,9 +59,11 @@
   <grid-result-body [allowExpand]="true">
     <grid-column label="product-collection.collection-name" field="name.local"></grid-column>
     <grid-column label="product-collection.code" field="code"></grid-column>
-    <grid-column label="product-collection.items-count" field="items">
+    <grid-column label="product-collection.subject" field="subject.value"> </grid-column>
+
+    <grid-column label="product-collection.items-count" field="item">
       <ng-template let-data>
-        <span class="badge-products">{{ data.items?.length ?? 0 }}</span>
+        <span class="badge-products">{{ data.item?.length ?? 0 }}</span>
       </ng-template>
     </grid-column>
 
@@ -78,24 +79,16 @@
     <grid-column label="product-collection.actions" field="actions">
       <ng-template let-data>
         <div class="action-cell">
-          <ui-button icon="visibility" iconOnly size="xs" variant="ghost" variantIcon="ghost"
-          (click)="viewCollection(data)" tooltip="{{ 'general.view' | translate }}">
-          </ui-button>
-          <ui-button icon="edit" iconOnly variant="ghost" variantIcon="ghost" size="xs"
-          (click)="editCollection(data)" tooltip="{{ 'general.edit' | translate }}">
-          </ui-button>
-          <ui-button
-            [icon]="data.isActive ? 'toggle_off' : 'toggle_on'"
-            iconOnly
-            variant="ghost"
-            [variantIcon]="data.isActive ? 'warning' : 'success'"
-            size="xs"
-            (click)="toggleActive(data)"
-            [tooltip]="(data.isActive ? 'general.deactivate' : 'general.activate') | translate">
-          </ui-button>
-          <ui-button icon="delete" iconOnly variant="ghost" variantIcon="danger" size="xs"
-          (click)="deleteCollection(data)" tooltip="{{ 'general.delete' | translate }}">
-          </ui-button>
+          <!-- <button class="btn-action btn-action-view" (click)="viewCollection(data)" title="View">
+            <span class="material-icons">visibility</span>
+          </button>
+          <button class="btn-action btn-action-edit" (click)="editCollection(data)" title="Edit">
+            <span class="material-icons">edit</span>
+          </button>
+          <button class="btn-action btn-action-delete" (click)="deleteCollection(data)" title="Delete">
+            <span class="material-icons">delete</span>
+          </button> -->
+          action
         </div>
       </ng-template>
     </grid-column>

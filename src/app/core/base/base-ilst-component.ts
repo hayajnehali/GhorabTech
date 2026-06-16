@@ -5,6 +5,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FilterBase } from '@models/filter-base';
 import { OrderByEnum } from '@shared/Enum/order-by-enum';
+import { PagedResult } from '@models/results/search-filter';
 
 @Directive()
 export abstract class BaseListComponent<
@@ -20,7 +21,8 @@ export abstract class BaseListComponent<
   pageSizeOptions: number[] = [5, 10, 20, 40, 80, 100];
   orderBy = OrderByEnum;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  dataEntity: PagedResult<TResult>;
+ 
   constructor(
     protected service: ServiceBase<TData, TResult, Filter>,
     protected filterT: new () => Filter
@@ -39,6 +41,7 @@ export abstract class BaseListComponent<
     this.loading = false;
     const sub = this.service.getAll(this.filter).subscribe({
       next: (data) => {
+        if (data.items) this.dataEntity = data;
         if (data.items) this.dataSource.data = data.items;
         this.totalNumberOf = data.totalCount;
         this.loading = true;

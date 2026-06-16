@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
 import {
   ItemProductResult,
+  ProductCollectionItemRequest,
   ProductCollectionRequest,
   ProductCollectionResponse,
 } from '../../models/product-collection.model';
@@ -92,18 +93,22 @@ export class ManageProductCollectionComponent implements OnInit {
       return;
     }
 
-    const payload: ProductCollectionRequest = {
-      id: !this.isAdd ? this.collectionForm.value.id as string : null,
-      name: this.collectionForm.value.name as LocalizedString,
-      description: this.collectionForm.value.description as LocalizedString,
-      sortOrder: this.collectionForm.value.sortOrder as number,
-      items: this.productsSelected.map((p, index) => ({
-        productId: p.id!,
-        sortOrder: index,
-      })),
-    };
+    let payload: ProductCollectionRequest = new ProductCollectionRequest();
+    payload.id = !this.isAdd
+      ? (this.collectionForm.value.id as string)
+      : undefined;
+    payload.name = this.collectionForm.value.name as LocalizedString;
+    payload.description = this.collectionForm.value
+      .description as LocalizedString;
+    payload.sortOrder = this.collectionForm.value.sortOrder as number;
+    payload.items = this.productsSelected.map((p, index) => {
+      let item = new ProductCollectionItemRequest();
+      item.productId = p.id!;
+      item.sortOrder = index;
 
-    this.loading.set(true);
+      return item;
+    });
+      this.loading.set(true);
 
     if (this.isAdd) {
       this.createProductCollection(payload);
