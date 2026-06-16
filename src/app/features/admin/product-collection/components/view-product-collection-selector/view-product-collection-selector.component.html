@@ -18,7 +18,7 @@
         >search</mat-icon
       >
       <input
-        class="form-control-custom ps-5"
+        class="form-control ps-5"
         [placeholder]="'PRODUCT_COLLECTION.SEARCH_IN_COLLECTION' | translate"
         type="text"
       />
@@ -42,14 +42,13 @@
             <h4 class="text-body-md fw-bold m-0 text-dark">
               {{ product.name.local }}
             </h4>
-            <p class="text-label-sm text-muted m-0">{{ "PRODUCT_COLLECTION.SKU" | translate }}: SKU-626-RES</p>
           </div>
           <div class="text-end me-3">
             <p class="text-body-md fw-bold m-0">
               ${{ product.price?.toFixed(2) }}
             </p>
           </div>
-          <button class="btn-delete border-0 bg-transparent p-1">
+          <button class="btn-delete border-0 bg-transparent p-1" (click)="onDeleteProduct.emit(product)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -58,13 +57,13 @@
   </div>
 
   <div class="p-4 bg-surface-low border-top border-light-variant mt-auto">
-    <button
+    <ui-button
       type="button"
       class="btn-dashed-trigger w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-medium"
       (click)="addProducts()"
     >
       <mat-icon>add_circle</mat-icon>
       {{ "PRODUCT_COLLECTION.BROWSE_ADD_PRODUCTS" | translate }}
-    </button>
+    </ui-button>
   </div>
 </div>

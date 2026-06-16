@@ -33,6 +33,7 @@ export class SearchProductCollectionComponent extends BaseListComponent<
 
   private readonly fb = inject(FormBuilder);
   // private readonly router = inject(Router);
+  private readonly collectionService = inject(ProductCollectionService); 
 
   override ngOnInit(): void {
     this.initForm();
@@ -62,7 +63,35 @@ export class SearchProductCollectionComponent extends BaseListComponent<
     this.router.navigate(['admin/product-collection/edit', item.id]);
   }
 
+  toggleActive(item: ProductCollectionResponse): void {
+    const action = item.isActive
+      ? this.collectionService.deactivate(item.id!)
+      : this.collectionService.activate(item.id!);
+    action.subscribe({
+      next: () => {
+        this.notificationService.showSuccess(
+          this.translate.instant('general.success-message'),
+          this.translate.instant('general.success'),
+        );
+        this.$searchTrigger.next();
+      },
+      error: (err) => this.notificationService.showError(err),
+    });
+  }
+
   deleteCollection(item: ProductCollectionResponse): void {
-    console.log('Delete collection:', item.id);
+    if (!confirm(this.translate.instant('general.confirm-delete') || 'Are you sure you want to delete this collection?')) {
+      return;
+    }
+    this.collectionService.delete(item.id!).subscribe({
+      next: () => {
+        this.notificationService.showSuccess(
+          this.translate.instant('general.success-message'),
+          this.translate.instant('general.success'),
+        );
+        this.$searchTrigger.next();
+      },
+      error: (err) => this.notificationService.showError(err),
+    });
   }
 }

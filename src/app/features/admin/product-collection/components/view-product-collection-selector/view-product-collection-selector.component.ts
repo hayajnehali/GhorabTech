@@ -10,6 +10,7 @@ import { ProductResult } from '@models/product';
 export class ViewProductCollectionSelectorComponent {
   productsSelected = input<ProductResult[]>();
   onAddProductClicked = output<boolean>();
+  onDeleteProduct = output<ProductResult>();
 
 
   addProducts = () => {

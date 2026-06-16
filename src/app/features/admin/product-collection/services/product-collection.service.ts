@@ -30,4 +30,12 @@ export class ProductCollectionService extends ServiceBase<
   // getById(id: string): Observable<Result<ProductCollectionResponse>> {
   //   return this.http.get<Result<ProductCollectionResponse>>(this.baseUrl + '/get-by-id/' + id);
   // }
+
+    activate(id: string): Observable<Result<ProductCollectionResponse>> {
+    return this.http.put<Result<ProductCollectionResponse>>(this.baseUrl + '/activate/' + id, {});
+  }
+
+  deactivate(id: string): Observable<Result<ProductCollectionResponse>> {
+    return this.http.put<Result<ProductCollectionResponse>>(this.baseUrl + '/deactivate/' + id, {});
+  }
 }

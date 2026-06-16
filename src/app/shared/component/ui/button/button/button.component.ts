@@ -1,5 +1,18 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { ButtonSize, ButtonType, ButtonVariant, IconPosition, Rounded } from '../types/button.type';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+} from '@angular/core';
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  IconPosition,
+  Rounded,
+} from '../types/button.type';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -8,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-imports: [TranslateModule]
+  imports: [TranslateModule],
 })
 export class ButtonComponent {
   readonly variant = input<ButtonVariant>('primary');
@@ -22,12 +35,15 @@ export class ButtonComponent {
   readonly autoFocus = input(false);
   readonly tabIndex = input(0);
   readonly icon = input<string>();
+  readonly variantIcon = input<ButtonVariant>('white');
   readonly iconPosition = input<IconPosition>('start');
   readonly id = input<string>();
   readonly name = input<string>();
   readonly ariaLabel = input<string>();
   readonly tooltip = input<string>();
-  readonly iconOnly = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly iconOnly = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly clicked = output<MouseEvent>();
 
   readonly isDisabled = computed(() => {

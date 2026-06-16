@@ -8,7 +8,9 @@
     <div class="col-md-5">
       <div class="search-group">
         <span class="material-symbols-outlined">search</span>
-        <input class="form-control" [placeholder]="'PRODUCT_COLLECTION.SEARCH_NAME_SKU' | translate" type="text" />
+        <input class="form-control" 
+         [placeholder]="'PRODUCT_COLLECTION.SEARCH_NAME_SKU' | translate" type="text" 
+         (input)="onSearchInput($any($event.target).value)" />
       </div>
     </div>
   </div>
@@ -16,16 +18,16 @@
   <div modal-body class="p-4">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
       
-      @for (product of products(); track product.id) {
+      @for (product of filteredProducts(); track product.id) {
         <div class="col">
           <div class="card product-card p-2 cursor-pointer" 
                [class.selected]="isProductSelected(product.id!)" 
-               (click)="toggleProductSelection(product.id!)">
+               (click)="toggleProductSelection(product!)">
             
             <input class="form-check-input" 
                    type="checkbox"
                    [checked]="isProductSelected(product.id!)"
-                   (click)="$event.stopPropagation(); toggleProductSelection(product.id!)" />
+                   (click)="$event.stopPropagation(); toggleProductSelection(product!)" />
             
             <div class="card-img-container rounded">
                 <app-image [src]="product.images[0]?.guidName"></app-image>
@@ -44,6 +46,10 @@
             </div>
 
           </div>
+        </div>
+      } @empty {
+        <div class="col-12 text-center py-5 text-muted">
+          {{ "PRODUCT_COLLECTION.NO_PRODUCTS_FOUND" | translate }}
         </div>
       }
 
