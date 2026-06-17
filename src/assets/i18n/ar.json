@@ -384,7 +384,7 @@
     "SKU": "SKU",
     "NO_PRODUCTS_FOUND": "لا توجد منتجات"
   },
-  "product-collection":{
+  "product-collection": {
     "product-collections": "مجموعات المنتجات",
     "add-new-collection": "إضافة مجموعة منتجات",
     "edit-product-collection": "تعديل مجموعة المنتجات",
@@ -401,5 +401,12 @@
     "add-new": "إضافة مجموعة جديدة",
     "filter": "فلتر",
     "search-by-name-code-description": "ابحث بالاسم، أو الرمز، أو الوصف..."
+  },
+  "delivery-zone": {
+     "delivery-zone-list": "قائمة مناطق التوصيل",
+    "base-delivery-cost": "تكلفة التوصيل الأساسية",
+    "edit-delivery-zone": "تعديل منطقة التوصيل",
+    "add-delivery-zone": "إضافة منطقة توصيل جديدة",
+    "field-manage-deliver-zone": "يرجى تعبئة الحقول أدناه لإدارة منطقة التوصيل بدقة."
   }
 }
