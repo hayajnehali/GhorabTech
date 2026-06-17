@@ -4,11 +4,11 @@ import { FilterBase } from '@models/filter-base';
 
 export class DeliveryZone extends ModelBase {
   name: LocalizedString;
-  BaseDeliveryCost: number;
+  baseDeliveryCost: number;
 }
 export class DeliveryZoneResult extends ModelBase {
   name: LocalizedString;
-  BaseDeliveryCost: number;
+  baseDeliveryCost: number;
 }
 
 export class DeliveryZoneFilter extends FilterBase {

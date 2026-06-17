@@ -7,14 +7,14 @@ import { NgForm } from '@angular/forms';
 export class BaseManageComponent<
   TData,
   TResult,
-  Filter extends object
+  Filter extends object,
 > extends BaseComponent {
   entity!: TData;
   isAdd = false;
   protected type: any;
   constructor(
     protected service: ServiceBase<TData, TResult, Filter>,
-    protected itemType: new () => TData
+    protected itemType: new () => TData,
   ) {
     super();
     this.type = itemType;
@@ -62,11 +62,7 @@ export class BaseManageComponent<
     const sub = this.service.update(this.entity).subscribe({
       next: () => {},
       complete: () => {
-        this.notificationService.showSuccess(
-          this.translate.instant('general.success-message'),
-          this.translate.instant('general.success')
-        );
-        this.goBack();
+        this.onEdit();
       },
       error: (err) => {
         this.notificationService.showError(err);
@@ -74,21 +70,31 @@ export class BaseManageComponent<
     });
     this.subscribe(sub);
   }
+  onEdit() {
+    this.notificationService.showSuccess(
+      this.translate.instant('general.success-message'),
+      this.translate.instant('general.success'),
+    );
+    this.goBack();
+  }
   add() {
     const sub = this.service.create(this.entity).subscribe({
       next: () => {},
       complete: () => {
-        this.notificationService.showSuccess(
-          this.translate.instant('general.success-message'),
-          this.translate.instant('general.success')
-        );
-        this.goBack();
+        this.onCreate();
       },
       error: (err) => {
         this.notificationService.showError(err);
       },
     });
     this.subscribe(sub);
+  }
+  onCreate() {
+    this.notificationService.showSuccess(
+      this.translate.instant('general.success-message'),
+      this.translate.instant('general.success'),
+    );
+    this.goBack();
   }
   processData() {}
 

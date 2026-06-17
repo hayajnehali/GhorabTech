@@ -381,7 +381,7 @@
     "SKU": "SKU",
     "NO_PRODUCTS_FOUND": "No products found"
   },
-  "product-collection":{
+  "product-collection": {
     "product-collections": "Product Collections",
     "add-new-collection": "Add Product Collection",
     "edit-product-collection": "Edit Product Collection",
@@ -398,5 +398,12 @@
     "add-new": "Add New Collection",
     "filter": "Filter",
     "search-by-name-code-description": "Search by name, code, or description..."
+  },
+  "delivery-zone": {
+    "delivery-zone-list": "Delivery Zone List",
+    "base-delivery-cost": "Base Delivery Cost",
+    "edit-delivery-zone": "Edit Delivery Zone",
+    "add-delivery-zone": "Add Delivery Zone",
+    "field-manage-deliver-zone": "Please fill in the fields below to accurately manage the delivery zone."
   }
 }

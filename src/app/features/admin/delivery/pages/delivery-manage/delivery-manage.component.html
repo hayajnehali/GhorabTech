@@ -1,0 +1,103 @@
+<search-page
+  [(pagedResult)]="dataEntity"
+  [searchTrigger]="$searchTrigger"
+  [filter]="filter"
+  (resetBase)="reset()"
+  (searchBase)="search()"
+  (onResetSearch)="onResetSearch()"
+>
+  <page-header
+    [title]="'delivery-zone.delivery-zone-list' | translate"
+    [label]="'product-collection.manage-collections' | translate"
+    [icon]="'category'"
+  >
+    <header-actions>
+      <ui-button
+        (click)="toggleFilter()"
+        variant="secondary"
+        icon="filter_list"
+        tooltip="product-collection.filter"
+        iconOnly
+        [class.active]="filterVisible()"
+      />
+      <ui-button
+        (click)="manageZone(undefined)"
+        variant="primary"
+        icon="add"
+        iconOnly
+        tooltip="product-collection.add-new-collection"
+      />
+    </header-actions>
+  </page-header>
+
+  @if (filterVisible()) {
+    <page-filter>
+      <div class="filter-panel">
+        <form [formGroup]="filterForm">
+          <div class="filter-row">
+            <div class="filter-field">
+              <label for="name" class="form-label-custom" translate>
+                {{ "general.name" | translate }}
+              </label>
+              <div class="filter-input-wrapper">
+                <span class="material-icons filter-input-icon">search</span>
+                <input
+                  type="name"
+                  id="name"
+                  [(ngModel)]="filter.name"
+                  formControlName="name"
+                  class="form-control filter-input"
+                  placeholder="{{
+                    'product-collection.search-by-name-code-description'
+                      | translate
+                  }}"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </page-filter>
+  }
+
+  <grid-result-body [allowExpand]="false">
+    <grid-column
+      label="general.name"
+      field="name.local"
+    ></grid-column>
+    <grid-column
+      label="delivery-zone.base-delivery-cost"
+      field="baseDeliveryCost"
+    ></grid-column>
+    <grid-column label="product-collection.actions" field="actions">
+      <ng-template let-data>
+        <div class="action-cell">
+          <ui-button
+            icon="edit"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            (click)="manageZone(data.id)"
+            tooltip="{{ 'general.edit' | translate }}"
+          >
+          </ui-button>
+
+          <!-- <ui-button
+            [icon]="data.isActive ? 'toggle_off' : 'toggle_on'"
+            iconOnly
+            variant="ghost"
+            [variantIcon]="data.isActive ? 'warning' : 'success'"
+            size="xs"
+            (click)="toggleActive(data)"
+            [tooltip]="(data.isActive ? 'general.deactivate' : 'general.activate') | translate">
+          </ui-button> -->
+
+          <!-- <ui-button icon="delete" iconOnly variant="ghost" variantIcon="danger" size="xs"
+          (click)="deleteCollection(data)" tooltip="{{ 'general.delete' | translate }}">
+          </ui-button> -->
+        </div>
+      </ng-template>
+    </grid-column>
+  </grid-result-body>
+</search-page>

@@ -1,40 +1,265 @@
-@use 'variable' as *;
-.manage {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+@use "variable" as *;
 
-  border-radius: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin: 21px 0px;
-  .title {
-    color: $primary-color;
+@use "sass:color";
+// الحاوية الكبرى للصفحة
+.admin-form-container {
+  padding: 2.5rem 2rem;
+  font-family: $fm-nunito;
+  direction: rtl; // يتم قلبه تلقائياً بناءً على الـ Dir الخاص بالموقع
+
+  // دعم التوجيهين (LTR / RTL) بحركة ذكية
+  &:lang(en) {
+    direction: ltr;
+    .form-card .form-actions {
+      justify-content: flex-end;
+    }
+  }
+
+  // الهيدر الرئيسي فوق الكارت
+  .form-header {
+    margin-bottom: 2rem;
+
+    .header-title {
+      h1 {
+        font-family: $fm-unna;
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 0.4rem;
+        position: relative;
+        display: inline-block;
+
+        // خط زخرفي صغير تحت العنوان يضفي طابع الأناقة
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, $accent-gold, transparent);
+        }
+      }
+      p {
+        font-size: 0.9rem;
+        color: $para-color;
+      }
+    }
+  }
+
+  // كارت النموذج العصري
+  .form-card {
+    // background: $white-color;
+    border-radius: 16px;
+    // box-shadow: 0 10px 25px -5px rgba($primary-color, 0.05), 0 8px 10px -6px rgba($primary-color, 0.05);
+    padding: 3rem;
+    border: 1px solid $border;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
     &:hover {
-      color: $secondary-color;
-      cursor: default;
+      box-shadow: 0 20px 30px -10px rgba($primary-color, 0.08);
     }
 
-    @media (max-width: 992px) {
-      font-size: 2.25rem;
+    // شبكة توزيع الحقول المتجاوبة
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      // تجعل الحقل يمتد على السطر كاملاً عند الحاجة
+      .full-width {
+        grid-column: span 2;
+        @media (max-width: 768px) {
+          grid-column: span 1;
+        }
+      }
     }
 
-    @media (max-width: 768px) {
-      font-size: 2rem;
+    // مجموعات الحقول (Label + Input)
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $heading-color-2;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+
+        .required {
+          color: $danger-color;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+          width: 100%;
+          padding: 0.5rem 1.2rem;
+          font-size: 0.95rem;
+          border-radius: 10px;
+          border: 1px solid $border-1;
+          background-color: $white-color;
+          color: $normal-color;
+          transition: all 0.25rem cubic-bezier(0.4, 0, 0.2, 1);
+
+          &::placeholder {
+            color: $secondary-color;
+            opacity: 0.6;
+          }
+
+          // تأثير الحركة العصري عند التركيز
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
+            background-color: #fff;
+          }
+        }
+
+        // تخصيص إضافي لحقل السعر لإعطائه هوية فخمة
+        // تخصيص إضافي لحقل السعر لإعطائه هوية فخمة
+        &.cost-input {
+          position: relative; // نضمن أن الحاوية هي المرجع للتموضع
+
+          input {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-color: rgba($accent-gold, 0.4);
+
+            // الحل السحري للكتابة: نترك مسافة أمان دائماً من جهة نهاية النص (يمين في العربي، يسار في الإنجليزي)
+            // padding-inline-end تعني البادينغ من جهة النهاية تلقائياً حسب الـ direction الحالي للموقع
+            padding-inline-end: 4rem;
+
+            &:focus {
+              border-color: $accent-gold;
+              box-shadow: 0 0 0 4px rgba($accent-gold, 0.12);
+            }
+          }
+
+          // شارة العملة المدمجة الذكية
+          .currency-badge {
+            position: absolute;
+            top: 50%;
+            transform: translateY(
+              -50%
+            ); // لضمان توسط الشارة عمودياً تماماً مهما كان طول الحقل
+
+            // الحل السحري للتموضع: inset-inline-end تعني (يمين في الإنجليزي) و (يسار في العربي) أوتوماتيكياً!
+            inset-inline-end: 12px;
+
+            background-color: $background-2;
+            color: $third-color;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            pointer-events: none; // لكي يستطيع المستخدم الضغط على الحقل حتى لو ضغط فوق الشارة
+            z-index: 2;
+          }
+        }
+      }
+
+      // التعامل مع الأخطاء (Angular Validation States)
+      &.has-error {
+        label {
+          color: $danger-color;
+        }
+        input {
+          border-color: $danger-color !important;
+          background-color: rgba($danger-color, 0.01);
+          &:focus {
+            box-shadow: 0 0 0 4px rgba($danger-color, 0.1) !important;
+          }
+        }
+      }
     }
 
-    @media (max-width: 576px) {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      padding: 0 0.5rem;
+    // منطقة الأزرار في الأسفل
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.25rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid $border;
+
+      @media (max-width: 576px) {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+        .btn {
+          width: 100%;
+        }
+      }
+
+      .btn {
+        padding: 0.85rem 2.5rem;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.2s ease-in-out;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        // زر التراجع / الإلغاء
+        &--secondary {
+          background-color: transparent;
+          border: 1px solid $border-1;
+          color: $third-color;
+
+          &:hover {
+            background-color: $background-2;
+            color: $heading-color;
+            border-color: $secondary-color;
+          }
+        }
+
+        // زر الحفظ الأساسي
+        &--primary {
+          background-color: $primary-color;
+          border: 1px solid transparent;
+          color: $white-color;
+          box-shadow: 0 4px 12px rgba($primary-color, 0.15);
+
+          &:hover:not(:disabled) {
+            // 👈 الحل هنا: أضفنا $lightness: لتحديد اسم المحور الذي نريد تعديله في اللون
+            background-color: color.adjust($primary-color, $lightness: 8%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba($primary-color, 0.2);
+          }
+
+          &:active:not(:disabled) {
+            transform: translateY(1px);
+          }
+
+          // حالة الـ Disabled في حال كان الفورم غير صالح للارسال
+          &:disabled {
+            background-color: $secondary-color;
+            color: rgba($white-color, 0.7);
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.5;
+          }
+        }
+      }
     }
-  }
-  label{
-    text-transform: capitalize;
   }
 }
-
-// .list{
-//   .title-list{
-    
-//   }
-// }
