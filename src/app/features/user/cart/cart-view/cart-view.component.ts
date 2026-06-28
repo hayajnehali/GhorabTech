@@ -7,6 +7,16 @@ import { PayWay, RegistrationWay } from '@shared/Enum/pay-way';
 import { NgForm } from '@angular/forms';
 import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DeliveryZoneService } from '@shared/services/delivery-zone.service';
+import {
+  DeliveryZoneFilter,
+  DeliveryZoneResult,
+} from '@models/delivery/delivery-zone';
+import { DeliveryTimeSlotService } from '@shared/services/delivery-time-slot.service';
+import {
+  DeliveryTimeSlotFilter,
+  DeliveryTimeSlotResult,
+} from '@models/delivery/delivery-time-slot';
 
 @Component({
   selector: 'app-cart-view',
@@ -17,15 +27,16 @@ import { MatDialog } from '@angular/material/dialog';
 export class CartViewComponent extends BaseComponent implements OnInit {
   cartService = inject(CartService);
   dialog = inject(MatDialog);
+  deliveryZoneService = inject(DeliveryZoneService);
+  deliveryTimeSlotService = inject(DeliveryTimeSlotService);
   cart: Cart = new Cart();
   total: number = 0;
   payway: any = PayWay;
   entity: any;
   registrationWay: typeof RegistrationWay = RegistrationWay;
   todayDate: string = new Date().toISOString().split('T')[0];
-  delivaryTimes: any = [
-    { id: '3077f4f2-d343-49ac-5748-08de0eaa7085', time: '02:00 PM - 06:00 PM' },
-  ];
+  deliveryZones: DeliveryZoneResult[] = [];
+  deliveryTimeSlots: DeliveryTimeSlotResult[] = [];
 
   constructor() {
     super();
@@ -39,6 +50,24 @@ export class CartViewComponent extends BaseComponent implements OnInit {
     });
     this.cartService.cartTotal$.subscribe((total) => {
       this.total = total;
+    });
+    this.loadDeliveryData();
+  }
+
+  loadDeliveryData(): void {
+    let deliveryZoneFilter = new DeliveryZoneFilter();
+    deliveryZoneFilter.pageSize = 0;
+    let deliveryTimeSlotFilter = new DeliveryTimeSlotFilter();
+    deliveryTimeSlotFilter.pageSize = 0;
+    this.deliveryZoneService.getAll(deliveryZoneFilter).subscribe({
+      next: (res) => {
+        this.deliveryZones = res.items ?? [];
+      },
+    });
+    this.deliveryTimeSlotService.getAll(deliveryTimeSlotFilter).subscribe({
+      next: (res) => {
+        this.deliveryTimeSlots = res.items ?? [];
+      },
     });
   }
 

@@ -391,3 +391,10 @@ $form-radius: 10px;
 .mat-mdc-dialog-surface {
   border-radius: 0 !important;
 }
+
+.timepicker-backdrop-overlay,
+.timepicker-overlay,
+.timepicker {
+  z-index: 1001 !important;
+}
+ 

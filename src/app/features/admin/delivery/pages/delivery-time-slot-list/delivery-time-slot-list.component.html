@@ -1,0 +1,53 @@
+<search-page
+  [(pagedResult)]="dataEntity"
+  [searchTrigger]="$searchTrigger"
+  [filter]="filter"
+  (resetBase)="reset()"
+  (searchBase)="search()"
+  (onResetSearch)="onResetSearch()"
+>
+  <page-header
+    [title]="'delivery.delivery-time-slot-list' | translate"
+    [label]="'product-collection.manage-collections' | translate"
+    [icon]="'category'"
+  >
+    <header-actions>
+      <button
+        class="btn btn-icon"
+        (click)="manageZone(undefined)"
+        title="{{ 'add' | translate }}"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </header-actions>
+  </page-header>
+
+  <grid-result-body [allowExpand]="false">
+    <grid-column label="general.fromTime" field="fromTime">
+      <ng-template let-data>
+        {{ data.fromTime | timeFormat }}
+      </ng-template>
+    </grid-column>
+    <grid-column label="general.toTime" field="toTime">
+      <ng-template let-data>
+        {{ data.toTime | timeFormat }}
+      </ng-template>
+    </grid-column>
+    <grid-column label="product-collection.actions" field="actions">
+      <ng-template let-data>
+        <div class="action-cell">
+          <ui-button
+            icon="edit"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            (click)="manageZone(data.id)"
+            tooltip="{{ 'general.edit' | translate }}"
+          >
+          </ui-button>
+        </div>
+      </ng-template>
+    </grid-column>
+  </grid-result-body>
+</search-page>

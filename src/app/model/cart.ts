@@ -28,6 +28,7 @@ export class CartResult extends ModelBase {
   sameSenderRecipientInfo: boolean = false;
   deliveryDate?: Date;
   delivaryTimeId?: string;
+  deliveryZoneId?: string;
   cartowner: CartOwner = new CartOwner();
   registrationWay: any = RegistrationWay;
 }
@@ -47,12 +48,13 @@ export class CartOwner {
   postalCode?: string;
   country?: string;
   email?: string;
+  deliveryZoneId?:string;
 }
 export class RecipientInfo {
   fullName?: string;
   phoneNumber?: string;
   addressLine?: string;
-  city?: string;
+  deliveryZoneId?: string;
   stateOrProvince?: string;
   postalCode?: string;
   country?: string;

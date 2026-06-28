@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServiceBase } from '@shared/services/base.service';
-import { DeliveryZone, DeliveryZoneFilter, DeliveryZoneResult } from '../models/delivery-zone';
+import { DeliveryZone, DeliveryZoneFilter, DeliveryZoneResult } from '../../model/delivery/delivery-zone';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 

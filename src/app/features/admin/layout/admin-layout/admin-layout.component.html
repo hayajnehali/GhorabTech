@@ -1,39 +1,40 @@
-
 @if (responsiveService.isMobile() && responsiveService.isNavBarOpen()) {
-<nav class="mobile-nav-overlay">
-  <div class="nav-container">
-    <ul class="nav-list">
-      <li class="nav-item">
-        <span class="nav-link">
-          <mat-icon class="menu_icon" (click)="responsiveService.navBarOpen()"
-            >close</mat-icon
-          >
-        </span>
-      </li>
-      @for (r of routesList; track $index) { @if (r.path!=''&& r.path!='**') {
-      <li class="nav-item">
-        <span class="nav-link" (click)="goToPath(r.path)">
-          <mat-icon class="menu_icon">{{r.data?.['icon']}}</mat-icon>
-          <span
-            class="link-label"
-            >{{ (r.data?.['label'] ?? "") | translate }}</span
-          >
-        </span>
-      </li>
-      } }
+  <nav class="mobile-nav-overlay">
+    <div class="nav-container">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <span class="nav-link">
+            <mat-icon class="menu_icon" (click)="responsiveService.navBarOpen()"
+              >close</mat-icon
+            >
+          </span>
+        </li>
+        @for (r of routesList; track $index) {
+          @if (r.path != "" && r.path != "**") {
+            <li class="nav-item">
+              <span class="nav-link" (click)="goToPath(r.path)">
+                <mat-icon class="menu_icon">{{ r.data?.["icon"] }}</mat-icon>
+                <span class="link-label">{{
+                  r.data?.["label"] ?? "" | translate
+                }}</span>
+              </span>
+            </li>
+          }
+        }
 
-      <li class="nav-item special-item">
-        <app-login-logout-button></app-login-logout-button>
-      </li>
-      <li class="nav-item special-item">
-        <app-language-button></app-language-button>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <li class="nav-item special-item">
+          <app-login-logout-button></app-login-logout-button>
+        </li>
+        <li class="nav-item special-item">
+          <app-language-button></app-language-button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 }
 <mat-sidenav-container autosize>
-  <mat-sidenav class="admin-mat-sidenav"
+  <mat-sidenav
+    class="admin-mat-sidenav"
     [ngClass]="!isCollapsed ? '' : 'expanded'"
     [mode]="responsiveService.isMobile() ? 'over' : 'side'"
     [opened]="responsiveService.isMobile() ? 'false' : 'true'"
@@ -44,19 +45,21 @@
           <mat-icon>menu</mat-icon>
         </span>
       </a>
-      @for (r of routesList; track $index) { @if
-      (r.data?.['showInSidebar']??false) {
-      <a mat-list-item [routerLink]="[r.path]">
-        <span class="entry">
-          <mat-icon class="menu-icon">{{r.data?.['icon']}}</mat-icon>
-          @if(!isCollapsed){
-          <span>{{ (r.data?.['label'] ?? "") | translate }}</span>
-          }
-        </span> </a
-      >} }
+      @for (r of routesList; track $index) {
+        @if (r.data?.["showInSidebar"] ?? false) {
+          <a mat-list-item [routerLink]="[r.path]">
+            <span class="entry">
+              <mat-icon class="menu-icon">{{ r.data?.["icon"] }}</mat-icon>
+              @if (!isCollapsed) {
+                <span>{{ r.data?.["label"] ?? "" | translate }}</span>
+              }
+            </span>
+          </a>
+        }
+      }
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content  style="min-height: 70vh;">
+  <mat-sidenav-content style="min-height: 70vh">
     <app-admin-header-section></app-admin-header-section>
     <div class="container">
       <router-outlet></router-outlet>

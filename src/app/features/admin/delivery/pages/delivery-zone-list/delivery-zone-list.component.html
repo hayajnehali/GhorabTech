@@ -7,26 +7,33 @@
   (onResetSearch)="onResetSearch()"
 >
   <page-header
-    [title]="'delivery-zone.delivery-zone-list' | translate"
+    [title]="'delivery.delivery-zone-list' | translate"
     [label]="'product-collection.manage-collections' | translate"
     [icon]="'category'"
   >
     <header-actions>
-      <ui-button
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [routerLink]="['delivery-time-slot-list']"
+      >
+        {{ "delivery.delivery-time-slot-list" | translate }}
+      </button>
+      <button
+        class="btn btn-icon"
         (click)="toggleFilter()"
-        variant="secondary"
-        icon="filter_list"
         tooltip="product-collection.filter"
-        iconOnly
-        [class.active]="filterVisible()"
-      />
-      <ui-button
+      >
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <button
+        class="btn btn-icon"
         (click)="manageZone(undefined)"
-        variant="primary"
         icon="add"
-        iconOnly
         tooltip="product-collection.add-new-collection"
-      />
+      >
+        <mat-icon>add</mat-icon>
+      </button>
     </header-actions>
   </page-header>
 
@@ -61,12 +68,9 @@
   }
 
   <grid-result-body [allowExpand]="false">
+    <grid-column label="general.name" field="name.local"></grid-column>
     <grid-column
-      label="general.name"
-      field="name.local"
-    ></grid-column>
-    <grid-column
-      label="delivery-zone.base-delivery-cost"
+      label="delivery.base-delivery-cost"
       field="baseDeliveryCost"
     ></grid-column>
     <grid-column label="product-collection.actions" field="actions">

@@ -139,7 +139,9 @@
     "autoFilled": "Account verified - Automatic filling",
     "activate": "Activate",
     "deactivate": "Deactivate",
-    "confirm-delete": "Are you sure you want to delete this item?"
+    "confirm-delete": "Are you sure you want to delete this item?",
+    "fromTime": "From Time",
+    "toTime": "To Time"
   },
   "validation": {
     "required": "This field is required",
@@ -254,6 +256,8 @@
     "same-sender-recipient-info": "Same Sender and Recipient Information",
     "transactions-secure-encrypted": "All transactions are secure and encrypted.",
     "delivery-date": "Delivery date",
+    "delivery-area": "Delivery Area",
+    "select-delivery-area": "Select delivery area",
     "delivery-time": "Delivery time",
     "select-time-placeholder": "Select a suitable time",
     "time-morning": "Morning period",
@@ -399,11 +403,16 @@
     "filter": "Filter",
     "search-by-name-code-description": "Search by name, code, or description..."
   },
-  "delivery-zone": {
+  "delivery": {
+    "delivery": "Delivery",
     "delivery-zone-list": "Delivery Zone List",
     "base-delivery-cost": "Base Delivery Cost",
     "edit-delivery-zone": "Edit Delivery Zone",
     "add-delivery-zone": "Add Delivery Zone",
-    "field-manage-deliver-zone": "Please fill in the fields below to accurately manage the delivery zone."
+    "field-manage-deliver-zone": "Please fill in the fields below to accurately manage the delivery zone.",
+    "delivery-time-slot-list": "delivery-schedule-list",
+    "add-delivery-time-slot": "Add Delivery Time Slot",
+    "edit-delivery-time-slot": "Edit Delivery Time Slot",
+    "field-manage-delivery-time-slot": "Please fill in the fields below to accurately manage the delivery time slot."
   }
 }

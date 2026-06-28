@@ -113,15 +113,23 @@
                 disabled
               />
             </div>
-            <!-- City -->
+            <!-- Delivery Area -->
             <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                name="cartownerCity"
-                placeholder="{{ 'general.city' | translate }}"
+              <select
+                class="form-select"
+                name="cartownerDeliveryZoneId"
+                [(ngModel)]="cart.cartowner.deliveryZoneId"
+                #cartownerDeliveryZoneId="ngModel"
+                required
                 disabled
-              />
+              >
+                <option value="">
+                  {{ "cart.select-delivery-area" | translate }}
+                </option>
+                @for (zone of deliveryZones; track zone.id) {
+                  <option [value]="zone.id">{{ zone.name.local }}</option>
+                }
+              </select>
             </div>
             <!-- Address Line -->
             <div class="mb-3">
@@ -177,18 +185,28 @@
               />
               <app-form-error [control]="cartownerPhoneNumber"></app-form-error>
             </div>
-            <!-- City -->
+            <!-- Delivery Area -->
             <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                name="cartownerCity"
-                placeholder="{{ 'general.city' | translate }}"
-                [(ngModel)]="cart.cartowner.city"
-                #cartownerCity="ngModel"
+              <label class="form-label">
+                {{ "cart.delivery-area" | translate }} *
+              </label>
+              <select
+                class="form-select"
+                name="cartownerDeliveryZoneId"
+                [(ngModel)]="cart.cartowner.deliveryZoneId"
+                #cartownerDeliveryZoneId="ngModel"
                 required
-              />
-              <app-form-error [control]="cartownerCity"></app-form-error>
+              >
+                <option value="">
+                  {{ "cart.select-delivery-area" | translate }}
+                </option>
+                @for (zone of deliveryZones; track zone.id) {
+                  <option [value]="zone.id">{{ zone.name.local }}</option>
+                }
+              </select>
+              <app-form-error
+                [control]="cartownerDeliveryZoneId"
+              ></app-form-error>
             </div>
             <!-- Address Line -->
             <div class="mb-3">
@@ -255,18 +273,28 @@
               />
               <app-form-error [control]="phoneNumber"></app-form-error>
             </div>
-            <!-- City -->
+            <!-- Delivery Area -->
             <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                name="recipientInfoCity"
-                placeholder="{{ 'general.city' | translate }}"
-                [(ngModel)]="cart.recipientInfo.city"
-                #recipientInfoCity="ngModel"
+              <label class="form-label">
+                {{ "cart.delivery-area" | translate }} *
+              </label>
+              <select
+                class="form-select"
+                name="recipientDeliveryZoneId"
+                [(ngModel)]="cart.recipientInfo.deliveryZoneId"
+                #recipientDeliveryZoneId="ngModel"
                 required
-              />
-              <app-form-error [control]="recipientInfoCity"></app-form-error>
+              >
+                <option value="">
+                  {{ "cart.select-delivery-area" | translate }}
+                </option>
+                @for (zone of deliveryZones; track zone.id) {
+                  <option [value]="zone.id">{{ zone.name.local }}</option>
+                }
+              </select>
+              <app-form-error
+                [control]="recipientDeliveryZoneId"
+              ></app-form-error>
             </div>
             <!-- Address Line -->
             <div class="mb-3">
@@ -452,8 +480,11 @@
                   #deliveryTime="ngModel"
                   required
                 >
-                  @for (item of delivaryTimes; track $index) {
-                    <option [value]="item.id">{{ item.time }}</option>
+                  @for (slot of deliveryTimeSlots; track slot.id) {
+                    <option [value]="slot.id">
+                      {{ slot.fromTime! | timeFormat }} 
+                      {{ slot.toTime! | timeFormat }}
+                    </option>
                   }
                 </select>
                 <app-form-error [control]="deliveryTime"></app-form-error>

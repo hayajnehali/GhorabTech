@@ -1,0 +1,19 @@
+  <!-- <mat-label>{{ label() }}</mat-label> -->
+
+  <input
+    matInput
+    #timeInput
+    [ngxTimepicker]="timepicker"
+    [format]="12"
+    [disabled]="isDisabled()"
+    [placeholder]="placeholder()"
+  />
+<!-- 
+  <mat-icon matSuffix class="time-icon">schedule</mat-icon> -->
+
+  <ngx-material-timepicker
+    #timepicker
+    [format]="12" 
+    (timeSet)="onTimeSet($event)"
+  ></ngx-material-timepicker>
+ 
