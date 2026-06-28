@@ -3,28 +3,22 @@
 .auth-wrapper {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem; // يصنع مسافة ذكية وثابتة بين الأيقونة والنص تلقائياً في الاتجاهين
+  gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: $fm-nunito;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-  // جعل العنصر يبدو تفاعلياً عند التحويم بالكامل
   &:hover {
-    background-color: rgba(
-      10,
-      25,
-      47,
-      0.05
-    ); // خلفية خفيفة جداً من اللون الرئيسي للموقع
+    background-color: rgba(10, 25, 47, 0.05);
 
     .auth-link {
-      color: $primary-color !important; // يضيء الرابط باللون الأساسي
+      color: $primary-color !important;
     }
 
     .menu_icon {
-      color: $primary-color; // تضيء الأيقونة أيضاً
-      transform: scale(1.05); // تأثير حركي خفيف للأيقونة
+      color: $primary-color;
+      transform: scale(1.08);
     }
   }
 
@@ -37,8 +31,8 @@
       font-size: 22px;
       width: 22px;
       height: 22px;
-      color: $third-color; // اللون الافتراضي الهادئ للأيقونة قبل التحويم
-      transition: all 0.25s ease;
+      color: $third-color;
+      transition: all 0.3s ease;
     }
   }
 
@@ -47,15 +41,32 @@
     align-items: center;
 
     .auth-link {
-      color: $heading-color-2; // استخدام لون نصوص العناوين الفرعية الفخم الخاص بك
+      color: $heading-color-2;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: color 0.25s ease;
-
-      // لضمان عدم التفاف النص إلى سطرين في الشاشات الصغيرة
+      transition: color 0.3s ease;
       white-space: nowrap;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        inset-inline-start: 0;
+        width: 0;
+        height: 2px;
+        background: $primary-color;
+        border-radius: 2px;
+        transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+    }
+  }
+
+  &:hover {
+    .auth-link::after {
+      width: 100%;
     }
   }
 }

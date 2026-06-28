@@ -1,13 +1,9 @@
 /*---------------------
   Footer
 -----------------------*/
-@use 'variable' as *;
-  $footer-bg: #0a192f; // لون كحلي غامق جداً متناسق مع الـ Sidenav
-$text-muted: #8892b0;
-$accent-color: $third-color; // اللون الذهبي أو المميز لديك
-
+@use 'variable' as *;  
 .site-footer {
-  background-color: $footer-bg;
+  background: linear-gradient(135deg, #0a192f 0%, rgb(2.8421052632, 7.1052631579, 13.3578947368) 100%);
   padding: 30px 0;
   color: $white-color;
   border-top: 1px solid rgba($white-color, 0.05);
@@ -35,7 +31,7 @@ $accent-color: $third-color; // اللون الذهبي أو المميز لدي
     justify-content: flex-start;
     .lang-link {
       cursor: pointer;
-      color: $text-muted;
+      color: $third-color;
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.3s ease;
@@ -58,7 +54,7 @@ $accent-color: $third-color; // اللون الذهبي أو المميز لدي
     p {
       margin: 0;
       font-size: 0.9rem;
-      color: $text-muted;
+      color: $third-color;
     }
   }
 

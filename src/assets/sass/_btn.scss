@@ -113,14 +113,15 @@ a,
   }
 
   &:hover {
-    color: $primary-color;
+    // color: $primary-color;
     // background-color: rgba($third-color, 0.05);
-    border-radius: 4px;
+    // border-radius: 4px;
 
-    &::after {
-      width: 100%;
-    }
+    // &::after {
+    //   width: 100%;
+    // }
   }
+
 
   &:active {
     transform: scale(0.95); // تأثير الضغط
