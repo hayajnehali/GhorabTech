@@ -28,6 +28,7 @@ import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component'
 import { SearchComponent } from "./user-shared-section/search/search.component";
 import { CartItemListComponent } from './cart/cart-item-list/cart-item-list.component'; 
 import { NoDataComponent } from '@shared/component/no-data/no-data.component';
+import { TimeFormatPipe } from "../../shared/pipe/time-format.pipe";
 register();
 
 @NgModule({
@@ -60,7 +61,8 @@ register();
     NavbarComponent,
     FormErrorComponent,
     SearchComponent,
-    NoDataComponent
+    NoDataComponent,
+    TimeFormatPipe
 ],
   providers: [ServiceBase, ProductService],
 })

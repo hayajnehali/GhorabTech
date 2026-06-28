@@ -141,7 +141,9 @@
     "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً",
     "activate": "تفعيل",
     "deactivate": "إلغاء التفعيل",
-    "confirm-delete": "هل أنت متأكد من حذف هذا العنصر؟"
+    "confirm-delete": "هل أنت متأكد من حذف هذا العنصر؟",
+    "fromTime": "من وقت",
+    "toTime": "الي وقت"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -258,6 +260,8 @@
     "choose-delivery-date": "اختر تاريخ التسليم",
     "delivery-information": "معلومات التوصيل",
     "delivery-date": "تاريخ التوصيل",
+    "delivery-area": "منطقة التوصيل",
+    "select-delivery-area": "اختر منطقة التوصيل",
     "delivery-time": "وقت التوصيل",
     "select-time-placeholder": "اختر الوقت المناسب لك",
     "time-morning": "الفترة الصباحية",
@@ -402,11 +406,16 @@
     "filter": "فلتر",
     "search-by-name-code-description": "ابحث بالاسم، أو الرمز، أو الوصف..."
   },
-  "delivery-zone": {
-     "delivery-zone-list": "قائمة مناطق التوصيل",
+  "delivery": {
+    "delivery": "توصيل",
+    "delivery-zone-list": "قائمة مناطق التوصيل",
     "base-delivery-cost": "تكلفة التوصيل الأساسية",
     "edit-delivery-zone": "تعديل منطقة التوصيل",
     "add-delivery-zone": "إضافة منطقة توصيل جديدة",
-    "field-manage-deliver-zone": "يرجى تعبئة الحقول أدناه لإدارة منطقة التوصيل بدقة."
+    "field-manage-deliver-zone": "يرجى تعبئة الحقول أدناه لإدارة منطقة التوصيل بدقة.",
+    "delivery-time-slot-list": "قائمة مواعيد التسليم",
+    "add-delivery-time-slot": "إضافة موعد تسليم",
+    "edit-delivery-time-slot": "تعديل موعد تسليم",
+    "field-manage-delivery-time-slot": "يرجى تعبئة الحقول أدناه لإدارة موعد التسليم بدقة."
   }
 }

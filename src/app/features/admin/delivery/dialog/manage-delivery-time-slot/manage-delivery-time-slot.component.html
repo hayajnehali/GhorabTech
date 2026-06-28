@@ -1,0 +1,89 @@
+<div class="admin-form-container">
+  <div class="form-header">
+    <div class="header-title">
+      <h1>
+        @if (isAdd) {
+          {{ "delivery.add-delivery-time-slot" | translate }}
+        } @else {
+          {{ "delivery.edit-delivery-time-slot" | translate }}
+        }
+      </h1>
+      <p>{{ "delivery.field-manage-delivery-time-slot" | translate }}</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form (ngSubmit)="save(deliveryZone)" #deliveryZone="ngForm">
+      <div class="form-grid">
+        <div
+          class="form-group"
+          [class.has-error]="fromTimeInput.invalid && fromTimeInput.touched"
+        >
+          <label for="fromTime">
+            {{ "general.fromTime" | translate }} <span class="required">*</span>
+          </label>
+
+          <div class="input-wrapper">
+            <app-time
+              id="fromTime"
+              required
+              name="fromTime"
+              #fromTimeInput="ngModel"
+              [(ngModel)]="entity.fromTime"
+            ></app-time>
+          </div>
+        </div>
+        <div
+          class="form-group"
+          [class.has-error]="toTimeInput.invalid && toTimeInput.touched"
+        >
+          <label for="toTime">
+            {{ "general.toTime" | translate }} <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <app-time
+              id="toTimeInput"
+              required
+              name="toTime"
+              #toTimeInput="ngModel"
+              [(ngModel)]="entity.toTime"
+            ></app-time>
+          </div>
+        </div>
+      </div>
+      <div
+        class="form-group full-width mt-3"
+        [class.has-error]="costInput.invalid && costInput.touched"
+      >
+        <label for="base-delivery-cost">
+          {{ "delivery.base-delivery-cost" | translate }}
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper cost-input">
+          <input
+            type="number"
+            id="base-delivery-cost"
+            required
+            name="base-delivery-cost"
+            #costInput="ngModel"
+            [(ngModel)]="entity.extraFee"
+            placeholder="0.00"
+          />
+          <span class="currency-badge">JOD</span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" (click)="close()" class="btn btn--secondary">
+          {{ "general.cancel" | translate }}
+        </button>
+        <button
+          type="submit"
+          class="btn btn--primary"
+          [disabled]="deliveryZone.invalid"
+        >
+          {{ "general.save" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

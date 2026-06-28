@@ -11,5 +11,6 @@ export const enum apiName {
   slider = 'slider',
   Comment = 'comment',
   DeliveryZone = 'deliveryZone',
-  ProductCollection="ProductCollection"
+  ProductCollection="ProductCollection",
+  DeliveryTimeSlot="DeliveryTimeSlot"
 }

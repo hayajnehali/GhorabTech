@@ -3,12 +3,12 @@
     <div class="header-title">
       <h1>
         @if(isAdd){
-          {{ "delivery-zone.add-delivery-zone" | translate }}
+          {{ "delivery.add-delivery-zone" | translate }}
         }@else {
-          {{ "delivery-zone.edit-delivery-zone" | translate }}
+          {{ "delivery.edit-delivery-zone" | translate }}
         }
       </h1>
-      <p>{{"delivery-zone.field-manage-deliver-zone" | translate}}</p>
+      <p>{{"delivery.field-manage-deliver-zone" | translate}}</p>
     </div>
   </div>
 
@@ -53,7 +53,7 @@
 
         <div class="form-group full-width" [class.has-error]="costInput.invalid && costInput.touched">
           <label for="base-delivery-cost">
-            {{ "delivery-zone.base-delivery-cost" | translate }} <span class="required">*</span>
+            {{ "delivery.base-delivery-cost" | translate }} <span class="required">*</span>
           </label>
           <div class="input-wrapper cost-input">
             <input

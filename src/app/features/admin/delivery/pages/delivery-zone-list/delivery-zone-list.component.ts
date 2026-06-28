@@ -3,8 +3,8 @@ import {
   DeliveryZone,
   DeliveryZoneFilter,
   DeliveryZoneResult,
-} from '../../models/delivery-zone';
-import { DeliveryZoneService } from '../../services/delivery-zone.service';
+} from '../../../../../model/delivery/delivery-zone';
+import { DeliveryZoneService } from '../../../../../shared/services/delivery-zone.service';
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,12 +12,12 @@ import { PagedResult } from '@models/results/search-filter';
 import { MatDialog } from '@angular/material/dialog';
 import { ManageDeliveryZoneComponent } from '../../dialog/manage-delivery-zone/manage-delivery-zone.component';
 @Component({
-  selector: 'app-delivery-manage',
+  selector: 'app-delivery-zone-list',
   standalone: false,
-  templateUrl: './delivery-manage.component.html',
-  styleUrl: './delivery-manage.component.scss',
+  templateUrl: './delivery-zone-list.component.html',
+  styleUrl: './delivery-zone-list.component.scss',
 })
-export class DeliveryManageComponent extends BaseListComponent<
+export class DeliveryZoneListComponent extends BaseListComponent<
   DeliveryZone,
   DeliveryZoneResult,
   DeliveryZoneFilter

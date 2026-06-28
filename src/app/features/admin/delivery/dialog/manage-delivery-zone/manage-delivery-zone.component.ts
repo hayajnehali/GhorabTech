@@ -4,8 +4,8 @@ import {
   DeliveryZone,
   DeliveryZoneFilter,
   DeliveryZoneResult,
-} from '../../models/delivery-zone';
-import { DeliveryZoneService } from '../../services/delivery-zone.service';
+} from '../../../../../model/delivery/delivery-zone';
+import { DeliveryZoneService } from '../../../../../shared/services/delivery-zone.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
