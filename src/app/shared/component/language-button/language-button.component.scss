@@ -3,24 +3,23 @@
 .auth-wrapper.language-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem; // توزيع مسافة ثابتة ومرنة بين أيقونة الكرة الأرضية والنص تلقائياً في الاتجاهين
+  gap: 0.4rem;
   padding: 0.4rem 0.75rem;
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: $fm-nunito;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
-  
-  // تأثير التحويم الفخم الموحد للموقع
+
   &:hover {
-    background-color: rgba(10, 25, 47, 0.05); // خلفية خفيفة جداً من لون موقعك الكحلي
-    
+    background-color: rgba(10, 25, 47, 0.05);
+
     .auth-link {
-      color: $primary-color !important; // يضيء النص باللون الأساسي
+      color: $primary-color !important;
     }
-    
+
     .menu-icon {
-      color: $primary-color; // تضيء الأيقونة أيضاً
-      transform: rotate(15deg) scale(1.05); // تأثير حركي مميز (دوران خفيف للأيقونة عند التحويم)
+      color: $primary-color;
+      transform: rotate(15deg) scale(1.08);
     }
   }
 
@@ -28,33 +27,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .menu-icon {
       font-size: 20px;
       width: 20px;
       height: 20px;
-      color: $third-color; // اللون الافتراضي الممرر من متغيراتك
-      transition: all 0.25s ease-in-out;
+      color: $third-color;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
   }
 
   .link-container {
     display: flex;
     align-items: center;
-    
+
     .auth-link {
-      color: $heading-color-2; // لون نصوص العناوين الفرعية الفخم الخاص بك
+      color: $heading-color-2;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: color 0.25s ease;
-      white-space: nowrap; // يمنع النص من الانقسام أو الالتفاف
-      
-      // تطبيق خط "Unna" الفاخر إذا كانت الكلمة المعروضة هي "عربي" لمظهر أكثر جمالاً
+      transition: color 0.3s ease;
+      white-space: nowrap;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        inset-inline-start: 0;
+        width: 0;
+        height: 2px;
+        background: $primary-color;
+        border-radius: 2px;
+        transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
       &:lang(ar) {
         font-family: $fm-unna;
         font-size: 1.05rem;
       }
+    }
+  }
+
+  &:hover {
+    .auth-link::after {
+      width: 100%;
     }
   }
 }

@@ -1,10 +1,18 @@
-$primary-color: #0a192f;
+@use "mixins" as m;
+@use "sass:color";
+$primary-color: #0a192f; 
+$primary-gradient: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    color.adjust( rgb(2.8421052632, 7.1052631579, 13.3578947368), $lightness: -8%) 100%
+  );
+ 
 $secondary-color: #888888;
 $third-color: #68719a;
 $white-color: #ffffff;
 $background-2: #f2f2f2;
 $heading-color: #111111;
-$para-color: #5C5C5C;
+$para-color: #5c5c5c;
 $black-color: #000000;
 $heading-color-2: #323232;
 $normal-color: #1c1c1c;
@@ -14,12 +22,12 @@ $border-1: #e1e1e1;
 $accent-gold: #d4af37; // لون ذهبي خافت للأسعار
 $gradient-bg: linear-gradient(135deg, $white-color 0%, #f0f2f5 100%);
 
-$fm-unna: 'Unna', serif;
-$fm-nunito: 'Nunito Sans', sans-serif;
+$fm-unna: "Unna", serif;
+$fm-nunito: "Nunito Sans", sans-serif;
 $hover-scale: 1.05;
-$line-color: #ddd; 
+$line-color: #ddd;
 
-$success-color:   #10b981; // Emerald Green
-$danger-color:    #ef4444; // Rose Red
-$warning-color:   #f59e0b; // Amber Orange
-$info-color:      #06b6d4; // Cyan Blue
+$success-color: #10b981; // Emerald Green
+$danger-color: #ef4444; // Rose Red
+$warning-color: #f59e0b; // Amber Orange
+$info-color: #06b6d4; // Cyan Blue
