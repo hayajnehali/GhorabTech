@@ -406,7 +406,7 @@
                   {{ "general.delivery" | translate }}
                 </td>
                 <td class="product__cart__item">
-                  {{ "general.JOD" | translate }}
+                  {{ this.deliveryCost }} {{ "general.JOD" | translate }}
                 </td>
               </tr>
               <tr>
@@ -414,7 +414,7 @@
                   {{ "general.total-final" | translate }}
                 </td>
                 <td class="product__cart__item">
-                  {{ this.total + 2 }} {{ "general.JOD" | translate }}
+                  {{ this.total + this.deliveryCost }} {{ "general.JOD" | translate }}
                 </td>
               </tr>
             </tbody>
