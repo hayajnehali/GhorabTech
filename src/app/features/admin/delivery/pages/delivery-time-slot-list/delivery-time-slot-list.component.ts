@@ -1,7 +1,5 @@
 import { Component, inject, signal } from '@angular/core'; 
-import { BaseListComponent } from '@core/base/base-ilst-component';
-import { Subject } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { BaseListComponent } from '@core/base/base-ilst-component'; 
 import { PagedResult } from '@models/results/search-filter';
 import { MatDialog } from '@angular/material/dialog'; 
 import { DeliveryTimeSlot, DeliveryTimeSlotFilter, DeliveryTimeSlotResult } from '@models/delivery/delivery-time-slot';
@@ -19,8 +17,7 @@ export class DeliveryTimeSlotListComponent extends BaseListComponent<
   DeliveryTimeSlotResult,
   DeliveryTimeSlotFilter
 > {
-  dialog = inject(MatDialog); 
-  filterForm: FormGroup;
+  dialog = inject(MatDialog);  
   pagedResult = new PagedResult<DeliveryTimeSlotResult>();  
   constructor(private deliveryZoneService: DeliveryTimeSlotService) {
     super(deliveryZoneService, DeliveryTimeSlotFilter);

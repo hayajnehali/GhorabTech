@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FilterBase } from '@models/filter-base';
 import { OrderByEnum } from '@shared/Enum/order-by-enum';
 import { PagedResult } from '@models/results/search-filter';
-import { FormBuilder } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Directive()
 export abstract class BaseListComponent<
@@ -25,7 +25,7 @@ export abstract class BaseListComponent<
   dataEntity: PagedResult<TResult>;
   readonly fields: any;
   filterVisible = signal(true);
-  protected fb = inject(FormBuilder);
+  @ViewChild('myForm') myForm!: NgForm;
 
   constructor(
     protected service: ServiceBase<TData, TResult, Filter>,
@@ -78,6 +78,10 @@ export abstract class BaseListComponent<
   }
 
   search() {
+    if (this.myForm.invalid) {
+      this.myForm.control.markAllAsTouched();
+      return;
+    }
     this.loadData();
   }
   reset() {

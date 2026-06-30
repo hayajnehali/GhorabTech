@@ -1,12 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { PagedResult } from '@models/results/search-filter';
+import { Component, inject } from '@angular/core'; 
 import {
   ProductCollectionFilter,
   ProductCollectionRequest,
   ProductCollectionResponse,
-} from '../../models/product-collection.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
+} from '../../models/product-collection.model'; 
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { ProductCollectionService } from '../../services/product-collection.service';
 
