@@ -17,13 +17,9 @@ import {
 } from '../grid-result/grid-result.component';
 import { GridResultBodyComponent } from './components/grid-result-body.component';
 import { FormGroup } from '@angular/forms';
-import { finalize, Subject, switchMap } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { environment } from '@shared/environment/environment';
-import { PagedResult, SearchFilter } from '@models/results/search-filter';
-import { ButtonComponent } from '../ui/button/button/button.component';
+import { PagedResult } from '@models/results/search-filter';
 import { FilterBase } from '@models/filter-base';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-base-page',
@@ -47,25 +43,21 @@ export abstract class BaseGridPageComponent {
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
   standalone: true,
-  imports: [GridResultComponent, ButtonComponent],
+  imports: [GridResultComponent, TranslateModule],
 })
 export class SearchPageComponent<T extends FilterBase>
   extends BaseGridPageComponent
   implements OnInit, OnDestroy
 {
-  // url = input.required<string>();
-  searchTrigger = input.required<Subject<void>>();
   pagedResult = model<PagedResult<any>>(new PagedResult<any>());
   totalRecords = computed(() => this.pagedResult()?.totalCount || 0);
   items = computed(() => this.pagedResult()?.items || []);
   public isLoading = signal<boolean>(false);
   public selectedItems = signal<T[]>([]);
   filter = input.required<T>();
-//   onResetSearch = output<void>();
   searchBase = output<void>();
   resetBase = output<void>();
-
-  protected http = inject(HttpClient);
+  searchForm = input<FormGroup>();
   protected destroyRef = inject(DestroyRef);
   constructor() {
     super();
@@ -76,7 +68,13 @@ export class SearchPageComponent<T extends FilterBase>
   ngOnDestroy() {}
 
   search() {
-      this.searchBase.emit();
+    const form = this.searchForm();
+    if (form?.invalid) {
+      form.markAllAsTouched();
+      return;
+    }
+
+    this.searchBase.emit();
   }
 
   loadData(event: LazyLoadEvent) {
@@ -86,7 +84,7 @@ export class SearchPageComponent<T extends FilterBase>
     this.search();
   }
 
-  reset() { 
+  reset() {
     this.resetBase.emit();
   }
 }

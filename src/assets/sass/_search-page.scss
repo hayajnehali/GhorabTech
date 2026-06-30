@@ -1,12 +1,16 @@
+@use "variable" as *;
+@use "sass:color";
+
+// ===== زر تبديل الفلتر =====
 .btn-filter-toggle {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border: 1px solid #dee2e6;
+  border: 1px solid $gray-300;
   border-radius: 8px;
-  background: #fff;
-  color: #6c757d;
+  background: $white-color;
+  color: $gray-600;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -17,26 +21,27 @@
   }
 
   &:hover {
-    border-color: #0d6efd;
-    color: #0d6efd;
-    background: rgba(13, 110, 253, 0.04);
+    border-color: $primary-color;
+    color: $primary-color;
+    background: rgba($primary-color, 0.04);
   }
 
   &.active {
-    border-color: #0d6efd;
-    color: #fff;
-    background: #0d6efd;
+    border-color: $primary-color;
+    color: $white-color;
+    background: $primary-color;
 
     &:hover {
-      background: #0b5ed7;
+      background: color.adjust($primary-color, $lightness: -4%);
     }
   }
 }
 
+// ===== لوحة الفلتر =====
 .filter-panel {
   padding: 20px 24px;
-  border-bottom: 1px solid #f0f0f0;
-  background: #fafbfc;
+  border-bottom: 1px solid $gray-200;
+  background: $bg-light-blue;
 }
 
 .filter-row {
@@ -55,7 +60,7 @@
     margin-bottom: 6px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #495057;
+    color: $gray-700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -71,30 +76,31 @@
   position: absolute;
   left: 12px;
   font-size: 18px;
-  color: #adb5bd;
+  color: $gray-500;
   pointer-events: none;
 }
 
 .filter-input {
-  padding-left: 38px !important;
+  padding-left: 38px;
   height: 40px;
-  border: 1px solid #dee2e6;
+  border: 1px solid $gray-300;
   border-radius: 8px;
   font-size: 0.875rem;
-  background: #fff;
+  background: $white-color;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
   }
 
   &::placeholder {
-    color: #adb5bd;
+    color: $gray-500;
     font-size: 0.825rem;
   }
 }
 
+// ===== شارة عدد المنتجات =====
 .badge-products {
   display: inline-flex;
   align-items: center;
@@ -105,46 +111,142 @@
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 999px;
-  background-color: rgba(13, 110, 253, 0.1);
-  color: #0d6efd;
+  background-color: rgba($primary-color, 0.1);
+  color: $primary-color;
 }
 
+// ===== شارة الحالة الأساسية =====
 .status-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 3px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 999px;
-  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: default;
 
-  &.status-active {
-    background-color: rgba(25, 135, 84, 0.1);
-    color: #198754;
+  .status-badge__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
   }
 
-  &.status-inactive {
-    background-color: rgba(108, 117, 125, 0.1);
-    color: #6c757d;
-  }
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: inline-block;
-
-  .status-active & {
-    background-color: #198754;
-  }
-
-  .status-inactive & {
-    background-color: #6c757d;
+  &:hover .status-badge__dot {
+    transform: scale(1.4);
   }
 }
 
+// ===== أوضاع شارة الحالة =====
+
+// مسودة
+.status-badge--draft {
+  background-color: rgba($gray-600, 0.12);
+  color: $gray-600;
+  .status-badge__dot { background-color: $gray-600; }
+}
+
+// قيد الانتظار
+.status-badge--pending {
+  background-color: rgba($warning-color, 0.12);
+  color: $amber-dark;
+  .status-badge__dot { background-color: $warning-color; }
+}
+
+// يتطلب إجراء
+.status-badge--requires-action {
+  background-color: rgba($orange-dark, 0.12);
+  color: $orange-darker;
+  .status-badge__dot { background-color: $orange-dark; }
+}
+
+// قيد المعالجة
+.status-badge--processing {
+  background-color: rgba($primary-color, 0.1);
+  color: $primary-color;
+  .status-badge__dot { background-color: $primary-color; }
+}
+
+// مدفوع
+.status-badge--paid {
+  background-color: rgba($success-color, 0.12);
+  color: $success-color;
+  .status-badge__dot { background-color: $success-color; }
+}
+
+// مسترد
+.status-badge--refunded {
+  background-color: rgba($cyan, 0.12);
+  color: $cyan-text;
+  .status-badge__dot { background-color: $cyan; }
+}
+
+// فاشل
+.status-badge--failed {
+  background-color: rgba($danger-color, 0.12);
+  color: $danger-color;
+  .status-badge__dot { background-color: $danger-color; }
+}
+
+// ملغي
+.status-badge--canceled {
+  background-color: rgba($gray-900, 0.08);
+  color: $gray-700;
+  .status-badge__dot { background-color: $gray-700; }
+}
+
+// تم الشحن
+.status-badge--shipped {
+  background-color: rgba($indigo, 0.12);
+  color: $indigo-text;
+  .status-badge__dot { background-color: $indigo; }
+}
+
+// قيد النقل
+.status-badge--in-transit {
+  background-color: rgba($info-color, 0.12);
+  color: $cyan-text;
+  .status-badge__dot { background-color: $info-color; }
+}
+
+// تم التوصيل
+.status-badge--delivered {
+  background-color: rgba($success-color, 0.12);
+  color: $success-color;
+  .status-badge__dot { background-color: $success-color; }
+}
+
+// مرفوض
+.status-badge--rejected {
+  background-color: rgba($danger-color, 0.12);
+  color: $danger-color;
+  .status-badge__dot { background-color: $danger-color; }
+}
+
+// مرتجع
+.status-badge--returned {
+  background-color: rgba($purple, 0.12);
+  color: $purple-text;
+  .status-badge__dot { background-color: $purple; }
+}
+
+// فشل التوصيل
+.status-badge--delivery-failed {
+  background-color: rgba($red-dark, 0.12);
+  color: $red-dark;
+  .status-badge__dot { background-color: $red-dark; }
+}
+
+// جاهز للاستلام
+.status-badge--ready-pickup {
+  background-color: rgba($teal, 0.12);
+  color: $teal-text;
+  .status-badge__dot { background-color: $teal; }
+}
+
+// ===== أزرار الإجراءات =====
 .action-cell {
   display: flex;
   align-items: center;
@@ -169,21 +271,22 @@
   }
 
   &.btn-action-view {
-    color: #0d6efd;
-    &:hover { background-color: rgba(13, 110, 253, 0.1); }
+    color: $primary-color;
+    &:hover { background-color: rgba($primary-color, 0.1); }
   }
 
   &.btn-action-edit {
-    color: #fd7e14;
-    &:hover { background-color: rgba(253, 126, 20, 0.1); }
+    color: $orange-action;
+    &:hover { background-color: rgba($orange-action, 0.1); }
   }
 
   &.btn-action-delete {
-    color: #dc3545;
-    &:hover { background-color: rgba(220, 53, 69, 0.1); }
+    color: $danger-color;
+    &:hover { background-color: rgba($danger-color, 0.1); }
   }
 }
 
+// ===== القسم الموسع =====
 .expanded-root {
   padding: 20px 24px;
   display: flex;
@@ -199,7 +302,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #6c757d;
+  color: $gray-600;
   margin-bottom: 8px;
 
   .material-icons {
@@ -211,13 +314,13 @@
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #212529;
+  color: $gray-900;
   white-space: pre-line;
 }
 
 .expanded-divider {
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: $divider-color;
 }
 
 .expanded-meta {
@@ -232,16 +335,16 @@
   gap: 6px;
   padding: 4px 12px;
   border-radius: 6px;
-  background-color: rgba(33, 37, 41, 0.03);
+  background-color: $chip-bg;
   font-size: 0.8rem;
 }
 
 .meta-chip-label {
-  color: #6c757d;
+  color: $gray-600;
   font-weight: 500;
 }
 
 .meta-chip-value {
-  color: #212529;
+  color: $gray-900;
   font-weight: 600;
 }

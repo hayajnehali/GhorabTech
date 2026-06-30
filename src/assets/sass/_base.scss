@@ -74,7 +74,7 @@ h6 {
 }
 
 p {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-family: "Tajawal", sans-serif;
   color: $third-color;
   font-weight: 400;
@@ -396,5 +396,82 @@ $form-radius: 10px;
 .timepicker-overlay,
 .timepicker {
   z-index: 1001 !important;
+}
+
+// ============ GENERIC CELL WITH ICON ============
+.cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .cell-icon {
+    font-size: 16px;
+    color: $secondary-color;
+    flex-shrink: 0;
+  }
+
+  .cell-text {
+    font-size: 0.9rem;
+    color: #333;
+  }
+}
+
+// ============ GENERIC BADGE ============
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  background-color: rgba($primary-color, 0.06);
+  color: $primary-color;
+
+  .badge-icon {
+    font-size: 16px;
+  }
+}
+
+// ============ FILTER LAYOUT ============
+.filter-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  min-width: 200px;
+  max-width: 280px;
+  flex: 1;
+
+  &.filter-field--wide {
+    min-width: 260px;
+    max-width: 350px;
+    flex: 1.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-field--wide {
+    min-width: 100%;
+  }
+
+  .filter-field {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .filter-row {
+    flex-direction: column;
+  }
+}
+
+// ============ EXPANDED SECTION ============
+.expanded-section {
+  .meta-chip {
+    background-color: rgba($primary-color, 0.04);
+    border: 1px solid rgba($primary-color, 0.08);
+  }
 }
  

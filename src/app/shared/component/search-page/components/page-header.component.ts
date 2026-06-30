@@ -22,8 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
   `,
   styles: `
     /* Container styling */
-    .header-container {
-      padding: 1.5rem; /* px-6 py-6 */
+    .header-container { 
       border-bottom: 1px solid #f3f4f6; /* border-b border-gray-100 */
       display: flex;
       flex-direction: column;

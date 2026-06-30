@@ -33,58 +33,62 @@
   </nav>
 }
 <mat-sidenav-container autosize>
-<mat-sidenav
-  class="admin-mat-sidenav"
-  [ngClass]="{ 'collapsed': isCollapsed }"
-  [mode]="responsiveService.isMobile() ? 'over' : 'side'"
-  [opened]="!responsiveService.isMobile()"
-> 
-  <div class="sidebar-header">
-    <button mat-icon-button (click)="toggleMenu()" class="toggle-btn">
-      <mat-icon>{{ isCollapsed ? 'menu' : 'menu_open' }}</mat-icon>
-    </button>
-  </div>
+  <mat-sidenav
+    class="admin-mat-sidenav"
+    [ngClass]="{ collapsed: isCollapsed }"
+    [mode]="responsiveService.isMobile() ? 'over' : 'side'"
+    [opened]="!responsiveService.isMobile()"
+  >
+    <div class="sidebar-header">
+      <button mat-icon-button (click)="toggleMenu()" class="toggle-btn">
+        <mat-icon>{{ isCollapsed ? "menu" : "menu_open" }}</mat-icon>
+      </button>
+    </div>
 
-  <div class="sidebar-nav-list-admin-layout">
-    @for (r of routesList; track $index) {
-      @if (r.data?.["showInSidebar"] ?? false) {
-        <a
-           [routerLink]="[r.path]" 
-           routerLinkActive="active-link"
-           [routerLinkActiveOptions]="{exact: true}"
-           class="nav-item-admin-layout">
-          <div class="entry-admin-layout">
-            <mat-icon class="menu-icon-admin-layout">{{ r.data?.["icon"] }}</mat-icon>
-            @if (!isCollapsed) {
-              <span class="menu-label">{{ r.data?.["label"] ?? "" | translate }}</span>
-            }
-          </div>
-        </a>
+    <div class="sidebar-nav-list-admin-layout">
+      @for (r of routesList; track $index) {
+        @if (r.data?.["showInSidebar"] ?? false) {
+          <a
+            [routerLink]="[r.path]"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-item-admin-layout"
+          >
+            <div class="entry-admin-layout">
+              <mat-icon
+                [ngClass]="['menu-icon-admin-layout ', r.data?.['class'] || '']"
+                [fontIcon]="r.data?.['icon']"
+              ></mat-icon>
+              @if (!isCollapsed) {
+                <span class="menu-label">{{
+                  r.data?.["label"] ?? "" | translate
+                }}</span>
+              }
+            </div>
+          </a>
+        }
       }
-    }
-  </div>
-
-  <div class="sidebar-footer">
-    <div class="footer-divider"></div>
-    <div class="nav-item-admin-layout footer-btn">
-      <app-login-logout-button></app-login-logout-button>
     </div>
-    <div class="nav-item-admin-layout footer-btn">
-      <app-language-button></app-language-button>
+
+    <div class="sidebar-footer">
+      <div class="footer-divider"></div>
+      <div class="nav-item-admin-layout footer-btn">
+        <app-login-logout-button></app-login-logout-button>
+      </div>
+      <div class="nav-item-admin-layout footer-btn">
+        <app-language-button></app-language-button>
+      </div>
     </div>
-  </div>
-</mat-sidenav>
-<mat-sidenav-content class="content-wrapper">
-  <app-admin-header-section></app-admin-header-section>
+  </mat-sidenav>
+  <mat-sidenav-content class="content-wrapper">
+    <app-admin-header-section></app-admin-header-section>
 
-  <main class="page-content">
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
+    <main class="page-content">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
 
-  <app-footer></app-footer>
-</mat-sidenav-content>
-
+    <app-footer></app-footer>
+  </mat-sidenav-content>
 </mat-sidenav-container>
-

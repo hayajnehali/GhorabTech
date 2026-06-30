@@ -335,24 +335,5 @@
     }
   }
 
-  .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-
-    button {
-      border: 1px solid $third-color;
-      background: none;
-      border-radius: 6px;
-      padding: 4px 12px;
-      cursor: pointer;
-      color: $third-color;
-
-      &:last-child {
-        background-color: $primary-color;
-        color: $white-color;
-        border-color: $primary-color;
-      }
-    }
-  }
+ 
 }

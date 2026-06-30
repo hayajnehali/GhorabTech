@@ -24,8 +24,7 @@ export const routesAdmin: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     data: {
       label: 'user.users',
       icon: 'groups',
@@ -64,7 +63,7 @@ export const routesAdmin: Routes = [
     path: 'keyAttribute',
     loadChildren: () =>
       import('./key-attribute/key-attribute.module').then(
-        (m) => m.KeyAttributeModule
+        (m) => m.KeyAttributeModule,
       ),
     data: {
       label: 'keyAttribute.key-attribute',
@@ -76,26 +75,31 @@ export const routesAdmin: Routes = [
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
     data: {
-      label: 'cart.cart-list',
-      icon: 'shopping_cart',
+      label: 'cart.cart-list', 
+      icon: 'add_shopping_cart',
       showInSidebar: true,
     },
   },
   {
     path: 'product-collection',
-    loadChildren: () => import('./product-collection/product-collection.module').then((m) => m.ProductCollectionModule),
+    loadChildren: () =>
+      import('./product-collection/product-collection.module').then(
+        (m) => m.ProductCollectionModule,
+      ),
     data: {
       label: 'product-collection.product-collections',
       icon: 'shopping_cart',
       showInSidebar: true,
     },
   },
-    {
+  {
     path: 'delivery',
-    loadChildren: () => import('./delivery/delivery.module').then((m) => m.DeliveryModule),
+    loadChildren: () =>
+      import('./delivery/delivery.module').then((m) => m.DeliveryModule),
     data: {
       label: 'delivery.delivery',
-      icon: 'shopping_cart',
+      class: 'material-symbols-outlined',
+      icon: 'delivery_truck_speed',
       showInSidebar: true,
     },
   },

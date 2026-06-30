@@ -72,13 +72,13 @@
           <span class="currency-badge">JOD</span>
         </div>
       </div>
-      <div class="form-actions">
-        <button type="button" (click)="close()" class="btn btn--secondary">
+      <div class="btn-container">
+        <button type="button" (click)="close()" class="btn btn-secondary">
           {{ "general.cancel" | translate }}
         </button>
         <button
           type="submit"
-          class="btn btn--primary"
+          class="btn btn-primary"
           [disabled]="deliveryZone.invalid"
         >
           {{ "general.save" | translate }}
