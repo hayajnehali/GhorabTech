@@ -15,8 +15,7 @@ import {
   GridResultComponent,
   LazyLoadEvent,
 } from '../grid-result/grid-result.component';
-import { GridResultBodyComponent } from './components/grid-result-body.component';
-import { FormGroup } from '@angular/forms';
+import { GridResultBodyComponent } from './components/grid-result-body.component'; 
 import { PagedResult } from '@models/results/search-filter';
 import { FilterBase } from '@models/filter-base';
 import { TranslateModule } from '@ngx-translate/core';
@@ -56,8 +55,8 @@ export class SearchPageComponent<T extends FilterBase>
   public selectedItems = signal<T[]>([]);
   filter = input.required<T>();
   searchBase = output<void>();
-  resetBase = output<void>();
-  searchForm = input<FormGroup>();
+  resetBase = output<void>(); 
+
   protected destroyRef = inject(DestroyRef);
   constructor() {
     super();
@@ -67,13 +66,7 @@ export class SearchPageComponent<T extends FilterBase>
 
   ngOnDestroy() {}
 
-  search() {
-    const form = this.searchForm();
-    if (form?.invalid) {
-      form.markAllAsTouched();
-      return;
-    }
-
+  search() {  
     this.searchBase.emit();
   }
 

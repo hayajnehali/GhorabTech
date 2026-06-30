@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core'; 
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Cart, CartFilter, CartResult } from '@models/cart';
 import {
@@ -22,11 +21,7 @@ export class CartListComponent extends BaseListComponent<
 > {
   paymentStatus: string[] = [];
   orderExitStatus: string[] = [];
-  form: FormGroup = this.fb.group({
-    searchText: [null],
-    paymentStatus: [null],
-    orderExitStatus: [null],
-  });
+ 
 
   constructor(private cartService: CartService) {
     super(cartService, CartFilter);

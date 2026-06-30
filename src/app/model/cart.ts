@@ -36,6 +36,7 @@ export class CartFilter extends FilterBase {
   paymentStatus?: CartStatus;
   orderExitStatus?: OrderExitStatus;
   payWay?: PayWay;
+  email?:string
 }
 
 export class CartOwner {

@@ -2,8 +2,7 @@
   [(pagedResult)]="dataEntity"
   [filter]="filter"
   (resetBase)="reset()"
-  (searchBase)="search()"
-  [searchForm]="form"
+  (searchBase)="search()" 
 >
   <page-header
     [title]="'cart.cart-list' | translate"
@@ -33,7 +32,7 @@
   @if (filterVisible()) {
     <page-filter>
       <div class="filter-panel">
-        <form [formGroup]="form">
+        <form #myForm="ngForm">
           <div class="filter-row">
             <div class="filter-field filter-field--wide">
               <label for="searchText" class="form-label-custom">
@@ -44,9 +43,11 @@
                 <input
                   type="text"
                   id="searchText"
+                  name="searchText"
+                  [(ngModel)]="filter.email"
                   class="form-control filter-input"
                   [placeholder]="'cart.search-by-email' | translate"
-                  formControlName="searchText"
+                  #searchText="ngModel"
                 />
               </div>
             </div>
@@ -58,9 +59,11 @@
               <div class="filter-input-wrapper">
                 <span class="material-icons filter-input-icon">payment</span>
                 <mat-select
+                  
                   class="form-control filter-input filter-select"
-                  [(value)]="filter.paymentStatus"
-                  formControlName="paymentStatus"
+                  [(ngModel)]="filter.paymentStatus"
+                  #paymentStatu="ngModel"
+                  name="paymentStatu"
                   placeholder="{{ 'cart.select-status' | translate }}"
                 >
                   <mat-option [value]="null">
@@ -74,9 +77,7 @@
                   </mat-option>
                 </mat-select>
               </div>
-              <app-form-error
-                [control]="form.controls['paymentStatus']"
-              ></app-form-error>
+              <app-form-error [control]="paymentStatu"></app-form-error>
             </div>
             <div class="filter-field">
               <label for="orderExitStatus" class="form-label-custom">
@@ -88,8 +89,9 @@
                 >
                 <mat-select
                   class="form-control filter-input filter-select"
-                  [(value)]="filter.orderExitStatus"
-                  formControlName="orderExitStatus"
+                  [(ngModel)]="filter.orderExitStatus"
+                  #orderExitStatu="ngModel"
+                  name="orderExitStatus"
                   placeholder="{{ 'cart.select-status' | translate }}"
                 >
                   <mat-option [value]="null">
