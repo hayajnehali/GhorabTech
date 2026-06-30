@@ -1,4 +1,4 @@
-import { Directive, ViewChild } from '@angular/core';
+import { Directive, inject, signal, ViewChild } from '@angular/core';
 import { ServiceBase } from '@shared/services/base.service';
 import { BaseComponent } from './base-component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -6,12 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FilterBase } from '@models/filter-base';
 import { OrderByEnum } from '@shared/Enum/order-by-enum';
 import { PagedResult } from '@models/results/search-filter';
+import { FormBuilder } from '@angular/forms';
 
 @Directive()
 export abstract class BaseListComponent<
   TData,
   TResult,
-  Filter extends FilterBase
+  Filter extends FilterBase,
 > extends BaseComponent {
   dataSource = new MatTableDataSource<TResult>();
   displayedColumns: string[] = [];
@@ -22,22 +23,27 @@ export abstract class BaseListComponent<
   orderBy = OrderByEnum;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataEntity: PagedResult<TResult>;
- 
+  readonly fields: any;
+  filterVisible = signal(true);
+  protected fb = inject(FormBuilder);
+
   constructor(
     protected service: ServiceBase<TData, TResult, Filter>,
-    protected filterT: new () => Filter
+    protected filterT: new () => Filter,
   ) {
     super();
     this.filter = new filterT();
+    this.fields = this.createFields<TResult>();
   }
   ngOnInit() {
     this.loadData();
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
- loadData(): void {
+  loadData(): void {
     this.loading = false;
     const sub = this.service.getAll(this.filter).subscribe({
       next: (data) => {
@@ -84,5 +90,14 @@ export abstract class BaseListComponent<
     this.filter.orderBy = orderBy;
     this.filter.pageIndex = 1;
     this.loadData();
+  }
+
+  toggleFilter(): void {
+    this.filterVisible.update((v) => !v);
+  }
+  createFields<TResult>() {
+    return new Proxy({} as Record<keyof TResult, keyof TResult>, {
+      get: (_, key) => key,
+    });
   }
 }

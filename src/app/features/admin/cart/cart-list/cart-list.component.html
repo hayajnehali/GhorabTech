@@ -1,126 +1,283 @@
-<div class="container list">
-  <h3 class="text-titel">{{ "cart.cart-list" | translate }}</h3>
-  <form #productForm="ngForm" class="form">
-    <div class="row">
-      <div class="form-group col-6 col-sm-4 col-md-4 col-lg-3">
-        <label for="paymentStatus">{{
-          "cart.payment-status" | translate
-        }}</label>
-        <mat-select class="form-control" [(value)]="filter.paymentStatus">
-          <mat-option *ngFor="let status of paymentStatus" [value]="status">
-            {{ status }}
-          </mat-option>
-        </mat-select>
-      </div>
-      <div class="form-group col-6 col-sm-4 col-md-4 col-lg-3">
-        <label for="orderExitStatus">{{
-          "cart.order-exit-status" | translate
-        }}</label>
-        <mat-select class="form-control" [(value)]="filter.orderExitStatus">
-          <mat-option *ngFor="let status of orderExitStatus" [value]="status">
-            {{ status }}
-          </mat-option>
-        </mat-select>
-      </div>
-
+<search-page
+  [(pagedResult)]="dataEntity"
+  [filter]="filter"
+  (resetBase)="reset()"
+  (searchBase)="search()"
+  [searchForm]="form"
+>
+  <page-header
+    [title]="'cart.cart-list' | translate"
+    [label]="'cart.manage-carts' | translate"
+    [icon]="'shopping_cart'"
+  >
+    <header-actions>
       <div class="btn-container">
-        <button class="btn btn-secondary" (click)="reset()">
-          {{ "general.reset" | translate }}
+        <button
+          class="btn-icon-ghost"
+          (click)="toggleFilter()"
+          [class.active]="filterVisible()"
+        >
+          <mat-icon>filter_list</mat-icon>
         </button>
-        <button type="button" class="btn btn-primary mx-2" (click)="search()">
-          {{ "general.search" | translate }}
+        <button
+          type="button"
+          class="btn-icon-outline"
+          title="{{ 'general.refresh' | translate }}"
+        >
+          <mat-icon>refresh</mat-icon>
         </button>
       </div>
-    </div>
-  </form>
-  @if (hasData) {
-    <div class="table-responsive">
-      <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "general.email" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.cartowner?.email }}</td>
-        </ng-container>
-        <ng-container matColumnDef="payment-method">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "cart.payment-method" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{
-              "paymentMethod." + getPaymentMethodStatus(element.payWay)
-                | translate
-            }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="payment-status">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "cart.payment-status" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{
-              "cartStatus." + getCartStatusName(element.paymentStatus)
-                | translate
-            }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="order-exit-status">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "cart.order-exit-status" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{
-              "orderExitStatus." + getorderExitStatus(element.orderExitStatus)
-                | translate
-            }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="createDate">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "general.create-date" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.createStamp | date }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "general.actions" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            <ul class="list-unstyled d-flex">
-              <li
-                class="d-flex btn btn-icon"
-                [title]="'cart.cart-item-list' | translate"
-                [routerLink]="[element.id, 'cart-item-list']"
-              >
-                <mat-icon>list</mat-icon>
-              </li>
-              <!-- <li
-              class="d-flex btn btn-icon"
-              [routerLink]="['manage', element.id]"
-            >
-              <mat-icon>edit</mat-icon>
-            </li> -->
-            </ul>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+    </header-actions>
+  </page-header>
 
-      <mat-paginator
-        [length]="totalNumberOf"
-        (page)="pageChanged($event)"
-        [pageSizeOptions]="pageSizeOptions"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  } @else {
-    <app-no-data></app-no-data>
+  @if (filterVisible()) {
+    <page-filter>
+      <div class="filter-panel">
+        <form [formGroup]="form">
+          <div class="filter-row">
+            <div class="filter-field filter-field--wide">
+              <label for="searchText" class="form-label-custom">
+                {{ "general.search" | translate }}
+              </label>
+              <div class="filter-input-wrapper">
+                <span class="material-icons filter-input-icon">search</span>
+                <input
+                  type="text"
+                  id="searchText"
+                  class="form-control filter-input"
+                  [placeholder]="'cart.search-by-email' | translate"
+                  formControlName="searchText"
+                />
+              </div>
+            </div>
+
+            <div class="filter-field">
+              <label for="paymentStatus" class="form-label-custom">
+                {{ "cart.payment-status" | translate }}
+              </label>
+              <div class="filter-input-wrapper">
+                <span class="material-icons filter-input-icon">payment</span>
+                <mat-select
+                  class="form-control filter-input filter-select"
+                  [(value)]="filter.paymentStatus"
+                  formControlName="paymentStatus"
+                  placeholder="{{ 'cart.select-status' | translate }}"
+                >
+                  <mat-option [value]="null">
+                    {{ "general.all" | translate }}
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let status of paymentStatus"
+                    [value]="status"
+                  >
+                    {{ "cartStatus." + status | translate }}
+                  </mat-option>
+                </mat-select>
+              </div>
+              <app-form-error
+                [control]="form.controls['paymentStatus']"
+              ></app-form-error>
+            </div>
+            <div class="filter-field">
+              <label for="orderExitStatus" class="form-label-custom">
+                {{ "cart.order-exit-status" | translate }}
+              </label>
+              <div class="filter-input-wrapper">
+                <span class="material-icons filter-input-icon"
+                  >local_shipping</span
+                >
+                <mat-select
+                  class="form-control filter-input filter-select"
+                  [(value)]="filter.orderExitStatus"
+                  formControlName="orderExitStatus"
+                  placeholder="{{ 'cart.select-status' | translate }}"
+                >
+                  <mat-option [value]="null">
+                    {{ "general.all" | translate }}
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let status of orderExitStatus"
+                    [value]="status"
+                  >
+                    {{ "orderExitStatus." + status | translate }}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </page-filter>
   }
-</div>
+
+  <grid-result-body [allowExpand]="true">
+    <grid-column label="general.email" field="cartOwner.email">
+      <ng-template let-data>
+        <div class="cell">
+          <span class="material-icons cell-icon">email</span>
+          <span class="cell-text">{{ data.cartOwner.email }}</span>
+        </div>
+      </ng-template>
+    </grid-column>
+    <grid-column label="cart.payment-method" field="payWay">
+      <ng-template let-data>
+        <span class="badge">
+          <span class="material-icons badge-icon">
+            {{ data.payWay === 0 ? "credit_card" : "account_balance" }}
+          </span>
+          {{
+            "paymentMethod." + getPaymentMethodStatus(data.payWay) | translate
+          }}
+        </span>
+      </ng-template>
+    </grid-column>
+    <grid-column label="cart.payment-status" field="paymentStatus">
+      <ng-template let-data>
+        <span
+          class="status-badge"
+          [class.status-badge--draft]="data.paymentStatus === 0"
+          [class.status-badge--pending]="data.paymentStatus === 1"
+          [class.status-badge--requires-action]="data.paymentStatus === 2"
+          [class.status-badge--processing]="data.paymentStatus === 3"
+          [class.status-badge--paid]="data.paymentStatus === 4"
+          [class.status-badge--refunded]="data.paymentStatus === 5"
+          [class.status-badge--failed]="data.paymentStatus === 6"
+          [class.status-badge--canceled]="data.paymentStatus === 7"
+        >
+          <span class="status-badge__dot"></span>
+          {{
+            "cartStatus." + getCartStatusName(data.paymentStatus) | translate
+          }}
+        </span>
+      </ng-template>
+    </grid-column>
+    <grid-column label="cart.order-exit-status" field="orderExitStatus">
+      <ng-template let-data>
+        <span
+          class="status-badge"
+          [class.status-badge--pending]="data.orderExitStatus === 0"
+          [class.status-badge--processing]="data.orderExitStatus === 1"
+          [class.status-badge--shipped]="data.orderExitStatus === 2"
+          [class.status-badge--in-transit]="data.orderExitStatus === 3"
+          [class.status-badge--delivered]="data.orderExitStatus === 4"
+          [class.status-badge--rejected]="data.orderExitStatus === 5"
+          [class.status-badge--canceled]="data.orderExitStatus === 6"
+          [class.status-badge--returned]="data.orderExitStatus === 7"
+          [class.status-badge--delivery-failed]="data.orderExitStatus === 8"
+          [class.status-badge--ready-pickup]="data.orderExitStatus === 9"
+        >
+          <span class="status-badge__dot"></span>
+          {{
+            "orderExitStatus." + getorderExitStatus(data.orderExitStatus)
+              | translate
+          }}
+        </span>
+      </ng-template>
+    </grid-column>
+    <grid-column label="general.create-date" field="createStamp">
+      <ng-template let-data>
+        <div class="cell">
+          <span class="material-icons cell-icon">calendar_today</span>
+          <span class="cell-text">{{
+            data.createStamp | date: "mediumDate"
+          }}</span>
+        </div>
+      </ng-template>
+    </grid-column>
+    <grid-column label="product-collection.actions" field="actions">
+      <ng-template let-data>
+        <div class="action-cell">
+          <ui-button
+            icon="visibility"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            (click)="navigateToCartItems(data.id)"
+            tooltip="{{ 'cart.cart-item-list' | translate }}"
+          >
+          </ui-button>
+          <ui-button
+            icon="delete"
+            iconOnly
+            variant="ghost"
+            variantIcon="danger"
+            size="xs"
+            (click)="deleteCart(data)"
+            tooltip="{{ 'general.delete' | translate }}"
+          >
+          </ui-button>
+        </div>
+      </ng-template>
+    </grid-column>
+
+    <grid-expanded>
+      <ng-template let-data>
+        <div class="expanded-root">
+          <div class="expanded-section">
+            <div class="expanded-section-heading">
+              <span class="material-icons">person</span>
+              <span translate>cart.cart-owner</span>
+            </div>
+            <div class="expanded-meta">
+              <div class="meta-chip">
+                <span class="meta-chip-label" translate>general.name</span>
+                <span class="meta-chip-value">{{
+                  data.cartOwner.fullName || "-"
+                }}</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-chip-label" translate>general.phone</span>
+                <span class="meta-chip-value">{{
+                  data.cartOwner.phoneNumber || "-"
+                }}</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-chip-label" translate>general.email</span>
+                <span class="meta-chip-value">{{
+                  data.cartOwner.email || "-"
+                }}</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-chip-label" translate
+                  >cart.payment-method</span
+                >
+                <span class="meta-chip-value">
+                  {{
+                    "paymentMethod." + getPaymentMethodStatus(data.payWay)
+                      | translate
+                  }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="expanded-divider"></div>
+          <div class="expanded-section-heading">
+            <span class="material-icons">info</span>
+            <span translate>general.details</span>
+          </div>
+          <div class="expanded-meta">
+            <div class="meta-chip">
+              <span class="meta-chip-label" translate>cart.items-count</span>
+              <span class="meta-chip-value">{{
+                data.cartItems?.length ?? 0
+              }}</span>
+            </div>
+            <div class="meta-chip">
+              <span class="meta-chip-label" translate>general.create-date</span>
+              <span class="meta-chip-value">{{
+                data.createStamp | date: "mediumDate"
+              }}</span>
+            </div>
+            <div class="meta-chip">
+              <span class="meta-chip-label" translate>general.updated</span>
+              <span class="meta-chip-value">{{
+                (data.updateStamp | date: "mediumDate") || "-"
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </grid-expanded>
+  </grid-result-body>
+</search-page>

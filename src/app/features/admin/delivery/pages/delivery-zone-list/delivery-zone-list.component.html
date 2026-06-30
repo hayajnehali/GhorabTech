@@ -1,10 +1,8 @@
 <search-page
-  [(pagedResult)]="dataEntity"
-  [searchTrigger]="$searchTrigger"
+  [(pagedResult)]="dataEntity" 
   [filter]="filter"
   (resetBase)="reset()"
-  (searchBase)="search()"
-  (onResetSearch)="onResetSearch()"
+  (searchBase)="search()" 
 >
   <page-header
     [title]="'delivery.delivery-zone-list' | translate"
@@ -40,7 +38,7 @@
   @if (filterVisible()) {
     <page-filter>
       <div class="filter-panel">
-        <form [formGroup]="filterForm">
+        <form>
           <div class="filter-row">
             <div class="filter-field">
               <label for="name" class="form-label-custom" translate>
@@ -52,7 +50,7 @@
                   type="name"
                   id="name"
                   [(ngModel)]="filter.name"
-                  formControlName="name"
+                  name="name"
                   class="form-control filter-input"
                   placeholder="{{
                     'product-collection.search-by-name-code-description'

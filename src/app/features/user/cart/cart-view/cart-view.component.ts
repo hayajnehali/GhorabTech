@@ -42,6 +42,19 @@ export class CartViewComponent extends BaseComponent implements OnInit {
     super();
   }
 
+  get deliveryCost(): number {
+    const zoneId = this.cart.sameSenderRecipientInfo
+      ? this.cart.cartowner.deliveryZoneId
+      : this.cart.recipientInfo?.deliveryZoneId;
+
+    const zone = this.deliveryZones.find((z) => z.id === zoneId);
+    const timeSlot = this.deliveryTimeSlots.find(
+      (t) => t.id === this.cart.delivaryTimeId,
+    );
+
+    return (zone?.baseDeliveryCost ?? 0) + (timeSlot?.extraFee ?? 0);
+  }
+
   ngOnInit(): void {
     this.cart = new Cart();
     this.cartService.cart$.subscribe((cart) => {
@@ -98,6 +111,9 @@ export class CartViewComponent extends BaseComponent implements OnInit {
     let apicul = this.authService.isAuthenticatedSignal()
       ? this.cartService.createAndPay(this.cart)
       : this.cartService.gustCreateAndPay(this.cart);
+    if (this.cart.sameSenderRecipientInfo) {
+      this.cart.recipientInfo = undefined;
+    }
     apicul.subscribe({
       next: (res) => {
         reslut = res;

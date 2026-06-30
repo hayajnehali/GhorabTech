@@ -19,34 +19,14 @@ export class DeliveryTimeSlotListComponent extends BaseListComponent<
   DeliveryTimeSlotResult,
   DeliveryTimeSlotFilter
 > {
-  dialog = inject(MatDialog);
-  $searchTrigger: Subject<void> = new Subject<void>();
+  dialog = inject(MatDialog); 
   filterForm: FormGroup;
-  pagedResult = new PagedResult<DeliveryTimeSlotResult>();
-  filterVisible = signal(true);
-  private readonly fb = inject(FormBuilder);
+  pagedResult = new PagedResult<DeliveryTimeSlotResult>();  
   constructor(private deliveryZoneService: DeliveryTimeSlotService) {
     super(deliveryZoneService, DeliveryTimeSlotFilter);
-  }
-  redirectToAdd() {
-    throw new Error('Method not implemented.');
-  }
-  override ngOnInit(): void {
-    this.initForm();
-  }
+  } 
+  override ngOnInit(): void { }
 
-  initForm(): void {
-    let filter: DeliveryTimeSlotFilter = new DeliveryTimeSlotFilter();
-    this.filterForm = this.fb.group<DeliveryTimeSlotFilter>(filter);
-  }
-
-  onResetSearch(): void {
-    this.$searchTrigger.next();
-  }
-
-  toggleFilter(): void {
-    this.filterVisible.update((v) => !v);
-  }
   manageZone(_t50: any) {
     const dialogRef = this.dialog.open(ManageDeliveryTimeSlotComponent, {
       data: {

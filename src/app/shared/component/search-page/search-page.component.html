@@ -1,42 +1,29 @@
-<div class="card search-card w-100 mx-auto">
-    <div class="page-header">
-        <ng-content select="page-header"></ng-content>
-        <ng-content select="page-filter"></ng-content>
-    </div>
+<div class="search-page">
+  <div class="search-page__header">
+    <ng-content select="page-header"></ng-content>
+    <ng-content select="page-filter"></ng-content>
 
-    <div class="card-actions-bar d-flex align-items-center justify-content-end gap-2 px-4 py-3">
-        <ui-button
-            type="button"
-            variant="outline"
-            size="md"
-            icon="refresh"
-            (click)="reset()"
-        >
-            Reset
-        </ui-button>
-
-        <ui-button
-            type="button"
-            variant="primary"
-            size="md"
-            icon="search"
-            (click)="search()"
-        >
-            Search
-        </ui-button>
+    <div class="btn-container">
+      <button (click)="search()" class="btn btn-secondary">
+        <span class="btn-label">{{ "general.cancel" | translate }}</span>
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="reset()">
+        <span class="btn-label">{{ "general.save" | translate }}</span>
+      </button>
     </div>
+  </div>
 
-    <div class="card-body p-4">
-        <grid-result
-            [data]="items()"
-            [totalRecords]="totalRecords()"
-            [loading]="isLoading()"
-            (onLazyLoad)="loadData($event)"
-            [(selection)]="selectedItems"
-            [externalColumns]="gridConfig().column"
-            [allowExpand]="gridConfig().allowExpand"
-            [externalExpanded]="gridConfig().expandedTemplate"
-        >
-        </grid-result>
-    </div>
+  <div class="search-page__body">
+    <grid-result
+      [data]="items()"
+      [totalRecords]="totalRecords()"
+      [loading]="isLoading()"
+      (onLazyLoad)="loadData($event)"
+      [(selection)]="selectedItems"
+      [externalColumns]="gridConfig().column"
+      [allowExpand]="gridConfig().allowExpand"
+      [externalExpanded]="gridConfig().expandedTemplate"
+    >
+    </grid-result>
+  </div>
 </div>

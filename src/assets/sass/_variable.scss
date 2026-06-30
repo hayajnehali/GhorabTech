@@ -31,3 +31,34 @@ $success-color: #10b981; // Emerald Green
 $danger-color: #ef4444; // Rose Red
 $warning-color: #f59e0b; // Amber Orange
 $info-color: #06b6d4; // Cyan Blue
+
+// ===== Extended UI & Status Colors =====
+$blue-primary: #0d6efd;
+$blue-primary-hover: #0b5ed7;
+$orange-action: #fd7e14;
+$orange-dark: #ea580c;
+$orange-darker: #c2410c;
+$amber-dark: #b8860b;
+$indigo: #6366f1;
+$indigo-text: #4f46e5;
+$purple: #8b5cf6;
+$purple-text: #7c3aed;
+$cyan: #0dcaf0;
+$cyan-text: #0891b2;
+$teal: #14b8a6;
+$teal-text: #0f766e;
+$red-dark: #991b1b;
+
+// ===== Gray Scale =====
+$gray-200: #f0f0f0;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-900: #212529;
+
+// ===== Backgrounds & Overlays =====
+$bg-light-blue: #fafbfc;
+$divider-color: rgba($black-color, 0.08);
+$chip-bg: rgba($black-color, 0.03);

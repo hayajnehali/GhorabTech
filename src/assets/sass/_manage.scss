@@ -191,75 +191,7 @@
       }
     }
 
-    // منطقة الأزرار في الأسفل
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1.25rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid $border;
-
-      @media (max-width: 576px) {
-        flex-direction: column-reverse;
-        gap: 0.75rem;
-        .btn {
-          width: 100%;
-        }
-      }
-
-      .btn {
-        padding: 0.85rem 2.5rem;
-        font-weight: 600;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 0.95rem;
-        transition: all 0.2s ease-in-out;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        // زر التراجع / الإلغاء
-        &--secondary {
-          background-color: transparent;
-          border: 1px solid $border-1;
-          color: $third-color;
-
-          &:hover {
-            background-color: $background-2;
-            color: $heading-color;
-            border-color: $secondary-color;
-          }
-        }
-
-        // زر الحفظ الأساسي
-        &--primary {
-          background-color: $primary-color;
-          border: 1px solid transparent;
-          color: $white-color;
-          box-shadow: 0 4px 12px rgba($primary-color, 0.15);
-
-          &:hover:not(:disabled) {
-            // 👈 الحل هنا: أضفنا $lightness: لتحديد اسم المحور الذي نريد تعديله في اللون
-            background-color: color.adjust($primary-color, $lightness: 8%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba($primary-color, 0.2);
-          }
-
-          &:active:not(:disabled) {
-            transform: translateY(1px);
-          }
-
-          // حالة الـ Disabled في حال كان الفورم غير صالح للارسال
-          &:disabled {
-            background-color: $secondary-color;
-            color: rgba($white-color, 0.7);
-            box-shadow: none;
-            cursor: not-allowed;
-            opacity: 0.5;
-          }
-        }
-      }
-    }
   }
 }
+
+

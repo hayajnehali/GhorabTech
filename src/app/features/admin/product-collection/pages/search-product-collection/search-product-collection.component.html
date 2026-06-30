@@ -1,12 +1,9 @@
-
- <search-page 
+<search-page
   [(pagedResult)]="dataEntity"
-  [searchTrigger]="$searchTrigger"
   [filter]="filter"
   (resetBase)="reset()"
   (searchBase)="search()"
-  (onResetSearch)="onResetSearch()"
-> 
+>
   <page-header
     [title]="'product-collection.product-collections' | translate"
     [label]="'product-collection.manage-collections' | translate"
@@ -15,10 +12,10 @@
     <header-actions>
       <ui-button
         (click)="toggleFilter()"
-         variant="secondary"
-         icon="filter_list"
-         tooltip="product-collection.filter"
-         iconOnly
+        variant="secondary"
+        icon="filter_list"
+        tooltip="product-collection.filter"
+        iconOnly
         [class.active]="filterVisible()"
       />
       <ui-button
@@ -34,7 +31,7 @@
   @if (filterVisible()) {
     <page-filter>
       <div class="filter-panel">
-        <form [formGroup]="filterForm">
+        <form>
           <div class="filter-row">
             <div class="filter-field">
               <label for="text" class="form-label-custom" translate>
@@ -45,9 +42,12 @@
                 <input
                   type="text"
                   id="text"
-                  formControlName="text"
+                  name="text"
                   class="form-control filter-input"
-                  placeholder="{{ 'product-collection.search-by-name-code-description' | translate }}"
+                  placeholder="{{
+                    'product-collection.search-by-name-code-description'
+                      | translate
+                  }}"
                 />
               </div>
             </div>
@@ -58,7 +58,10 @@
   }
 
   <grid-result-body [allowExpand]="true">
-    <grid-column label="product-collection.collection-name" field="name.local"></grid-column>
+    <grid-column
+      label="product-collection.collection-name"
+      field="name.local"
+    ></grid-column>
     <grid-column label="product-collection.code" field="code"></grid-column>
     <grid-column label="product-collection.items-count" field="items">
       <ng-template let-data>
@@ -68,9 +71,15 @@
 
     <grid-column label="product-collection.status" field="isActive">
       <ng-template let-data>
-        <span class="status-badge" [class.status-active]="data.isActive" [class.status-inactive]="!data.isActive">
+        <span
+          class="status-badge"
+          [class.status-active]="data.isActive"
+          [class.status-inactive]="!data.isActive"
+        >
           <span class="status-dot"></span>
-          {{ (data.isActive ? 'general.active' : 'general.inactive') | translate }}
+          {{
+            (data.isActive ? "general.active" : "general.inactive") | translate
+          }}
         </span>
       </ng-template>
     </grid-column>
@@ -78,11 +87,25 @@
     <grid-column label="product-collection.actions" field="actions">
       <ng-template let-data>
         <div class="action-cell">
-          <ui-button icon="visibility" iconOnly size="xs" variant="ghost" variantIcon="ghost"
-          (click)="viewCollection(data)" tooltip="{{ 'general.view' | translate }}">
+          <ui-button
+            icon="visibility"
+            iconOnly
+            size="xs"
+            variant="ghost"
+            variantIcon="ghost"
+            (click)="viewCollection(data)"
+            tooltip="{{ 'general.view' | translate }}"
+          >
           </ui-button>
-          <ui-button icon="edit" iconOnly variant="ghost" variantIcon="ghost" size="xs"
-          (click)="editCollection(data)" tooltip="{{ 'general.edit' | translate }}">
+          <ui-button
+            icon="edit"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            (click)="editCollection(data)"
+            tooltip="{{ 'general.edit' | translate }}"
+          >
           </ui-button>
           <ui-button
             [icon]="data.isActive ? 'toggle_off' : 'toggle_on'"
@@ -91,10 +114,21 @@
             [variantIcon]="data.isActive ? 'warning' : 'success'"
             size="xs"
             (click)="toggleActive(data)"
-            [tooltip]="(data.isActive ? 'general.deactivate' : 'general.activate') | translate">
+            [tooltip]="
+              (data.isActive ? 'general.deactivate' : 'general.activate')
+                | translate
+            "
+          >
           </ui-button>
-          <ui-button icon="delete" iconOnly variant="ghost" variantIcon="danger" size="xs"
-          (click)="deleteCollection(data)" tooltip="{{ 'general.delete' | translate }}">
+          <ui-button
+            icon="delete"
+            iconOnly
+            variant="ghost"
+            variantIcon="danger"
+            size="xs"
+            (click)="deleteCollection(data)"
+            tooltip="{{ 'general.delete' | translate }}"
+          >
           </ui-button>
         </div>
       </ng-template>
@@ -109,7 +143,7 @@
               <span translate>general.description</span>
             </div>
             <p class="expanded-description">
-              {{ data?.description?.local || 'No description provided.' }}
+              {{ data?.description?.local || "No description provided." }}
             </p>
           </div>
           <div class="expanded-divider"></div>
@@ -120,11 +154,15 @@
             </div>
             <div class="meta-chip">
               <span class="meta-chip-label" translate>general.create-date</span>
-              <span class="meta-chip-value">{{ data.createStamp | date:'mediumDate' }}</span>
+              <span class="meta-chip-value">{{
+                data.createStamp | date: "mediumDate"
+              }}</span>
             </div>
             <div class="meta-chip">
               <span class="meta-chip-label" translate>general.updated</span>
-              <span class="meta-chip-value">{{ data.updateStamp | date:'mediumDate' }}</span>
+              <span class="meta-chip-value">{{
+                data.updateStamp | date: "mediumDate"
+              }}</span>
             </div>
           </div>
         </div>
