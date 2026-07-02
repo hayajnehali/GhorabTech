@@ -190,7 +190,7 @@
   color: $gray-600;
 
   &:hover {
-    background-color: $background-2;
+    background-color: inherit;
     border-color: $primary-color;
     color: $primary-color;
     transform: translateY(-2px);

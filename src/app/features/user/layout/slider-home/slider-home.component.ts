@@ -25,6 +25,13 @@ export class SliderHomeComponent extends BaseListComponent<
   }
   protected document = inject(DOCUMENT); 
   links: SocialLink[] = SOCIAL_LINKS;
+  currentIndex = 1;
 
- 
+  onSlideChange(event: Event) {
+    const swiperEl = event.target as any;
+    if (swiperEl?.swiper) {
+      this.currentIndex = swiperEl.swiper.activeIndex + 1;
+    }
+  }
+
 }

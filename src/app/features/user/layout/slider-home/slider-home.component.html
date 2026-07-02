@@ -1,34 +1,50 @@
-<!-- Hero Section Begin -->
-<div>
+<div class="hero-slider">
   <swiper-container
     slides-per-view="1"
-    space-between="20"
+    effect="fade"
+    speed="800"
     navigation="true"
     pagination="true"
-    class="my-swiper"
-    speed="3000"
-    autoplay='{
-    "delay": 3000,
-    "disableOnInteraction": false
-  }'
+    autoplay='{"delay": 5000, "disableOnInteraction": false}'
+    class="hero-swiper"
+    (slidechange)="onSlideChange($event)"
   >
-    @for (item of dataSource.data; track $index) {
-    <swiper-slide>
-      <div class="set-bg">
-        <app-image [src]="item.images[0].guidName" [flipImage]="flipImage"></app-image>
-        <div class="row _text">
-          <div class=" "> 
-            <h1>{{ item.title.local }}</h1>
-            <p>{{ item.description.local }}</p>
+    @for (slide of dataSource.data; track $index) {
+    <swiper-slide class="hero-slide">
+      <div class="slide-bg">
+        <app-image [src]="slide.images[0].guidName" [flipImage]="flipImage"></app-image>
+      </div>
+      <div class="slide-shape shape-1"></div>
+      <div class="slide-shape shape-2"></div>
+      <div class="slide-shape shape-3"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-text-card">
+          <span class="slide-badge">{{ 'slider.featured' | translate }}</span>
+          <div class="slide-text">
+            <div class="accent-line"></div>
+            <h1 class="slide-title">{{ slide.title.local }}</h1>
+            <p class="slide-desc">{{ slide.description.local }}</p>
           </div>
-          <div class="hero__social">
-            <a [href]="item.url" *ngFor="let item of links" target="_blank"
-              ><i [class]="item.icon"></i
-            ></a>
-          </div>
+        </div>
+        <div class="slide-social">
+          @for (link of links; track link.url) {
+          <a [href]="link.url" target="_blank" class="social-link" [attr.aria-label]="link.platform">
+            <i [class]="link.icon"></i>
+          </a>
+          }
+        </div>
+        <div class="slide-counter">
+          <span class="counter-num">{{ currentIndex < 10 ? '0' + currentIndex : currentIndex }}</span>
+          <span class="counter-divider"></span>
+          <span class="counter-num counter-total">{{ dataSource.data.length < 10 ? '0' + dataSource.data.length : dataSource.data.length }}</span>
         </div>
       </div>
     </swiper-slide>
     }
   </swiper-container>
+  <div class="scroll-indicator">
+    <span class="scroll-text">{{ 'slider.scroll' | translate }}</span>
+    <span class="scroll-arrow"></span>
+  </div>
 </div>

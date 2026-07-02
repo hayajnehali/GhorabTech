@@ -1,50 +1,57 @@
-<div class="container list listOfSlider">
-  <div class="btn-container">
-    <button
-      class="btn btn-primary"
-      [routerLink]="['/admin', 'dashboard', 'slider-manage']"
-    >
+<div class="admin-slider-page list">
+  <div class="admin-header">
+    <h3 class="text-titel">{{ 'slider.sliders' | translate }}</h3>
+    <button class="btn btn-primary" [routerLink]="['/admin', 'dashboard', 'slider-manage']">
       {{ "add" | translate }}
     </button>
   </div>
-  <swiper-container
-    slides-per-view="1"
-    space-between="20"
-    navigation="true"
-    pagination="true"
-    class="my-swiper"
-    speed="3000"
-    loop="true"
-    autoplay='{
-    "delay": 3000,
-    "disableOnInteraction": false
-  }'
-  >
-    @for (item of dataSource.data; track $index) {
-    <swiper-slide>
-      <div class="position-absolute z-1">
-        <a class="m-2" [routerLink]="['/admin', 'dashboard', 'slider-manage', item.id]"
-          ><mat-icon class="menu-icon">edit</mat-icon></a
-        >
-        <a class="m-2" (click)="delete(item.id!)"
-          ><mat-icon class="menu-icon">delete</mat-icon></a
-        >
-      </div>
-      <div class="set-bg">
-        <app-image [src]="item.images[0].guidName" [flipImage]="flipImage"></app-image>
-        <div class="row _text">
-          <div class=" "> 
-            <h1>{{ item.title.local }}</h1>
-            <p>{{ item.description.local }}</p>
+
+  <div class="slider-preview">
+    <swiper-container
+      slides-per-view="1"
+      effect="fade"
+      speed="800"
+      navigation="true"
+      pagination="true"
+      loop="true"
+      autoplay='{"delay": 5000, "disableOnInteraction": false}'
+      class="hero-swiper"
+    >
+      @for (slideItem of dataSource.data; track $index) {
+      <swiper-slide class="hero-slide">
+        <div class="slide-bg">
+          <app-image [src]="slideItem.images[0].guidName" [flipImage]="flipImage"></app-image>
+        </div>
+        <div class="slide-overlay"></div>
+
+        <div class="admin-actions">
+          <a class="btn-icon-outline " [routerLink]="['/admin', 'dashboard', 'slider-manage', slideItem.id]" [attr.title]="'edit'">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a class="btn-icon-outline " (click)="delete(slideItem.id!)" [attr.title]="'delete'">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </div>
+
+        <div class="slide-content">
+          <div class="slide-text-card">
+            <span class="slide-badge">{{ 'slider.featured' | translate }}</span>
+            <div class="slide-text">
+              <div class="accent-line"></div>
+              <h1 class="slide-title">{{ slideItem.title.local }}</h1>
+              <p class="slide-desc">{{ slideItem.description.local }}</p>
+            </div>
           </div>
-          <div class="hero__social">
-            <a [href]="item.url" *ngFor="let item of links" target="_blank"
-              ><i [class]="item.icon"></i
-            ></a>
+          <div class="slide-social">
+            @for (link of links; track link.url) {
+            <a [href]="link.url" target="_blank" class="social-link" [attr.aria-label]="link.platform">
+              <i [class]="link.icon"></i>
+            </a>
+            }
           </div>
         </div>
-      </div>
-    </swiper-slide>
-    }
-  </swiper-container>
+      </swiper-slide>
+      }
+    </swiper-container>
+  </div>
 </div>

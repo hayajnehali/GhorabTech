@@ -24,9 +24,17 @@ export class LoginLogoutButtonComponent {
   }
   openLogInLogoutDialog() {
     const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
-    maxWidth: '100vw',
-    maxHeight: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       panelClass: 'custom-dialog',
     });
+  }
+
+  authAction() {
+    if (this.authService.isAuthenticatedSignal()) {
+      this.logout();
+    } else {
+      this.openLogInLogoutDialog();
+    }
   }
 }

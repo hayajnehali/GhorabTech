@@ -335,7 +335,9 @@
     "add-slider": "Add Slider",
     "edit-slider": "Edit Slider",
     "slider-image": "The slideshow should contain only one image.",
-    "sliders": "User Sliders"
+    "sliders": "User Sliders",
+    "featured": "Featured",
+    "scroll": "Scroll"
   },
   "login": {
     "subject": "Welcome back to Russel",
@@ -417,7 +419,7 @@
     "edit-delivery-zone": "Edit Delivery Zone",
     "add-delivery-zone": "Add Delivery Zone",
     "field-manage-deliver-zone": "Please fill in the fields below to accurately manage the delivery zone.",
-    "delivery-time-slot-list": "delivery-schedule-list",
+    "delivery-time-slot-list": "Delivery Schedule List",
     "add-delivery-time-slot": "Add Delivery Time Slot",
     "edit-delivery-time-slot": "Edit Delivery Time Slot",
     "field-manage-delivery-time-slot": "Please fill in the fields below to accurately manage the delivery time slot."
