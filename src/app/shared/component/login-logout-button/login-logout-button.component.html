@@ -1,21 +1,21 @@
-<div class="auth-wrapper d-inline-flex">
+<div class="auth-wrapper d-inline-flex" (click)="authAction()">
   <span class="icon-container">
     <mat-icon class="menu_icon">
-      {{ authService.isAuthenticatedSignal() ? 'account_circle' : 'login' }}
+      {{ authService.isAuthenticatedSignal() ? "account_circle" : "login" }}
     </mat-icon>
   </span>
-  
-  @if(authService.isAuthenticatedSignal()){
+
+  @if (authService.isAuthenticatedSignal()) {
     <span class="link-container">
-      <a class="auth-link" (click)="logout()">
+      <a class="auth-link">
         {{ "general.logout" | translate }}
       </a>
     </span>
-  }@else {
+  } @else {
     <span class="link-container">
-      <a class="auth-link" (click)="openLogInLogoutDialog()">
+      <a class="auth-link">
         {{ "general.login" | translate }}
-      </a> 
+      </a>
     </span>
-  } 
+  }
 </div>

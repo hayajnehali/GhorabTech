@@ -1,8 +1,8 @@
 <search-page
-  [(pagedResult)]="dataEntity" 
+  [(pagedResult)]="dataEntity"
   [filter]="filter"
   (resetBase)="reset()"
-  (searchBase)="search()" 
+  (searchBase)="search()"
 >
   <page-header
     [title]="'delivery.delivery-time-slot-list' | translate"
@@ -10,13 +10,15 @@
     [icon]="'category'"
   >
     <header-actions>
-      <button
-        class="btn btn-icon"
-        (click)="manageZone(undefined)"
-        title="{{ 'add' | translate }}"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
+      <div class="btn-container">
+        <button
+          class="btn-icon-outline"
+          (click)="manageZone(undefined)"
+          title="{{ 'add' | translate }}"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </header-actions>
   </page-header>
 

@@ -1,8 +1,8 @@
 <search-page
-  [(pagedResult)]="dataEntity" 
+  [(pagedResult)]="dataEntity"
   [filter]="filter"
   (resetBase)="reset()"
-  (searchBase)="search()" 
+  (searchBase)="search()"
 >
   <page-header
     [title]="'delivery.delivery-zone-list' | translate"
@@ -10,28 +10,30 @@
     [icon]="'category'"
   >
     <header-actions>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        [routerLink]="['delivery-time-slot-list']"
-      >
-        {{ "delivery.delivery-time-slot-list" | translate }}
-      </button>
-      <button
-        class="btn btn-icon"
-        (click)="toggleFilter()"
-        tooltip="product-collection.filter"
-      >
-        <mat-icon>filter_list</mat-icon>
-      </button>
-      <button
-        class="btn btn-icon"
-        (click)="manageZone(undefined)"
-        icon="add"
-        tooltip="product-collection.add-new-collection"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
+      <div class="btn-container">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [routerLink]="['delivery-time-slot-list']"
+        >
+          {{ "delivery.delivery-time-slot-list"| translate }}
+        </button>
+        <button
+          class="btn-icon-ghost"
+          (click)="toggleFilter()"
+          tooltip="product-collection.filter"
+        >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+        <button
+          class="btn-icon-outline"
+          (click)="manageZone(undefined)"
+          icon="add"
+          tooltip="product-collection.add-new-collection"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </header-actions>
   </page-header>
 
