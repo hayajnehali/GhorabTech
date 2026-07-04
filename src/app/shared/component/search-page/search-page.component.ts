@@ -54,6 +54,7 @@ export class SearchPageComponent<T extends FilterBase>
   public isLoading = signal<boolean>(false);
   public selectedItems = signal<T[]>([]);
   filter = input.required<T>();
+  disableSearchContainer = input<boolean>(false);
   searchBase = output<void>();
   resetBase = output<void>(); 
 

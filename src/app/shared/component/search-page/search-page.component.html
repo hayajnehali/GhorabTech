@@ -1,18 +1,19 @@
 <div class="search-page">
-  <div class="search-page__header">
-    <ng-content select="page-header"></ng-content>
-    <ng-content select="page-filter"></ng-content>
+  @if (!disableSearchContainer()) {
+    <div class="search-page__header">
+      <ng-content select="page-header"></ng-content>
+      <ng-content select="page-filter"></ng-content>
 
-    <div class="btn-container">
-      <button (click)="search()" class="btn btn-secondary">
-        <span class="btn-label">{{ "general.cancel" | translate }}</span>
-      </button>
-      <button type="submit" class="btn btn-primary" (click)="reset()">
-        <span class="btn-label">{{ "general.save" | translate }}</span>
-      </button>
+      <div class="btn-container">
+        <button (click)="search()" class="btn btn-secondary">
+          <span class="btn-label">{{ "general.cancel" | translate }}</span>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="reset()">
+          <span class="btn-label">{{ "general.search" | translate }}</span>
+        </button>
+      </div>
     </div>
-  </div>
-
+  }
   <div class="search-page__body">
     <grid-result
       [data]="items()"

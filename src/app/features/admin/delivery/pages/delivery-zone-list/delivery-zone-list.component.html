@@ -16,7 +16,7 @@
           class="btn btn-primary"
           [routerLink]="['delivery-time-slot-list']"
         >
-          {{ "delivery.delivery-time-slot-list"| translate }}
+          {{ "delivery.delivery-time-slot-list" | translate }}
         </button>
         <button
           class="btn-icon-ghost"
@@ -69,37 +69,27 @@
 
   <grid-result-body [allowExpand]="false">
     <grid-column label="general.name" field="name.local"></grid-column>
-    <grid-column
-      label="delivery.base-delivery-cost"
-      field="baseDeliveryCost"
-    ></grid-column>
+    <grid-column label="delivery.base-delivery-cost" field="baseDeliveryCost">
+      <ng-template let-data>
+        <span class="cell-text"
+          >{{ data.baseDeliveryCost }} {{ "general.JOD" | translate }}</span
+        >
+      </ng-template>
+    </grid-column>
     <grid-column label="product-collection.actions" field="actions">
       <ng-template let-data>
         <div class="action-cell">
-          <ui-button
-            icon="edit"
-            iconOnly
-            variant="ghost"
-            variantIcon="ghost"
-            size="xs"
-            (click)="manageZone(data.id)"
-            tooltip="{{ 'general.edit' | translate }}"
-          >
-          </ui-button>
-
-          <!-- <ui-button
-            [icon]="data.isActive ? 'toggle_off' : 'toggle_on'"
-            iconOnly
-            variant="ghost"
-            [variantIcon]="data.isActive ? 'warning' : 'success'"
-            size="xs"
-            (click)="toggleActive(data)"
-            [tooltip]="(data.isActive ? 'general.deactivate' : 'general.activate') | translate">
-          </ui-button> -->
-
-          <!-- <ui-button icon="delete" iconOnly variant="ghost" variantIcon="danger" size="xs"
-          (click)="deleteCollection(data)" tooltip="{{ 'general.delete' | translate }}">
-          </ui-button> -->
+          <div class="btn-container">
+            <button
+              class="btn-icon-ghost"
+              (click)="toggleFilter()"
+              [class.active]="filterVisible()"
+              (click)="manageZone(data.id)"
+              title="{{ 'general.edit' | translate }}"
+            >
+              <span class="material-symbols-outlined"> edit_document </span>
+            </button>
+          </div>
         </div>
       </ng-template>
     </grid-column>

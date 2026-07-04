@@ -78,7 +78,7 @@ export abstract class BaseListComponent<
   }
 
   search() {
-    if (this.myForm.invalid) {
+    if (this.myForm && this.myForm.invalid) {
       this.myForm.control.markAllAsTouched();
       return;
     }

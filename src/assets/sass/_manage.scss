@@ -1,35 +1,25 @@
 @use "variable" as *;
+@use "sass:color"; 
 
-@use "sass:color";
-// الحاوية الكبرى للصفحة
 .admin-form-container {
+  border-radius: 16px;
+  border: 1px solid $border;
   padding: 2.5rem 2rem;
-  font-family: $fm-nunito;
-  direction: rtl; // يتم قلبه تلقائياً بناءً على الـ Dir الخاص بالموقع
-
-  // دعم التوجيهين (LTR / RTL) بحركة ذكية
-  &:lang(en) {
-    direction: ltr;
-    .form-card .form-actions {
-      justify-content: flex-end;
-    }
-  }
-
-  // الهيدر الرئيسي فوق الكارت
+  margin: 1rem;
+  font-family: $fm-nunito; // دعم التوجيهين (LTR / RTL) بحركة ذكية
   .form-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
     margin-bottom: 2rem;
 
     .header-title {
-      h1 {
-        font-family: $fm-unna;
-        font-size: 1.85rem;
-        font-weight: 700;
+      h1,
+      h3 {
         color: $primary-color;
         margin-bottom: 0.4rem;
         position: relative;
         display: inline-block;
-
-        // خط زخرفي صغير تحت العنوان يضفي طابع الأناقة
         &::after {
           content: "";
           position: absolute;
@@ -45,24 +35,19 @@
         color: $para-color;
       }
     }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
   }
 
-  // كارت النموذج العصري
   .form-card {
-    // background: $white-color;
-    border-radius: 16px;
-    // box-shadow: 0 10px 25px -5px rgba($primary-color, 0.05), 0 8px 10px -6px rgba($primary-color, 0.05);
-    padding: 3rem;
-    border: 1px solid $border;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
-
-    // &:hover {
-    //   box-shadow: 0 20px 30px -10px rgba($primary-color, 0.08);
-    // }
-
-    // شبكة توزيع الحقول المتجاوبة
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -73,7 +58,6 @@
         gap: 1.25rem;
       }
 
-      // تجعل الحقل يمتد على السطر كاملاً عند الحاجة
       .full-width {
         grid-column: span 2;
         @media (max-width: 768px) {
@@ -82,7 +66,6 @@
       }
     }
 
-    // مجموعات الحقول (Label + Input)
     .form-group {
       display: flex;
       flex-direction: column;
@@ -108,7 +91,8 @@
         display: flex;
         align-items: center;
 
-        input {
+        input,
+        textarea {
           width: 100%;
           padding: 0.5rem 1.2rem;
           font-size: 0.95rem;
@@ -123,13 +107,18 @@
             opacity: 0.6;
           }
 
-          // تأثير الحركة العصري عند التركيز
           &:focus {
             outline: none;
             border-color: $primary-color;
             box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
             background-color: #fff;
           }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 80px;
+          font-family: $fm-nunito;
         }
 
         // تخصيص إضافي لحقل السعر لإعطائه هوية فخمة
@@ -181,7 +170,8 @@
         label {
           color: $danger-color;
         }
-        input {
+        input,
+        textarea {
           border-color: $danger-color !important;
           background-color: rgba($danger-color, 0.01);
           &:focus {
@@ -190,8 +180,5 @@
         }
       }
     }
-
   }
 }
-
-
