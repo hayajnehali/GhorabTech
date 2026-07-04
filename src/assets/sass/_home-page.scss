@@ -63,7 +63,6 @@
 
   h2 {
     color: #111111;
-    font-weight: 700;
     line-height: 46px;
     margin-bottom: 10px;
   }
@@ -120,10 +119,8 @@
   h2 {
     color: #b7b7b7;
     line-height: 72px;
-    font-size: 34px;
 
     span {
-      font-weight: 700;
       color: $heading-color;
     }
   }
@@ -151,15 +148,12 @@
 
   span {
     display: block;
-    font-size: 15px;
     color: $white-color;
     margin-bottom: 4px;
   }
 
   h5 {
     color: $white-color;
-    font-size: 20px;
-    font-weight: 700;
   }
 }
 
@@ -167,8 +161,6 @@
 
   span {
     color: $primary-color;
-    font-size: 14px;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 15px;
@@ -177,7 +169,6 @@
 
   h2 {
     color: $heading-color;
-    font-weight: 700;
     line-height: 46px;
     margin-bottom: 25px;
   }
@@ -213,9 +204,7 @@
 
       span {
         color: $heading-color;
-        font-weight: 700;
         display: block;
-        font-size: 36px;
       }
 
       p {
@@ -244,7 +233,6 @@
 
   h2 {
     color: $heading-color;
-    font-weight: 700;
     margin-bottom: 30px;
   }
 
@@ -254,6 +242,5 @@
 
   h3 {
     color: $primary-color;
-    font-weight: 700;
   }
 }

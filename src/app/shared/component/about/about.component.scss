@@ -4,8 +4,6 @@
     padding: 40px;
   
     h2.section-title {
-      font-size: 2rem;
-      font-weight: bold;
       color: #333;
       position: relative;
       display: inline-block;
@@ -23,7 +21,6 @@
     }
   
     p {
-      font-size: 1.1rem;
       line-height: 1.8;
       color: #666;
     }
@@ -31,7 +28,6 @@
     button {
       background: #007bff;
       border: none;
-      font-size: 1rem;
       transition: all 0.3s ease;
   
       &:hover {

@@ -137,7 +137,6 @@
           background: $heading-color;
           display: inline-block;
           padding: 4px 10px;
-          font-size: 12px;
           position: absolute;
           left: -78px;
           top: 5px;
@@ -186,8 +185,6 @@
 
   h6 {
     color: $heading-color;
-    font-size: 15px;
-    font-weight: 600;
     margin-bottom: 5px;
     @include m.transition(all, .3s);
   }
@@ -204,7 +201,6 @@
 
   h5 {
     color: #0d0d0d;
-    font-weight: 700;
   }
 
   .product__color__select {
