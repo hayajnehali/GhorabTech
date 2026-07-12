@@ -196,7 +196,7 @@
       <div class="col-12">
         <app-pagination
           [length]="totalNumberOf"
-          (page)="pageChanged($event)"
+          (page)="onPageChange($event)"
           [pageSizeOptions]="pageSizeOptions"
           showFirstLastButtons
         ></app-pagination>

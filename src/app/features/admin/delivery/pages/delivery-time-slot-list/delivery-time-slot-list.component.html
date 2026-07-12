@@ -3,6 +3,7 @@
   [filter]="filter"
   (resetBase)="reset()"
   (searchBase)="search()"
+  (pageChange)="onPageChange($event)"
 >
   <page-header
     [title]="'delivery.delivery-time-slot-list' | translate"

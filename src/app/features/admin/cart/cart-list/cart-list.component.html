@@ -2,7 +2,8 @@
   [(pagedResult)]="dataEntity"
   [filter]="filter"
   (resetBase)="reset()"
-  (searchBase)="search()" 
+  (searchBase)="search()"
+  (pageChange)="onPageChange($event)"
 >
   <page-header
     [title]="'cart.cart-list' | translate"

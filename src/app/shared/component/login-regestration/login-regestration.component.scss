@@ -120,19 +120,16 @@
           outline: none;
           border: none;
           line-height: 1;
-          font-weight: 600;
           /*    font-size: 1.1rem;*/
           color: #333;
         }
 
         input[type="file" i] {
-          font-size: 10px;
           padding-top: 21px;
         }
 
         input::placeholder {
           color: #aaa;
-          font-weight: 500;
         }
       }
 
@@ -219,14 +216,11 @@
 
           h3 {
             color: #fff;
-            font-weight: 600;
             line-height: 1;
-            font-size: 1.5rem;
           }
 
           p {
             color: #fff;
-            font-size: 1rem;
             padding: 0.7rem 0;
           }
         }
@@ -300,11 +294,9 @@
           }
           .content {
             h3 {
-              font-size: 1.2rem;
             }
 
             p {
-              font-size: 1rem;
               padding: 0.5rem 0;
             }
             .btn.transparent {
@@ -379,11 +371,9 @@
           transition-delay: 0.8s;
 
           h3 {
-            font-size: 0.9rem;
           }
 
           p {
-            font-size: 0.9rem;
             padding: 0.5rem 0;
           }
         }
@@ -429,11 +419,9 @@
           transition-delay: 0.8s;
 
           h3 {
-            font-size: 1.2rem;
           }
 
           p {
-            font-size: 0.9rem;
             padding: 0.5rem 0;
           }
 

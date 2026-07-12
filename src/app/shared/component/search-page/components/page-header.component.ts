@@ -21,8 +21,11 @@ import { TranslateModule } from '@ngx-translate/core';
     </div>
   `,
   styles: `
+    @use 'variable' as *;
+
+    @use 'sass:color';
     /* Container styling */
-    .header-container { 
+    .header-container {
       border-bottom: 1px solid #f3f4f6; /* border-b border-gray-100 */
       display: flex;
       flex-direction: column;
@@ -40,12 +43,28 @@ import { TranslateModule } from '@ngx-translate/core';
 
     /* Typography & Titles */
     .header-title {
-      font-size: 1.5rem; /* text-2xl */
-      font-weight: 700; /* font-bold */
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 0.5rem; /* gap-2 */
+      gap: 0.5rem;
+
       margin: 0;
+      padding-bottom: 0.5rem;
+
+      font-size: 1.5rem;
+      font-weight: 700;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 2px;
+
+        background: linear-gradient(90deg, $accent-gold 0%, transparent 100%);
+      }
     }
 
     .header-label {

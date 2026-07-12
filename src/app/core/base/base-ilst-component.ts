@@ -64,8 +64,9 @@ export abstract class BaseListComponent<
   delete(id: string) {
     const sub = this.service.delete(id).subscribe(() => this.loadData());
     this.subscribe(sub);
-  }
-  pageChanged(event: PageEvent) {
+  } 
+  
+  onPageChange(event: PageEvent) {
     this.filter.pageIndex = event.pageIndex + 1;
     this.filter.pageSize = event.pageSize;
     this.loadData();
@@ -78,7 +79,7 @@ export abstract class BaseListComponent<
   }
 
   search() {
-    if (this.myForm.invalid) {
+    if (this.myForm && this.myForm.invalid) {
       this.myForm.control.markAllAsTouched();
       return;
     }

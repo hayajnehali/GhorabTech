@@ -1,0 +1,71 @@
+// ====================================================================
+// Typography Design System
+// All font-size, font-family, font-weight, line-height, letter-spacing
+// definitions are centralized here. Modify these values to update
+// typography across the entire application.
+// ====================================================================
+
+// ===== Font Size CSS Custom Properties =====
+:root {
+  // ---- Headings ----
+  --fs-h1: clamp(2rem, 4vw, 4.375rem);       // 32px -> 70px
+  --fs-h2: clamp(1.5rem, 2.5vw, 2.25rem);     // 24px -> 36px
+  --fs-h3: clamp(1.25rem, 2vw, 1.875rem);     // 20px -> 30px
+  --fs-h4: clamp(1rem, 1.5vw, 1.5rem);        // 16px -> 24px
+  --fs-h5: clamp(0.875rem, 1.2vw, 1.125rem);  // 14px -> 18px
+  --fs-h6: clamp(0.75rem, 1vw, 1rem);          // 12px -> 16px
+
+  // ---- Body text ----
+  --fs-p: clamp(0.875rem, 1vw, 1rem);          // 14px -> 16px
+  --fs-small: clamp(0.75rem, 0.8vw, 0.875rem); // 12px -> 14px
+
+  // ---- Form elements ----
+  --fs-label: clamp(0.8125rem, 1vw, 0.9375rem); // 13px -> 15px
+  --fs-input: clamp(0.875rem, 1vw, 1rem);       // 14px -> 16px
+
+  // ---- Line heights ----
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
+
+  // ---- Font families ----
+  --ff-heading: sans-serif;
+  --ff-body: "Tajawal", sans-serif;
+}
+
+// ===== Element Defaults =====
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading);
+  font-weight: 600;
+  line-height: var(--lh-heading);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-h6); }
+
+p {
+  font-size: var(--fs-p);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+}
+
+small { font-size: var(--fs-small); }
+
+label {
+  font-size: var(--fs-label);
+  font-weight: 500;
+}
+
+input, textarea, select {
+  font-size: var(--fs-input);
+  font-family: inherit;
+}
+
+button {
+  font-size: var(--fs-input);
+  font-family: inherit;
+}

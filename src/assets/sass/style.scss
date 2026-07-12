@@ -1,6 +1,8 @@
 @use 'variable' as *;
 @use "mixins";
-@use "product-section"; 
+@use "product-section";
+@use 'typography-system';
+@use 'fonts';
 @use "base";
 @use "header";
 @use "hero";
