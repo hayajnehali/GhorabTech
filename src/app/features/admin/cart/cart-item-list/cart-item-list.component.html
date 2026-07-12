@@ -49,6 +49,7 @@
   (resetBase)="reset()"
   (searchBase)="search()"
   [disableSearchContainer]="true"
+  (pageChange)="onPageChange($event)"
 >
   <page-header
     [title]="'cart.cart-item-list' | translate"

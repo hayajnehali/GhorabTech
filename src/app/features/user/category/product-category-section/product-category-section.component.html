@@ -116,7 +116,7 @@
         <mat-paginator
           class="mat-paginator"
           [length]="totalNumberOf"
-          (page)="pageChanged($event)"
+          (page)="onPageChange($event)"
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
         ></mat-paginator>

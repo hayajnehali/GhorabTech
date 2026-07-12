@@ -78,7 +78,7 @@
       <div class="mt-4">
         <mat-paginator
           [length]="totalNumberOf"
-          (page)="pageChanged($event)"
+          (page)="onPageChange($event)"
           [pageSizeOptions]="pageSizeOptions"
           showFirstLastButtons
         ></mat-paginator>

@@ -61,14 +61,14 @@ export class GridResultComponent implements OnInit, OnDestroy {
   totalRecords = input<number>(0);
   loading = input<boolean>(false);
   dataKey = input<string>('id');
-  rows = input<number>(5);
+  pageSize = input<number>(5);
   allowSelection = input<boolean>(false);
   allowExpand = input<boolean>(false);
   externalColumns = input<readonly GridColumnDirective[]>([]);
   externalExpanded = input<GridExpandedDirective | undefined>(undefined);
 
   /* ── outputs ── */
-  onLazyLoad = output<LazyLoadEvent>();
+  onLazyLoad = output<PageEvent>();
   onRowSelected = output<any[]>();
 
   /* ── two-way binding ── */
@@ -113,7 +113,8 @@ export class GridResultComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.lazySubject
       .pipe(debounceTime(100))
-      .subscribe((e) => this.onLazyLoad.emit(e));
+      .subscribe( 
+    );
     this.emitLazy(); // trigger initial load
   }
 
@@ -124,9 +125,8 @@ export class GridResultComponent implements OnInit, OnDestroy {
   }
 
   /* ── pagination ── */
-  onPage(event: PageEvent) {
-    this.pageIndex.set(event.pageIndex);
-    this.emitLazy(event.pageIndex, event.pageSize);
+  onPage(event: PageEvent) { 
+    this.onLazyLoad.emit(event);
   }
 
   /* ── sort ── */
@@ -182,7 +182,7 @@ export class GridResultComponent implements OnInit, OnDestroy {
     );
   }
 
-  private emitLazy(pageIndex = this.pageIndex(), pageSize = this.rows()) {
+  private emitLazy(pageIndex = this.pageIndex(), pageSize = this.pageSize()) {
     this.lazySubject.next({
       first: pageIndex * pageSize,
       rows: pageSize,
