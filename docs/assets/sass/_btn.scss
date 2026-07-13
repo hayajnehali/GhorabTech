@@ -1,0 +1,304 @@
+@use "variable" as *;
+@use "sass:color";
+
+// ===================== BUTTONS =====================
+
+.btn {
+  border: 1px solid $third-color;
+  border-radius: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.btn-primary {
+  color: $white-color;
+  background: $primary-gradient;
+  border: 1px solid $primary-color;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover { 
+    background: $white-color;
+    color: $primary-color;
+    transform: translateY(-2px);
+    border: 1px solid $primary-color;
+  }
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    background-color: $white-color !important;
+    color: $primary-color !important;
+    box-shadow: none !important;
+    transform: translateY(0);
+    border: 1px solid $primary-color;
+  }
+}
+
+.btn-secondary {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  background-color: inherit;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white-color;
+    transform: translateY(-2px);
+  }
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    background-color: $primary-color !important;
+    color: $white-color !important;
+    border-color: $primary-color !important;
+    box-shadow: none !important;
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary-link {
+  background: transparent;
+  color: $secondary-color;
+  border: none;
+  width: 100%;
+  font-size: 0.8rem;
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.btn-third {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  background-color: inherit;
+  color: $white-color;
+  border: 1px solid $white-color;
+
+  &:hover {
+    color: $white-color;
+    transform: translateY(-2px);
+  }
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    background-color: $primary-color !important;
+    color: $white-color !important;
+    border-color: $primary-color !important;
+    box-shadow: none !important;
+    transform: translateY(0);
+  }
+}
+
+.btn-delete-key {
+  padding: 0.6rem 2rem;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  background-color: inherit;
+  color: $primary-color;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white-color;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-icon {
+  color: $primary-color;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+// ===================== BUTTONS WITH ICONS =====================
+
+.btn-icon-left,
+.btn-icon-right {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1;
+
+  .material-icons,
+  mat-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.25s ease;
+  }
+}
+
+.btn-icon-left {
+  .material-icons,
+  mat-icon {
+    order: -1;
+  }
+
+  &:hover .material-icons,
+  &:hover mat-icon {
+    transform: translateX(-3px);
+  }
+}
+
+.btn-icon-right {
+  &:hover .material-icons,
+  &:hover mat-icon {
+    transform: translateX(3px);
+  }
+}
+
+// -- Icon Button Variants --
+
+.btn-icon-primary {
+  @extend .btn-icon-left;
+  background-color: $primary-color;
+  border: 1px solid transparent;
+  color: $white-color;
+  box-shadow: 0 4px 12px rgba($primary-color, 0.2);
+
+  &:hover {
+    background-color: color.adjust($primary-color, $lightness: 8%);
+    color: $white-color;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-color, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-icon-outline {
+  @extend .btn-icon-left;
+  background-color: transparent;
+  border: 1px solid $border-1;
+  color: $gray-600;
+
+  &:hover {
+    background-color: inherit;
+    border-color: $primary-color;
+    color: $primary-color;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-icon-ghost {
+  @extend .btn-icon-left;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: $gray-600;
+
+  &:hover {
+    background-color: rgba($primary-color, 0.06);
+    color: $primary-color;
+  }
+
+  &:active {
+    background-color: rgba($primary-color, 0.1);
+  }
+}
+
+.btn-icon-danger {
+  @extend .btn-icon-left;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: $danger-color;
+
+  &:hover {
+    background-color: rgba($danger-color, 0.08);
+    color: $danger-color;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background-color: rgba($danger-color, 0.14);
+    transform: translateY(0);
+  }
+}
+
+// -- Icon Only (Circular) --
+
+.btn-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba($primary-color, 0.08);
+  color: $primary-color;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .material-icons,
+  mat-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white-color;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.25);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &--sm {
+    width: 32px;
+    height: 32px;
+
+    .material-icons,
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &--lg {
+    width: 48px;
+    height: 48px;
+
+    .material-icons,
+    mat-icon {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
+// ===================== BUTTON CONTAINERS =====================
+
+.btn-container {
+  display: flex;
+  justify-content: end;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
