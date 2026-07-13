@@ -1,0 +1,176 @@
+@use "variable" as *;
+@use "sass:color"; 
+
+.admin-form-container {
+  border-radius: 16px;
+  border: 1px solid $border;
+  padding: 2.5rem 2rem;
+  margin: 1rem; 
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .header-title {
+      h1,
+      h3 {
+        color: $primary-color;
+        margin-bottom: 0.4rem;
+        position: relative;
+        display: inline-block;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, $accent-gold, transparent);
+        }
+      }
+      p {
+        color: $para-color;
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .form-card {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .full-width {
+        grid-column: span 2;
+        @media (max-width: 768px) {
+          grid-column: span 1;
+        }
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      label {
+        color: $heading-color-2;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+
+        .required {
+          color: $danger-color;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 0.5rem 1.2rem;
+          border-radius: 10px;
+          border: 1px solid $border-1;
+          background-color: $white-color;
+          color: $normal-color;
+          transition: all 0.25rem cubic-bezier(0.4, 0, 0.2, 1);
+
+          &::placeholder {
+            color: $secondary-color;
+            opacity: 0.6;
+          }
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
+            background-color: #fff;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 80px;
+        }
+
+        // تخصيص إضافي لحقل السعر لإعطائه هوية فخمة
+        // تخصيص إضافي لحقل السعر لإعطائه هوية فخمة
+        &.cost-input {
+          position: relative; // نضمن أن الحاوية هي المرجع للتموضع
+
+          input {
+            color: $primary-color;
+            border-color: rgba($accent-gold, 0.4);
+
+            // الحل السحري للكتابة: نترك مسافة أمان دائماً من جهة نهاية النص (يمين في العربي، يسار في الإنجليزي)
+            // padding-inline-end تعني البادينغ من جهة النهاية تلقائياً حسب الـ direction الحالي للموقع
+            padding-inline-end: 4rem;
+
+            &:focus {
+              border-color: $accent-gold;
+              box-shadow: 0 0 0 4px rgba($accent-gold, 0.12);
+            }
+          }
+
+          // شارة العملة المدمجة الذكية
+          .currency-badge {
+            position: absolute;
+            top: 50%;
+            transform: translateY(
+              -50%
+            ); // لضمان توسط الشارة عمودياً تماماً مهما كان طول الحقل
+
+            // الحل السحري للتموضع: inset-inline-end تعني (يمين في الإنجليزي) و (يسار في العربي) أوتوماتيكياً!
+            inset-inline-end: 12px;
+
+            background-color: $background-2;
+            color: $third-color;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            pointer-events: none; // لكي يستطيع المستخدم الضغط على الحقل حتى لو ضغط فوق الشارة
+            z-index: 2;
+          }
+        }
+      }
+
+      // التعامل مع الأخطاء (Angular Validation States)
+      &.has-error {
+        label {
+          color: $danger-color;
+        }
+        input,
+        textarea {
+          border-color: $danger-color !important;
+          background-color: rgba($danger-color, 0.01);
+          &:focus {
+            box-shadow: 0 0 0 4px rgba($danger-color, 0.1) !important;
+          }
+        }
+      }
+    }
+  }
+}
