@@ -2,14 +2,13 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResult } from '@models/product';
-import {
-  ItemProductResult,
+import { 
   ProductCollectionItemRequest,
   ProductCollectionRequest,
   ProductCollectionResponse,
-} from '../../models/product-collection.model';
+} from '../../../../../model/product-collection.model';
 import { LocalizedString } from '@core/base/localized-string ';
-import { ProductCollectionService } from '../../services/product-collection.service';
+import { ProductCollectionService } from '../../../../../shared/services/product-collection.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -64,7 +63,7 @@ export class ManageProductCollectionComponent implements OnInit {
       sortOrder: collection.sortOrder,
     });
     this.productsSelected =
-      collection.items?.map((i) => this.mapToProductResult(i.product)) || [];
+      collection.productCollectionItems?.map((i) => this.mapToProductResult(i.product)) || [];
   }
 
   private loadCollection(id: string): void {
@@ -165,13 +164,13 @@ export class ManageProductCollectionComponent implements OnInit {
     this.router.navigateByUrl('/admin/product-collection');
   }
 
-  private mapToProductResult(source: ItemProductResult): ProductResult {
+  private mapToProductResult(source: ProductResult): ProductResult {
     return Object.assign(new ProductResult(), {
       id: source.id,
       productId: Number(source.id),
       name: source.name,
       price: source.price,
-      images: source.productImages ?? [],
+      images: source.images ?? [],
     });
   }
 

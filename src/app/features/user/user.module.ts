@@ -29,6 +29,7 @@ import { SearchComponent } from "./user-shared-section/search/search.component";
 import { CartItemListComponent } from './cart/cart-item-list/cart-item-list.component'; 
 import { NoDataComponent } from '@shared/component/no-data/no-data.component';
 import { TimeFormatPipe } from "../../shared/pipe/time-format.pipe";
+import { ProductCollectionSectionComponent } from './user-shared-section/product-collection-section/product-collection-section.component';
 register();
 
 @NgModule({
@@ -54,6 +55,7 @@ register();
     FooterComponent,
     CategoryModule,
     CategorySectionComponent,
+    ProductCollectionSectionComponent,
     RegistrationComponent,
     TopBarComponent,
     LoginLogoutButtonComponent,

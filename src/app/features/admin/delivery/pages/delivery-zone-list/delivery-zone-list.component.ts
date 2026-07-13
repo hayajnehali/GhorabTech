@@ -27,9 +27,7 @@ export class DeliveryZoneListComponent extends BaseListComponent<
   }
   redirectToAdd() {
     throw new Error('Method not implemented.');
-  }
-  override ngOnInit(): void {}
-
+  } 
   manageZone(_t50: any) {
     const dialogRef = this.dialog.open(ManageDeliveryZoneComponent, {
       data: {

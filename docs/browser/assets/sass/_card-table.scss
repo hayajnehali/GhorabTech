@@ -47,7 +47,6 @@
 
     small {
       display: block;
-      font-size: 0.8rem;
       color: #666;
       margin-bottom: 2px;
     }
@@ -73,7 +72,6 @@
     margin: 4px 0;
     small {
       display: block;
-      font-size: 0.8rem;
       color: #666;
       margin-bottom: 2px;
     }
@@ -123,10 +121,8 @@
     align-items: center;
 
     h5 {
-      font-weight: 300;
       letter-spacing: 1.2px;
       margin: 0;
-      font-size: 1.1rem;
     }
 
     .cart-count {
@@ -189,9 +185,7 @@
 
       h6 {
         color: $primary-color;
-        font-weight: 600;
         margin-bottom: 4px;
-        font-size: 0.95rem;
       }
 
       .price-usd {
@@ -231,7 +225,6 @@
         background: transparent;
         border: none;
         color: $primary-color;
-        font-weight: bold;
         padding: 0;
         &:hover {
           color: $third-color;
@@ -239,8 +232,6 @@
       }
 
       span {
-        font-size: 0.85rem;
-        font-weight: 700;
         color: $primary-color;
       }
     }

@@ -5,6 +5,7 @@ import { CategoryFilter, CategoryResult } from '@models/category';
 import {
   ProductCategoryResult,
 } from '@models/product-category';
+import { Result } from '@models/results/result';
 import { PagedResult } from '@models/results/search-filter';
 import { BaseLayOutComponent } from '@shared/component/base-lay-out/base-lay-out.component';
 import { CartService } from '@shared/services/cart.service';
@@ -50,10 +51,10 @@ export class UserLayOutComponent extends BaseLayOutComponent {
     this.categoryService
       .getProductCategoryWithProduct(new CategoryFilter())
       .subscribe({
-        next: (res: PagedResult<CategoryResult>) => {
-          this.categoryResult = res.items;
+        next: (res: Result<CategoryResult[]>) => {
+          this.categoryResult = res.data??undefined;
           this.productCategories =
-            res.items?.flatMap((item) => item.productCategories) ?? undefined;
+            res.data?.flatMap((item) => item.productCategories) ?? undefined;
         },
       });
   }

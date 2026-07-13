@@ -1,15 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core'; 
 import { BaseComponent } from '@core/base/base-component';
 import { CartItem } from '@models/cart-item';
-import { KeyAttribute, KeyAttributeResult } from '@models/key-attribute';
+import { KeyAttributeResult } from '@models/key-attribute';
 import { KeyAttributeValueResult } from '@models/key-attribute-value';
-import { ProductResult } from '@models/product';
-import { TranslateService } from '@ngx-translate/core';
-import { LoginLogoutDialogComponent } from '@shared/dialog/login-logout-dialog/login-logout-dialog.component';
-import { CartService } from '@shared/services/cart.service';
-import { NotificationService } from '@shared/services/notification.service';
+import { ProductResult } from '@models/product'; 
+import { CartService } from '@shared/services/cart.service'; 
 import { ProductService } from '@shared/services/product.service';
 import { SpinnerService } from '@shared/services/spinner.service';
 

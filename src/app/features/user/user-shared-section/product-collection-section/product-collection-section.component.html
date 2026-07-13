@@ -1,0 +1,105 @@
+<div *ngIf="hasData">
+  <section
+    class="py-5 category-section container"
+    *ngFor="let collection of dataSource.data"
+  >
+    <h3 class="section-title section-title-center">
+      <b aria-hidden="true"></b>
+      <span class="section-title-main p-0 m-0">{{
+        collection.name.local
+      }}</span>
+      <b aria-hidden="true"></b>
+    </h3>
+
+    @if (
+      collection.productCollectionItems &&
+      collection.productCollectionItems.length > 0
+    ) {
+      <div class="row product-section">
+        @for (item of collection.productCollectionItems; track $index) {
+          <!-- <div class="card-container">
+            <div
+              class="product-card"
+              [routerLink]="[
+                'category',
+                collection.id,
+                'product-category',
+                item.productId,
+                'product',
+              ]"
+            >
+              <div class="image-container">
+                @for (image of item.product.images; track $index) {
+                  @if (image && image?.guidName && $index === 0) {
+                    <app-image
+                      [src]="image.guidName"
+                      class="main-img"
+                      [alt]="item.product.name.local"
+                    ></app-image>
+                  }
+                }
+              </div>
+
+              <div class="card-body text-center">
+                <p class="category-name text-truncate px-2">
+                  {{ item.product.name.local }}
+                </p>
+                <div class="explore-badge">
+                  {{ "general.explore" | translate }}
+                  <mat-icon>chevron_right</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="card-container">
+            <div
+              class="product-card"
+              [routerLink]="[
+                'category', 
+                'view-product',
+                item.product.id
+              ]"
+            >
+              <div class="image-container">
+                @if (item.product.discountRated) {
+                  <div class="discountRated">
+                    {{ item.product.discountRated }}
+                    {{ "general.percent-off" | translate }}
+                  </div>
+                }
+                @for (image of item.product.images; track $index) {
+                  @if (image && image?.guidName && $index == 0) { 
+                    <app-image
+                      [src]="image.guidName"
+                      class="main-img"
+                      [alt]="item.product.name.local"
+                    ></app-image>
+                  }
+                }
+              </div>
+
+              <div class="card-body text-center">
+                <p class="text-truncate px-2">{{ item.product.name.local }}</p>
+                <div class="price-tag">
+                  <small>{{ "general.JOD" | translate }}</small>
+                  {{ item.product.price }}
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- <div class="text-center mt-4">
+      <button
+        class="btn btn-primary"
+        [routerLink]="['category', collection.id, 'product-category']"
+      >
+        <i class="fa fa-shopping-cart me-2"></i>
+        {{ "general.show-more" | translate }}
+      </button>
+    </div> -->
+  </section>
+</div>
+ 
