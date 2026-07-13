@@ -162,7 +162,6 @@
 
   h3 {
     color: $primary-color;
-    font-size: 1.5rem;
     margin-bottom: 1.5rem;
     // border-bottom: 2px solid rgba($third-color, 0.1);
     padding-bottom: 0.5rem;
@@ -276,7 +275,6 @@
     flex-grow: 1;
     border: 1px solid transparent;
     padding: 0.75rem;
-    font-size: 0.95rem;
     outline: none;
     color: $primary-color;
     background: rgba($third-color, 0.05);
@@ -335,24 +333,5 @@
     }
   }
 
-  .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-
-    button {
-      border: 1px solid $third-color;
-      background: none;
-      border-radius: 6px;
-      padding: 4px 12px;
-      cursor: pointer;
-      color: $third-color;
-
-      &:last-child {
-        background-color: $primary-color;
-        color: $white-color;
-        border-color: $primary-color;
-      }
-    }
-  }
+ 
 }

@@ -1,0 +1,66 @@
+@use "variable" as *;
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $third-color;
+  }
+}
+
+.link-text {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $third-color;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.link-muted {
+  color: $secondary-color;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.link-underline {
+  color: $primary-color;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $third-color;
+  }
+}

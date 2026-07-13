@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ServiceBase } from './base.service'; 
 import { Category, CategoryFilter, CategoryResult } from '@models/category';
 import { PagedResult } from '@models/results/search-filter';
+import { Result } from '@models/results/result';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,9 @@ export class CategoryService extends ServiceBase<
 
   getProductCategoryWithProduct(
     filterCriteria: CategoryFilter
-  ): Observable<PagedResult<CategoryResult>> {
+  ): Observable<Result<CategoryResult[]>> {
     let params: HttpParams = this.buildHttpParams(filterCriteria);
-    return this.http.get<PagedResult<CategoryResult>>(this.baseUrl + '/get-all-category-name', {
+    return this.http.get<Result<CategoryResult[]>>(this.baseUrl + '/get-all-category-name', {
       params,
     });
   }

@@ -21,9 +21,7 @@ export class DeliveryTimeSlotListComponent extends BaseListComponent<
   pagedResult = new PagedResult<DeliveryTimeSlotResult>();  
   constructor(private deliveryZoneService: DeliveryTimeSlotService) {
     super(deliveryZoneService, DeliveryTimeSlotFilter);
-  } 
-  override ngOnInit(): void { }
-
+  }  
   manageZone(_t50: any) {
     const dialogRef = this.dialog.open(ManageDeliveryTimeSlotComponent, {
       data: {

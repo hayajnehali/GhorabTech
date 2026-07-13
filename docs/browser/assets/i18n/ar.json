@@ -88,7 +88,13 @@
     "next": "ألتالي",
     "last": "ألاخيرر",
     "price-before-discount": "السعر قبل الخصم",
+    "refresh": "تحديث",
+    "all": "الكل",
     "create-date": "تاريخ الإنشاء",
+    "updated": "آخر تحديث",
+    "sort-order": "ترتيب الفرز",
+    "active": "نشط",
+    "inactive": "غير نشط",
     "reset": "إعادة ضبط",
     "quantity": "ألكمية",
     "number-sales": "عدد المبيعات",
@@ -134,7 +140,12 @@
     "example-email": "Email@gmail.com",
     "fill-information-register-new-account": "قم بملء البيانات التالية لتسجيل حسابك الجديد بالموقع",
     "verification-code-email": "الرجاء إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
-    "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً"
+    "autoFilled": "الحساب موثق - يتم التعبئة تلقائياً",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل",
+    "confirm-delete": "هل أنت متأكد من حذف هذا العنصر؟",
+    "fromTime": "من وقت",
+    "toTime": "الي وقت"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -236,7 +247,12 @@
     "viewCart": "عرض عربة التسوق",
     "delete-cart": "حذف عربة التسوق",
     "failed-to-create-cart": "خطاء في انشاء عربة التسوق",
+    "manage-carts": "إدارة عربات التسوق",
+    "search-by-email": "ابحث بالبريد الإلكتروني...",
+    "select-status": "اختر الحالة",
     "cart-list": "قائمة عربة التسوق",
+    "cart-owner": "مالك العربة",
+    "items-count": "عدد العناصر",
     "order-exit-status": "حالة خروج الطلب",
     "payment-status": "حالة الدفع",
     "cart-item-list": "قائمة عناصر عربة التسوق",
@@ -251,6 +267,8 @@
     "choose-delivery-date": "اختر تاريخ التسليم",
     "delivery-information": "معلومات التوصيل",
     "delivery-date": "تاريخ التوصيل",
+    "delivery-area": "منطقة التوصيل",
+    "select-delivery-area": "اختر منطقة التوصيل",
     "delivery-time": "وقت التوصيل",
     "select-time-placeholder": "اختر الوقت المناسب لك",
     "time-morning": "الفترة الصباحية",
@@ -321,7 +339,9 @@
     "add-slider": "إضافة شريط تمرير",
     "edit-slider": "تعديل شريط التمرير",
     "slider-image": "يجب أن يحتوي شريط الشرائح على صورة واحدة فقط",
-    "sliders": "شريط التمرير"
+    "sliders": "شريط التمرير",
+    "featured": "مميز",
+    "scroll": "مرر للأسفل"
   },
   "login": {
     "subject": "أهلاً بعودتك إلى روسل",
@@ -351,7 +371,9 @@
   },
   "PRODUCT_COLLECTION": {
     "ADD_NEW_COLLECTION": "إضافة مجموعة جديدة",
+    "EDIT_COLLECTION": "تعديل المجموعة",
     "CREATE_COLLECTION_DESC": "أنشئ مجموعة منسقة من المنتجات لمتجرك.",
+    "EDIT_COLLECTION_DESC": "قم بتحديث المنتجات والتفاصيل الخاصة بمجموعتك.",
     "BASIC_INFORMATION": "المعلومات الأساسية",
     "COLLECTION_NAME_EN": "اسم المجموعة (إنجليزي)",
     "COLLECTION_NAME_AR": "اسم المجموعة (عربي)",
@@ -372,6 +394,37 @@
     "RESET_SELECTION": "إعادة تعيين",
     "CANCEL": "إلغاء",
     "ADD_SELECTED": "إضافة المنتجات المختارة",
-    "SKU": "SKU"
+    "SKU": "SKU",
+    "NO_PRODUCTS_FOUND": "لا توجد منتجات"
+  },
+  "product-collection": {
+    "product-collections": "مجموعات المنتجات",
+    "add-new-collection": "إضافة مجموعة منتجات",
+    "edit-product-collection": "تعديل مجموعة المنتجات",
+    "collection-name": "اسم المجموعة",
+    "code": "الكود",
+    "subject": "الموضوع",
+    "status": "الحالة",
+    "collection-type": "نوع المجموعة",
+    "description": "الوصف",
+    "items-count": "عدد العناصر",
+    "actions": "الإجراءات",
+    "text": "نص البحث",
+    "manage-collections": "إدارة المجموعات",
+    "add-new": "إضافة مجموعة جديدة",
+    "filter": "فلتر",
+    "search-by-name-code-description": "ابحث بالاسم، أو الرمز، أو الوصف..."
+  },
+  "delivery": {
+    "delivery": "توصيل",
+    "delivery-zone-list": "قائمة مناطق التوصيل",
+    "base-delivery-cost": "تكلفة التوصيل الأساسية",
+    "edit-delivery-zone": "تعديل منطقة التوصيل",
+    "add-delivery-zone": "إضافة منطقة توصيل جديدة",
+    "field-manage-deliver-zone": "يرجى تعبئة الحقول أدناه لإدارة منطقة التوصيل بدقة.",
+    "delivery-time-slot-list": "قائمة مواعيد التسليم",
+    "add-delivery-time-slot": "إضافة موعد تسليم",
+    "edit-delivery-time-slot": "تعديل موعد تسليم",
+    "field-manage-delivery-time-slot": "يرجى تعبئة الحقول أدناه لإدارة موعد التسليم بدقة."
   }
 }

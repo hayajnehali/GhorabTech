@@ -3,9 +3,9 @@ import {
   ProductCollectionFilter,
   ProductCollectionRequest,
   ProductCollectionResponse,
-} from '../../models/product-collection.model'; 
+} from '../../../../../model/product-collection.model'; 
 import { BaseListComponent } from '@core/base/base-ilst-component';
-import { ProductCollectionService } from '../../services/product-collection.service';
+import { ProductCollectionService } from '../../../../../shared/services/product-collection.service';
 
 @Component({
   selector: 'app-search-product-collection',
@@ -24,8 +24,6 @@ export class SearchProductCollectionComponent extends BaseListComponent<
  
   // private readonly router = inject(Router);
   private readonly collectionService = inject(ProductCollectionService);
-
-  override ngOnInit(): void {}
 
   redirectToAdd(): void {
     this.router.navigateByUrl('admin/product-collection/create');
