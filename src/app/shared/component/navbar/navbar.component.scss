@@ -31,12 +31,12 @@
 
     .nav-text {
       text-transform: capitalize;
-      color: $heading-color;
-      font-weight: 600;
-      font-size: 0.95rem;
+      color: $primary-color;
+      font-weight: 700;
+      font-size: 0.65rem;
       position: relative;
       transition: color 0.3s ease;
-
+      opacity: 0.6;
       // تأثير الخط السفلي الذكي الذي يمتد من المنتصف عند التحويم
       &::after {
         content: "";
@@ -53,8 +53,8 @@
 
     // تصميم السهم النظيف بدون صور
     .custom-arrow {
-      width: 6px;
-      height: 6px;
+      width: 4px;
+      height: 4px;
       border-right: 2px solid $third-color;
       border-bottom: 2px solid $third-color;
       transform: rotate(45deg);
@@ -110,8 +110,8 @@
     padding: 0.6rem 0.8rem;
     color: $para-color;
     text-decoration: none !important;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.65rem;
+    font-weight: 600;
     border-radius: 8px;
     transition: all 0.25s ease;
 
@@ -199,7 +199,6 @@
     }
   }
 }
- 
 
 // ─── 3. تطوير الـ Angular Material Expansion Panel ───
 .modern-expansion-panel {
@@ -397,7 +396,10 @@
 .animate-fade-in {
   animation: sidebarFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
+.sidebar-action-home {
+  display: flex;
+  justify-content: space-between;
+}
 // أنيميشن تتابعي ناعم لهبوط الأسطر والروابط خلف بعضها (Staggered Effect)
 .animate-item {
   opacity: 0;
