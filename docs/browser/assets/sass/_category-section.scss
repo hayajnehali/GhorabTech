@@ -120,10 +120,11 @@
 
   justify-content: center;
   .card-container {
+    margin-bottom: 1rem;
     width: 20%;
   }
   .product-card {
-    background: $white-color;
+    // background: $white-color;
     border-radius: 24px; // الزوايا الدائرية
     border: 1px solid rgba($primary-color, 0.03) !important;
     position: relative;
