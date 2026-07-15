@@ -7,7 +7,7 @@
         </div>
 
         <a
-          class="sidebar-action-link animate-item"
+          class="sidebar-action-home animate-item"
           routerLink="/user"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -112,7 +112,7 @@
                 categorie of category.productCategories;
                 track categorie.id
               ) {
-                <a
+                <span
                   [routerLink]="[
                     '/user',
                     'category',
@@ -125,7 +125,7 @@
                 >
                   <span class="item-indicator"></span>
                   <span class="item-label">{{ categorie.name.local }}</span>
-                </a>
+              </span>
               }
             </div>
           </div>

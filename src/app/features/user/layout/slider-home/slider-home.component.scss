@@ -198,7 +198,8 @@
 
 @media (max-width: 576px) {
   .hero-slider {
-    height: 90vh;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .hero-swiper {
@@ -250,7 +251,8 @@
 
 @media (max-width: 400px) {
   .hero-slider {
-    height: 85vh;
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
 
   .slide-text-card {
