@@ -1,0 +1,21 @@
+<div class="container my-5">
+  <div class="row justify-content-center"> 
+      <h2 class="page-title mb-2">{{ "contact.title" | translate }}</h2>
+      <div class="page-content">
+        <p>{{ "contact.description" | translate }}</p>
+        <h3>{{ "contact.info-title" | translate }}</h3>
+        <ul>
+          <li><strong>{{ "contact.email-label" | translate }}</strong> {{ email }}</li>
+          <li><strong>{{ "contact.phone-label" | translate }}</strong> +{{ phoneNumber }}</li>
+          <li><strong>{{ "contact.hours-label" | translate }}</strong> {{ "contact.hours-value" | translate }}</li>
+        </ul>
+        <h3 class="mt-2">{{ "contact.social-title" | translate }}</h3>
+        <p>{{ "contact.social-desc" | translate }}</p>
+        <div class="social-links">
+          <a *ngFor="let link of socialLinks" class="mx-3" [href]="link.url" target="_blank" rel="noopener noreferrer">
+            <i [class]="link.icon"></i>
+          </a>
+        </div>
+      </div>
+    </div> 
+</div>

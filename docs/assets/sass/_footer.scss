@@ -1,12 +1,18 @@
 /*---------------------
   Footer
 -----------------------*/
-@use 'variable' as *;  
+@use 'variable' as *;
 .site-footer {
-  background: linear-gradient(135deg, #0a192f 0%, rgb(2.8421052632, 7.1052631579, 13.3578947368) 100%);
-  padding: 30px 0;
+  background-color: $primary-color;
+  padding: 30px 0 20px;
   color: $white-color;
   border-top: 1px solid rgba($white-color, 0.05);
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
   .footer-content {
     display: flex;
@@ -14,11 +20,19 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba($white-color, 0.1);
 
     @media (max-width: 768px) {
       flex-direction: column;
       text-align: center;
     }
+  }
+
+  .footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -27,52 +41,97 @@
   display: flex;
   align-items: center;
 
-  &.languages {
+  &.links {
     justify-content: flex-start;
-    .lang-link {
-      cursor: pointer;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
+    .footer-link {
       color: $third-color;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      
-      &:hover, &.active {
+      font-family: var(--ff-body);
+      font-size: var(--fs-small);
+      transition: color 0.3s ease;
+      white-space: nowrap;
+
+      &:hover {
         color: $white-color;
-        font-weight: bold;
       }
     }
+
     .separator {
       width: 1px;
       height: 12px;
       background: rgba($white-color, 0.2);
-      margin: 0 15px;
+      margin: 0 10px;
     }
   }
 
   &.copyright {
     justify-content: center;
+    flex: 0;
+    white-space: nowrap;
+
     p {
       margin: 0;
       color: $third-color;
+      font-family: var(--ff-body);
+      font-size: var(--fs-small);
     }
   }
 
   &.payment {
     justify-content: flex-end;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
     .payment-wrapper {
       display: flex;
       gap: 15px;
-      font-size: 1.5rem; // حجم أيقونات الدفع
+      font-size: 1.5rem;
       color: rgba($white-color, 0.6);
 
       .pay-icon {
         transition: transform 0.3s ease, color 0.3s ease;
         cursor: pointer;
+
         &:hover {
           color: $white-color;
           transform: translateY(-3px);
         }
       }
+    }
+  }
+
+  &.languages {
+    justify-content: center;
+    gap: 10px;
+
+    .lang-link {
+      cursor: pointer;
+      color: $third-color;
+      text-decoration: none;
+      font-family: var(--ff-body);
+      font-size: var(--fs-small);
+      transition: all 0.3s ease;
+
+      &:hover, &.active {
+        color: $white-color;
+        font-weight: bold;
+      }
+    }
+
+    .separator {
+      width: 1px;
+      height: 12px;
+      background: rgba($white-color, 0.2);
+      margin: 0 5px;
     }
   }
 }
