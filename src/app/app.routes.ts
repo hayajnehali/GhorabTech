@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminLayOutComponent } from './features/admin/layout/admin-layout/admin-layout.component';
-import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component'; 
-import { authChildGuard } from 'Auth/interceptor/auth.guard'; 
+import { UserLayOutComponent } from './features/user/layout/user-layout/user-layout.component';
+import { authChildGuard } from 'Auth/interceptor/auth.guard';
 import { LoginRegestrationComponent } from '@shared/component/login-regestration/login-regestration.component';
 
 const routes: Routes = [
@@ -20,10 +20,18 @@ const routes: Routes = [
     canActivateChild: [authChildGuard],
     children: [
       {
+        path: 'overview',
+        loadChildren: () =>
+          import('@shared/component/overview/pages.module').then(
+            (m) => m.PagesModule,
+          ),
+      },
+      {
         path: '',
         loadChildren: () =>
           import('./features/user/user.module').then((m) => m.UserModule),
       },
+
       // {
       //   path: 'login',
       //   component: LoginComponent,
@@ -39,6 +47,13 @@ const routes: Routes = [
     component: AdminLayOutComponent, // Admin layout
     canActivateChild: [authChildGuard],
     children: [
+      {
+        path: 'overview',
+        loadChildren: () =>
+          import('@shared/component/overview/pages.module').then(
+            (m) => m.PagesModule,
+          ),
+      },
       {
         path: '',
         loadChildren: () =>
@@ -57,6 +72,7 @@ const routes: Routes = [
   //     },
   //   ],
   // },
+
   { path: '', redirectTo: 'user', pathMatch: 'full' },
   { path: '**', redirectTo: 'user' }, // Wildcard route redirects to user
 ];

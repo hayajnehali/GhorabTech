@@ -21,12 +21,12 @@ import { RegistrationComponent } from '@shared/component/registration/registrati
 import { TopBarComponent } from '@shared/component/top-header/top-bar.component';
 import { LoginLogoutButtonComponent } from '@shared/component/login-logout-button/login-logout-button.component';
 import { LanguageButtonComponent } from '@shared/component/language-button/language-button.component';
-import { NavbarComponent } from '@shared/component/navbar/navbar.component'; 
-import { register } from 'swiper/element/bundle'; 
+import { NavbarComponent } from '@shared/component/navbar/navbar.component';
+import { register } from 'swiper/element/bundle';
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 import { MyCartListComponent } from './cart/my-cart-list/my-cart-list.component';
 import { SearchComponent } from "./user-shared-section/search/search.component";
-import { CartItemListComponent } from './cart/cart-item-list/cart-item-list.component'; 
+import { CartItemListComponent } from './cart/cart-item-list/cart-item-list.component';
 import { NoDataComponent } from '@shared/component/no-data/no-data.component';
 import { TimeFormatPipe } from "../../shared/pipe/time-format.pipe";
 import { ProductCollectionSectionComponent } from './user-shared-section/product-collection-section/product-collection-section.component';
@@ -43,7 +43,7 @@ register();
     CartViewComponent,
     PaymentComponent,
     MyCartListComponent,
-    CartItemListComponent, 
+    CartItemListComponent,
   ],
   imports: [
     CommonModule,
@@ -64,8 +64,8 @@ register();
     FormErrorComponent,
     SearchComponent,
     NoDataComponent,
-    TimeFormatPipe
-],
+    TimeFormatPipe,
+  ],
   providers: [ServiceBase, ProductService],
 })
 export class UserModule {}

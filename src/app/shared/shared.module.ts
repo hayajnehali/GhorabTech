@@ -23,7 +23,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { AboutComponent } from './component/about/about.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { EmailComponent } from './component/email/email.component';
 import { DatePickerComponent } from './component/ui/date/date.component';
@@ -42,7 +41,7 @@ import { TimePickerComponent } from './component/ui/time/time-picker.component';
 import { TimeFormatPipe } from './pipe/time-format.pipe';
 
 @NgModule({
-  declarations: [ProductCardComponent, AboutComponent, EmailComponent],
+  declarations: [ProductCardComponent, EmailComponent],
   imports: [
     CommonModule,
     // SharedModuleRoutingModule,
@@ -89,7 +88,6 @@ import { TimeFormatPipe } from './pipe/time-format.pipe';
     MatListModule,
     MatSelectModule,
     TranslateModule,
-    AboutComponent,
     MatRadioModule,
     DatePickerComponent,
     FormErrorComponent,
