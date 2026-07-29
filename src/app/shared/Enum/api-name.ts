@@ -12,5 +12,6 @@ export const enum apiName {
   Comment = 'comment',
   DeliveryZone = 'deliveryZone',
   ProductCollection="ProductCollection",
-  DeliveryTimeSlot="DeliveryTimeSlot"
+  DeliveryTimeSlot="DeliveryTimeSlot",
+  productVariant="productVariant"
 }

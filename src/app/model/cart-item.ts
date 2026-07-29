@@ -1,15 +1,16 @@
 import { ModelBase } from './base.model';
 import { FilterBase } from './filter-base';
-import { KeyAttributeValueResult } from './key-attribute-value';
 import { Product, ProductResult } from './product';
+import { ProductVariantResult } from './product-variant';
 
 export class CartItem extends ModelBase {
   cartItemId?: string;
   quantity: number = 1;
   product: Product = new Product();
-  keyAttributeValues: KeyAttributeValueResult[] = [];
+  productVariantId: string = '';
+  productVariant?: ProductVariantResult;
   get total(): number {
-    return this.quantity * (this.product.price ?? 0);
+    return this.quantity * (this.productVariant?.price ?? 0);
   }
   constructor() {
     super();
@@ -20,9 +21,9 @@ export class CartItemResult extends ModelBase {
   cartItemId?: string;
   quantity: number = 0;
   product: ProductResult = new ProductResult();
+  productVariantId?: string;
+  productVariant?: ProductVariantResult;
   total: number = 0;
-  keyAttributeValues: KeyAttributeValueResult[] = [];
-  unitPrice: number = 0;
   constructor() {
     super();
   }

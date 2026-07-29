@@ -1,5 +1,6 @@
 export enum CartStatus {
   Draft,
+  Reserved,
   Pending,
   RequiresAction,
   Processing,

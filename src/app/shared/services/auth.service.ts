@@ -22,6 +22,7 @@ export interface JwtPayload {
   mobilePhone: string;
   permission: string;
   [key: string]: any;
+  country: string;
 }
 
 @Injectable({

@@ -1,10 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Product, ProductFilter, ProductResult } from '@models/product';
 import { ProductService } from '@shared/services/product.service';
 import { BaseManageComponent } from '@core/base/base-manage-component';
 import { KeyAttributeService } from '@shared/services/key-attribute.service';
 import { KeyAttributeFilter, KeyAttributeResult } from '@models/key-attribute';
-import { KeyAttributeValue } from '@models/key-attribute-value';
+import {
+  ProductVariantDto,
+  ProductVariantAttributeDto,
+} from '@models/product-variant';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-product-manage',
@@ -17,9 +21,21 @@ export class ProductManageComponent extends BaseManageComponent<
   ProductResult,
   ProductFilter
 > {
-  keyAttributeService = inject(KeyAttributeService);
+  private readonly keyAttributeService = inject(KeyAttributeService);
+
   keyAttributeList: KeyAttributeResult[] = [];
-  keyAttributeValueId: string[] = [];
+  selectedAttributeIds: string[] = [];
+  variantRows: ProductVariantDto[] = [];
+
+  readonly displayedColumns = [
+    'index',
+    'combination',
+    'price',
+    'priceBeforeDiscount',
+    'stock',
+    'action',
+  ];
+
   constructor(private productService: ProductService) {
     super(productService, Product);
   }
@@ -28,36 +44,130 @@ export class ProductManageComponent extends BaseManageComponent<
     this.entity.productCategoryId =
       this.activatedRoute.snapshot.paramMap.get('productCategoryid') ??
       undefined;
-    const productId: string | null =
-      this.activatedRoute.snapshot.paramMap.get('productId');
+
+    const productId = this.activatedRoute.snapshot.paramMap.get('productId');
     if (productId != null) {
       this.isAdd = false;
-      this.getById(productId);
+      this.loadData(productId);
     } else {
       this.isAdd = true;
+      this.loadKeyAttributes();
     }
-    this.getKeyAttribute();
   }
-  override onLoadedData(req: any) {
-    this.keyAttributeValueId = req.keyAttributeValues?.map(
-      (k: any) => k.id
-    ) as string[];
+
+  override onLoadedData(req: any): void {
+    if (req.variants?.length > 0) {
+      this.rebuildVariantsFromData(req.variants);
+    }
   }
-  getKeyAttribute() {
+
+  onAttributesChange(): void {
+    this.variantRows = this.generateCombinations();
+  }
+
+  removeVariantRow(index: number): void {
+    this.variantRows.splice(index, 1);
+  }
+
+  getCombination(variant: ProductVariantDto): string {
+    return (
+      variant.attributes
+        ?.map((a) => this.resolveValueName(a.keyAttributeValueId))
+        .filter(Boolean)
+        .join(' + ') ?? ''
+    );
+  }
+
+  override processData(): void {
+    this.entity.variants = this.variantRows;
+  }
+
+  // ── Private Helpers ──────────────────────────────────────
+
+  private loadData(productId: string): void {
+    forkJoin({
+      attributes: this.keyAttributeService.getAll(new KeyAttributeFilter()),
+      product: this.productService.getById(productId),
+    }).subscribe(({ attributes, product }) => {
+      this.keyAttributeList = attributes.items ?? [];
+      const data = Object.assign(new Product(), product.data);
+      this.entity = data;
+      this.onLoadedData(data);
+    });
+  }
+
+  private loadKeyAttributes(): void {
     this.keyAttributeService
       .getAll(new KeyAttributeFilter())
       .subscribe((result) => {
         this.keyAttributeList = result.items ?? [];
       });
   }
-  override processData() {
-    this.keyAttributeValueId?.forEach((id) => {
-      let keyAttributeValues: KeyAttributeValue = new KeyAttributeValue();
-      keyAttributeValues.id = id;
-      if (!this.entity.keyAttributeValues) this.entity.keyAttributeValues = [];
-      if (!this.entity.keyAttributeValues.find((k) => k.id == id))
-        this.entity.keyAttributeValues.push(keyAttributeValues);
+
+  private generateCombinations(): ProductVariantDto[] {
+    if (this.selectedAttributeIds.length === 0) return [];
+
+    const valueArrays = this.selectedAttributeIds
+      .map((attrId) => this.getAttributeValues(attrId))
+      .filter((values) => values.length > 0);
+
+    const combos = this.cartesianProduct(valueArrays);
+
+    return combos.map((combo) => {
+      const variant = new ProductVariantDto();
+      variant.attributes = combo.map((c) => {
+        const attr = new ProductVariantAttributeDto();
+        attr.keyAttributeValueId = c.id;
+        return attr;
+      });
+      return variant;
     });
   }
- 
+
+  private getAttributeValues(attrId: string): { id: string; value: string }[] {
+    const attr = this.keyAttributeList.find((a) => a.id === attrId);
+    return (
+      attr?.keyAttributeValues.map((v) => ({
+        id: v.id ?? '',
+        value: v.value.local ?? v.value.english ?? '',
+      })) ?? []
+    );
+  }
+
+  private resolveValueName(valueId: string): string {
+    for (const attr of this.keyAttributeList) {
+      const val = attr.keyAttributeValues.find((v) => v.id === valueId);
+      if (val) return val.value.local ?? val.value.english ?? '';
+    }
+    return '';
+  }
+
+  private cartesianProduct<T>(arrays: T[][]): T[][] {
+    return arrays.reduce(
+      (acc, curr) => acc.flatMap((a) => curr.map((b) => [...a, b])),
+      [[]] as T[][]
+    );
+  }
+
+  private rebuildVariantsFromData(variants: any[]): void {
+    const attrIdsSet = new Set<string>();
+
+    this.variantRows = variants.map((v) => {
+      const variant = new ProductVariantDto();
+      variant.id = v.id;
+      variant.price = v.price ?? 0;
+      variant.priceBeforeDiscount = v.priceBeforeDiscount;
+      variant.stock = v.stock ?? 0;
+      variant.attributes = (v.attributes ?? []).map((a: any) => {
+        attrIdsSet.add(a.keyAttributeId);
+        const attr = new ProductVariantAttributeDto();
+        attr.id = a.id;
+        attr.keyAttributeValueId = a.keyAttributeValueId;
+        return attr;
+      });
+      return variant;
+    });
+
+    this.selectedAttributeIds = Array.from(attrIdsSet);
+  }
 }

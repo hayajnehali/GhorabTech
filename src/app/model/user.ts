@@ -5,6 +5,7 @@ export class User {
   fullName!: string;
   address?: string;
   country?: string;
+  deliveryZoneId?: string;
   userName?: string;
   email!: string;
   password!: string;

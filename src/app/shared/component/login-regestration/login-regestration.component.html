@@ -143,6 +143,27 @@
             }
           </div>
 
+          <div class="input-field">
+            <i class="fas fa-city" aria-hidden="true"></i>
+            <select
+              class="form-control"
+              name="deliveryZoneId"
+              [(ngModel)]="user.deliveryZoneId"
+              required
+              #deliveryZone="ngModel"
+            >
+              <option value="" disabled selected>
+                {{ "general.select-city" | translate }}
+              </option>
+              @for (zone of deliveryZones; track zone.id) {
+                <option [value]="zone.id">
+                  {{ zone.name.local }}
+                </option>
+              }
+            </select>
+            <app-form-error [control]="deliveryZone"></app-form-error>
+          </div>
+
           <button
             class="btn btn-primary mb-1"
             type="submit"

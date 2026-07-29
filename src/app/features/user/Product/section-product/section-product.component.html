@@ -27,9 +27,9 @@
                   ></app-image>
                 </div>
                 <div class="card-body text-center">
-                  <p class="">{{ product.name }}</p>
+                  <p class="">{{ product.name.local }}</p>
                   <p class="card-text">
-                    <strong class="d-block mt-1">JOD {{ product.price }}</strong>
+                    <strong class="d-block mt-1">JOD {{ product.variants?.[0]?.price ?? '-' }}</strong>
                   </p>
                 </div>
               </div>
