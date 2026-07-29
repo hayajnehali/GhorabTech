@@ -61,12 +61,12 @@
               ]"
             >
               <div class="image-container">
-                @if (item.product.discountRated) {
+                <!-- @if (item.product.discountRated) {
                   <div class="discountRated">
                     {{ item.product.discountRated }}
                     {{ "general.percent-off" | translate }}
                   </div>
-                }
+                } -->
                 @for (image of item.product.images; track $index) {
                   @if (image && image?.guidName && $index == 0) { 
                     <app-image
@@ -82,7 +82,7 @@
                 <p class="text-truncate px-2">{{ item.product.name.local }}</p>
                 <div class="price-tag">
                   <small>{{ "general.JOD" | translate }}</small>
-                  {{ item.product.price }}
+                  {{ item.product.variants?.[0]?.price ?? '-' }}
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductManageComponent } from './product-manage/product-manage.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+
 export const routesProduct: Routes = [
   {
     path: '',

@@ -20,9 +20,9 @@
       <div class="item-details">
         <h6>{{ item.product.name.local }}</h6>
         <p class="price-usd mb-0">
-          {{ "general.JOD" | translate }} {{ item.product.price }}
+          {{ "general.JOD" | translate }} {{ item.productVariant?.price }}
         </p>
-        <a class="remove-link" (click)="removeItem(item.product.id!)">
+        <a class="remove-link" (click)="removeItem(item.productVariantId!)">
           <i class="bi bi-trash3"></i> {{ "general.remove" | translate }}
         </a>
       </div>

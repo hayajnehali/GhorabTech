@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '@shared/environment/environment';
 import { LocalStorageService } from './local-storage-service.service';
 import { Cart, CartFilter, CartResult } from '@models/cart';
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { OrderExitStatus } from '@shared/Enum/cart-enum';
-import { KeyAttributeValue } from '@models/key-attribute-value';
 import { Result } from '@models/results/result';
 import { PagedResult } from '@models/results/search-filter';
 
@@ -45,15 +44,13 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   saveCart(cart: Cart): void {
     cart.updateStamp = new Date();
     this.storage.set(this.CART_KEY, cart);
-    let total = this.calculationTotal(cart);
+    this.calculationTotal(cart);
   }
 
   addItem(item: CartItem): void {
-    let cart = this.getCart();
-    let found = cart.cartItems.find(
-      (i) =>
-        i.product.id === item.product.id &&
-        this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
+    const cart = this.getCart();
+    const found = cart.cartItems.find(
+      (i) => i.productVariantId === item.productVariantId
     );
 
     if (found) {
@@ -75,30 +72,25 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
   }
   private updateQuantity(item: CartItem, op: number): void {
     const cart = this.getCart();
-    let found = cart.cartItems.find(
-      (i) =>
-        i.product.id === item.product.id &&
-        this.hasSameKeyAttributes(i.keyAttributeValues, item.keyAttributeValues)
+    const found = cart.cartItems.find(
+      (i) => i.productVariantId === item.productVariantId
     );
     if (found) {
       found.quantity = found.quantity + op;
-      if (found.quantity == 0) {
+      if (found.quantity <= 0) {
         cart.cartItems = cart.cartItems.filter(
-          (i) =>
-            i.id !== item.product.id &&
-            !this.hasSameKeyAttributes(
-              i.keyAttributeValues,
-              item.keyAttributeValues
-            )
+          (i) => i.productVariantId !== item.productVariantId
         );
       }
       this.saveCart(cart);
     }
   }
 
-  removeItem(productId: string): void {
+  removeItem(productVariantId: string): void {
     const cart = this.getCart();
-    cart.cartItems = cart.cartItems.filter((i) => i.id !== productId);
+    cart.cartItems = cart.cartItems.filter(
+      (i) => i.productVariantId !== productVariantId
+    );
     this.saveCart(cart);
   }
 
@@ -110,13 +102,12 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
 
   private getTotal(): number {
     const cart = this.getCart();
-    let total = this.calculationTotal(cart);
-    return total;
+    return this.calculationTotal(cart);
   }
 
   private calculationTotal(cart: Cart): number {
-    let total = cart.cartItems.reduce((sum, i) => {
-      return sum + (i.product.price ?? 0) * i.quantity;
+    const total = cart.cartItems.reduce((sum, i) => {
+      return sum + (i.productVariant?.price ?? 0) * i.quantity;
     }, 0);
     this.cartTotal.next(total);
     this.cartSubject.next(cart);
@@ -135,18 +126,6 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
       `${this.baseUrl}/change-order-exit-status-cart/${cartId}?orderExitStatus=${orderExitStatus}`,
       {}
     );
-  }
-
-  private hasSameKeyAttributes(
-    a: KeyAttributeValue[],
-    b: KeyAttributeValue[]
-  ): boolean {
-    if (a.length !== b.length) return false;
-
-    const aIds = a.map((k) => k.id).sort();
-    const bIds = b.map((k) => k.id).sort();
-
-    return aIds.every((id, index) => id === bIds[index]);
   }
 
   gustCreateAndPay(item: Cart): Observable<Result<Cart>> {

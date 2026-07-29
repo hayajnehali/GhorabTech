@@ -23,6 +23,8 @@ import { environment } from '@shared/environment/environment';
 import { Auth } from '@models/auth';
 import { MatIcon } from '@angular/material/icon';
 import { Result } from '@models/results/result';
+import { DeliveryZoneService } from '@shared/services/delivery-zone.service';
+import { DeliveryZoneFilter, DeliveryZoneResult } from '@models/delivery/delivery-zone';
 
 @Component({
   selector: 'app-login-logout-dialog',
@@ -44,7 +46,9 @@ export class LoginLogoutDialogComponent
 {
   private storage = inject(LocalStorageService);
   userService = inject(UserService);
+  deliveryZoneService = inject(DeliveryZoneService);
   user: User = new User();
+  deliveryZones: DeliveryZoneResult[] = [];
   loginError: string | null = null;
   auth: Auth = new Auth();
   confirmEmailForm: boolean = false;
@@ -61,7 +65,19 @@ export class LoginLogoutDialogComponent
   ) {
     super();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadDeliveryZones();
+  }
+
+  loadDeliveryZones() {
+    let deliveryZoneFilter = new DeliveryZoneFilter();
+    deliveryZoneFilter.pageSize = 0; // Set pageSize to 0 to fetch all delivery zones
+    this.deliveryZoneService.getAll(deliveryZoneFilter).subscribe({
+      next: (res) => {
+        this.deliveryZones = res.items ?? [];
+      },
+    });
+  }
  
   createUser(form: NgForm) {
     if (this.authService.isAuthenticatedSignal()) return;

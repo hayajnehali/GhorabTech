@@ -22,9 +22,9 @@
                 }'
       >
         @for (item of product.images; track $index) {
-        <swiper-slide>
-          <app-image [src]="item.guidName" alt="Thumbnail Image"></app-image>
-        </swiper-slide>
+          <swiper-slide>
+            <app-image [src]="item.guidName" alt="Thumbnail Image"></app-image>
+          </swiper-slide>
         }
       </swiper-container>
     </div>
@@ -36,19 +36,43 @@
         >
           <h4 class="text-titel">{{ product.name.local }}</h4>
         </div>
-        <div class="customization-item">
-          @if (product.priceBeforeDiscount!=null&&
-          product.priceBeforeDiscount>0) {
-          <span class="text-muted text-decoration-line-through py-1 px-2">
-            {{ product.priceBeforeDiscount }} {{ "general.JOD" | translate }} /
-          </span>
+
+        @if (selectedVariant) {
+          <div class="customization-item">
+            @if (
+              selectedVariant.priceBeforeDiscount != null &&
+              selectedVariant.priceBeforeDiscount > 0
+            ) {
+              <span class="text-muted text-decoration-line-through py-1 px-2">
+                {{ selectedVariant.priceBeforeDiscount }}
+                {{ "general.JOD" | translate }} /
+              </span>
+            }
+            <span class="text-danger fw-bold py-1 px-2">
+              {{ selectedVariant.price }} {{ "general.JOD" | translate }}
+            </span>
+          </div>
+
+          @if (selectedVariant.availableStock <= 0) {
+            <div>
+              <mat-icon>report_problem</mat-icon>
+              <p class="out-of-stock">
+                {{ "general.out-of-stock" | translate }}
+              </p>
+            </div>
+          } @else if (selectedVariant.availableStock <= 5) {
+            <div>
+              <p class="text-warning">
+                {{ "general.low-stock" | translate }}:
+                {{ selectedVariant.availableStock }}
+              </p>
+            </div>
           }
-          <span class="text-danger fw-bold py-1 px-2">
-            {{ product.price }} {{ "general.JOD" | translate }}
-          </span>
-        </div> 
+        }
+
         <div class="star-rating pb-2">
-          <i *ngFor="let star of stars" 
+          <i
+            *ngFor="let star of stars"
             class="fa fa-star cursor-pointer"
             [class.checked]="star <= currentRating"
             (click)="rate(star)"
@@ -57,12 +81,7 @@
           </i
           >({{ product.averageRating }}/5)
         </div>
-        @if(product.count==0){
-        <div>
-          <mat-icon>report_problem</mat-icon>
-          <p class="out-of-stock">{{ "general.out-of-stock" | translate }}</p>
-        </div>
-        }
+
         <div
           class="customization-item d-flex justify-content-between align-items-center"
         >
@@ -70,30 +89,48 @@
             product.description.local
           }}</span>
         </div>
-        @for (item of keyAttributes; track $index) {
-        <div class="customization-item py-2 text-description">
-          <label class="fw-bold d-block mb-2">{{ item.name.local }}</label>
 
-          <div class="d-flex flex-wrap gap-3">
-            @for (val of item.keyAttributeValues; track $index) {
-            <div class="form-check-label d-flex align-items-center gap-2">
-              <input
-                type="radio"
-                [value]="val.id"
-                [id]="'val-' + val.id"
-                [name]="'attr-' + item.id"
-                [checked]="val.iselected"
-                (change)="onAttributeSelected(item, val)"
-              />
-              <label class="form-check-label" [for]="'val-' + val.id">
-                {{ val.value.local }}
-              </label>
+        @if (product.variants && product.variants.length > 0) {
+          <div class="customization-item py-3">
+            <label class="fw-bold d-block mb-2">{{
+              "product.select-variant" | translate
+            }}</label>
+            <div class="d-flex flex-wrap gap-3">
+              @for (variant of product.variants; track $index) {
+                <div
+                  class="variant-option p-2 border rounded cursor-pointer"
+                  [class.border-primary]="selectedVariant?.id === variant.id"
+                  [class.bg-light]="selectedVariant?.id === variant.id"
+                  (click)="selectVariant(variant)"
+                  (keydown.enter)="selectVariant(variant)"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div class="d-flex flex-column align-items-center">
+                    <span class="fw-bold">{{ variant.price }} JOD</span>
+                    @if (variant.attributes && variant.attributes.length > 0) {
+                      <small class="text-muted">
+                        @for (attr of variant.attributes; track $index) {
+                          {{ attr.value?.local }}
+                          @if (!$last) {
+                            ,
+                          }
+                        }
+                      </small>
+                    }
+                    @if (variant.availableStock <= 0) {
+                      <small class="text-danger">{{
+                        "general.out-of-stock" | translate
+                      }}</small>
+                    }
+                  </div>
+                </div>
+              }
             </div>
-            }
           </div>
-        </div>
         }
       </div>
+
       <div class="summary">
         <div
           class="d-flex justify-content-between fw-bold mb-2 align-items-center"
@@ -111,11 +148,15 @@
           <span>{{ "general.total" | translate }}:</span>
           <span class="text-titel">
             {{ "general.JOD" | translate }}
-            {{ this.item.quantity * (product.price ?? 0) }}</span
+            {{ this.item.quantity * (selectedVariant?.price ?? 0) }}</span
           >
         </div>
 
-        <button class="btn btn-primary w-100" (click)="addToCart()">
+        <button
+          class="btn btn-primary w-100"
+          (click)="addToCart()"
+          [disabled]="!selectedVariant || selectedVariant.availableStock <= 0"
+        >
           {{ "product.order-now" | translate }}
         </button>
         <div class="mt-2 text-center">
@@ -141,10 +182,12 @@
       </div>
     </div>
     <div class="col-md-12">
-      @defer (on viewport ) {
-      <app-comment-manage-with-list [productId]="id"></app-comment-manage-with-list>
+      @defer (on viewport) {
+        <app-comment-manage-with-list
+          [productId]="id"
+        ></app-comment-manage-with-list>
       } @placeholder {
-      <div class="placeholder-box">انزل لأسفل لرؤية التعليقات</div>
+        <div class="placeholder-box">انزل لأسفل لرؤية التعليقات</div>
       }
     </div>
   </div>
@@ -152,14 +195,3 @@
 
 <hr class="mx-5" />
 <app-reviews-section></app-reviews-section>
-
-<ng-template #attributeOptionsTemplate let-attr>
-  <div *ngFor="let attr of keyAttributes">
-    <label>{{ attr.name.local }}</label>
-    <div *ngFor="let opt of attr.keyAttributeValues">
-      <button (click)="selectOption(attr, opt)">
-        {{ opt.value.local }}
-      </button>
-    </div>
-  </div>
-</ng-template>

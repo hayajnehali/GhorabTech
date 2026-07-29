@@ -339,10 +339,11 @@
           <table class="table align-middle">
             <thead>
               <tr>
-                <th>{{ "general.name" | translate }}</th>
                 <th>{{ "general.image" | translate }}</th>
+                <th>{{ "general.name" | translate }}</th>
+                <th>{{ "general.details" | translate }}</th>
                 <th>{{ "general.price" | translate }}</th>
-                <th>{{ "general.count" | translate }}</th>
+                <th>{{ "general.quantity" | translate }}</th>
                 <th>{{ "general.subtotal" | translate }}</th>
               </tr>
             </thead>
@@ -364,6 +365,16 @@
                       </p>
                     </div>
                   </td>
+                  <td class="product__cart__item">
+                    <div class="product__cart__item__text">
+                      @if (cartItem.productVariant?.attributes) {
+                        @for (attr of cartItem.productVariant!.attributes; track $index) {
+                          <small>{{ attr.keyAttributeName?.local }}: {{ attr.value?.local }}</small>
+                          @if (!$last) { <br /> }
+                        }
+                      }
+                    </div>
+                  </td>
                   <td class="quantity__item">
                     <div class="quantity">
                       <div class="pro-qty-2">
@@ -378,11 +389,11 @@
                     </div>
                   </td>
                   <td class="cart__price">
-                    {{ cartItem.product.price }}{{ "general.JOD" | translate }}
+                    {{ cartItem.productVariant?.price }}{{ "general.JOD" | translate }}
                   </td>
 
                   <td class="cart__price">
-                    {{ cartItem.product.price ?? 0 * cartItem.quantity }}
+                    {{ (cartItem.productVariant?.price ?? 0) * cartItem.quantity }}
                     {{ "general.JOD" | translate }}
                   </td>
                 </tr>

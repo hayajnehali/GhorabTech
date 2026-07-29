@@ -34,9 +34,7 @@ export class CartItemListComponent extends BaseListComponent<
       'product-name',
       'details',
       'quantity',
-      'unitPrice',
       'total',
-      //      'action'
     ];
   }
 

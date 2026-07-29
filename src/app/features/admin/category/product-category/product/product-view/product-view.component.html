@@ -65,48 +65,79 @@
           <h2 class="text-titel py-1 px-2">{{ product.name.local }}</h2>
         </div>
         <div
-          class="customization-item"
-        >
-        @if (product.priceBeforeDiscount!=null&& product.priceBeforeDiscount>0) {
-          <span class="text-muted text-decoration-line-through py-1 px-2">
-            {{ product.priceBeforeDiscount }} {{ "general.JOD" | translate }} /
-          </span>
-        }
-          <span class="text-danger fw-bold py-1 px-2">
-            {{ product.price }} {{ "general.JOD" | translate }}
-          </span>
-        </div>
-        <!-- <div class="star-rating pb-2">
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-          <i class="fab fa-star"></i>
-        </div> -->
-        <div
           class="customization-item d-flex justify-content-between align-items-center"
         >
           <span class="text-description py-1 px-2">{{
             product.description.local
           }}</span>
         </div>
-        @for (item of keyAttributes; track $index) {
-        <div
-          class="customization-item d-flex justify-content-between align-items-center"
-        >
-          <span class="text-description py-1 px-2">
-            {{ item.name.local }}:
-            <span
-              *ngFor="let val of item.keyAttributeValues; let isLast = last"
-            >
-              {{ val.value.local }}{{ isLast ? "" : ", " }}
-            </span>
-          </span>
-        </div>
-        }
       </div>
     </div>
   </div>
-</div>
 
-<hr class="mx-5" />
+  @if (product.variants && product.variants.length > 0) {
+    <div class="row mt-4">
+      <div class="col-12">
+        <h5>{{ "product.variants" | translate }}</h5>
+          <div class="table-responsive">
+            <table mat-table [dataSource]="product.variants" class="table">
+              <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.details" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let variant">
+                  @for (attr of variant.attributes; track $index) {
+                    <span>
+                      {{ attr.keyAttributeName?.local }}:
+                      {{ attr.value?.local }}
+                    </span>
+                    @if (!$last) { <span>, </span> }
+                  }
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let variant">
+                  {{ variant.price }} {{ "general.JOD" | translate }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="priceBeforeDiscount">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price-before-discount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let variant">
+                  @if (variant.priceBeforeDiscount) {
+                    {{ variant.priceBeforeDiscount }}
+                    {{ "general.JOD" | translate }}
+                  } @else { - }
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.stock" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let variant">{{ variant.stock }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="available">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.available" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let variant">
+                  {{ variant.availableStock }}
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    }
+  </div>

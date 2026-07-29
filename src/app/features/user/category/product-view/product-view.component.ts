@@ -1,10 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core'; 
+import { Component, inject, OnInit } from '@angular/core';
 import { BaseComponent } from '@core/base/base-component';
 import { CartItem } from '@models/cart-item';
-import { KeyAttributeResult } from '@models/key-attribute';
-import { KeyAttributeValueResult } from '@models/key-attribute-value';
-import { ProductResult } from '@models/product'; 
-import { CartService } from '@shared/services/cart.service'; 
+import { ProductResult } from '@models/product';
+import { ProductVariantResult } from '@models/product-variant';
+import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
 import { SpinnerService } from '@shared/services/spinner.service';
 
@@ -18,11 +17,12 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
   product: ProductResult = new ProductResult();
   cartService = inject(CartService);
   spinnerService = inject(SpinnerService);
-  keyAttributes: KeyAttributeResult[] = [];
+  selectedVariant: ProductVariantResult | null = null;
   item: CartItem = new CartItem();
   id: string | null = null;
   currentRating = 0;
   stars = [1, 2, 3, 4, 5];
+
   constructor(readonly productService: ProductService) {
     super();
   }
@@ -30,44 +30,31 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.getProductById();
   }
+
   getProductById() {
     this.id = this.activatedRoute.snapshot.paramMap.get('productId');
     if (this.id != null)
       this.productService.getById(this.id).subscribe((req) => {
         if (req.data) {
           this.product = req.data!;
-          this.getKeyAttribute();
+          if (this.product.variants && this.product.variants.length > 0) {
+            this.selectVariant(this.product.variants[0]);
+          }
         }
       });
   }
 
-  getKeyAttribute() {
-    if (this.product.keyAttributeValues) {
-      this.product.keyAttributeValues.forEach((element) => {
-        if (!this.keyAttributes.find((x) => x.id == element.keyAttribute.id)) {
-          this.keyAttributes.push(element.keyAttribute);
-        }
-        if (
-          !this.keyAttributes.find((x) => x.id == element.keyAttribute.id)
-            ?.keyAttributeValues
-        ) {
-          this.keyAttributes.find(
-            (x) => x.id == element.keyAttribute.id
-          )!.keyAttributeValues = [];
-        }
-        this.keyAttributes
-          .find((x) => x.id == element.keyAttribute.id)
-          ?.keyAttributeValues?.push(element);
-      });
-    }
-  }
-
-  selectOption(attr: KeyAttributeResult, value: KeyAttributeValueResult) {
-    // console.log('Selected:', attr, value);
+  selectVariant(variant: ProductVariantResult) {
+    this.selectedVariant = variant;
   }
 
   increment() {
-    this.item.quantity++;
+    if (
+      this.selectedVariant &&
+      this.item.quantity < this.selectedVariant.availableStock
+    ) {
+      this.item.quantity++;
+    }
   }
 
   decrement() {
@@ -77,21 +64,27 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
   }
 
   addToCart() {
-    this.addAttributeSelected();
-    if (
-      !this.item.keyAttributeValues ||
-      this.item.keyAttributeValues.length < this.keyAttributes.length
-    ) {
+    if (!this.selectedVariant) {
       this.notificationService.showWarning(
-        this.translate.instant('general.select-all-attributes'),
+        this.translate.instant('general.select-variant'),
         this.translate.instant('general.error')
       );
       return;
     }
+
+    if (this.selectedVariant.availableStock <= 0) {
+      this.notificationService.showWarning(
+        this.translate.instant('general.out-of-stock'),
+        this.translate.instant('general.error')
+      );
+      return;
+    }
+
     this.item.product.id = this.product.id;
     this.item.product.name = this.product.name;
-    this.item.product.price = this.product.price;
     this.item.product.images = this.product.images;
+    this.item.productVariantId = this.selectedVariant.id!;
+    this.item.productVariant = this.selectedVariant;
 
     this.cartService.addItem(this.item);
     this.notificationService.showSuccess(
@@ -100,27 +93,6 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
     );
     this.item = new CartItem();
     this.spinnerService.openSideCart();
-  }
-
-  addAttributeSelected() {
-    for (let att of this.keyAttributes) {
-      let value = att.keyAttributeValues.find((x) => x.iselected);
-      if (value) {
-        let newVal = new KeyAttributeValueResult();
-        newVal.id = value.id;
-        newVal.value = value.value;
-        this.item.keyAttributeValues.push(newVal);
-        value.iselected = false;
-      }
-    }
-  }
-  onAttributeSelected(attr: KeyAttributeResult, val: KeyAttributeValueResult) {
-    val.iselected = true;
-    attr.keyAttributeValues
-      .filter((x) => x.id !== val.id)
-      .forEach((element) => {
-        element.iselected = false;
-      });
   }
 
   rate(stars: number) {

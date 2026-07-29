@@ -1,166 +1,271 @@
-<div class="container manage">
-  <h2 class="title">
-    @if(isAdd){
-    {{ "createProduct" | translate }}
-    }@else {
-    {{ "updateProduct" | translate }}
-    }
-  </h2>
-  <form (ngSubmit)="save(productForm)" #productForm="ngForm">
-    <div class="row">
-      <div class="form-group col-6">
-        <label for="nameEn">{{ "nameEn" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          minlength="3"
-          class="form-control"
-          id="nameEn"
-          required
-          #nameEn="ngModel"
-          name="nameEn"
-          [(ngModel)]="entity.name.english"
-        />
-        <app-form-error
-          [control]="nameEn"
-          fieldName="{{ 'nameEn' | translate }}"
-        ></app-form-error>
-      </div>
-
-      <div class="form-group col-6">
-        <label for="nameAr">{{ "nameAr" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          class="form-control"
-          id="nameAr"
-          required
-          name="nameAr"
-          #nameAr="ngModel"
-          [(ngModel)]="entity.name.arabic"
-        />
-        <app-form-error
-          [control]="nameAr"
-          fieldName="{{ 'nameAr' | translate }}"
-        ></app-form-error>
-      </div>
-      <div class="form-group col-3">
-        <label for="priceBeforeDiscount">{{
-          "general.price-before-discount" | translate
-        }}</label>
-        <input
-          type="number"
-          class="form-control"
-          id="priceBeforeDiscount"
-          name="priceBeforeDiscount"
-          [(ngModel)]="entity.priceBeforeDiscount"
-          step="1"
-          #priceBeforeDiscount="ngModel"
-        />
-        <app-form-error [control]="priceBeforeDiscount"></app-form-error>
-      </div>
-      <div class="form-group col-3">
-        <label for="price">{{ "price" | translate }}</label>
-        <input
-          type="number"
-          class="form-control"
-          id="price"
-          name="price"
-          [(ngModel)]="entity.price"
-          required
-          step="1"
-          required
-          #price="ngModel"
-        />
-        <app-form-error [control]="price"></app-form-error>
-
-        @if(entity&&entity.price&&entity.priceBeforeDiscount && entity.price >=
-        entity.priceBeforeDiscount){
-        <div class="error">
-          {{ "validation.price-must-be-less-than-before-discount" | translate }}
-        </div>
+<div class="admin-form-container">
+  <div class="form-header">
+    <div class="header-title">
+      <h3>
+        @if (isAdd) {
+          {{ "createProduct" | translate }}
+        } @else {
+          {{ "updateProduct" | translate }}
         }
-      </div>
+      </h3>
+      <p>{{ "product.product-description" | translate }}</p>
+    </div>
+    <div class="header-actions">
+ 
+    </div>
+  </div>
 
-      <div class="form-group col-3">
-        <label for="count">{{ "count" | translate }}</label>
-        <input
-          type="number"
-          class="form-control"
-          id="count"
-          required
-          name="count"
-          [(ngModel)]="entity.count"
-          required
-          #count="ngModel"
-        />
-        <app-form-error [control]="count"></app-form-error>
-      </div>
-      <div class="form-group col-3">
-        <!-- <mat-form-field appearance="fill" class="full-width"> -->
-        <mat-label>
-          {{ "keyAttribute.key-attribute-list" | translate }}</mat-label
+  <div class="form-card">
+    <form (ngSubmit)="save(productForm)" #productForm="ngForm">
+      <div class="form-grid">
+        <div
+          class="form-group"
+          [class.has-error]="nameEn.invalid && nameEn.touched"
         >
-        <mat-select
-          [(value)]="keyAttributeValueId"
-          multiple
-          class="form-control"
+          <label for="nameEn">
+            {{ "nameEn" | translate }} <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="nameEn"
+              maxlength="100"
+              minlength="3"
+              required
+              #nameEn="ngModel"
+              name="nameEn"
+              [(ngModel)]="entity.name.english"
+              placeholder="e.g. Classic Pants"
+            />
+          </div>
+          <app-form-error [control]="nameEn"></app-form-error>
+        </div>
+
+        <div
+          class="form-group"
+          [class.has-error]="nameAr.invalid && nameAr.touched"
         >
-          <mat-optgroup
-            *ngFor="let category of keyAttributeList"
-            [label]="category.name.local ?? ''"
-          >
-            <mat-option
-              *ngFor="let sub of category.keyAttributeValues"
-              [value]="sub.id"
+          <label for="nameAr">
+            {{ "nameAr" | translate }} <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="nameAr"
+              maxlength="100"
+              required
+              name="nameAr"
+              #nameAr="ngModel"
+              [(ngModel)]="entity.name.arabic"
+              placeholder="مثال: بنطلون كلاسيكي"
+            />
+          </div>
+          <app-form-error [control]="nameAr"></app-form-error>
+        </div>
+
+        <div
+          class="form-group"
+          [class.has-error]="descriptionEn.invalid && descriptionEn.touched"
+        >
+          <label for="descriptionEn">
+            {{ "descriptionEn" | translate }}
+          </label>
+          <div class="input-wrapper">
+            <textarea
+              id="descriptionEn"
+              [rows]="3"
+              name="descriptionEn"
+              maxlength="500"
+              [(ngModel)]="entity.description.english"
+              #descriptionEn="ngModel"
+            ></textarea>
+          </div>
+          <app-form-error [control]="descriptionEn"></app-form-error>
+        </div>
+
+        <div
+          class="form-group"
+          [class.has-error]="descriptionAr.invalid && descriptionAr.touched"
+        >
+          <label for="descriptionAr">
+            {{ "descriptionAr" | translate }}
+          </label>
+          <div class="input-wrapper">
+            <textarea
+              id="descriptionAr"
+              maxlength="500"
+              name="descriptionAr"
+              [rows]="3"
+              [(ngModel)]="entity.description.arabic"
+              #descriptionAr="ngModel"
+            ></textarea>
+          </div>
+          <app-form-error [control]="descriptionAr"></app-form-error>
+        </div>
+
+        <!-- Key Attributes Selection -->
+        <div class="form-group full-width">
+          <label>{{ "product.select-attributes" | translate }}</label>
+          <div class="input-wrapper">
+            <mat-select
+              [(value)]="selectedAttributeIds"
+              multiple
+              (selectionChange)="onAttributesChange()"
+              placeholder="{{
+                'product.select-attributes-placeholder' | translate
+              }}"
             >
-              {{ sub.value.local ?? "" }}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-        <!-- </mat-form-field> -->
+              <mat-option
+                *ngFor="let attr of keyAttributeList"
+                [value]="attr.id"
+              >
+                {{ attr.name.local ?? attr.name.english }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-6">
-        <label for="description">{{ "descriptionEn" | translate }}</label>
-        <textarea
-          class="form-control"
-          id="descriptionEn"
-          [rows]="3"
-          name="descriptionEn"
-          maxlength="500"
-          [(ngModel)]="entity.description.english"
-          #descriptionEn="ngModel"
-        ></textarea>
-        <app-form-error [control]="descriptionEn"></app-form-error>
-      </div>
-      <div class="form-group col-6">
-        <label for="description">{{ "descriptionAr" | translate }}</label>
-        <textarea
-          class="form-control"
-          id="descriptionAr"
-          maxlength="500"
-          name="descriptionAr"
-          [rows]="3"
-          [(ngModel)]="entity.description.arabic"
-          #descriptionAr="ngModel"
-        ></textarea>
-        <app-form-error [control]="descriptionAr"></app-form-error>
-      </div>
-      <div class="form-group">
+      <!-- Variants Table -->
+      @if (variantRows.length > 0) {
+        <div class="variants-section">
+          <div class="variants-header">
+            <h4>{{ "product.variants-table" | translate }}</h4>
+          </div>
+
+          <div class="table-responsive">
+            <table mat-table [dataSource]="variantRows" class="table">
+              <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  {{ i + 1 }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="combination">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "product.combination" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  @if (getCombination(row)) {
+                    <span class="badge">{{ getCombination(row) }}</span>
+                  } @else {
+                    <span class="text-muted">
+                      {{ "product.select-all-attributes" | translate }}
+                    </span>
+                  }
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price" | translate }}
+                  <span class="required">*</span>
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <div class="form-group">
+                    <div class="input-wrapper cost-input">
+                      <input
+                        type="number"
+                        [(ngModel)]="row.price"
+                        [name]="'price_' + i"
+                        required
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        #priceControl="ngModel"
+                      />
+                      <span class="currency-badge">JOD</span>
+                    </div>
+                    <app-form-error
+                      [control]="priceControl.control"
+                    ></app-form-error>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="priceBeforeDiscount">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price-before-discount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <div class="form-group">
+                    <div class="input-wrapper cost-input">
+                      <input
+                        type="number"
+                        [(ngModel)]="row.priceBeforeDiscount"
+                        [name]="'priceBeforeDiscount_' + i"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                      />
+                      <span class="currency-badge">JOD</span>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.stock" | translate }}
+                  <span class="required">*</span>
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <div class="form-group">
+                    <div class="input-wrapper">
+                      <input
+                        type="number"
+                        [(ngModel)]="row.stock"
+                        [name]="'stock_' + i"
+                        required
+                        min="0"
+                        placeholder="0"
+                        #stockControl="ngModel"
+                      />
+                    </div>
+                    <app-form-error
+                      [control]="stockControl.control"
+                    ></app-form-error>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.actions" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <button
+                    type="button"
+                    class="btn-icon btn-icon-danger"
+                    (click)="removeVariantRow(i)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+        </div>
+      }
+      <div class="form-group full-width">
+        <label>{{ "general.upload-images" | translate }}</label>
         <app-multi-image-upload
           [aspectRatio]="1 / 1"
           [(images)]="entity.images"
         ></app-multi-image-upload>
       </div>
       <div class="btn-container">
-        <button class="btn btn-secondary" (click)="goBack()">
+        <button type="button" class="btn btn--secondary" (click)="goBack()">
           {{ "general.back" | translate }}
         </button>
-        <button type="submit" class="btn btn-primary mx-2">
+        <button type="submit" class="btn btn--primary">
           {{ "general.save" | translate }}
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

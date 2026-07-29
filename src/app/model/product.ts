@@ -3,40 +3,29 @@ import { ModelBase } from './base.model';
 import { FilterBase } from './filter-base';
 import { ProductImage } from './Images';
 import { ProductCategoryResult } from './product-category';
-import {
-  KeyAttributeValue,
-  KeyAttributeValueResult,
-} from './key-attribute-value';
+import { ProductVariantDto, ProductVariantResult } from './product-variant';
 
 export class Product extends ModelBase {
   productId: number | undefined;
   name: LocalizedString = new LocalizedString();
-  price?: number;
-  priceBeforeDiscount?: number;
-  count?: number;
   productCategoryId?: string;
   description: LocalizedString = new LocalizedString();
   images: ProductImage[] = [];
-  keyAttributeValues?: KeyAttributeValue[] = [];
+  variants?: ProductVariantDto[] = [];
   constructor() {
     super();
-    // Additional initialization can go here
   }
 }
 export class ProductResult extends ModelBase {
   productId: number | undefined;
   name: LocalizedString = new LocalizedString();
-  price?: number;
-  count?: number;
   productCategoryId?: number;
   description: LocalizedString = new LocalizedString();
   images: ProductImage[] = [];
   productCategory: ProductCategoryResult = new ProductCategoryResult();
-  keyAttributeValues?: KeyAttributeValueResult[] = [];
-  priceBeforeDiscount?: number;
-  discountRated?: string;
+  variants?: ProductVariantResult[] = [];
   averageRating: number = 0;
-  selected:boolean = false;
+  selected: boolean = false;
   constructor() {
     super();
   }

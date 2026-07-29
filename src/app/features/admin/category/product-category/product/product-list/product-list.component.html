@@ -1,120 +1,182 @@
-<div class="container list">
-  <h3 class="text-titel">{{ "product.product-list" | translate }}</h3>
-  <div class="btn-container">
-    <button *ngIf="canAdd"
-      class="btn btn-primary animate__animated animate__fadeIn"
-      [routerLink]="['manage']"
-    >
-      {{ "addProduct" | translate }}
-    </button>
-  </div>
-  <div *ngIf="hasData"  class="table-responsive">
-    <table mat-table [dataSource]="dataSource" class="table">
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">
-          <div class="image-in-table">
-            <app-image [src]="element.images?.[0].guidName"></app-image>
+<search-page
+  [(pagedResult)]="dataEntity"
+  [filter]="filter"
+  (resetBase)="reset()"
+  (searchBase)="search()"
+  (pageChange)="onPageChange($event)"
+>
+  <page-header
+    [title]="'product.product-list' | translate"
+    [label]="'product.manage-products' | translate"
+    [icon]="'inventory_2'"
+  >
+    <header-actions>
+      <div class="btn-container">
+        @if (canAdd) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['manage']"
+          >
+            {{ "addProduct" | translate }}
+          </button>
+        }
+        <button
+          class="btn-icon-ghost"
+          (click)="toggleFilter()"
+          [class.active]="filterVisible()"
+        >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+    </header-actions>
+  </page-header>
+
+  @if (filterVisible()) {
+    <page-filter>
+      <div class="filter-panel">
+        <form>
+          <div class="filter-row">
+            <div class="filter-field filter-field--wide">
+              <label for="name" class="form-label-custom" translate>
+                {{ "general.name" | translate }}
+              </label>
+              <div class="filter-input-wrapper">
+                <span class="material-icons filter-input-icon">search</span>
+                <input
+                  type="text"
+                  id="name"
+                  [(ngModel)]="filter.name"
+                  name="name"
+                  class="form-control filter-input"
+                  placeholder="{{
+                    'product.search-by-name' | translate
+                  }}"
+                />
+              </div>
+            </div>
           </div>
-        </td>
-      </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.name" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.name?.local }}</td>
-      </ng-container>
+        </form>
+      </div>
+    </page-filter>
+  }
 
-      <!-- price Column -->
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.price" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <span *ngIf="element.priceBeforeDiscount">
-            <span class="text-muted text-decoration-line-through py-1 px-2">
-              {{ element.priceBeforeDiscount }}</span
-            >/
-          </span>
-          {{ element.price }} {{ "general.JOD" | translate }}
-        </td>
-      </ng-container>
-      <!-- priceBeforeDiscount Column -->
-      <ng-container matColumnDef="priceBeforeDiscount">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.price-before-discount" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.priceBeforeDiscount }}
-        </td>
-      </ng-container>
-      <!-- count Column -->
-      <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.count" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.count }}</td>
-      </ng-container>
+  <grid-result-body [allowExpand]="true">
+    <grid-column label="general.image" field="images">
+      <ng-template let-data>
+        <div class="image-in-table">
+          <app-image [src]="data.images?.[0]?.guidName"></app-image>
+        </div>
+      </ng-template>
+    </grid-column>
+    <grid-column label="general.name" field="name.local"></grid-column>
+    <grid-column label="product.variants" field="variants">
+      <ng-template let-data>
+        <span class="badge">
+          <span class="material-icons badge-icon">style</span>
+          {{ data.variants?.length ?? 0 }}
+        </span>
+      </ng-template>
+    </grid-column>
+    <grid-column label="product-collection.actions" field="actions">
+      <ng-template let-data>
+        <div class="action-cell">
+          <ui-button
+            icon="visibility"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            [routerLink]="[
+              '/admin',
+              'category',
+              data.productCategory?.categoryId,
+              'product-category',
+              data.productCategory?.productCategoryId,
+              'product',
+              'productView',
+              data.id
+            ]"
+            tooltip="{{ 'general.view' | translate }}"
+          >
+          </ui-button>
+          <ui-button
+            icon="edit"
+            iconOnly
+            variant="ghost"
+            variantIcon="ghost"
+            size="xs"
+            [routerLink]="[
+              '/admin',
+              'category',
+              data.productCategory?.categoryId,
+              'product-category',
+              data.productCategoryId,
+              'product',
+              'manage',
+              data.id
+            ]"
+            tooltip="{{ 'general.edit' | translate }}"
+          >
+          </ui-button>
+          <ui-button
+            icon="delete"
+            iconOnly
+            variant="ghost"
+            variantIcon="danger"
+            size="xs"
+            (click)="deleteProduct(data)"
+            tooltip="{{ 'general.delete' | translate }}"
+          >
+          </ui-button>
+        </div>
+      </ng-template>
+    </grid-column>
 
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "general.actions" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <ul class="list-unstyled d-flex">
-            <li
-              class="d-flex btn btn-icon"
-              [title]="'general.view' | translate"
-              [routerLink]="[
-                '/admin',
-                'category',
-                element.productCategory.categoryId,
-                'product-category',
-                element.productCategory.productCategoryId,
-                'product',
-                'productView',
-                element.id
-              ]"
-            >
-              <mat-icon class="menu-icon">visibility</mat-icon>
-            </li>
-            <li
-              class="d-flex btn btn-icon"
-              title="{{ 'general.edit' | translate }}"
-              [routerLink]="[
-                '/admin',
-                'category',
-                element.productCategory.categoryId,
-                'product-category',
-                element?.productCategoryId,
-                'product',
-                'manage',
-                element.id
-              ]"
-            >
-              <mat-icon class="menu-icon">edit</mat-icon>
-            </li>
-            <li
-              class="d-flex btn btn-icon"
-              title="{{ 'general.delete' | translate }}"
-              (click)="delete(element.id!)"
-            >
-              <mat-icon class="menu-icon">delete</mat-icon>
-            </li>
-          </ul>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [length]="totalNumberOf"
-      (page)="onPageChange($event)"
-      [pageSizeOptions]="pageSizeOptions"
-      showFirstLastButtons
-    ></mat-paginator>
-  </div>
-</div>
+    <grid-expanded>
+      <ng-template let-data>
+        <div class="expanded-root">
+          <div class="expanded-section">
+            <div class="expanded-section-heading">
+              <span class="material-icons">style</span>
+              <span translate>product.variants</span>
+            </div>
+            @if (data.variants?.length) {
+              <div class="variant-table">
+                <div class="variant-table-header">
+                  <span class="vt-col vt-col--attr" translate>product.attributes</span>
+                  <span class="vt-col" translate>general.price</span>
+                  <span class="vt-col" translate>general.price-before-discount</span>
+                  <span class="vt-col" translate>general.stock</span>
+                </div>
+                @for (variant of data.variants; track variant.id; let i = $index) {
+                  <div class="variant-table-row">
+                    <span class="vt-col vt-col--attr">
+                      @for (attr of variant.attributes; track attr.id; let last = $last) {
+                        <span class="variant-attr-tag">
+                          <span class="variant-attr-key">{{ attr.keyAttributeName?.local }}:</span>
+                          <span class="variant-attr-val">{{ attr.value?.local }}</span>
+                        </span>
+                      }
+                    </span>
+                    <span class="vt-col vt-col--price">{{ variant.price }} JOD</span>
+                    <span class="vt-col vt-col--old">
+                      @if (variant.priceBeforeDiscount) {
+                        {{ variant.priceBeforeDiscount }} JOD
+                      } @else {
+                        —
+                      }
+                    </span>
+                    <span class="vt-col vt-col--stock">{{ variant.stock }}</span>
+                  </div>
+                }
+              </div>
+            } @else {
+              <p class="text-muted" translate>product.no-variants</p>
+            }
+          </div>
+        </div>
+      </ng-template>
+    </grid-expanded>
+  </grid-result-body>
+</search-page>

@@ -19,6 +19,8 @@ import { User } from '@models/user';
 import { UserService } from '@shared/services/user.service';
 import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { environment } from '@shared/environment/environment';
+import { DeliveryZoneService } from '@shared/services/delivery-zone.service';
+import { DeliveryZoneFilter, DeliveryZoneResult } from '@models/delivery/delivery-zone';
 
 @Component({
   selector: 'app-login-regestration',
@@ -38,7 +40,9 @@ export class LoginRegestrationComponent
   loading = false;
   private storage = inject(LocalStorageService);
   userService = inject(UserService);
+  deliveryZoneService = inject(DeliveryZoneService);
   user: User = new User();
+  deliveryZones: DeliveryZoneResult[] = [];
   private readonly token_KEY = environment.token_KEY;
 
   constructor() {
@@ -52,6 +56,17 @@ export class LoginRegestrationComponent
         this.router.navigate(['/']);
       }
     }
+    this.loadDeliveryZones();
+  }
+
+  loadDeliveryZones() {
+    let deliveryZoneFilter = new DeliveryZoneFilter();
+    deliveryZoneFilter.pageSize = 0; // Set pageSize to 0 to fetch all delivery zones
+    this.deliveryZoneService.getAll(deliveryZoneFilter).subscribe({
+      next: (res) => {
+        this.deliveryZones = res.items ?? [];
+      },
+    });
   }
 
   onSubmit(form: NgForm) {

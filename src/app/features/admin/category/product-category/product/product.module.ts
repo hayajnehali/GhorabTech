@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 import { routesProduct } from './product-routing.module';
 import { ProductManageComponent } from './product-manage/product-manage.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -10,6 +11,7 @@ import { MultiImageUploadComponent } from "@shared/component/img/multi-image-upl
 import { ImageComponent } from "@shared/component/img/image/image.component";
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 import { PaginationComponent } from "@shared/component/pagination/pagination.component";
+import { NoDataComponent } from "@shared/component/no-data/no-data.component";
 
 @NgModule({
   declarations: [
@@ -17,6 +19,6 @@ import { PaginationComponent } from "@shared/component/pagination/pagination.com
     ProductListComponent,
     ProductViewComponent
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routesProduct), MultiImageUploadComponent, ImageComponent, FormErrorComponent, PaginationComponent],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routesProduct), MatTableModule, MultiImageUploadComponent, ImageComponent, FormErrorComponent, PaginationComponent, NoDataComponent],
 })
 export class ProductModule {}
