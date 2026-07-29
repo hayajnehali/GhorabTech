@@ -10,7 +10,6 @@ import { KeyAttributeValueManageComponent } from './key-attribute-value/key-attr
 import { FormErrorComponent } from "@shared/component/form-error/form-error.component";
 
 
-
 @NgModule({
   declarations: [
     KeyAttributeListComponent,
@@ -22,7 +21,8 @@ import { FormErrorComponent } from "@shared/component/form-error/form-error.comp
     CommonModule,
     SharedModule,
     RouterModule.forChild(routesKeyAttribute),
-    FormErrorComponent
+    FormErrorComponent,
+
 ]
 })
 export class KeyAttributeModule { }

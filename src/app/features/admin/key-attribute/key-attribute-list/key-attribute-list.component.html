@@ -1,39 +1,63 @@
-<div class="container list"> 
-  <h3 class="text-titel">{{'keyAttribute.key-attribute-list'|translate}}</h3>
-  <div class="btn-container">
-    <button class="btn btn-primary"  [routerLink]="['/admin/keyAttribute/manage']">{{'add'|translate}}</button>
-</div>
-  <div *ngIf="hasData" class="table-responsive">
-    <table mat-table [dataSource]="dataSource" class="table">
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container> 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ 'general.name' | translate }} </th>
-        <td mat-cell *matCellDef="let element"> {{element.name?.local}} </td>
-      </ng-container> 
-      <!-- Show In Main Column -->
-      <!-- <ng-container matColumnDef="showInMain">
-        <th mat-header-cell *matHeaderCellDef>{{ 'general.showInMain' | translate }} </th>
-        <td mat-cell *matCellDef="let element"> <input type="checkbox" [ngModel]="element.showInMain" name="showInMain" id="showInMain" disabled=""> </td>
-      </ng-container>  -->
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>{{ 'general.actions' | translate }} </th>
-        <td mat-cell *matCellDef="let element">  
-        <ul class="list-unstyled d-flex">
-          <li class="d-flex btn btn-icon" [title]="'keyAttributeValue.key-attribute-value-list' | translate " [routerLink]="[element.id,'product-category']"><mat-icon>list</mat-icon></li>
-          <li class="d-flex btn btn-icon" [routerLink]="['manage',element.id]"><mat-icon>edit</mat-icon></li>
-          <li class="d-flex btn  btn-icon" (click)="delete(element.id)"><mat-icon>delete</mat-icon></li>
-        </ul>
-        </td>
-      </ng-container> 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  
-    <mat-paginator [length]="totalNumberOf" (page)="onPageChange($event)" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
-  </div>
- </div>
+<search-page
+  [(pagedResult)]="dataEntity"
+  [filter]="filter"
+  (resetBase)="reset()"
+  (searchBase)="search()"
+  (pageChange)="onPageChange($event)"
+>
+  <page-header
+    [title]="'keyAttribute.key-attribute-list' | translate"
+    [label]="'keyAttribute.key-attribute-list' | translate"
+    [icon]="'key'"
+  >
+    <header-actions>
+      <div class="btn-container">
+        <button
+          class="btn-icon-outline"
+          icon="add"
+          tooltip="keyAttribute.add-new"
+          [routerLink]="['/admin/keyAttribute/manage']"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </header-actions>
+  </page-header>
+
+  <grid-result-body [allowExpand]="false">
+    <grid-column label="general.name" field="name">
+      <ng-template let-data>
+        {{ data.name?.local }}
+      </ng-template>
+    </grid-column>
+    <grid-column label="general.actions" field="actions">
+      <ng-template let-data>
+        <div class="action-cell">
+          <div class="btn-container">
+            <button
+              class="btn-icon-ghost"
+              [routerLink]="[data.id, 'product-category']"
+              title="{{ 'keyAttributeValue.key-attribute-value-list' | translate }}"
+            >
+              <span class="material-symbols-outlined">list</span>
+            </button>
+            <button
+              class="btn-icon-ghost"
+              [routerLink]="['manage', data.id]"
+              title="{{ 'general.edit' | translate }}"
+            >
+              <span class="material-symbols-outlined">edit_document</span>
+            </button>
+            <button
+              class="btn-icon-ghost"
+              (click)="delete(data.id)"
+              title="{{ 'general.delete' | translate }}"
+            >
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </grid-column>
+  </grid-result-body>
+</search-page>
