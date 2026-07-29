@@ -21,7 +21,6 @@ export class CartListComponent extends BaseListComponent<
 > {
   paymentStatus: string[] = [];
   orderExitStatus: string[] = [];
- 
 
   constructor(private cartService: CartService) {
     super(cartService, CartFilter);

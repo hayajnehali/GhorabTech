@@ -26,13 +26,13 @@ export class ProductManageComponent extends BaseManageComponent<
   keyAttributeList: KeyAttributeResult[] = [];
   selectedAttributeIds: string[] = [];
   variantRows: ProductVariantDto[] = [];
+  sharedPrice: number = 0;
+  sharedPriceBeforeDiscount?: number;
+  sharedStock: number = 0;
 
   readonly displayedColumns = [
     'index',
     'combination',
-    'price',
-    'priceBeforeDiscount',
-    'stock',
     'action',
   ];
 
@@ -115,6 +115,9 @@ export class ProductManageComponent extends BaseManageComponent<
 
     return combos.map((combo) => {
       const variant = new ProductVariantDto();
+      variant.price = this.sharedPrice;
+      variant.priceBeforeDiscount = this.sharedPriceBeforeDiscount;
+      variant.stock = this.sharedStock;
       variant.attributes = combo.map((c) => {
         const attr = new ProductVariantAttributeDto();
         attr.keyAttributeValueId = c.id;
@@ -167,6 +170,12 @@ export class ProductManageComponent extends BaseManageComponent<
       });
       return variant;
     });
+
+    if (this.variantRows.length > 0) {
+      this.sharedPrice = this.variantRows[0].price;
+      this.sharedPriceBeforeDiscount = this.variantRows[0].priceBeforeDiscount;
+      this.sharedStock = this.variantRows[0].stock;
+    }
 
     this.selectedAttributeIds = Array.from(attrIdsSet);
   }

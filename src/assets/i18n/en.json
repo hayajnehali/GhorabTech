@@ -246,6 +246,7 @@
     "manage-variants": "Manage Variants",
     "variant": "Variant",
     "select-attributes": "Select Attributes",
+    "select-attributes-placeholder": "Select relevant attributes",
     "variants-table": "Variants Table",
     "add-combination": "Add Combination",
     "combination": "Combination"
