@@ -15,7 +15,6 @@ export class KeyAttributeListComponent extends BaseListComponent<
   KeyAttributeFilter
 > {
   constructor(private keyAttributeService: KeyAttributeService) {
-    super(keyAttributeService,KeyAttributeFilter);
-    this.displayedColumns = ['id', 'name', 'action'];
+    super(keyAttributeService, KeyAttributeFilter);
   }
 }

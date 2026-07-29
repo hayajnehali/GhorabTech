@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Category, CategoryFilter, CategoryResult } from '@models/category';
 import { CategoryService } from '@shared/services/category.service';
@@ -15,8 +15,6 @@ export class CategoryListComponent extends BaseListComponent<
   CategoryFilter
 > {
   constructor(private categoryService: CategoryService) {
-    super(categoryService,CategoryFilter);
-    this.displayedColumns = ['categoryName','showInMain', 'action'];
-    // this.displayedColumns = ['id', 'categoryName','showInMain', 'action'];
+    super(categoryService, CategoryFilter);
   }
 }

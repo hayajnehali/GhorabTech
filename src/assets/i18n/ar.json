@@ -248,6 +248,7 @@
     "manage-variants": "إدارة المتغيرات",
     "variant": "متغير",
     "select-attributes": "اختر السمات",
+    "select-attributes-placeholder": "اختر السمات المناسبة",
     "variants-table": "جدول المتغيرات",
     "add-combination": "إضافة تركيبة",
     "combination": "التركيب"

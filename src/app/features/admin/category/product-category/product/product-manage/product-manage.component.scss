@@ -17,3 +17,10 @@
   color: $danger-color;
   margin-left: 4px;
 }
+
+.shared-price-stock {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
