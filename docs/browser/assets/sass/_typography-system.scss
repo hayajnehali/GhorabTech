@@ -30,6 +30,10 @@
   // ---- Font families ----
   --ff-heading: sans-serif;
   --ff-body: "Tajawal", sans-serif;
+
+  // ---- Dashboard KPI Cards ----
+  --fs-card-label: clamp(0.75rem, 0.8vw, 0.875rem); // 12px -> 14px
+  --fs-card-value: clamp(1.5rem, 2vw, 2.25rem); // 24px -> 36px
 }
 
 // ===== Element Defaults =====
