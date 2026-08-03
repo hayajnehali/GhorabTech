@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "predeploy": "ng build --base-href=/GhorabTech/",
+    "deploy": "gh-pages -b gh-pages -d dist/angular-project/browser"
   },
   "private": true,
   "dependencies": {
@@ -52,5 +52,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.3"
   },
-  "homepage": "https://github.com/hayajnehali/Ghorab"
+  "homepage": "https://hayajnehali.github.io/GhorabTech/"
 }

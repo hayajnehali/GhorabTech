@@ -66,6 +66,36 @@
       }
     }
 
+    .out-of-stock-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      background-color: rgba($danger-color, 0.08);
+      border: 1px solid rgba($danger-color, 0.25);
+
+      &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background-color: rgba($danger-color, 0.12);
+        color: $danger-color;
+        font-size: 1.15rem;
+      }
+
+      &__text {
+        margin: 0;
+        color: $danger-color;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+    }
+
     .customization {
       .customization-item {
         .item-title {
