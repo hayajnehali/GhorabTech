@@ -26,7 +26,7 @@
 
       .carousel-control-prev-icon,
       .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba($black-color, 0.5);
         border-radius: 50%;
         padding: 10px;
       }
@@ -46,7 +46,7 @@
         transition: border 0.3s;
         object-fit: cover;
         &:hover {
-          border-color: #0d6efd;
+          border-color: $blue-primary;
         }
       }
     }
@@ -62,7 +62,7 @@
 
       .old-price {
         font-size: 1rem;
-        color: $secondary-color;
+        color: $warning-color;
       }
     }
 
@@ -71,7 +71,7 @@
         .item-title {
           font-weight: 500;
           font-size: 1.1rem;
-          color: #333;
+          color: $heading-color-2;
         }
 
         .option-icon {
@@ -82,19 +82,89 @@
         .plus-btn {
           background: none;
           border: none;
-          color: #0d6efd;
+          color: $blue-primary;
           font-size: 1.2rem;
           line-height: 1;
 
           &:hover {
-            color: #084298;
+            color: $blue-primary-hover;
+          }
+        }
+      }
+
+      .variant-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .variant-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &__name {
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: $heading-color;
+        }
+
+        &__options {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+      }
+
+      .variant-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        padding: 8px 16px;
+        border: 1px solid $gray-400;
+        border-radius: 8px;
+        background: $white-color;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $gray-900;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        line-height: 1.2;
+
+        &:hover:not(:disabled) {
+          border-color: $warning-color;
+          color: $warning-color;
+          background: $bg-light-blue;
+        }
+
+        &--selected {
+          border-color: $warning-color;
+          background: $warning-color;
+          color: $white-color;
+
+          &:hover {
+            background: $blue-primary-hover;
+            color: $white-color;
+          }
+        }
+
+        &--disabled {
+          opacity: 0.45;
+          cursor: not-allowed;
+          text-decoration: line-through;
+
+          &:hover {
+            border-color: $gray-400;
+            color: $gray-900;
+            background: $white-color;
           }
         }
       }
 
       .accordion-body {
         font-size: 0.95rem;
-        color: #555;
+        color: $para-color;
         padding: 15px;
       }
     }
@@ -124,6 +194,21 @@
       }
     }
 
+    .variant-group {
+      &__name {
+        font-size: 0.85rem;
+      }
+
+      &__options {
+        gap: 0.375rem;
+      }
+    }
+
+    .variant-chip {
+      padding: 7px 12px;
+      font-size: 0.8125rem;
+    }
+
     .product-info {
       .product-title {
         font-size: 1.1rem;
@@ -150,7 +235,7 @@
 
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba($black-color, 0.3);
     border-radius: 50%;
   }
 }
@@ -239,8 +324,8 @@
           }
 
           &.btn-delete:hover {
-            color: #d32f2f;
-            background-color: #ffebee;
+            color: $danger-color;
+            background-color: rgba($danger-color, 0.1);
           }
         }
       }
@@ -305,7 +390,7 @@
     }
 
     &:disabled {
-      background-color: $secondary-color;
+      background-color: $warning-color;
       cursor: not-allowed;
       opacity: 0.5;
     }
