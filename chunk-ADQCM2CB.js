@@ -1,0 +1,1 @@
+import{fc as o,gc as a,pb as n}from"./chunk-O2U53RWE.js";var c=["*"],i=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["page-filter"]],ngContentSelectors:c,decls:1,vars:0,template:function(e,r){e&1&&(o(),a(0))},encapsulation:2})};export{i as a};

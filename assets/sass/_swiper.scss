@@ -1,0 +1,107 @@
+@use "variable" as *;
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to { --border-angle: 360deg; }
+}
+
+.my-swiper {
+  --swiper-navigation-color: $primary-color;
+  --swiper-pagination-color: $primary-color;
+  --swiper-pagination-bullet-inactive-color: $border-1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+
+  &::part(button-prev),
+  &::part(button-next) {
+    width: 40px;
+    height: 40px;
+    background-color: rgba($white-color, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba($black-color, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $white-color;
+      box-shadow: 0 4px 16px rgba($black-color, 0.15);
+      transform: scale(1.1);
+    }
+  }
+
+  &::part(pagination) {
+    bottom: 10px;
+  }
+
+  &::part(bullet-active) {
+    width: 24px;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+}
+
+.hero-swiper {
+  --swiper-navigation-color: #{$white-color};
+  --swiper-pagination-color: #{$accent-gold};
+  --swiper-pagination-bullet-inactive-color: #{rgba($white-color, 0.5)};
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  position: relative;
+  z-index: 0;
+
+  &::part(button-prev),
+  &::part(button-next) {
+    width: 26px;
+    height: 26px;
+    background-color: rgba($white-color, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba($white-color, 0.2);
+    border-radius: 50%;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    cursor: pointer;
+
+    &:hover {
+      background: conic-gradient(from var(--border-angle),
+        rgba($accent-gold, 0.1) 0deg,
+        $accent-gold 120deg,
+        rgba($accent-gold, 0.1) 240deg);
+      border-color: transparent;
+      animation: spin-border 1.5s linear infinite;
+      box-shadow: 0 0 30px rgba($accent-gold, 0.35);
+    }
+  }
+
+  &::part(button-prev) {
+    &:hover {
+      transform: scale(1.1) translateX(-3px);
+    }
+
+    html[dir="rtl"] &:hover {
+      transform: scale(1.1) translateX(3px);
+    }
+  }
+
+  &::part(button-next) {
+    &:hover {
+      transform: scale(1.1) translateX(3px);
+    }
+
+    html[dir="rtl"] &:hover {
+      transform: scale(1.1) translateX(-3px);
+    }
+  }
+
+  &::part(pagination) {
+    bottom: 28px;
+  }
+
+  &::part(bullet-active) {
+    width: 28px;
+    border-radius: 4px;
+    background-color: $accent-gold;
+  }
+}

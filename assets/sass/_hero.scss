@@ -1,0 +1,221 @@
+/*---------------------
+  Hero (Responsive SCSS)
+-----------------------*/
+@use "variable" as *;
+@use "mixins" as m;
+
+.button {
+  @include m.transition(all, 0.3s);
+}
+
+ 
+/* ------------------
+   Responsive Breakpoints
+   adjust typography, spacing, nav placement
+   ------------------*/
+
+/* Large desktops */
+@media (min-width: 1400px) {
+}
+
+/* Desktop / laptop */
+@media (max-width: 1399px) {
+  .hero__text h2 {
+  }
+}
+
+/* Tablet landscape and smaller laptops */
+@media (max-width: 992px) {
+  .hero__text {
+    h2 {
+      line-height: 1.08;
+    }
+    p {
+    }
+  }
+
+  .hero .owl-nav button {
+    left: 28px;
+
+    &.owl-next {
+      right: 28px;
+      left: auto;
+    }
+  }
+
+  /* reduce container width on medium screens */
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Tablet portrait / large phones */
+@media (max-width: 768px) {
+  .hero__text {
+    h6 {
+      margin-bottom: 14px;
+    }
+    h2 {
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    p {
+      margin-bottom: 18px;
+    }
+  }
+
+  .hero .owl-nav button {
+    display: none; /* hide large nav on small screens - rely on dots or swipe */
+  }
+
+  .hero__social {
+    margin-top: 1.5rem;
+    a {
+      margin-right: 1.25rem;
+      font-size: 15px;
+    }
+  }
+
+  .col-xl-5,
+  .col-lg-7,
+  .col-md-8 {
+    width: 100%;
+    max-width: 540px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 576px) {
+  .hero__text {
+    h6 {
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .primary-btn span {
+    }
+  }
+
+  /* position text a bit more centered on mobile */
+  .hero .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .hero__social {
+    margin-top: 1rem;
+  }
+}
+/* إجبار الخلفيات على التغطية والتموضع الصحيح */
+.set-bg {
+  height: 100vh;
+  position: relative; 
+  ._text {
+    margin: 0 5rem;
+    width: 50%;
+    position: absolute;
+    bottom: 10%;
+    h1 {
+      text-emphasis: dot;
+      text-transform: uppercase;
+      letter-spacing: 12px;
+    }
+    p {
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+  }
+  app-image {
+    img {
+      object-fit: fill;
+      // background-position: center center !important;
+      // background-size: cover !important;
+      // background-repeat: no-repeat !important;
+      // // height: auto !important;
+      // height: 100vh !important;
+      // display: flex !important;
+      // align-items: center !important;
+      // padding-top: 8vh !important;
+      // padding-bottom: 6vh !important;
+    }
+  }
+  @media (max-width: 1024px) {
+    height: 100%;
+    ._text {
+      margin: 0;
+    }
+  }
+  @media (max-width: 600px) {
+    height: 100%;
+    ._text {
+      h1 {
+      }
+      p {
+      }
+      margin: 0;
+      bottom: 0%;
+    }
+  }
+}
+
+/* اجعل النص يشغل عرض مناسب ويمنع قطع العرض */
+.hero__text {
+  width: 100% !important;
+  max-width: 540px !important;
+  padding: 0 1rem !important;
+  box-sizing: border-box !important;
+}
+
+/* خطوط مرنة باستخدام clamp لتتلاءم مع أحجام الشاشات */
+.hero__text h6 {
+}
+.hero__text h2 {
+  line-height: 1.05 !important;
+}
+.hero__text p {
+}
+
+/* اجعل انتقال العناصر يظهر بدون إحداث مشاكل في الأجهزة الصغيرة */
+.hero__text h6,
+.hero__text h2,
+.hero__text p,
+.hero__text .primary-btn {
+  position: relative !important;
+  top: 0 !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* تباعد اجتماعي قابل للتصغير */
+.hero__social {
+  margin-top: 1rem !important;
+}
+.hero__social a {
+  margin-right: 1rem !important;
+  font-size: clamp(14px, 2.2vw, 16px) !important;
+}
+
+/* إخفاء أزرار التنقل الكبيرة على الشاشات الصغيرة وإظهار النقاط أو السماح بالسحب */
+@media (max-width: 768px) {
+  .hero .owl-nav {
+    display: none !important;
+  }
+}
+
+/* تصغير المسافات للهواتف الصغيرة */
+@media (max-width: 420px) {
+  .hero__text {
+    max-width: 100% !important;
+    padding: 0 0.75rem !important;
+  }
+  .hero__text h2 {
+  }
+}
