@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BaseListComponent } from '@core/base/base-ilst-component';
 import { Cart, CartResult } from '@models/cart';
 import { CartItem, CartItemFilter, CartItemResult } from '@models/cart-item';
-import { OrderExitStatus } from '@shared/Enum/cart-enum';
+import { CartStatus, OrderExitStatus } from '@shared/Enum/cart-enum';
 import { CartItemService } from '@shared/services/cart-item.service';
 import { CartService } from '@shared/services/cart.service';
 import { getEnumList } from '@shared/Enum/enum-list';
@@ -22,6 +22,7 @@ export class CartItemListComponent extends BaseListComponent<
   cart: Cart = new Cart();
   cartService = inject(CartService);
   orderExitStatus: { id: any; name: string }[];
+  paymentStatus: { id: any; name: string }[];
   loadingCart = true;
 
   constructor(private cartItemService: CartItemService) {
@@ -33,15 +34,21 @@ export class CartItemListComponent extends BaseListComponent<
       this.getCartById();
     });
     this.orderExitStatus = getEnumList(OrderExitStatus);
+    this.paymentStatus = getEnumList(CartStatus);
   }
 
-  saveOrderExitStatusOfCart() {
+  saveStatuses() {
     this.cartService
-      .changeOrderExitStatusOfCart(this.cart.id!, this.cart.orderExitStatus!)
+      .changeCartStatuses(
+        this.cart.id!,
+        this.cart.orderExitStatus!,
+        this.cart.paymentStatus!,
+      )
       .subscribe({
         next: (res: Result<CartResult>) => {
           if (res.isSuccess && res.data) {
             this.cart.orderExitStatus = res.data.orderExitStatus;
+            this.cart.paymentStatus = res.data.paymentStatus;
           }
         },
         complete: () => {
@@ -54,6 +61,10 @@ export class CartItemListComponent extends BaseListComponent<
           this.notificationService.showError(err);
         },
       });
+  }
+
+  getCartStatusName(status: number): string {
+    return CartStatus[status];
   }
 
   getCartById() {

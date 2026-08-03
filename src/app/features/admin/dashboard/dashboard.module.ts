@@ -4,12 +4,15 @@ import { DashboardModuleRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartLineComponent } from '@shared/component/charts/chart-line/chart-line.component';
+import { ChartBarComponent } from '@shared/component/charts/chart-bar/chart-bar.component';
+import { ChartDonutComponent } from '@shared/component/charts/chart-donut/chart-donut.component';
 import { SelectYearComponent } from '@shared/component/select-year/select-year.component';
 import { SliderComponent } from './slider/slider.component';
 import { FormErrorComponent } from '@shared/component/form-error/form-error.component';
 import { ImageComponent } from '@shared/component/img/image/image.component';
 import { MultiImageUploadComponent } from '@shared/component/img/multi-image-uplode/multi-image-upload.component';
 import { SliderListComponent } from './slider-list/slider-list.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Swiper } from 'swiper';
 import { register } from 'swiper/element/bundle';
 register();
@@ -21,10 +24,13 @@ register();
     SharedModule,
     DashboardModuleRoutingModule,
     ChartLineComponent,
+    ChartBarComponent,
+    ChartDonutComponent,
     SelectYearComponent,
     FormErrorComponent,
     ImageComponent,
     MultiImageUploadComponent,
+    MatTooltipModule,
   ],
 })
 export class DashboardModule {}

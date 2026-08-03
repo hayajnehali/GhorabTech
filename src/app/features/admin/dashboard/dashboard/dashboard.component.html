@@ -1,64 +1,156 @@
 <div class="row">
-  <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-    <div class="d-flex my-1 list">
-      <div class="mx-1"><mat-icon class="menu-icon">groups</mat-icon></div>
-      <div>
-        <div class="text-titel-cart-dashbord">{{ "general.users" | translate }}</div>
-        <div>{{totalUsers}}</div>
+  @for (card of cards; track $index) {
+  <div class="col-6 col-sm-6 col-md-3 col-lg-2 dashboard-card-col">
+    <div
+      class="dashboard-card dashboard-card--{{card.color}}"
+      [class.dashboard-card--expanded]="expandedCardIndex === $index"
+      (click)="toggleCard($index)"
+      matTooltip="{{ (card.label | translate) + ' — ' + formatValueFull(card.value, card.currency) }}{{ card.tooltip ? ' — ' + (card.tooltip | translate) : '' }}"
+      matTooltipPosition="above"
+    >
+      <div class="dashboard-card__icon">
+        <mat-icon>{{card.icon}}</mat-icon>
+      </div>
+      <div class="dashboard-card__content">
+        <span class="card-label">{{ card.label | translate }}</span>
+        <span class="card-value">
+          <span class="card-value__inner">
+            {{ formatValue(card.value, card.currency) }}
+            @if (card.currency) {
+            <span class="card-currency">{{ "general.currency-short" | translate }}</span>
+            }
+          </span>
+        </span>
       </div>
     </div>
   </div>
-  <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-    <div class="d-flex my-1 list">
-      <div class="mx-1"><mat-icon class="menu-icon">add_shopping_cart</mat-icon></div>
-      <div>
-        <div class="text-titel-cart-dashbord">{{ "general.products-sold" | translate }}</div>
-        <div>{{totalProducts}}</div>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="col-12 col-sm-4 col-md-3 col-lg-2">
-    <div class="d-flex my-1 list">
-      <div class="mx-1"><mat-icon class="menu-icon">add_shopping_cart</mat-icon></div>
-      <div>
-        <div class="text-titel-cart-dashbord">{{ "general.products-sold" | translate }}</div>
-        <div>10</div>
-      </div>
-    </div>
-  </div> -->
+  }
 </div>
 
-<div class="list">
-  <div class="btn-container">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="setGroupByAndLoad(groupByChartResult.years)"
-    >
-      {{ "general.year" | translate }}
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary mx-2"
-      (click)="setGroupByAndLoad(groupByChartResult.month)"
-    >
-      {{ "general.month" | translate }}
-    </button>
+<div class="btn-container">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    [class.active]="selectedFilter === 'today'"
+    (click)="setFilter('today')"
+  >
+    {{ "general.today" | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    [class.active]="selectedFilter === 'last7'"
+    (click)="setFilter('last7')"
+  >
+    {{ "general.last-7-days" | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    [class.active]="selectedFilter === 'last30'"
+    (click)="setFilter('last30')"
+  >
+    {{ "general.last-30-days" | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    [class.active]="selectedFilter === 'month'"
+    (click)="setFilter('month')"
+  >
+    {{ "general.month" | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    [class.active]="selectedFilter === 'year'"
+    (click)="setFilter('year')"
+  >
+    {{ "general.year" | translate }}
+  </button>
+</div>
+<div class="charts-row">
+  <div class="charts-row__item">
+    @if(data.length > 0){
+    <app-chart-line [data]="data" [labelType]="chartLabelType"></app-chart-line>
+    }@else {
+    <p class=""> {{ "general.no-data" | translate }}</p>
+    }
   </div>
-  @if(filter.groupBy === groupByChartResult.years && data.length > 0){
-  <app-chart-line
-    [data]="data"
-    [labelType]="groupByChartResult[groupByChartResult.years.valueOf()]"
-  ></app-chart-line>
-  } @else if(filter.groupBy === groupByChartResult.month ){
-  <app-select-year (yearChange)="updateChart($event)"></app-select-year>
-  @if(data.length > 0){
-  <app-chart-line
-    [data]="data"
-    [labelType]="groupByChartResult[groupByChartResult.month.valueOf()]"
-  ></app-chart-line>
+  <div class="charts-row__item">
+    @if(usersData.length > 0){
+    <app-chart-line
+      [data]="usersData"
+      [labelType]="chartLabelType"
+      seriesNameKey="general.number-users"
+      titleYearKey="general.users-by-year"
+      titleMonthKey="general.users-by-month"
+      titleDayKey="general.users-by-day"
+    ></app-chart-line>
+    }
+  </div>
+</div>
+<div class="charts-row">
+  <div class="charts-row__item">
+    @if(topProducts.length > 0){
+    <app-chart-bar [data]="topProducts"></app-chart-bar>
+    }@else {
+    <p class=""> {{ "general.no-data" | translate }}</p>
+    }
+  </div>
+  <div class="charts-row__item">
+    @if(paymentMethods.length > 0){
+    <app-chart-donut [data]="paymentMethods"></app-chart-donut>
+    }@else {
+    <p class=""> {{ "general.no-data" | translate }}</p>
+    }
+  </div>
+</div>
+<div class="low-stock">
+  <div class="low-stock__header">
+    <h3>{{ "general.low-stock-alert" | translate }}</h3>
+    @if (lowStock.length > 0) {
+    <span class="low-stock__count">{{ lowStock.length }}</span>
+    }
+  </div>
+  @if(lowStock.length > 0){
+  <div class="table-responsive">
+    <table class="table table-striped low-stock__table">
+      <thead>
+        <tr>
+          <th>{{ "general.product" | translate }}</th>
+          <th>{{ "general.variant" | translate }}</th>
+          <th>{{ "general.available" | translate }}</th>
+          <th>{{ "general.stock" | translate }}</th>
+          <th>{{ "general.reserved" | translate }}</th>
+          <th>{{ "general.status" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of lowStock; track item.variantId) {
+        <tr [class.low-stock__row--out]="item.availableStock === 0">
+          <td>{{ item.productName?.local || item.productName?.english }}</td>
+          <td>{{ item.variantDescription || '-' }}</td>
+          <td>
+            <span class="low-stock__badge" [class.low-stock__badge--out]="item.availableStock === 0">
+              {{ item.availableStock }}
+            </span>
+          </td>
+          <td>{{ item.stock }}</td>
+          <td>{{ item.reservedStock }}</td>
+          <td>
+            @if (item.availableStock === 0) {
+            <span class="low-stock__status low-stock__status--out">{{ "general.out-of-stock" | translate }}</span>
+            } @else {
+            <span class="low-stock__status low-stock__status--low">{{ "general.low-stock" | translate }}</span>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
   }@else {
-  <P class=""> {{ "general.no-data" | translate }}</P>
-
-  } }
+  <p class="">{{ "general.no-low-stock" | translate }}</p>
+  }
 </div>

@@ -11,16 +11,17 @@
     align-items: center;
     margin-bottom: 1rem;
   }
+
+  td .form-group {
+    min-width: 130px;
+  }
+
+  .cost-input {
+    min-width: 130px;
+  }
 }
 
 .required {
   color: $danger-color;
   margin-left: 4px;
-}
-
-.shared-price-stock {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
 }

@@ -22,6 +22,8 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
   id: string | null = null;
   currentRating = 0;
   stars = [1, 2, 3, 4, 5];
+  attributeGroups: AttributeGroup[] = [];
+  selectedByGroup: Map<string, string> = new Map();
 
   constructor(readonly productService: ProductService) {
     super();
@@ -38,10 +40,69 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
         if (req.data) {
           this.product = req.data!;
           if (this.product.variants && this.product.variants.length > 0) {
+            this.buildAttributeGroups();
             this.selectVariant(this.product.variants[0]);
+            this.preselectFirstVariant();
           }
         }
       });
+  }
+
+  buildAttributeGroups(): void {
+    const groups = new Map<string, AttributeGroup>();
+    for (const variant of this.product.variants ?? []) {
+      for (const attr of variant.attributes ?? []) {
+        const groupId = attr.keyAttributeId ?? attr.keyAttributeValueId;
+        const name = attr.keyAttributeName?.local ?? '';
+        const value = attr.value?.local ?? '';
+        if (!groupId || !value) continue;
+
+        if (!groups.has(groupId)) {
+          groups.set(groupId, { keyAttributeId: groupId, name, values: [] });
+        }
+        const group = groups.get(groupId)!;
+        if (!group.values.some((v) => v.value === value)) {
+          group.values.push({ value, available: variant.availableStock > 0 });
+        }
+      }
+    }
+    this.attributeGroups = [...groups.values()];
+  }
+
+  selectAttributeValue(groupId: string, value: string): void {
+    if (this.selectedByGroup.get(groupId) === value) {
+      this.selectedByGroup.delete(groupId);
+    } else {
+      this.selectedByGroup.set(groupId, value);
+    }
+    this.resolveVariant();
+  }
+
+  resolveVariant(): void {
+    if (this.attributeGroups.length === 0) return;
+    if (this.selectedByGroup.size !== this.attributeGroups.length) {
+      this.selectedVariant = null;
+      return;
+    }
+    const match = (this.product.variants ?? []).find((variant) =>
+      (variant.attributes ?? []).every((attr) => {
+        const groupId = attr.keyAttributeId ?? attr.keyAttributeValueId;
+        return this.selectedByGroup.get(groupId) === (attr.value?.local ?? '');
+      })
+    );
+    this.selectedVariant = match ?? null;
+  }
+
+  preselectFirstVariant(): void {
+    const first = this.product.variants?.[0];
+    if (!first) return;
+    this.selectedByGroup.clear();
+    for (const attr of first.attributes ?? []) {
+      const groupId = attr.keyAttributeId ?? attr.keyAttributeValueId;
+      if (groupId && attr.value?.local) {
+        this.selectedByGroup.set(groupId, attr.value.local);
+      }
+    }
   }
 
   selectVariant(variant: ProductVariantResult) {
@@ -110,4 +171,15 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
       error: (err) => console.error('Rating failed', err),
     });
   }
+}
+
+export interface AttributeGroup {
+  keyAttributeId: string;
+  name: string;
+  values: AttributeValueOption[];
+}
+
+export interface AttributeValueOption {
+  value: string;
+  available: boolean;
 }

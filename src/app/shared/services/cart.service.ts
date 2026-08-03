@@ -7,7 +7,7 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { OrderExitStatus } from '@shared/Enum/cart-enum';
+import { CartStatus, OrderExitStatus } from '@shared/Enum/cart-enum';
 import { Result } from '@models/results/result';
 import { PagedResult } from '@models/results/search-filter';
 
@@ -118,12 +118,13 @@ export class CartService extends ServiceBase<Cart, CartResult, CartFilter> {
     return crypto.randomUUID();
   }
 
-  changeOrderExitStatusOfCart(
+  changeCartStatuses(
     cartId: string,
-    orderExitStatus: OrderExitStatus
+    orderExitStatus: OrderExitStatus,
+    paymentStatus: CartStatus
   ): Observable<Result<CartResult>> {
     return this.http.put<Result<CartResult>>(
-      `${this.baseUrl}/change-order-exit-status-cart/${cartId}?orderExitStatus=${orderExitStatus}`,
+      `${this.baseUrl}/change-cart-statuses/${cartId}?orderExitStatus=${orderExitStatus}&paymentStatus=${paymentStatus}`,
       {}
     );
   }
