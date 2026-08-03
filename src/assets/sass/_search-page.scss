@@ -68,7 +68,7 @@
 
   &__body {
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 0.5rem;
     border: 1px solid rgb(0, 0, 0, 0.1);
     &:hover {
       box-shadow:
@@ -78,7 +78,7 @@
   }
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    // padding: 1rem;
 
     &__header {
       padding: 1.25rem;
@@ -94,7 +94,7 @@
     }
 
     &__body {
-      padding: 1rem;
+      // padding: 1rem;
     }
   }
 }
