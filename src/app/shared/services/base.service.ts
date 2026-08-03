@@ -37,7 +37,9 @@ export class ServiceBase<TData, TResult, F extends object> {
     Object.keys(filterCriteria).forEach((key) => {
       const value = filterCriteria[key];
       if (value !== undefined && value !== null) {
-        params = params.append(key, String(value));
+        const serialized =
+          value instanceof Date ? value.toISOString() : String(value);
+        params = params.append(key, serialized);
       }
     });
 

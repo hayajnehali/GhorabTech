@@ -95,38 +95,52 @@
             <label class="fw-bold d-block mb-2">{{
               "product.select-variant" | translate
             }}</label>
-            <div class="d-flex flex-wrap gap-3">
-              @for (variant of product.variants; track $index) {
-                <div
-                  class="variant-option p-2 border rounded cursor-pointer"
-                  [class.border-primary]="selectedVariant?.id === variant.id"
-                  [class.bg-light]="selectedVariant?.id === variant.id"
-                  (click)="selectVariant(variant)"
-                  (keydown.enter)="selectVariant(variant)"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div class="d-flex flex-column align-items-center">
-                    <span class="fw-bold">{{ variant.price }} JOD</span>
-                    @if (variant.attributes && variant.attributes.length > 0) {
-                      <small class="text-muted">
-                        @for (attr of variant.attributes; track $index) {
-                          {{ attr.value?.local }}
-                          @if (!$last) {
-                            ,
-                          }
-                        }
-                      </small>
-                    }
-                    @if (variant.availableStock <= 0) {
-                      <small class="text-danger">{{
-                        "general.out-of-stock" | translate
-                      }}</small>
-                    }
+
+            @if (attributeGroups.length > 0) {
+              <div class="variant-groups">
+                @for (group of attributeGroups; track group.keyAttributeId) {
+                  <div class="variant-group">
+                    <span class="variant-group__name">{{ group.name }}</span>
+                    <div class="variant-group__options">
+                      @for (option of group.values; track option.value) {
+                        <button
+                          type="button"
+                          class="variant-chip"
+                          [class.variant-chip--selected]="selectedByGroup.get(group.keyAttributeId) === option.value"
+                          [class.variant-chip--disabled]="!option.available"
+                          (click)="selectAttributeValue(group.keyAttributeId, option.value)"
+                        >
+                          {{ option.value }}
+                        </button>
+                      }
+                    </div>
                   </div>
-                </div>
-              }
-            </div>
+                }
+              </div>
+            } @else {
+              <div class="d-flex flex-wrap gap-2">
+                @for (variant of product.variants; track $index) {
+                  <div
+                    class="variant-option p-2 border rounded cursor-pointer"
+                    [class.border-primary]="selectedVariant?.id === variant.id"
+                    [class.bg-light]="selectedVariant?.id === variant.id"
+                    (click)="selectVariant(variant)"
+                    (keydown.enter)="selectVariant(variant)"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div class="d-flex flex-column align-items-center">
+                      <span class="fw-bold">{{ variant.price }} JOD</span>
+                      @if (variant.availableStock <= 0) {
+                        <small class="text-danger">{{
+                          "general.out-of-stock" | translate
+                        }}</small>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
           </div>
         }
       </div>

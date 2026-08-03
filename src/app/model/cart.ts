@@ -10,6 +10,7 @@ export class Cart extends ModelBase {
   cartItems: CartItem[] = [];
   currency: string = 'usd';
   orderExitStatus?: OrderExitStatus;
+  paymentStatus?: CartStatus;
   recipientInfo?: RecipientInfo = new RecipientInfo();
   cartowner: CartOwner = new CartOwner();
   payWay: PayWay | undefined;
@@ -17,18 +18,20 @@ export class Cart extends ModelBase {
   deliveryDate?: Date;
   delivaryTimeId?: string;
   notes?: string;
+  checkoutUrl?: string;
   registrationWay: typeof RegistrationWay;
 }
 export class CartResult extends ModelBase {
   userName?: string;
   cartItems: CartItemResult[] = [];
-  paymentStatus?: string;
+  paymentStatus?: CartStatus;
   orderExitStatus?: OrderExitStatus;
   payWay: PayWay | undefined;
   sameSenderRecipientInfo: boolean = false;
   deliveryDate?: Date;
   delivaryTimeId?: string;
   deliveryZoneId?: string;
+  checkoutUrl?: string;
   cartowner: CartOwner = new CartOwner();
   registrationWay: any = RegistrationWay;
 }

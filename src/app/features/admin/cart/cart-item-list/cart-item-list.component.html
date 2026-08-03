@@ -29,12 +29,36 @@
               </mat-select>
             </div>
           </div>
+          <div class="filter-field">
+            <label for="paymentStatus" class="form-label-custom">
+              {{ "cart.payment-status" | translate }}
+            </label>
+            <div class="filter-input-wrapper">
+              <span class="material-icons filter-input-icon"
+                >credit_card</span
+              >
+              <mat-select
+                class="form-control filter-input filter-select"
+                [(ngModel)]="cart.paymentStatus"
+                #paymentStatu="ngModel"
+                name="paymentStatus"
+                [disabled]="loadingCart"
+              >
+                <mat-option
+                  *ngFor="let status of paymentStatus"
+                  [value]="status.id"
+                >
+                  {{ "cartStatus." + status.name | translate }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
         </div>
         <div class="btn-container">
           <button
             type="button"
             class="btn btn-primary"
-            (click)="saveOrderExitStatusOfCart()"
+            (click)="saveStatuses()"
           >
             {{ "general.save" | translate }}
           </button>

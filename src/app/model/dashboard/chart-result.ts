@@ -1,5 +1,5 @@
 import { GroupByChartResult } from "@shared/Enum/group-by-chart-result";
-import { FilterBase } from "./filter-base";
+import { FilterBase } from "../filter-base";
 
 export class ChartResult {
   date!: Date ;
@@ -10,5 +10,6 @@ export class ChartResult {
 }
 export class ChartResultFilter  extends FilterBase {
   date?: Date |string;
+  endDate?: Date | string;
   groupBy?: GroupByChartResult; // مثال: "day", "week", "month"
 }

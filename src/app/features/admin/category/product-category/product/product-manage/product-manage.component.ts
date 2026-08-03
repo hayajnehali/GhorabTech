@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Product, ProductFilter, ProductResult } from '@models/product';
 import { ProductService } from '@shared/services/product.service';
 import { BaseManageComponent } from '@core/base/base-manage-component';
@@ -26,13 +27,17 @@ export class ProductManageComponent extends BaseManageComponent<
   keyAttributeList: KeyAttributeResult[] = [];
   selectedAttributeIds: string[] = [];
   variantRows: ProductVariantDto[] = [];
-  sharedPrice: number = 0;
-  sharedPriceBeforeDiscount?: number;
-  sharedStock: number = 0;
+  private variantErrors = new Map<
+    ProductVariantDto,
+    { price: boolean; stock: boolean }
+  >();
 
   readonly displayedColumns = [
     'index',
     'combination',
+    'price',
+    'priceBeforeDiscount',
+    'stock',
     'action',
   ];
 
@@ -62,10 +67,23 @@ export class ProductManageComponent extends BaseManageComponent<
   }
 
   onAttributesChange(): void {
-    this.variantRows = this.generateCombinations();
+    const existingByKey = new Map<string, ProductVariantDto>();
+    this.variantRows.forEach((v) => {
+      const key = this.combinationKey(
+        v.attributes?.map((a) => a.keyAttributeValueId)
+      );
+      if (key) existingByKey.set(key, v);
+    });
+    this.variantRows = this.generateCombinations(existingByKey);
   }
 
   removeVariantRow(index: number): void {
+    if (this.variantRows.length <= 1) {
+      this.notificationService.showWarning(
+        this.translate.instant('product.at-least-one-variant')
+      );
+      return;
+    }
     this.variantRows.splice(index, 1);
   }
 
@@ -82,29 +100,60 @@ export class ProductManageComponent extends BaseManageComponent<
     this.entity.variants = this.variantRows;
   }
 
+  override save(form: NgForm): void {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+    if (!this.validateVariants()) {
+      this.notificationService.showWarning(
+        this.translate.instant('product.variant-validation-message')
+      );
+      return;
+    }
+    super.save(form);
+  }
+
+  hasError(row: ProductVariantDto, field: 'price' | 'stock'): boolean {
+    return this.variantErrors.get(row)?.[field] ?? false;
+  }
+
+  clearError(row: ProductVariantDto, field: 'price' | 'stock'): void {
+    const error = this.variantErrors.get(row);
+    if (!error) return;
+    error[field] = false;
+    if (!error.price && !error.stock) this.variantErrors.delete(row);
+  }
+
   // ── Private Helpers ──────────────────────────────────────
 
   private loadData(productId: string): void {
-    forkJoin({
-      attributes: this.keyAttributeService.getAll(new KeyAttributeFilter()),
-      product: this.productService.getById(productId),
-    }).subscribe(({ attributes, product }) => {
-      this.keyAttributeList = attributes.items ?? [];
-      const data = Object.assign(new Product(), product.data);
-      this.entity = data;
-      this.onLoadedData(data);
-    });
+    this.subscribe(
+      forkJoin({
+        attributes: this.keyAttributeService.getAll(new KeyAttributeFilter()),
+        product: this.productService.getById(productId),
+      }).subscribe(({ attributes, product }) => {
+        this.keyAttributeList = attributes.items ?? [];
+        const data = Object.assign(new Product(), product.data);
+        this.entity = data;
+        this.onLoadedData(data);
+      })
+    );
   }
 
   private loadKeyAttributes(): void {
-    this.keyAttributeService
-      .getAll(new KeyAttributeFilter())
-      .subscribe((result) => {
-        this.keyAttributeList = result.items ?? [];
-      });
+    this.subscribe(
+      this.keyAttributeService
+        .getAll(new KeyAttributeFilter())
+        .subscribe((result) => {
+          this.keyAttributeList = result.items ?? [];
+        })
+    );
   }
 
-  private generateCombinations(): ProductVariantDto[] {
+  private generateCombinations(
+    existingByKey: Map<string, ProductVariantDto>
+  ): ProductVariantDto[] {
     if (this.selectedAttributeIds.length === 0) return [];
 
     const valueArrays = this.selectedAttributeIds
@@ -114,10 +163,13 @@ export class ProductManageComponent extends BaseManageComponent<
     const combos = this.cartesianProduct(valueArrays);
 
     return combos.map((combo) => {
+      const key = this.combinationKey(combo.map((c) => c.id));
+      const existing = existingByKey.get(key);
       const variant = new ProductVariantDto();
-      variant.price = this.sharedPrice;
-      variant.priceBeforeDiscount = this.sharedPriceBeforeDiscount;
-      variant.stock = this.sharedStock;
+      variant.id = existing?.id;
+      variant.price = existing?.price ?? 0;
+      variant.priceBeforeDiscount = existing?.priceBeforeDiscount;
+      variant.stock = existing?.stock ?? 0;
       variant.attributes = combo.map((c) => {
         const attr = new ProductVariantAttributeDto();
         attr.keyAttributeValueId = c.id;
@@ -152,6 +204,27 @@ export class ProductManageComponent extends BaseManageComponent<
     );
   }
 
+  private combinationKey(valueIds: string[] | undefined): string {
+    return (valueIds ?? []).filter(Boolean).sort().join('|');
+  }
+
+  private validateVariants(): boolean {
+    this.variantErrors.clear();
+    let valid = true;
+    this.variantRows.forEach((v) => {
+      const priceInvalid = v.price == null || isNaN(v.price) || v.price <= 0;
+      const stockInvalid = v.stock == null || isNaN(v.stock) || v.stock < 0;
+      if (priceInvalid || stockInvalid) {
+        this.variantErrors.set(v, {
+          price: priceInvalid,
+          stock: stockInvalid,
+        });
+        valid = false;
+      }
+    });
+    return valid;
+  }
+
   private rebuildVariantsFromData(variants: any[]): void {
     const attrIdsSet = new Set<string>();
 
@@ -162,7 +235,7 @@ export class ProductManageComponent extends BaseManageComponent<
       variant.priceBeforeDiscount = v.priceBeforeDiscount;
       variant.stock = v.stock ?? 0;
       variant.attributes = (v.attributes ?? []).map((a: any) => {
-        attrIdsSet.add(a.keyAttributeId);
+        if (a.keyAttributeId) attrIdsSet.add(a.keyAttributeId);
         const attr = new ProductVariantAttributeDto();
         attr.id = a.id;
         attr.keyAttributeValueId = a.keyAttributeValueId;
@@ -170,12 +243,6 @@ export class ProductManageComponent extends BaseManageComponent<
       });
       return variant;
     });
-
-    if (this.variantRows.length > 0) {
-      this.sharedPrice = this.variantRows[0].price;
-      this.sharedPriceBeforeDiscount = this.variantRows[0].priceBeforeDiscount;
-      this.sharedStock = this.variantRows[0].stock;
-    }
 
     this.selectedAttributeIds = Array.from(attrIdsSet);
   }

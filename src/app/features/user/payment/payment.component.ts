@@ -76,7 +76,7 @@ export class PaymentComponent extends BaseManageComponent<
         // );
         this.cartService.clearCart();
         if (this.entity.payWay == PayWay.visa) {
-          window.location.href = reslut.error?.message ?? '';
+          window.location.href = reslut?.data?.checkoutUrl ?? '';
         } else {
           this.goBack();
         }

@@ -4,7 +4,7 @@ import { ServiceBase } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { apiName } from '@shared/Enum/api-name';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ChartResult } from '@models/chart-result';
+import { ChartResult } from '@models/dashboard/chart-result';
 import { PagedResult } from '@models/results/search-filter';
 
 @Injectable({

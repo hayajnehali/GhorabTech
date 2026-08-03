@@ -51,6 +51,7 @@
               type="text"
               id="nameAr"
               maxlength="100"
+              minlength="3"
               required
               name="nameAr"
               #nameAr="ngModel"
@@ -102,17 +103,18 @@
         </div>
 
         <!-- Key Attributes Selection -->
-        <div class="form-group full-width">
+        <div
+          class="form-group full-width"
+          [class.has-error]="attributes.invalid && attributes.touched"
+        >
           <label>
             {{ "product.select-attributes" | translate }}
             <span class="required">*</span>
           </label>
           <div class="input-wrapper">
             <mat-select
-              class="input-wrapper"
               name="attributes"
               #attributes="ngModel"
-              [(value)]="selectedAttributeIds"
               [(ngModel)]="selectedAttributeIds"
               multiple
               required
@@ -133,70 +135,8 @@
         </div>
       </div>
 
-      <!-- Shared Price / Stock -->
       @if (variantRows.length > 0) {
         <div class="variants-section">
-          <div class="shared-price-stock">
-            <div class="form-group">
-              <label>
-                {{ "general.price" | translate }}
-                <span class="required">*</span>
-              </label>
-              <div class="input-wrapper cost-input">
-                <input
-                  type="number"
-                  [(ngModel)]="sharedPrice"
-                  name="sharedPrice"
-                  required
-                  min="0"
-                  step="0.01"
-                  placeholder="0.00"
-                  #sharedPriceControl="ngModel"
-                />
-                <span class="currency-badge">JOD</span>
-              </div>
-              <app-form-error
-                [control]="sharedPriceControl.control"
-              ></app-form-error>
-            </div>
-            <div class="form-group">
-              <label>
-                {{ "general.price-before-discount" | translate }}
-              </label>
-              <div class="input-wrapper cost-input">
-                <input
-                  type="number"
-                  [(ngModel)]="sharedPriceBeforeDiscount"
-                  name="sharedPriceBeforeDiscount"
-                  min="0"
-                  step="0.01"
-                  placeholder="0.00"
-                />
-                <span class="currency-badge">JOD</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>
-                {{ "general.stock" | translate }}
-                <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <input
-                  type="number"
-                  [(ngModel)]="sharedStock"
-                  name="sharedStock"
-                  required
-                  min="0"
-                  placeholder="0"
-                  #sharedStockControl="ngModel"
-                />
-              </div>
-              <app-form-error
-                [control]="sharedStockControl.control"
-              ></app-form-error>
-            </div>
-          </div>
-
           <div class="variants-header">
             <h4>{{ "product.variants-table" | translate }}</h4>
           </div>
@@ -222,6 +162,77 @@
                       {{ "product.select-all-attributes" | translate }}
                     </span>
                   }
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price" | translate }}
+                  <span class="required">*</span>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <div class="form-group" [class.has-error]="hasError(row, 'price')">
+                    <div class="input-wrapper cost-input">
+                      <input
+                        type="number"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="row.price"
+                        #priceInput="ngModel"
+                        (ngModelChange)="clearError(row, 'price')"
+                        required
+                        min="0.01"
+                        step="0.01"
+                        placeholder="0.00"
+                      />
+                      <span class="currency-badge">JOD</span>
+                    </div>
+                    <app-form-error [control]="priceInput"></app-form-error>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="priceBeforeDiscount">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.price-before-discount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <div class="form-group">
+                    <div class="input-wrapper cost-input">
+                      <input
+                        type="number"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="row.priceBeforeDiscount"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                      />
+                      <span class="currency-badge">JOD</span>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "general.stock" | translate }}
+                  <span class="required">*</span>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <div class="form-group" [class.has-error]="hasError(row, 'stock')">
+                    <div class="input-wrapper">
+                      <input
+                        type="number"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="row.stock"
+                        #stockInput="ngModel"
+                        (ngModelChange)="clearError(row, 'stock')"
+                        required
+                        min="0"
+                        placeholder="0"
+                      />
+                    </div>
+                    <app-form-error [control]="stockInput"></app-form-error>
+                  </div>
                 </td>
               </ng-container>
 
