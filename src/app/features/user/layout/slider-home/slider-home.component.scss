@@ -59,72 +59,58 @@
 .slide-text-card {
   max-width: 680px;
   padding: 2.5rem 3rem;
+}
+
+// عناصر النص تبدأ مخفية وتتحرك فقط عندما تكون الشريحة فعّالة
+// حتى تتكرر الحركة مع كل تنقل بين الشرائح
+.slide-text-card,
+.accent-line,
+.slide-counter,
+.slide-social {
+  opacity: 0;
+}
+
+.hero-slide.swiper-slide-active .slide-text-card {
   animation: fadeIn 0.6s ease 0.1s both;
 }
 
-.slide-badge {
-  margin-bottom: 1.2rem;
-  animation: slideUp 0.8s ease 0.2s both;
+.hero-slide.swiper-slide-active .accent-line {
+  animation: slideUp 0.8s ease 0.25s both;
+}
+
+.hero-slide.swiper-slide-active .slide-social {
+  animation: fadeIn 0.8s ease 2.6s both;
+}
+
+.hero-slide.swiper-slide-active .slide-counter {
+  animation: fadeIn 0.8s ease 2.8s both;
+}
+
+// الحروف: تظهر حرفاً بعد حرف (تلاشٍ فقط لتحافظ على اتصال الحروف العربية)
+.title-letter,
+.desc-letter {
+  display: inline;
+  opacity: 0;
+}
+
+.hero-slide.swiper-slide-active .title-letter,
+.hero-slide.swiper-slide-active .desc-letter {
+  animation: letterFade 0.45s ease forwards;
 }
 
 .accent-line {
   width: 50px;
   margin-bottom: 1.2rem;
-  animation: slideUp 0.8s ease 0.25s both;
 }
 
 .slide-title {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
   margin-bottom: 1.2rem;
-  animation: slideUp 0.9s ease 0.35s both;
 }
 
 .slide-desc {
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.7;
-  animation: slideUp 0.9s ease 0.5s both;
-}
-
-.slide-counter {
-  animation: fadeIn 0.8s ease 1s both;
-}
-
-.slide-social {
-  animation: fadeIn 0.8s ease 0.8s both;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  animation: fadeIn 1s ease 1.5s both;
-}
-
-.scroll-text {
-  font-family: $fm-nunito;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba($white-color, 0.6);
-
-  html[dir="rtl"] & {
-    letter-spacing: 0;
-  }
-}
-
-.scroll-arrow {
-  width: 20px;
-  height: 20px;
-  border-inline-end: 2px solid rgba($white-color, 0.5);
-  border-bottom: 2px solid rgba($white-color, 0.5);
-  animation: bounceDown 2s ease-in-out infinite;
 }
 
 @keyframes kenBurns {
@@ -144,17 +130,6 @@
   }
 }
 
-@keyframes bounceDown {
-  0%, 100% {
-    transform: rotate(45deg) translate(0, 0);
-    opacity: 0.4;
-  }
-  50% {
-    transform: rotate(45deg) translate(4px, 4px);
-    opacity: 1;
-  }
-}
-
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -163,6 +138,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes letterFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -183,10 +167,6 @@
   .slide-counter {
     bottom: 24px;
     inset-inline-end: 5%;
-  }
-
-  .slide-social {
-    margin-top: 2.5rem;
   }
 
   .shape-1,
@@ -210,8 +190,10 @@
   }
 
   .slide-text-card {
-    padding: 1.5rem 1rem;
-    border-radius: 16px;
+    padding: 0.9rem 0.7rem;
+    border-radius: 13px;
+    max-width: 17rem;
+    background: rgba($white-color, 0.04);
   }
 
   .slide-badge {
@@ -225,7 +207,7 @@
   }
 
   .slide-title {
-    font-size: clamp(1.5rem, 8vw, 2rem);
+    font-size: clamp(1.15rem, 6vw, 1.5rem);
     margin-bottom: 0.8rem;
   }
 
@@ -236,10 +218,6 @@
 
   .slide-counter {
     display: none;
-  }
-
-  .slide-social {
-    margin-top: 2rem;
   }
 
   .social-link {
@@ -256,8 +234,10 @@
   }
 
   .slide-text-card {
-    padding: 1rem 0.75rem;
-    border-radius: 14px;
+    padding: 0.6rem 0.5rem;
+    border-radius: 11px;
+    max-width: 14rem;
+    background: rgba($white-color, 0.03);
   }
 
   .slide-badge {
@@ -272,17 +252,13 @@
   }
 
   .slide-title {
-    font-size: clamp(1.2rem, 7vw, 1.5rem);
+    font-size: clamp(0.95rem, 5.5vw, 1.15rem);
     margin-bottom: 0.6rem;
   }
 
   .slide-desc {
     font-size: 0.8rem;
     line-height: 1.4;
-  }
-
-  .slide-social {
-    margin-top: 1.5rem;
   }
 
   .social-link {
