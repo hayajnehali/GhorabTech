@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "predeploy": "ng build --base-href=/GhorabTech/",
-    "deploy": "gh-pages -b gh-pages -d dist/angular-project/browser"
+    "predeploy": "ng build --base-href=/GhorabTech/ && node -e \"require('fs').copyFileSync('dist/angular-project/index.html','dist/angular-project/404.html')\"",
+    "deploy": "gh-pages -b gh-pages -d dist/angular-project --nojekyll"
   },
   "private": true,
   "dependencies": {
