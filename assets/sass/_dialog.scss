@@ -21,12 +21,19 @@
   }
 }
 
+.mat-mdc-dialog-title {
+  flex: 0 0 auto;
+}
+
 .mat-mdc-dialog-content {
   // المحتوى القابل للتمرير فقط
   flex: 1 1 auto;
-  overflow: auto !important;
-  max-height: none !important;
   min-height: 0;
+  overflow-y: auto !important;
+}
+
+.mat-mdc-dialog-actions {
+  flex: 0 0 auto;
 }
 
 // ============ RESPONSIVE ============
