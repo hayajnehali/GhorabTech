@@ -90,7 +90,7 @@
                         {{ "general.percent-off" | translate }}
                       </div>
                     }  -->
-                    @for (item of product.images; track $index) {
+                    @for (item of product.productImages; track $index) {
                       @if (item && item?.guidName && $index == 0) {
                         <app-image
                           [src]="item.guidName"

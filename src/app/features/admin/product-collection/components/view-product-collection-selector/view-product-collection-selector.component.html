@@ -35,7 +35,7 @@
           class="product-item d-flex align-items-center p-3 transition-colors"
         >
           <div class="product-img rounded border">
-            <app-image [src]="product.images[0]?.guidName"></app-image>
+            <app-image [src]="product.productImages[0]?.guidName"></app-image>
           </div>
 
           <div class="ms-3 flex-grow-1">
@@ -45,7 +45,8 @@
           </div>
           <div class="text-end me-3">
             <p class="text-body-md fw-bold m-0">
-              ${{ product.variants?.[0]?.price?.toFixed(2) ?? '-' }}
+              <small>{{ "general.currency-short" | translate }}</small>
+              {{ product.variants?.[0]?.price?.toFixed(2) ?? '-' }}
             </p>
           </div>
           <button class="btn-delete border-0 bg-transparent p-1" (click)="onDeleteProduct.emit(product)">

@@ -21,7 +21,7 @@
                   "disableOnInteraction": false
                 }'
       >
-        @for (item of product.images; track $index) {
+        @for (item of product.productImages; track $index) {
           <swiper-slide>
             <app-image [src]="item.guidName" alt="Thumbnail Image"></app-image>
           </swiper-slide>

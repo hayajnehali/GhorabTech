@@ -1,10 +1,6 @@
 // product-section.component.scss
 @use "variable" as *;
 
-.product-section .product-card {
-  border: none !important;
-}
-
 // تصميم الاسم والسعر داخل البطاقة
 .product-section .card-body {
   padding: 0.9rem 0.5rem 1rem;

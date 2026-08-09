@@ -169,7 +169,7 @@ export class ManageProductCollectionComponent implements OnInit {
       id: source.id,
       productId: Number(source.id),
       name: source.name,
-      images: source.images ?? [],
+      productImages: source.productImages ?? [],
       variants: source.variants ?? [],
     });
   }

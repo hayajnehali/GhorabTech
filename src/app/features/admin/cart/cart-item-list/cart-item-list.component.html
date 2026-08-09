@@ -100,12 +100,12 @@
   </page-header>
 
   <grid-result-body [allowExpand]="true">
-    <grid-column label="general.image" field="product.images">
+    <grid-column label="general.image" field="product.productImages">
       <ng-template let-data>
         <div class="cart-table">
           <div class="table__img">
             <app-image
-              [src]="data.product.images?.[0]?.guidName"
+              [src]="data.product.productImages?.[0]?.guidName"
               class="cell-img"
             ></app-image>
           </div>

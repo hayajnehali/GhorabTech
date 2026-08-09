@@ -143,7 +143,7 @@ export class ProductViewComponent extends BaseComponent implements OnInit {
 
     this.item.product.id = this.product.id;
     this.item.product.name = this.product.name;
-    this.item.product.images = this.product.images;
+    this.item.product.productImages = this.product.productImages;
     this.item.productVariantId = this.selectedVariant.id!;
     this.item.productVariant = this.selectedVariant;
 
