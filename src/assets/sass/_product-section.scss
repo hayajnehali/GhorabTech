@@ -191,12 +191,12 @@
 @media (max-width: 767px) {
   .breadcrumb-nav {
     width: 100%;
-    padding: 0.4rem 0.5rem;
+    padding: 0.25rem 0.3rem;
     border-radius: 30px;
 
     .breadcrumb-list {
       flex-wrap: nowrap;
-      gap: 0.4rem;
+      gap: 0.3rem;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -209,12 +209,12 @@
     .breadcrumb-link {
       flex-shrink: 0;
       white-space: nowrap;
-      padding: 0.35rem 0.8rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.2px;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1px;
 
       i {
-        font-size: 0.75rem;
+        font-size: 0.68rem;
       }
     }
   }
@@ -335,11 +335,16 @@
     .sort-trigger {
       width: 100%;
       justify-content: center;
-      padding: 0.4rem 0.6rem;
-      font-size: 0.78rem;
+      gap: 0.3rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.72rem;
 
       i {
-        font-size: 0.75rem;
+        font-size: 0.68rem;
+      }
+
+      .sort-trigger__chevron {
+        font-size: 0.6rem;
       }
     }
 

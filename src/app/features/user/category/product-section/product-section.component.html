@@ -12,14 +12,7 @@
                     <span>{{ "general.home" | translate }}</span>
                   </a>
                 </li>
-                @if (!fromSearch && hasData) {
-                  <!-- <li class="breadcrumb-item">
-                    <a class="breadcrumb-link" [routerLink]="['../../']">
-                      <span>{{
-                        dataSource.data[0].productCategory.category.name.local
-                      }}</span>
-                    </a>
-                  </li> -->
+                @if (!fromSearch && hasData) { 
                   <li class="breadcrumb-item active">
                     <span class="breadcrumb-link">
                       <span>{{
@@ -111,7 +104,7 @@
                   <div class="card-body text-center">
                     <p class="text-truncate px-2">{{ product.name.local }}</p>
                     <div class="price-tag">
-                      <small>{{ "general.JOD" | translate }}</small>
+                      <small>{{ "general.currency-short" | translate }}</small>
                       {{ product.variants?.[0]?.price ?? '-' }}
                     </div>
                   </div>

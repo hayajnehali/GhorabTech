@@ -81,7 +81,7 @@
               <div class="card-body text-center">
                 <p class="text-truncate px-2">{{ item.product.name.local }}</p>
                 <div class="price-tag">
-                  <small>{{ "general.JOD" | translate }}</small>
+                  <small>{{ "general.currency-short" | translate }}</small>
                   {{ item.product.variants?.[0]?.price ?? '-' }}
                 </div>
               </div>
