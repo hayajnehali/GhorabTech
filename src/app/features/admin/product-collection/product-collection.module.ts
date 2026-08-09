@@ -14,6 +14,7 @@ import { SearchProductCollectionComponent } from './pages/search-product-collect
 import { ButtonComponent } from "@shared/component/ui/button/button/button.component";
 import { ProductCollectionSelectorDialogComponent } from './dialog/product-collection-selector-dialog/product-collection-selector-dialog.component';
 import { MatDialogActions, MatDialogModule } from "@angular/material/dialog";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({ 
   declarations: [
@@ -34,7 +35,8 @@ import { MatDialogActions, MatDialogModule } from "@angular/material/dialog";
     ImageComponent, 
     ButtonComponent,
     MatDialogActions,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
 ],
   exports: [],
 })

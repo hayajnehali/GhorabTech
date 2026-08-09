@@ -178,8 +178,6 @@ export class ManageProductCollectionComponent implements OnInit {
     const dialogRef = this.dialog.open(
       ProductCollectionSelectorDialogComponent,
       {
-        width: '1140px', // Matches 'xl' Bootstrap layout specifications
-        maxWidth: '95vw',
         data: { selectedProducts: this.productsSelected },
       },
     );

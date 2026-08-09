@@ -1,43 +1,425 @@
-.product-card {
-  transition: all 0.2s ease-in-out;
-  border-radius: 8px;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+@use "variable" as *;
+
+.dialog-shell {
+  display: flex;
+  flex-direction: column;
+  background: $white-color;
+  min-height: 0;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid $border;
+  background: $white-color;
+
+  .dialog-title-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: $background-2;
+    color: $primary-color;
+
+    .material-symbols-outlined {
+      font-size: 1.5rem;
+    }
   }
-  
-  &.border-primary {
-    border-color: #000000 !important; // Match your dark confirmation button aesthetic
-    background-color: rgba(0, 0, 0, 0.01) !important;
+
+  .dialog-header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    h2 {
+      color: $heading-color;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 0.15rem;
+    }
+
+    p {
+      color: $secondary-color;
+      font-size: 0.8rem;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .dialog-close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: $secondary-color;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    .material-symbols-outlined {
+      font-size: 1.25rem;
+    }
+
+    &:hover {
+      background: rgba($danger-color, 0.08);
+      color: $danger-color;
+    }
   }
 }
 
-.checkbox-large {
-  width: 1.2rem;
-  height: 1.2rem;
-  border-color: #ced4da;
-  
-  &:checked {
-    background-color: #000;
-    border-color: #000;
+.dialog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: $background;
+  border-bottom: 1px solid $border;
+
+  .search-wrapper {
+    flex: 0 1 420px;
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      inset-inline-start: 0.85rem;
+      color: $secondary-color;
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.55rem 1rem;
+      padding-inline-start: 2.7rem;
+      border-radius: 10px;
+      border: 1px solid $border-1;
+      background-color: $white-color;
+      color: $normal-color;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &::placeholder {
+        color: $secondary-color;
+        opacity: 0.6;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
+        background-color: #fff;
+      }
+    }
+  }
+
+  .dialog-result-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    color: $secondary-color;
+    font-size: 0.8rem;
+    white-space: nowrap;
+
+    strong {
+      color: $primary-color;
+      font-size: 0.95rem;
+    }
   }
 }
 
-.object-fit-contain {
-  object-fit: contain;
-}
+.dialog-content {
+  padding: 1rem 1.5rem;
+  margin: 0;
+  overflow-y: auto;
+  min-height: 0;
 
-// Adjust search-group design
-.search-group {
-  span {
-    left: 12px;
-    color: #6c757d;
+  .table-responsive {
+    min-height: 300px;
+  }
+
+  .products-table {
+    width: 100%;
+
+    thead {
+      th {
+        background: $white-color;
+        color: $secondary-color;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        border-bottom: 1px solid $border;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+    }
+
+    tbody {
+      tr {
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+          background-color: rgba($primary-color, 0.02);
+        }
+
+        &.row-selected {
+          background-color: rgba($primary-color, 0.04);
+
+          td {
+            border-bottom-color: rgba($primary-color, 0.12);
+          }
+        }
+
+        &:last-child td {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        border-bottom: 1px solid $border;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+      }
+    }
+
+    .select-col {
+      width: 48px;
+      padding-inline-start: 1.25rem !important;
+      padding-inline-end: 0 !important;
+    }
+
+    .image-col {
+      width: 64px;
+      padding-inline-end: 0.5rem;
+    }
+
+    .price-col {
+      width: 130px;
+      white-space: nowrap;
+    }
+
+    .selected-col {
+      width: 48px;
+      text-align: center;
+      padding-inline-end: 1rem;
+    }
+
+    .product-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: $background-2;
+      border: 1px solid $border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      app-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .product-name {
+      display: block;
+      color: $heading-color;
+      font-weight: 600;
+      font-size: 0.9rem;
+      max-width: 320px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-category {
+      display: block;
+      color: $secondary-color;
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    .product-price {
+      color: $primary-color;
+      font-weight: 700;
+      font-size: 0.9rem;
+
+      small {
+        color: $secondary-color;
+        font-weight: 600;
+        font-size: 0.7rem;
+        margin-inline-end: 0.25rem;
+      }
+    }
+
+    .selected-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: $success-color;
+
+      .material-symbols-outlined {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 4rem 1rem;
+    text-align: center;
+
+    .empty-icon {
+      font-size: 3rem;
+      color: $gray-400;
+    }
+
+    p {
+      color: $secondary-color;
+      font-size: 0.9rem;
+      margin: 0;
+    }
   }
 }
 
-// Ensure Angular Material Dialog wrapper stretches beautifully up to xl size standards
-::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 12px !important;
-  overflow: hidden !important;
+.dialog-footer {
+  padding: 0 0.5rem;
+  border-top: 1px solid $border;
+  background: $white-color;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid $border;
+  background: $background;
+
+  .selection-summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .selection-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: $primary-color;
+      color: $white-color;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+
+      .material-symbols-outlined {
+        font-size: 1rem;
+      }
+
+      strong {
+        font-size: 0.9rem;
+      }
+    }
+
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.6rem;
+      border: none;
+      background: transparent;
+      color: $danger-color;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+
+      .material-symbols-outlined {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        background: rgba($danger-color, 0.08);
+      }
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .btn-cancel {
+      padding: 0.55rem 1.5rem;
+      border: 1px solid $border-1;
+      border-radius: 10px;
+      background: $white-color;
+      color: $heading-color;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: $secondary-color;
+      }
+    }
+
+    .btn-confirm {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      background: $primary-color;
+      color: $white-color;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      .material-symbols-outlined {
+        font-size: 1rem;
+      }
+
+      &:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba($primary-color, 0.25);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.table-checkbox {
+  ::ng-deep .mdc-checkbox__background {
+    border-color: $gray-400;
+  }
 }
