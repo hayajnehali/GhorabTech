@@ -1,0 +1,43 @@
+@use "variable" as *;
+
+// ============ GLOBAL DIALOG DESIGN SYSTEM ============
+// يضمن ألا يأخذ الدايلوق الطول الكامل للشاشة ويوحد التصميم على كل النظام
+
+.mat-mdc-dialog-container {
+  // الحد الأقصى للعرض حتى لا يتجاوز الشاشة
+  max-width: 95vw !important;
+
+  .mdc-dialog__surface {
+    // الحجم المتوازن للدايلوق
+    width: auto;
+    max-width: 95vw;
+    max-height: 88vh !important;
+    min-height: 0;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.16) !important;
+  }
+}
+
+.mat-mdc-dialog-content {
+  // المحتوى القابل للتمرير فقط
+  flex: 1 1 auto;
+  overflow: auto !important;
+  max-height: none !important;
+  min-height: 0;
+}
+
+// ============ RESPONSIVE ============
+@media (max-width: 768px) {
+  .mat-mdc-dialog-container {
+    max-width: 100vw !important;
+
+    .mdc-dialog__surface {
+      max-width: 100vw;
+      max-height: 92vh !important;
+      border-radius: 12px !important;
+    }
+  }
+}
