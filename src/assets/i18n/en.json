@@ -93,6 +93,7 @@
     "create-date": "Create Date",
     "updated": "Updated",
     "sort-order": "Sort Order",
+    "sortOrder": "Sort Order",
     "active": "Active",
     "inactive": "Inactive",
     "reset": "Reset",

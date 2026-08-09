@@ -95,6 +95,7 @@
     "create-date": "تاريخ الإنشاء",
     "updated": "آخر تحديث",
     "sort-order": "ترتيب الفرز",
+    "sortOrder": "ترتيب الفرز",
     "active": "نشط",
     "inactive": "غير نشط",
     "reset": "إعادة ضبط",

@@ -1,99 +1,92 @@
-<div class=" p-4 shadow-sm bg-body border rounded-3">
-  <div
-    class="flex pb-4 border-b border-outline-variant"
-  >
-    <div>
-      <h4 class="text-headline-lg font-headline-lg text-on-background">
-        {{ (isAdd ? "PRODUCT_COLLECTION.ADD_NEW_COLLECTION" : "PRODUCT_COLLECTION.EDIT_COLLECTION") | translate }}
-      </h4>
-      <p class="text-body-md text-on-surface-variant">
-        {{ (isAdd ? "PRODUCT_COLLECTION.CREATE_COLLECTION_DESC" : "PRODUCT_COLLECTION.EDIT_COLLECTION_DESC") | translate }}
+<div class="admin-form-container">
+  <div class="form-header">
+    <div class="header-title">
+      <h3>
+        {{
+          (isAdd
+            ? "PRODUCT_COLLECTION.ADD_NEW_COLLECTION"
+            : "PRODUCT_COLLECTION.EDIT_COLLECTION")
+            | translate
+        }}
+      </h3>
+      <p>
+        {{
+          (isAdd
+            ? "PRODUCT_COLLECTION.CREATE_COLLECTION_DESC"
+            : "PRODUCT_COLLECTION.EDIT_COLLECTION_DESC")
+            | translate
+        }}
       </p>
     </div>
   </div>
-  <form [formGroup]="collectionForm" (ngSubmit)="save()">
-    <div class="row g-4">
-      <div class="col-12 col-lg-7">
-        <div class="d-flex flex-column gap-4">
-          <div class="card p-4 border-light-variant bg-light shadow-none">
-            <h3
-              class="card-title text-body-lg fw-bold mb-3 d-flex align-items-center gap-2"
-            >
-              <mat-icon class="text-primary">edit_note</mat-icon>
+
+  <div class="form-card">
+    <form [formGroup]="collectionForm" (ngSubmit)="save()">
+      <div class="row g-4">
+        <div class="col-12 col-lg-7">
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <mat-icon>edit_note</mat-icon>
               {{ "PRODUCT_COLLECTION.BASIC_INFORMATION" | translate }}
             </h3>
-            <div class="d-flex flex-column gap-3">
+            <div class="form-grid">
               <ng-container formGroupName="name">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6 d-flex flex-column gap-1">
-                    <label class="form-label-custom fw-medium text-muted"
-                      >{{ "PRODUCT_COLLECTION.COLLECTION_NAME_EN" | translate }}</label
-                    >
+                <div class="form-group">
+                  <label>{{ "PRODUCT_COLLECTION.COLLECTION_NAME_EN" | translate }}</label>
+                  <div class="input-wrapper">
                     <input
-                      class="form-control"
-                      [placeholder]="'PRODUCT_COLLECTION.COLLECTION_NAME_EN_PLACEHOLDER' | translate"
                       type="text"
                       formControlName="english"
+                      [placeholder]="'PRODUCT_COLLECTION.COLLECTION_NAME_EN_PLACEHOLDER' | translate"
                     />
-                    <app-form-error
-                      [control]="collectionForm.get('name.english')!"
-                    ></app-form-error>
                   </div>
-                  <div
-                    class="col-12 col-md-6 d-flex flex-column gap-1"
-                    dir="rtl"
-                  >
-                    <label class="form-label-custom fw-medium text-muted"
-                      >{{ "PRODUCT_COLLECTION.COLLECTION_NAME_AR" | translate }}</label
-                    >
+                  <app-form-error
+                    [control]="collectionForm.get('name.english')!"
+                  ></app-form-error>
+                </div>
+                <div class="form-group" dir="rtl">
+                  <label>{{ "PRODUCT_COLLECTION.COLLECTION_NAME_AR" | translate }}</label>
+                  <div class="input-wrapper">
                     <input
-                      class="form-control"
-                      [placeholder]="'PRODUCT_COLLECTION.COLLECTION_NAME_AR_PLACEHOLDER' | translate"
                       type="text"
                       formControlName="arabic"
+                      [placeholder]="'PRODUCT_COLLECTION.COLLECTION_NAME_AR_PLACEHOLDER' | translate"
                     />
-                    <app-form-error
-                      [control]="collectionForm.get('name.arabic')!"
-                    ></app-form-error>
                   </div>
+                  <app-form-error
+                    [control]="collectionForm.get('name.arabic')!"
+                  ></app-form-error>
                 </div>
               </ng-container>
 
               <ng-container formGroupName="description">
-                <div class="d-flex flex-column gap-1">
-                  <label class="form-label-custom fw-medium text-muted"
-                    >{{ "PRODUCT_COLLECTION.DESCRIPTION_EN" | translate }}</label
-                  >
-                  <textarea
-                    class="form-control resize-none"
-                    [placeholder]="'PRODUCT_COLLECTION.DESCRIPTION_PLACEHOLDER' | translate"
-                    formControlName="english"
-                    rows="4"
-                  ></textarea>
+                <div class="form-group">
+                  <label>{{ "PRODUCT_COLLECTION.DESCRIPTION_EN" | translate }}</label>
+                  <div class="input-wrapper">
+                    <textarea
+                      formControlName="english"
+                      [rows]="4"
+                      [placeholder]="'PRODUCT_COLLECTION.DESCRIPTION_PLACEHOLDER' | translate"
+                    ></textarea>
+                  </div>
                 </div>
-                <div class="d-flex flex-column gap-1">
-                  <label class="form-label-custom fw-medium text-muted"
-                    >{{ "PRODUCT_COLLECTION.DESCRIPTION_AR" | translate }}</label
-                  >
-                  <textarea
-                    class="form-control resize-none"
-                    [placeholder]="'PRODUCT_COLLECTION.DESCRIPTION_PLACEHOLDER' | translate"
-                    formControlName="arabic"
-                    rows="4"
-                  ></textarea>
+                <div class="form-group" dir="rtl">
+                  <label>{{ "PRODUCT_COLLECTION.DESCRIPTION_AR" | translate }}</label>
+                  <div class="input-wrapper">
+                    <textarea
+                      formControlName="arabic"
+                      [rows]="4"
+                      [placeholder]="'PRODUCT_COLLECTION.DESCRIPTION_PLACEHOLDER' | translate"
+                    ></textarea>
+                  </div>
                 </div>
               </ng-container>
 
-              <div class="form-group col-12 col-md-6">
-                <label for="sortOrder">{{
-                  "general.sortOrder" | translate
-                }}</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="sortOrder"
-                  formControlName="sortOrder"
-                />
+              <div class="form-group">
+                <label>{{ "general.sortOrder" | translate }}</label>
+                <div class="input-wrapper">
+                  <input type="number" formControlName="sortOrder" />
+                </div>
                 <app-form-error
                   [control]="collectionForm.get('sortOrder')!"
                   fieldName="{{ 'general.sortOrder' | translate }}"
@@ -102,18 +95,18 @@
             </div>
           </div>
         </div>
+
+        <div class="col-12 col-lg-5">
+          <app-view-product-collection-selector
+            [productsSelected]="productsSelected"
+            (onAddProductClicked)="openAddProductDialog()"
+            (onDeleteProduct)="removeProduct($event)"
+          ></app-view-product-collection-selector>
+        </div>
       </div>
 
-      <div class="col-12 col-lg-5">
-        <app-view-product-collection-selector
-          [productsSelected]="productsSelected"
-          (onAddProductClicked)="openAddProductDialog()"
-          (onDeleteProduct)="removeProduct($event)"
-        ></app-view-product-collection-selector>
-      </div>
-
-      <div class="col-md-12">
-        <button class="btn btn-secondary" (click)="goBack()">
+      <div class="btn-container">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">
           {{ "general.back" | translate }}
         </button>
         <button type="submit" class="btn btn-primary mx-2" [disabled]="loading()">
@@ -123,6 +116,6 @@
           {{ "general.save" | translate }}
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
