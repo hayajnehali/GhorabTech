@@ -6,6 +6,11 @@
   border: 1px solid $border;
   padding: 2.5rem 2rem;
   margin: 1rem; 
+
+  @media (max-width: 767px) {
+    padding: 2.5rem 0.3rem;
+    margin: 1rem 0.2rem;
+  }
   .form-header {
     display: flex;
     justify-content: space-between;
@@ -182,6 +187,37 @@
             box-shadow: 0 0 0 4px rgba($danger-color, 0.1) !important;
           }
         }
+      }
+    }
+  }
+
+  .form-section {
+    background: $white-color;
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 1.5rem;
+    height: 100%;
+
+    .form-section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: $heading-color;
+
+      mat-icon {
+        color: $primary-color;
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    .form-grid {
+      @media (max-width: 768px) {
+        gap: 1.25rem;
       }
     }
   }
