@@ -180,7 +180,11 @@
     "deactivate": "إلغاء التفعيل",
     "confirm-delete": "هل أنت متأكد من حذف هذا العنصر؟",
     "fromTime": "من وقت",
-    "toTime": "الي وقت"
+    "toTime": "الي وقت",
+    "overlay-login-title": "أهلاً بعودتك",
+    "overlay-login-subtitle": "سجّل دخولك لاستكمال رحلتك في التسوق",
+    "overlay-register-title": "انضم إلينا",
+    "overlay-register-subtitle": "أنشئ حسابك الجديد في دقائق وابدأ التسوق"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
