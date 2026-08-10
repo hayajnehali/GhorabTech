@@ -1,0 +1,1 @@
+import{Ea as o,Fa as e,Ha as r}from"./chunk-XSKY2BNY.js";var t=class extends e{name=new o;description=new o;showInMain=!1;constructor(){super()}},s=class extends e{name=new o;description=new o;showInMain=!1;productCategories=[];constructor(){super()}},i=class extends r{sectionView;showInMain};export{t as a,s as b,i as c};
