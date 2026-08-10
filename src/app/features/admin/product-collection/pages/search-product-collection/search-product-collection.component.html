@@ -45,6 +45,7 @@
                   id="text"
                   name="text"
                   class="form-control filter-input"
+                  [(ngModel)]="filter.text"
                   placeholder="{{
                     'product-collection.search-by-name-code-description'
                       | translate
@@ -66,7 +67,9 @@
     <grid-column label="product-collection.code" field="code"></grid-column>
     <grid-column label="product-collection.items-count" field="items">
       <ng-template let-data>
-        <span class="badge-products">{{ data.items?.length ?? 0 }}</span>
+        <span class="badge-products">{{
+          data.productCollectionItems?.length ?? 0
+        }}</span>
       </ng-template>
     </grid-column>
 
@@ -88,16 +91,6 @@
     <grid-column label="product-collection.actions" field="actions">
       <ng-template let-data>
         <div class="action-cell">
-          <ui-button
-            icon="visibility"
-            iconOnly
-            size="xs"
-            variant="ghost"
-            variantIcon="ghost"
-            (click)="viewCollection(data)"
-            tooltip="{{ 'general.view' | translate }}"
-          >
-          </ui-button>
           <ui-button
             icon="edit"
             iconOnly

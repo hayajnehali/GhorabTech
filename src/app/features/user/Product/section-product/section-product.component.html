@@ -15,13 +15,13 @@
             <div class="col-md-6 col-lg-3" *ngFor="let product of dataSource.data">
               <div class="card product-card border-0">
                 <div class="image-wrapper">
-                  <app-image *ngIf="product.images[0].guidName"
-                    src="{{product.images[0].guidName}}"
+                  <app-image *ngIf="product.productImages[0].guidName"
+                    src="{{product.productImages[0].guidName}}"
                     class="card-img-top main-img" 
                     alt="product.name"
                   ></app-image>
-                  <app-image *ngIf="product.images[1].guidName"  class="hover-img"
-                    src="{{product.images[1].guidName}}"
+                  <app-image *ngIf="product.productImages[1].guidName"  class="hover-img"
+                    src="{{product.productImages[1].guidName}}"
                     class="card-img-top hover-img"
                     alt="product.name"
                   ></app-image>

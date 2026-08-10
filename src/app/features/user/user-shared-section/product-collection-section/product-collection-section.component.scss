@@ -1,0 +1,43 @@
+// product-collection-section.component.scss
+@use "variable" as *;
+
+.category-section .product-card {
+  border: none !important;
+}
+
+// تصميم الاسم والسعر داخل البطاقة
+.category-section .card-body {
+  padding: 0.9rem 0.5rem 1rem;
+
+  // اسم المنتج
+  > p {
+    font-family: $fm-nunito;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $heading-color;
+    margin-bottom: 0.6rem;
+  }
+
+  // السعر: رقم داكن بارز بدون خلفية
+  .price-tag {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: $primary-color;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    small {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: $secondary-color;
+      margin-right: 0;
+    }
+  }
+}

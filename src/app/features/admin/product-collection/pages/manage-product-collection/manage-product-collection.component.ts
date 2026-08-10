@@ -169,7 +169,7 @@ export class ManageProductCollectionComponent implements OnInit {
       id: source.id,
       productId: Number(source.id),
       name: source.name,
-      images: source.images ?? [],
+      productImages: source.productImages ?? [],
       variants: source.variants ?? [],
     });
   }
@@ -178,8 +178,6 @@ export class ManageProductCollectionComponent implements OnInit {
     const dialogRef = this.dialog.open(
       ProductCollectionSelectorDialogComponent,
       {
-        width: '1140px', // Matches 'xl' Bootstrap layout specifications
-        maxWidth: '95vw',
         data: { selectedProducts: this.productsSelected },
       },
     );

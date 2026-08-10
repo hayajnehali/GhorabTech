@@ -29,7 +29,7 @@
               ]"
             >
               <div class="image-container">
-                @for (image of item.product.images; track $index) {
+                @for (image of item.product.productImages; track $index) {
                   @if (image && image?.guidName && $index === 0) {
                     <app-image
                       [src]="image.guidName"
@@ -67,7 +67,7 @@
                     {{ "general.percent-off" | translate }}
                   </div>
                 } -->
-                @for (image of item.product.images; track $index) {
+                @for (image of item.product.productImages; track $index) {
                   @if (image && image?.guidName && $index == 0) { 
                     <app-image
                       [src]="image.guidName"
@@ -81,7 +81,7 @@
               <div class="card-body text-center">
                 <p class="text-truncate px-2">{{ item.product.name.local }}</p>
                 <div class="price-tag">
-                  <small>{{ "general.JOD" | translate }}</small>
+                  <small>{{ "general.currency-short" | translate }}</small>
                   {{ item.product.variants?.[0]?.price ?? '-' }}
                 </div>
               </div>

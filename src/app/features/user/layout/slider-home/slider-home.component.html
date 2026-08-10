@@ -17,14 +17,24 @@
       <div class="slide-shape shape-1"></div>
       <div class="slide-shape shape-2"></div>
       <div class="slide-shape shape-3"></div>
-      <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-text-card">
-          <span class="slide-badge">{{ 'slider.featured' | translate }}</span>
           <div class="slide-text">
             <div class="accent-line"></div>
-            <h1 class="slide-title">{{ slide.title.local }}</h1>
-            <p class="slide-desc">{{ slide.description.local }}</p>
+            <h1 class="slide-title">
+              <span
+                class="title-letter"
+                *ngFor="let letter of (slide.title.local ?? '').split(''); let i = index"
+                [style.animation-delay]="(0.35 + i * 0.08) + 's'"
+              >{{ letter }}</span>
+            </h1>
+            <p class="slide-desc">
+              <span
+                class="desc-letter"
+                *ngFor="let letter of (slide.description.local ?? '').split(''); let i = index"
+                [style.animation-delay]="(1 + i * 0.03) + 's'"
+              >{{ letter }}</span>
+            </p>
           </div>
         </div>
         <div class="slide-social">
@@ -43,8 +53,4 @@
     </swiper-slide>
     }
   </swiper-container>
-  <div class="scroll-indicator">
-    <span class="scroll-text">{{ 'slider.scroll' | translate }}</span>
-    <span class="scroll-arrow"></span>
-  </div>
 </div>

@@ -1,69 +1,66 @@
-<div
-  class="card card-bento d-flex flex-column h-100 shadow-sm p-0 overflow-hidden"
->
-  <div
-    class="p-4 border-bottom border-light-variant d-flex justify-content-between align-items-center"
-  >
-    <h3 class="card-title text-body-lg fw-bold m-0 d-flex align-items-center gap-2" >
-      <mat-icon class="text-primary">inventory</mat-icon>
+<div class="collection-selector card shadow-sm h-100">
+  <div class="collection-selector-header">
+    <h3 class="collection-selector-title">
+      <mat-icon>inventory</mat-icon>
       {{ "PRODUCT_COLLECTION.SELECTED_PRODUCTS_TITLE" | translate }}
     </h3>
-    <span class="badge-secondary px-2 py-1 rounded-pill fw-bold">{{ productsSelected()?.length ?? 0 }} {{ "PRODUCT_COLLECTION.ITEMS_COUNT" | translate }}</span>
+    <span class="collection-count">
+      {{ productsSelected()?.length ?? 0 }} {{ "PRODUCT_COLLECTION.ITEMS_COUNT" | translate }}
+    </span>
   </div>
 
-  <div class="p-3 bg-surface-low">
+  <div class="collection-selector-search">
     <div class="position-relative">
-      <mat-icon
-        class="position-absolute left-3 top-50 translate-middle-y text-muted opacity-70"
-        >search</mat-icon
-      >
+      <mat-icon class="search-icon">search</mat-icon>
       <input
-        class="form-control ps-5"
+        class="form-control"
         [placeholder]="'PRODUCT_COLLECTION.SEARCH_IN_COLLECTION' | translate"
         type="text"
       />
     </div>
   </div>
 
-  <div
-    class="flex-grow-1 overflow-y-auto custom-scrollbar"
-    style="max-height: 480px"
-  >
-    <div class="list-group list-group-flush">
-      @for (product of productsSelected(); track product.id) {
-        <div
-          class="product-item d-flex align-items-center p-3 transition-colors"
-        >
-          <div class="product-img rounded border">
-            <app-image [src]="product.images[0]?.guidName"></app-image>
-          </div>
-
-          <div class="ms-3 flex-grow-1">
-            <h4 class="text-body-md fw-bold m-0 text-dark">
-              {{ product.name.local }}
-            </h4>
-          </div>
-          <div class="text-end me-3">
-            <p class="text-body-md fw-bold m-0">
-              ${{ product.variants?.[0]?.price?.toFixed(2) ?? '-' }}
-            </p>
-          </div>
-          <button class="btn-delete border-0 bg-transparent p-1" (click)="onDeleteProduct.emit(product)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      }
-    </div>
+  <div class="collection-selector-body">
+    @if (productsSelected() && productsSelected()!.length > 0) {
+      <ul class="collection-selector-list list-unstyled m-0">
+        @for (product of productsSelected(); track product.id) {
+          <li class="product__item product__item--collection">
+            <div class="product__item__pic">
+              <app-image [src]="product.productImages[0]?.guidName"></app-image>
+            </div>
+            <div class="product__item__text">
+              <h6 class="product-name text-truncate">
+                {{ product.name.local }}
+              </h6>
+              <h5 class="product-price">
+                <small>{{ "general.currency-short" | translate }}</small>
+                {{ product.variants?.[0]?.price?.toFixed(2) ?? '-' }}
+              </h5>
+            </div>
+            <button
+              type="button"
+              class="btn-delete"
+              (click)="onDeleteProduct.emit(product)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <div class="collection-empty">
+        <mat-icon class="collection-empty-icon">inventory_2</mat-icon>
+        <p class="collection-empty-text">
+          {{ "PRODUCT_COLLECTION.NO_PRODUCTS_FOUND" | translate }}
+        </p>
+      </div>
+    }
   </div>
 
-  <div class="p-4 bg-surface-low border-top border-light-variant mt-auto">
-    <ui-button
-      type="button"
-      class="btn-dashed-trigger w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-medium"
-      (click)="addProducts()"
-    >
+  <div class="collection-selector-footer">
+    <button type="button" class="btn-add-products" (click)="addProducts()">
       <mat-icon>add_circle</mat-icon>
       {{ "PRODUCT_COLLECTION.BROWSE_ADD_PRODUCTS" | translate }}
-    </ui-button>
+    </button>
   </div>
 </div>

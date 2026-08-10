@@ -9,14 +9,14 @@
     </div>
     <div class="col-md-6 image-gallery">
       <div
-        *ngIf="product.images && product.images.length > 0"
+        *ngIf="product.productImages && product.productImages.length > 0"
         id="productImageCarousel"
         class="carousel slide w-100"
         data-bs-ride="carousel"
       >
         <div class="carousel-inner">
           <div
-            *ngFor="let image of product.images; let i = index"
+            *ngFor="let image of product.productImages; let i = index"
             class="carousel-item"
             [class.active]="i === 0"
           >
@@ -49,7 +49,7 @@
       </div>
       <div class="row w-100 thumbnail-gallery">
         <div
-          *ngFor="let image of product.images; let i = index"
+          *ngFor="let image of product.productImages; let i = index"
           class="col-2 p-1"
         >
           <app-image [src]="image.guidName" alt="Thumbnail Image"></app-image>

@@ -49,8 +49,6 @@
 
 .slide-text-card {
   background: rgba($white-color, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba($white-color, 0.1);
   border-radius: 20px;
   margin-inline-end: auto;
@@ -64,10 +62,6 @@
 @media (max-width: 992px) {
   .slide-text-card {
     margin-inline-end: 0;
-
-    html[dir="rtl"] & {
-      text-align: center;
-    }
   }
 }
 
@@ -119,15 +113,12 @@
 .slide-title {
   font-family: $fm-unna;
   line-height: 1.1;
-  background: linear-gradient(135deg, $white-color 0%, $accent-gold 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: $accent-gold;
 }
 
 .slide-desc {
   font-family: $fm-nunito;
-  color: rgba($white-color, 0.85);
+  color: $accent-gold;
   margin-bottom: 0;
 }
 
@@ -148,11 +139,11 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  background-color: rgba($white-color, 0.1);
+  background-color: rgba($accent-gold, 0.08);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba($white-color, 0.15);
+  border: 1px solid $accent-gold;
   border-radius: 50%;
-  color: $white-color;
+  color: $accent-gold;
   font-size: 1.05rem;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -221,12 +212,12 @@
 
 @media (max-width: 992px) {
   .slide-content {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: start;
     padding-inline: 5%;
 
     html[dir="rtl"] & {
-      align-items: center;
+      align-items: flex-start;
     }
   }
 
@@ -235,20 +226,18 @@
   }
 
   .slide-badge {
-    align-self: center;
+    align-self: flex-start;
   }
 
   .accent-line {
     html[dir="rtl"] & {
-      margin-inline: auto;
+      margin-inline: 0;
     }
   }
 
   .slide-social {
-    position: static;
-    flex-direction: row;
-    transform: none;
-    justify-content: center;
+    inset-inline-end: 1.5rem;
+    gap: 10px;
   }
 
   .social-link:hover {

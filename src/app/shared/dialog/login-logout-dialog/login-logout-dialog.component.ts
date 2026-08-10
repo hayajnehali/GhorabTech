@@ -1,12 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  inject,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormErrorComponent } from '@shared/component/form-error/form-error.component';
 import { SharedModule } from '@shared/shared.module';
@@ -16,15 +9,14 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base-component';
-import { LocalStorageService } from '@shared/services/local-storage-service.service';
 import { UserService } from '@shared/services/user.service';
 import { User } from '@models/user';
-import { environment } from '@shared/environment/environment';
 import { Auth } from '@models/auth';
 import { MatIcon } from '@angular/material/icon';
 import { Result } from '@models/results/result';
 import { DeliveryZoneService } from '@shared/services/delivery-zone.service';
 import { DeliveryZoneFilter, DeliveryZoneResult } from '@models/delivery/delivery-zone';
+import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 
 @Component({
   selector: 'app-login-logout-dialog',
@@ -44,7 +36,6 @@ export class LoginLogoutDialogComponent
   extends BaseComponent
   implements OnInit
 {
-  private storage = inject(LocalStorageService);
   userService = inject(UserService);
   deliveryZoneService = inject(DeliveryZoneService);
   user: User = new User();
@@ -52,12 +43,11 @@ export class LoginLogoutDialogComponent
   loginError: string | null = null;
   auth: Auth = new Auth();
   confirmEmailForm: boolean = false;
-  private readonly token_KEY = environment.token_KEY;
-  @Output() notify = new EventEmitter<boolean>();
   isLoginForm: boolean = true;
   hidePassword: any = true;
   loading: boolean | null = false;
-  hideConfirmPassword: any = true; 
+  hideConfirmPassword: any = true;
+  socialLinks = SOCIAL_LINKS; 
   constructor(
     public dialogRef: MatDialogRef<LoginLogoutDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -92,11 +82,6 @@ export class LoginLogoutDialogComponent
           this.auth.password = this.user.password;
           this.confirmEmailForm = true;
         }
-        // this.storage.set(this.token_KEY, res.data);
-        // this.notify.emit(true);
-      },
-      complete: () => {
-        // this.dialogRef.close();
       },
       error: (err) => {
         this.notificationService.showError(err);
@@ -111,8 +96,10 @@ export class LoginLogoutDialogComponent
       form.control.markAllAsTouched();
       return;
     }
+    this.loading = true;
     this.authService.login(this.auth).subscribe({
       next: (res) => {
+        this.loading = false;
         if (res.data?.isEmailConfirmed) {
           this.navigateBasedOnRole(res);
         } else {
@@ -120,14 +107,35 @@ export class LoginLogoutDialogComponent
         }
       },
       error: (err) => {
+        this.loading = false;
         this.loginError = this.translate.instant('general.login-error');
       },
-      complete: () => {},
+      complete: () => {
+        this.loading = false;
+      },
     });
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  setAuthForm(form: 'login' | 'register') {
+    const targetIsLogin = form === 'login';
+    if (targetIsLogin === this.isLoginForm) return;
+
+    const leavingPanelId = this.isLoginForm ? 'login-panel' : 'register-panel';
+    const leavingPanel = document.getElementById(leavingPanelId);
+    leavingPanel?.classList.add('panel-leaving');
+
+    setTimeout(() => {
+      this.isLoginForm = targetIsLogin;
+      leavingPanel?.classList.remove('panel-leaving');
+    }, 450);
+  }
+
+  splitWords(text: string): string[] {
+    return (text ?? '').trim().split(/\s+/);
   }
 
   checkVerification(form: NgForm) {

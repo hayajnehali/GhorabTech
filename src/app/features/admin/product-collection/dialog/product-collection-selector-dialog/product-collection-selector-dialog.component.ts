@@ -14,6 +14,7 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 export class ProductCollectionSelectorDialogComponent {
   products = signal<ProductResult[]>([]);
   selectedProducts = signal<ProductResult[]>([]);
+  displayedColumns = ['select', 'image', 'name', 'price', 'selected'];
 
   // Pagination State
   totalItems = signal(0);
@@ -77,6 +78,44 @@ export class ProductCollectionSelectorDialogComponent {
       return exists
         ? current.filter((p) => p.id !== product.id)
         : [...current, product];
+    });
+  }
+
+  selectProduct(product: ProductResult): void {
+    this.selectedProducts.update((current) =>
+      current.some((p) => p.id === product.id) ? current : [...current, product],
+    );
+  }
+
+  unselectProduct(product: ProductResult): void {
+    this.selectedProducts.update((current) =>
+      current.filter((p) => p.id !== product.id),
+    );
+  }
+
+  allOnPageSelected(): boolean {
+    const pageProducts = this.products();
+    return (
+      pageProducts.length > 0 &&
+      pageProducts.every((p) => this.isProductSelected(p.id!))
+    );
+  }
+
+  someOnPageSelected(): boolean {
+    const pageProducts = this.products();
+    return (
+      pageProducts.some((p) => this.isProductSelected(p.id!)) &&
+      !this.allOnPageSelected()
+    );
+  }
+
+  toggleAllOnPage(checked: boolean): void {
+    const pageProducts = this.products();
+    this.selectedProducts.update((current) => {
+      const others = current.filter(
+        (p) => !pageProducts.some((pp) => pp.id === p.id),
+      );
+      return checked ? [...others, ...pageProducts] : others;
     });
   }
 

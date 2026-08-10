@@ -62,10 +62,10 @@
   }
 
   <grid-result-body [allowExpand]="true">
-    <grid-column label="general.image" field="images">
+    <grid-column label="general.image" field="productImages">
       <ng-template let-data>
         <div class="image-in-table">
-          <app-image [src]="data.images?.[0]?.guidName"></app-image>
+          <app-image [src]="data.productImages?.[0]?.guidName"></app-image>
         </div>
       </ng-template>
     </grid-column>

@@ -10,7 +10,7 @@ export class Product extends ModelBase {
   name: LocalizedString = new LocalizedString();
   productCategoryId?: string;
   description: LocalizedString = new LocalizedString();
-  images: ProductImage[] = [];
+  productImages: ProductImage[] = [];
   variants?: ProductVariantDto[] = [];
   constructor() {
     super();
@@ -21,7 +21,7 @@ export class ProductResult extends ModelBase {
   name: LocalizedString = new LocalizedString();
   productCategoryId?: number;
   description: LocalizedString = new LocalizedString();
-  images: ProductImage[] = [];
+  productImages: ProductImage[] = [];
   productCategory: ProductCategoryResult = new ProductCategoryResult();
   variants?: ProductVariantResult[] = [];
   averageRating: number = 0;
