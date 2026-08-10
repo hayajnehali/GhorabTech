@@ -128,11 +128,7 @@ runWithAuth(action: () => void) {
   if (this.isAuthenticatedSignal()) {
     action();
   } else {
-    const dialogRef = this.dialog.open(LoginLogoutDialogComponent, {
-      width: '80%',
-      panelClass: 'custom-dialog',
-    });
-
+    const dialogRef = this.dialog.open(LoginLogoutDialogComponent);
     dialogRef.afterClosed().subscribe(() => {
       if (this.isAuthenticatedSignal()) {
         action();
