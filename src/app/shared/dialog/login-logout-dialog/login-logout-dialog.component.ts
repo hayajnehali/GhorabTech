@@ -99,6 +99,7 @@ export class LoginLogoutDialogComponent
     this.loading = true;
     this.authService.login(this.auth).subscribe({
       next: (res) => {
+        this.loading = false;
         if (res.data?.isEmailConfirmed) {
           this.navigateBasedOnRole(res);
         } else {
@@ -106,6 +107,7 @@ export class LoginLogoutDialogComponent
         }
       },
       error: (err) => {
+        this.loading = false;
         this.loginError = this.translate.instant('general.login-error');
       },
       complete: () => {
