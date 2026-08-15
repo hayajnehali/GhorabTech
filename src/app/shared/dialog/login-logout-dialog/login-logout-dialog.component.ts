@@ -15,7 +15,10 @@ import { Auth } from '@models/auth';
 import { MatIcon } from '@angular/material/icon';
 import { Result } from '@models/results/result';
 import { DeliveryZoneService } from '@shared/services/delivery-zone.service';
-import { DeliveryZoneFilter, DeliveryZoneResult } from '@models/delivery/delivery-zone';
+import {
+  DeliveryZoneFilter,
+  DeliveryZoneResult,
+} from '@models/delivery/delivery-zone';
 import { SOCIAL_LINKS, SocialLink } from '@core/model/social.config';
 
 @Component({
@@ -47,7 +50,7 @@ export class LoginLogoutDialogComponent
   hidePassword: any = true;
   loading: boolean | null = false;
   hideConfirmPassword: any = true;
-  socialLinks = SOCIAL_LINKS; 
+  socialLinks = SOCIAL_LINKS;
   constructor(
     public dialogRef: MatDialogRef<LoginLogoutDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -68,7 +71,7 @@ export class LoginLogoutDialogComponent
       },
     });
   }
- 
+
   createUser(form: NgForm) {
     if (this.authService.isAuthenticatedSignal()) return;
     if (form.invalid || this.user.password !== this.user.confirmPassword) {
@@ -90,6 +93,7 @@ export class LoginLogoutDialogComponent
   }
 
   logIn(form: NgForm) {
+    let resultData: Result<Auth>;
     if (this.authService.isAuthenticatedSignal()) return;
     this.loginError = null;
     if (form.invalid) {
@@ -98,13 +102,9 @@ export class LoginLogoutDialogComponent
     }
     this.loading = true;
     this.authService.login(this.auth).subscribe({
-      next: (res) => {
+      next: (res:Result<Auth>) => {
         this.loading = false;
-        if (res.data?.isEmailConfirmed) {
-          this.navigateBasedOnRole(res);
-        } else {
-          this.confirmEmailForm = true;
-        }
+        resultData = res;
       },
       error: (err) => {
         this.loading = false;
@@ -112,6 +112,11 @@ export class LoginLogoutDialogComponent
       },
       complete: () => {
         this.loading = false;
+        if (resultData.data?.isEmailConfirmed) {
+          this.navigateBasedOnRole(resultData);
+        } else {
+          this.confirmEmailForm = true;
+        }
       },
     });
   }
@@ -154,24 +159,24 @@ export class LoginLogoutDialogComponent
   navigateBasedOnRole(res: Result<Auth>) {
     // 1. حفظ التوكن أولاً وبشكل فوري
     this.authService.saveToken(res.data?.token ?? '');
- 
+
     if (this.authService.isAdmin()) {
       this.router.navigate(['/admin']);
       this.dialogRef.close(); // إغلاق مضمون للأدمن
       return; // إنهاء الدالة لمنع التداخل
     }
- 
+
     if (this.data?.preventRedirect) {
       this.dialogRef.close(); // إغلاق مضمون عند منع التوجيه (مثل صفحة السلة)
       return; // إنهاء الدالة
     }
- 
+
     if (this.data?.urlAfterLogin) {
       this.router.navigate([this.data.urlAfterLogin]);
     } else {
       this.router.navigate(['/user']);
     }
- 
+
     this.dialogRef.close();
   }
 }

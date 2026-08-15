@@ -39,7 +39,7 @@ export class CommentManageWithListComponent extends BaseListComponent<
       let newEntry: any = new Comment();
       newEntry.productId = this.productId!;
       newEntry.userName = this.authService.user()?.userName;
-      newEntry.createdBy = this.authService.user()?.certserialnumber || '';
+      newEntry.createdBy = this.authService.user()?.sub || '';
       newEntry.comment = this.newCommentText();
       this.commentService.create(newEntry).subscribe({
         next: (addedComment) => {

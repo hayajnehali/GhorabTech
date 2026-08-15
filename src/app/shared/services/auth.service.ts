@@ -15,12 +15,11 @@ import { Result } from '@models/results/result';
 export interface JwtPayload {
   sub: string;
   exp: number;
-  role: string;
+  role: string | string[];
   userName: string;
   email: string;
-  certserialnumber: string;
   mobilePhone: string;
-  permission: string;
+  permission?: string | string[];
   [key: string]: any;
   country: string;
 }
@@ -39,8 +38,13 @@ export class AuthService {
   // ===== Signals =====
   user = signal<JwtPayload | null>(null);
   isAuthenticatedSignal = computed(() => !!this.user());
-  isAdmin = computed(() => this.user()?.role === Roles.admin);
-  isUser = computed(() => this.user()?.role === Roles.user);
+  isAdmin = computed(() => this.roles().includes(Roles.admin));
+  isUser = computed(() => this.roles().includes(Roles.user));
+
+  private roles(): string[] {
+    const role = this.user()?.role;
+    return Array.isArray(role) ? role : role ? [role] : [];
+  }
 
   // ===== API Calls =====
   login(data: Auth): Observable<Result<Auth>> {
@@ -63,7 +67,8 @@ export class AuthService {
   }
 
   getRole(): string | null {
-    return this.user()?.role ?? null;
+    const roles = this.roles();
+    return roles.length ? roles[0] : null;
   }
 
   isTokenExpired(token: string): boolean {
@@ -106,8 +111,7 @@ export class AuthService {
   }
 
   hasRole(...roles: string[]): boolean {
-    const userRole = this.getRole();
-    return !!userRole && roles.includes(userRole);
+    return roles.some((r) => this.roles().includes(r));
   }
 
   // ===== Logout =====
